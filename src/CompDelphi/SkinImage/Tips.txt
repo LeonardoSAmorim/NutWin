@@ -1,0 +1,178 @@
+{
+Sometimes the data you want to display in
+a list is too long for the size of ListBox
+you can use. When this happens, you can use
+the simple code to display the ListBox entries
+as Hints when the mouse passes over the ListBox.
+Just make sure that ShowHints is True.
+}
+
+procedure TForm1.ListBox1MouseMove
+(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+var lstIndex : Integer ;
+begin
+ with ListBox1 do begin
+  lstIndex:=SendMessage(Handle,
+                        LB_ITEMFROMPOINT,
+                        0, MakeLParam(x,y));
+  if (lstIndex >= 0) and
+     (lstIndex <= Items.Count) Then
+   Hint := Items[lstIndex]
+  else
+   Hint := ''
+  end;
+ end;
+end.
+
+Hint com quebra de linhas
+
+Para incluir mais de uma linha no Hint você deve utilizar o evento OnMouseMove de cada componente.
+Veja abaixo como ficará o código em um Edit por exemplo. 
+
+procedure TForm1.Edit1MouseMove(Sender: TObject; Shift: TShiftState; X,
+Y: Integer);
+begin
+Edit1.hint := ‘Primeira Linha’+#13+’Segunda Linha’+#13+
+‘Terceira Linha’+#13+’Quarta Linha’;
+end; 
+
+Obs. Não esquecer de mudar para TRUE o evento ShowHint.
+
+Ask the Delphi Pro 10-Minute Solution
+ 
+
+Creating A Skin Component
+By Brendan Delumpa
+
+Awhile back, I wrote an article about creating weirdly shaped forms that used WinAPI regions. They could create virtually any shape of form you wanted—rounded rectangles, ellipses, stars, or a combination of other shapes using the CombineRgn call. By recent standards this method was pretty low grade, but at the time, it was considered fairly fancy. Today, many programs utilize "skins" to change the appearance and shape of forms(think WinAmp). When I first saw WinAmp, I thought to myself, "They must be using regions to fit the form borders around a bitmap." But exactly how that was done was way beyond me. Well, thanks to Madshi over at the Experts Exchange (http://www.experts-exchange.com), I learned the mechanics of fitting a form's borders around a bitmap, and the solution is pretty slick! Below is code for a TImage descendant that you can drop on a form, and at runtime the form will become "transparent" except where the portions of the bitmap are shown. Take a look: 
+unit SkinImage;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics,
+Controls, Forms, Dialogs, 
+  ExtCtrls;
+
+type
+  TSkinImage = class(TImage)
+  private
+
+  protected
+    { Protected declarations }
+    function BitmapToRegion(bmp: TBitmap) : dword;
+    procedure OwnerShow(Sender : TObject);
+  public
+    constructor Create(AOwner : TComponent); override;
+  published
+    { Published declarations }
+  end;
+
+procedure Register;
+
+var
+  Ready : Boolean;
+
+implementation
+
+procedure Register;
+begin
+  RegisterComponents('BD', [TSkinImage]);
+end;
+
+{ TSkinImage }
+
+constructor TSkinImage.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  if NOT (csDesigning in ComponentState) then
+    with TForm(AOwner) do
+    begin
+      BorderStyle := bsNone;
+      Self.Top := 0;
+      Self.Left := 0;
+      OnShow := OwnerShow;
+    end;
+end;
+
+function TSkinImage.BitmapToRegion(bmp: TBitmap) : dword;
+var ix,iy : integer;    // loop variables
+    tc    : TColor;     // transparentColor
+    b1    : boolean;    // am looking through "real" 
+pixels (no transparent pixels)
+    c1    : cardinal;   // region helper variable
+    i1    : integer;    // first position of real pixel
+begin
+  Result := 0;
+  i1 := 0;
+  // memory transparent color
+  tc := bmp.transparentColor and $FFFFFF;
+  with bmp.canvas do
+    // scan through all lines
+    for iy := 0 to bmp.height - 1 do
+    begin
+      b1 := False;
+      // scan through all pixels in this line
+      for ix:=0 to bmp.Width - 1 do
+        // did we find the first/last real pixel in a row
+        if (pixels[ix, iy] and $FFFFFF <> tc) <> b1 then begin
+          // yes, and it was the last pixel,
+          //so we can add a line style region...
+          if b1 then begin
+            c1:=CreateRectRgn(i1,iy,ix,iy+1);
+            if result<>0 then
+              begin
+                // it's not the first region
+                CombineRgn(Result, Result, c1, RGN_OR);
+                DeleteObject(c1);
+                // it's the first region
+              end
+            else
+              Result := c1;
+          end else i1 := ix;
+          // change mode, looking for the first or last real pixel?
+          b1:=not b1;
+        end;
+      // was the last pixel in this row a real pixel?
+      if b1 then begin
+        c1:=CreateRectRgn(i1, iy, bmp.width-1, iy+1);
+        if (Result <> 0) then
+          begin
+            CombineRgn(Result, Result, c1, RGN_OR);
+            DeleteObject(c1);
+          end
+        else
+          Result := c1;
+      end;
+    end;
+end;
+
+procedure TSkinImage.OwnerShow(Sender: TObject);
+var
+  Region : HRGN;
+begin
+  if NOT Ready then
+  begin
+    Ready := True;
+    Region := BitmapToRegion(Picture.Bitmap);
+    SetWindowRgn(TForm(Owner).Handle, Region, True);
+    DeleteObject(Region);
+  end;
+end;
+
+initialization
+  Ready := False;
+end.
+
+Notice that the workhorse of the component is the BitmapToRegion method. This method was developed by Madshi and kindly lent to me. In his own words, this is what the method does: 
+
+"Let's say the first line of our bitmap looks like this: 
+000XXXXX00XXXXX000000XXXX000 
+0 -> transparent pixel;   X -> colored pixel 
+
+Now my function goes through this line and creates a window region for each row of pixels. In the example, we would get 3 regions (4-8, 11-15, 22-25). Then I OR all the regions, and get a region for the complete pixel line. I do the same for all the other lines in the bitmap, and OR all those regions, and finally I end up with quite a complicated region that is something like the 'mask' of the bitmap. Now we have that region, the only thing left to do is to install it by calling SetWindowRgn." 
+
+Very cool. Try it out! 
+
+http://www.inquiry.com/techtips/delphi_pro/10min/10min1099.asp
+

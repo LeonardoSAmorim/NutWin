@@ -1,0 +1,188 @@
+DESCRICAO                                              NAME                                                   
+===================================================    ===================================================    
+Adequação Peso Atual/Desejável Cálc.Simples            mdAdeqPAPDCS                                           
+Adequação Peso Atual/Desejável Metropolitan            mdAdeqPAPRM                                            
+Adequação Peso Atual/Desejável por IMC                 mdAdeqPAPDIMC                                          
+Adequação ao P50 da Circ. Muscular do Braço            mdAdeqCMB                                              
+Adequação ao P50 da Circunferência do Braço            mdAdeqCB                                               
+Adequação ao P50 da Prega Cutânea do Tríceps           mdAdeqPCT                                              
+Adequação ao P50 da Área Muscular do Braço             mdAdeqAMB                                              
+Adequação ao P50 do IMC para Idade (Adolescentes)      mdAdeqIMCA                                             
+Adequação ao P50 do Perímetro Cefálico                 mdAdeqPC                                               
+Adequação da Estatura para Idade                       mdAEI                                                  
+Adequação de Peso para Idade                           mdAPI                                                  
+Adequação do Estatura/Idade Válida                     mdvlprAEI                                              
+Adequação do Peso para Estatura                        mdAPE                                                  
+Adequação do Peso/Estat. e Estat./Idade Val.Adapt.     mdvlprAPEEIAdap                                        
+Adequação do Peso/Estatura Válida                      mdvlprAPE                                              
+Adequação do Peso/Estatura e Estatura/Idade Válida     mdvlprAPEEI                                            
+Adequação do Peso/Idade Válida                         mdvlprAPI                                              
+Anos (Idade)                                           mdIdadeAnos                                            
+Atividade Física (Paciente)                            mdAFPac                                                
+Atividade Física por Dia                               mdAFDia                                                
+Circunferência Muscular do Braço                       mdCMB                                                  
+Circunferência Muscular do Braço Válida                mdvlprCMB                                              
+Circunferência da Cintura                              mdCintura                                              
+Circunferência da Cintura Válida                       mdvlCintura                                            
+Circunferência do Braço                                mdCircBraco                                            
+Circunferência do Braço Válida                         mdvlCircBraco                                          
+Circunferência do Punho                                mdCircPunho                                            
+Circunferência do Punho Válida                         mdvlCircPunho                                          
+Circunferência do Quadril                              mdQuadril                                              
+Circunferência do Quadril Válido                       mdvlQuadril                                            
+Classificação Etária                                   mdClassificacaoEtaria                                  
+Classificação da Compleição Física                     mdDiagCompleicao                                       
+Coeficiente de Densidade C                             mdCoefC                                                
+Coeficiente de Densidade M                             mdCoefM                                                
+Compleição Física                                      mdCompleicao                                           
+Compleição Física Válida                               mdvlprCompleicao                                       
+Composição Corporal por Pregas Cutâneas Válida         mdvlprPGordura                                         
+Comprimento da Perna                                   mdCompPerna                                            
+Comprimento da Perna Válido                            mdvlCompPerna                                          
+Cor de Pele Amarela                                    mdCorAmarela                                           
+Cor de Pele Branca                                     mdCorBranca                                            
+Cor de Pele Parda                                      mdCorParda                                             
+Data da Visita                                         mdDataCalc                                             
+Deficiente Físico tem Bíceps                           mdDefTemBiceps                                         
+Deficiente Físico tem Circunferencia do Braço          mdDefTemCircBraco                                      
+Deficiente Físico tem Circunferencia do Punho          mdDefTemCircPunho                                      
+Deficiente Físico tem Comprimento da Perna             mdDefTemCompPerna                                      
+Deficiente Físico tem Tríceps                          mdDefTemTriceps                                        
+Deficiência Física                                     mdDefFisica                                            
+Densidade Corporal                                     mdDensidade                                            
+Diagnostico da Relacao da Cintura pelo Quadril         mdDiagRCQ                                              
+Diagnóstico Nutricional baseado no IMC (CDC,2000)      mdDiagBasIMCA                                          
+Diagnóstico Peso/Estatura e Estatura/Idade             mdDiagAPEEI                                            
+Diagnóstico Relação Peso Atual/Estatura (Gestante)     mdDiagRPEG                                             
+Diagnóstico da Adequação de Peso/Idade                 mdDiagAPI                                              
+Diagnóstico da Relação Perímetro Cefálico/Torácico     mdDiagRPCPT                                            
+Diagnóstico de Porcentagem de Gordura Corporal         mdDiagPGordura                                         
+Diagnóstico do IMC para Gestantes                      mdDiagIMCG                                             
+Diagnóstico do Índice de Massa Corporal                mdDiagIMC                                              
+Dias (Idade)                                           mdIdadeDias                                            
+Diretório de Cálculos Efetuados                        mdDiretorio                                            
+Estado Nutricional Pré-gestacional                     mdDiagIMCPG                                            
+Estatura                                               mdEstatura                                             
+Estatura Calculada Pelo Comprimento da Perna           mdECCP                                                 
+Estatura Calculada Pelo Comprimento da Perna F1        mdECCPF1                                               
+Estatura Calculada Pelo Comprimento da Perna F2        mdECCPF2                                               
+Estatura Calculada Pelo Comprimento da Perna F3r       mdECCPF3                                               
+Estatura Calculada Pelo Comprimento da Perna F4        mdECCPF4                                               
+Estatura Calculada Pelo Comprimento da Perna F5        mdECCPF5                                               
+Estatura Calculada Pelo Comprimento da Perna F6        mdECCPF6                                               
+Estatura Calculada Pelo Comprimento da Perna(temp)     mdECCPTemp                                             
+Estatura Calculada p/ Comprimento da Perna Válida      mdvlprECCP                                             
+Estatura Esperada                                      mdEstaturaEsperada                                     
+Estatura arredondada                                   mdEstaturaRounded                                      
+Fator 1 de GEBHB                                       mdGEBHBF1                                              
+Fator 2 de GEBHB                                       mdGEBHBF2                                              
+Fator 3 de GEBHB                                       mdGEBHBF3                                              
+Fator 4 de GEBHB                                       mdGEBHBF4                                              
+Fator B de Gasto Energético em Repouso                 mdFatorBGER                                            
+Fator C de Gasto Energético em Repouso                 mdFatorCGER                                            
+Fator da Temperatura Corporal do Paciente              mdFatorTempCorpPac                                     
+Fator de Ajuste de Deficiência Física                  mdFatAjusDef                                           
+Fator de Ajuste por Compleição                         mdFatAjusCompleicao                                    
+Fator de Atividade Física para Pacientes               mdFatorAFPac                                           
+Fator de Atividade Física por Dia                      mdFatorAFDia                                           
+Fator de Lesao para Pacientes                          mdFatorLesaoPac                                        
+Ganho de Peso Recomendado                              mdDiagGanhoPesoGestante                                
+Ganho de Peso da Gestante                              mdGanhoPesoGestante                                    
+Gasto Energético Basal por Harris Benedict             mdGEBHB                                                
+Gasto Energético em Repouso                            mdGER                                                  
+IMC para Gestantes Válido                              mdvlprIMCG                                             
+IMC para Idade (Adolescentes) Válido                   mdvlprIMCA                                             
+Idade                                                  mdIdade                                                
+Idade Esperada                                         mdIdadeEsperada                                        
+Idade da Menarca                                       mdIdadeMenarca                                         
+Identificador do Individuo                             mdGUIDIndividuo                                        
+Indicador de Escopo Criado                             mdEscopoCriado                                         
+Indice de Massa Corporal (IMC)                         mdIMC                                                  
+Individuo                                              mdNomeIndividuo                                        
+Massa Corporal Magra                                   mdMMagra                                               
+Massa de Gordura Corporal                              mdMGordura                                             
+Medição da Estatura                                    mdMedicaoEstatura                                      
+Meses (Idade)                                          mdIdadeMeses                                           
+Nascimento                                             mdDataNascimento                                       
+Nutriz a                                               mdTempoNutriz                                          
+Nível de Escolaridade                                  mdNivelEscolar                                         
+P50 da Circunferência Muscular do Braço                mdP50CMB                                               
+P50 da Circunferência do Braço                         mdP50CB                                                
+P50 da Prega Cutânea do Tríceps                        mdP50PCT                                               
+P50 da Área Muscular do Braço                          mdP50AMB                                               
+P50 do Perímetro Cefálico                              mdP50PC                                                
+P50 do Índice de Massa Corporal p/Idade (Adolesc.)     mdP50IMCA                                              
+Partes Amputadas do Corpo                              mdPartesAmputadas                                      
+Percentil da Circunferência Muscular do Braço          mdDiagCMB                                              
+Percentil da Circunferência do Braço                   mdDiagCB                                               
+Percentil da Prega Cutânea do Tríceps                  mdDiagPCT                                              
+Percentil da Área Muscular do Braço                    mdDiagAMB                                              
+Percentil do IMC para Sexo e Idade                     mdDiagIMCA                                             
+Percentil do Perímetro Cefálico                        mdDiagPC                                               
+Perímetro Cefálico                                     mdPerimetroCefalico                                    
+Perímetro Torácico                                     mdPerimetroToracico                                    
+Peso Atual                                             mdPeso                                                 
+Peso Desejável                                         mdPesoDesejavel                                        
+Peso Desejável Pelo Cálculo Simplificado Fator 1       mdPDCSFator1                                           
+Peso Desejável pelo Cálculo Simplificado               mdPDCS                                                 
+Peso Desejável pelo Cálculo Simplificado Fator 2       mdPDCSFator2                                           
+Peso Desejável pelo Cálculo Simplificado Válido        mdvlprPDCS                                             
+Peso Desejável por IMC                                 mdPDIMC                                                
+Peso Desejável por IMC Válido                          mdvlprPDIMC                                            
+Peso Desejável por Metropolitan                        mdPDM                                                  
+Peso Desejável por Metropolitan                        mdPDMDef                                               
+Peso Desejável por Metropolitan Válido                 mdvlprPDM                                              
+Peso Esperado                                          mdPesoEsperado                                         
+Peso Esperado Adaptado                                 mdPesoEsperadoAdap                                     
+Peso pré-gestacional                                   mdPesoPG                                               
+Porcentagem de Gordura Corporal                        mdPGordura                                             
+Possue Ascite                                          mdAscite                                               
+Prega Cutânea Subescapular                             mdPSubescapular                                        
+Prega Cutânea Suprailíaca                              mdPSuprailiaca                                         
+Prega Cutânea do Bíceps                                mdPBiceps                                              
+Prega Cutânea do Bíceps Válida (md)                    mdvlPBiceps                                            
+Prega Cutânea do Tríceps                               mdPTriceps                                             
+Prega Subescapular Válida                              mdvlPSubescapular                                      
+Prega Suprailíaca Válida                               mdvlPSuprailiaca                                       
+Prega do Tríceps Válida                                mdvlPTriceps                                           
+RDA Valido                                             mdvlprRCRDA                                            
+Recomendação Calórica para Pacientes Válida            mdvlprRCPac                                            
+Recomendação Calórica pela FAO/OMS Válida              mdvlprRCFAODia                                         
+Recomendação de Energia (FAO/OMS)                      mdRCFAODia                                             
+Recomendação de Energia para Pacientes                 mdRCPac                                                
+Recomendação de Energia pela RDA                       mdRCRDA                                                
+Recomendação de Energia pela RDA p/ Peso Desejável     mdRCRDAdesejavel                                       
+Relação Cintura/Quadril Válida                         mdvlprRCQ                                              
+Relação Perímetro Cefálico/Perímetro Torácico          mdRPCPT                                                
+Relação Peso Atual/Estatura da Gestante                mdRPEG                                                 
+Relação Peso/Estatura da Gestante Válida               mdvlprRPEG                                             
+Relação da Cintura pelo Quadril                        mdRCQ                                                  
+Relação do Perímetro Cefálico/Torácico Válido          mdvlprRPCPT                                            
+Semanas de gestação                                    mdTempoGestante                                        
+Sexo                                                   mdSexo                                                 
+Temperatura Corporal                                   mdTempCorpPac                                          
+Tempo Gestante Válido                                  mdvlGestante                                           
+Tempo Nutriz Válido                                    mdvlTempoNutriz                                        
+Tempo de Gestante Válido                               mdvlTempoGestante                                      
+Tipo da Estatura da Gestante                           mdTipoEsturaGestante                                   
+Tipo da Estatura da Gestante                           mdTipoEstaturaGestante                                 
+Tipo de Lesão                                          mdLesaoPac                                             
+Z-Score Estatura/Idade                                 mdZScoreEI                                             
+Z-Score Estatura/Idade -1 Desvio Padrão                mdZN1DEEI                                              
+Z-Score Peso/Estatura                                  mdZScorePE                                             
+Z-Score Peso/Estatura -1 Desvio Padrão                 mdZN1DEPE                                              
+Z-Score Peso/Idade                                     mdZScorePI                                             
+Z-Score Peso/Idade -1 Desvio Padrão                    mdZN1DEPI                                              
+ZScore da Estatura/Idade Válido                        mdvlprZScoreEI                                         
+ZScore do Peso/Estatura Válido                         mdvlprZScorePE                                         
+ZScore do Peso/Idade Válido                            mdvlprZScorePI                                         
+kcal por kg pela RDA                                   mdkcalkgRDA                                            
+Área Muscular do Braço                                 mdAMB                                                  
+Área Muscular do Braço (descontado osso)               mdAMBSO                                                
+Área Muscular do Braço (descontado osso) Fator 1       mdAMBSOF1                                              
+Área Muscular do Braço Válida                          mdvlprAMB                                              
+Área Muscular do Braço sem Osso Válida                 mdvlprAMBSO                                            
+É Pós-menarca até 2 anos                               mdPosMenarcaAte2Anos                                   
+Índice de Massa Corporal (IMC)                         mdIMCA                                                 
+Índice de Massa Corporal Pré-gestacional               mdIMCPG                                                
+Índice de Massa Corporal Válida                        mdvlprIMC                                              

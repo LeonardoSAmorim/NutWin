@@ -1,0 +1,1858 @@
+;; Skel file for Inno Setup Compiler version 5.2.3
+
+;;;; Installation Order ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Once the actual installation process begins, this is the order in which  the
+;; various installation tasks are performed:
+;;  * [InstallDelete] is processed.
+;;  * The entries in [UninstallDelete] are stored in the uninstall log  (which,
+;;     at this stage, is stored in memory).
+;;  * The application directory is created, if necessary.
+;;  * [Dirs] is processed.
+;;  * A filename for the uninstall log is reserved, if necessary.
+;;  * [Files] is processed. (File registration does not happen yet.)
+;;  * [Icons] is processed.
+;;  * [INI] is processed.
+;;  * [Registry] is processed.
+;;  * Files that needed to be registered are now registered, unless the  system
+;;     needs to be restarted, in which case no files are  registered  until the
+;;     system is restarted.
+;;  * The Add/Remove Programs entry for the program is created, if necessary.
+;;  * The entries in [UninstallRun] are stored in the uninstall log.
+;;  * The uninstaller EXE and log are finalized and saved to disk.  After  this
+;;     is done, the user is forbidden from cancelling the install, and any subsequent errors will not cause what was installed before to be rolled back.
+;;  * [Run] is processed, except for entries with the postinstall  flag,  which
+;;     get processed after the Setup Completed wizard page is shown.
+;;  * If ChangesAssociations was set to yes, file  associations  are  refreshed
+;;     now.
+;;  * If ChangesEnvironment was set to yes, other applications are notified  at
+;;     this point.
+
+
+
+
+;;;; Directory Constants ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; {app}
+;   Diretório de destino da aplicação
+;
+; {win}
+;   %WinDir% ou %SystemRoot%
+;
+; {sys}
+;   %WinDir%\system32
+;
+; {syswow64}
+;   geralmente "C:\WINDOWS\SysWOW64" em sistemas 64 bit
+;
+; {src}
+;   Diretório do arquivo de instalação
+;
+; {sd}
+;   %SYSTEMDRIVE%
+;
+; {pf}
+; {pf32}
+; {pf64}
+;   %ProgramFiles%
+;
+; {cf}
+; {cf32}
+; {cf64}
+;   %CommonProgramFiles%
+;
+; {tmp}
+;   %tmp% ou %temp%
+;
+; {fonts}
+;   %WinDir%\Fonts
+;
+; {dao}
+;    %CommonProgramFiles%\Microsoft Shared\DAO
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Setup]
+;; This section contains global settings used by the installer and uninstaller.
+;; Certain directives are required for any installation you create.
+[Setup]
+
+
+
+
+;;;; required directives ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: AppName
+;;
+;; Description:
+;; This required directive specifies  the  title of  the  application  you  are
+;; installing. Do not include the version number, as  the AppVerName  directive
+;; is for that purpose. AppName is shown throughout the  installation  process,
+;; in places like the upper-left corner of the Setup screen, and in the wizard.
+;; The value may include constants.
+;; The value of this directive is also  used  as  the  default  value  for  the
+;; VersionInfoDescription and VersionInfoProductName directives  if  those  are
+;; not specified.
+AppName=My Program
+
+;; [Setup]: AppVerName
+;;
+;; Description:
+;; The value of this required directive should be the same (or similar to)  the
+;; value of AppName, but it should also include the program's  version  number.
+;; The value may include constants
+AppVerName=My Program version 3.0
+
+;; [Setup]: DefaultDirName
+;;
+;; Description:
+;; The value of this required directive is used for the default directory name,
+;; which is used in  the  Select  Destination  Location  page  of  the  wizard.
+;; Normally it is prefixed by a directory constant.
+;; If UsePreviousAppDir is yes (the default) and Setup finds a previous version
+;; of the same application is already installed, it will substitute the default
+;; directory name with the directory selected previously.
+DefaultDirName={pf}\My Program
+
+
+
+
+;;;; Application directory ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: CreateAppDir
+;;
+;; Description:
+;; If is is set to no, no directory for the application will  be  created,  the
+;; Select Destination Location wizard page will not be displayed, and the {app}
+;; directory constant is equivalent to the {win}  directory  constant.  If  the
+;; uninstall feature is enabled when CreateAppDir is  no,  the  uninstall  data
+;; files are created in the system's Windows directory.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+CreateAppDir=true
+
+;; [Setup]: DefaultDirName
+;;
+;; Description:
+;; The value of this required directive is used for the default directory name,
+;; which is used in  the  Select  Destination  Location  page  of  the  wizard.
+;; Normally it is prefixed by a directory constant.
+;; If UsePreviousAppDir is yes (the default) and Setup finds a previous version
+;; of the same application is already installed, it will substitute the default
+;; directory name with the directory selected previously.
+;DefaultDirName={pf}\defaultDir
+
+;; [Setup]: AppendDefaultDirName
+;;
+;; Description:
+;; By default, when a folder in the dialog displayed by the Browse... button on
+;; the Select Destination Location wizard page is clicked, Setup  automatically
+;; appends the last component of DefaultDirName onto the new path. For example,
+;; if DefaultDirName is {pf}\My Program and "Z:\" is clicked, the new path will
+;; become "Z:\My Program".
+;; Setting this directive  to  no  disables  the  aforementioned  behavior.  In
+;; addition, it causes a Make New Folder button to appear on the dialog.
+;;
+;; Valid values:  yes or no
+;; Default value: yes
+AppendDefaultDirName=yes
+
+;; [Setup]: UsePreviousAppDir
+;;
+;; Description:
+;; When this directive is yes, the default, at startup Setup will look  in  the
+;; registry to see if the same application is already installed, and if so,  it
+;; will use the directory of the previous installation as the default directory
+;; presented to the user in the wizard.
+;; Note that Setup cannot re-use settings from a previous installation that had
+;; Uninstallable set to no, since the registry entries it  looks  for  are  not
+;; created when Uninstallable is no.
+;;
+;; Valid values: yes or no
+;; Default value:  yes
+UsePreviousAppDir=true
+
+;; [Setup]: AllowRootDirectory
+;;
+;; Description:
+;; When set to no, the default, the user will not be allowed to  enter  a  root
+;; directory (such as "C:\") on the Select Destination  Location  page  of  the
+;; wizard.
+;;
+;; Valid values: yes or no
+;; Default value: no
+AllowRootDirectory=false
+
+;; [Setup]: AllowUNCPath
+;;
+;; Description:
+;; If set to no, the user will not be allowed to enter  a  UNC  path  (such  as
+;; "\\server\share") on the Select Destination Location  page  of  the  wizard.
+;; This was the default behavior in Inno Setup 2.0.17 and earlier.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+AllowUNCPath=true
+
+;; [Setup]: EnableDirDoesntExistWarning
+;;
+;; Description:
+;; When set to yes, Setup will display a message box if the directory the  user
+;; selects doesn't exist. Usually you will also  set  DirExistsWarning=no  when
+;; this is yes.
+;;
+;; Valid values: yes or no
+;; Default value: no
+EnableDirDoesntExistWarning=false
+
+;; [Setup]: DirExistsWarning
+;;
+;; Description:
+;; When set to auto, the default setting, Setup will show a  "The directory ...
+;; already exists. Would you like to install to that directory anyway?" message
+;; if  the  user  selects  a  directory  that  already  exists  on  the  Select
+;; Destination Location wizard page, except when another version  of  the  same
+;; application is already installed and the selected directory is the  same  as
+;; the previous one (only if UsePreviousAppDir is yes, the default setting).
+;; When set to yes, Setup will always display  the  "Directory Exists"  message
+;; when the user selects an existing directory.
+;; When set to no, Setup will never display the "Directory Exists" message.
+;;
+;; Valid values: auto, yes, or no
+;; Default value: auto
+DirExistsWarning=auto
+
+;; [Setup]: DisableDirPage
+;;
+;; Description:
+;; If this is set to yes, Setup will not show the Select  Destination  Location
+;; wizard page. In this case, it will always use the default directory name.
+;;
+;; Valid values: yes or no
+;; Default value: no
+DisableDirPage=false
+
+
+
+
+
+;;;; Program Group ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: DisableProgramGroupPage
+;;
+;; Description:
+;; If this is set to yes, Setup will not show  the  Select  Start  Menu  Folder
+;; wizard page. In this  case,  it  uses  the  folder  name  specified  by  the
+;; DefaultGroupName [Setup]  section  directive,  or  "(Default)"  if  none  is
+;; specified.
+;;
+;; Valid values: yes or no
+;; Default value: no
+DisableProgramGroupPage=false
+
+;; [Setup]: UsePreviousGroup
+;;
+;; Description:
+;; When this directive is yes, the default, at startup Setup will look  in  the
+;; registry to see if the same application is already installed, and if so,  it
+;; will use the Start Menu folder name of  the  previous  installation  as  the
+;; default Start Menu  folder  name  presented  to  the  user  in  the  wizard.
+;; Additionally, if AllowNoIcons is set to yes, the Don't create a  Start  Menu
+;; folder setting from the previous installation will be restored.
+;; Note that Setup cannot re-use settings from a previous installation that had
+;; Uninstallable set to no, since the registry entries it  looks  for  are  not
+;; created when Uninstallable is no.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+UsePreviousGroup=true
+
+;; [Setup]: AppendDefaultGroupName
+;;
+;; Description:
+;; By default, when a folder in the dialog displayed by the Browse... button on
+;; the Select Start Menu Folder wizard page  is  clicked,  Setup  automatically
+;; appends the last component  of  DefaultGroupName  onto  the  new  path.  For
+;; example, if DefaultGroupName is My Program and "Accessories" is clicked, the
+;; new path will become "Accessories\My Program".
+;; Setting this directive  to  no  disables  the  aforementioned  behavior.  In
+;; addition, it causes a Make New Folder button to appear on the dialog.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+AppendDefaultGroupName=true
+
+;; [Setup]: AllowNoIcons
+;;
+;; Description:
+;; When set to yes, Setup will display a Don't create a Start Menu folder check
+;; box on the Select Start Menu Folder wizard page, which allows  the  user  to
+;; skip creation of program shortcuts. Note that this check box does not affect
+;; [Icons] entries that  have  Tasks  parameters  since  they  have  their  own
+;; checkboxes.
+;;
+;; Valid values: yes or no
+;; Default value: no
+AllowNoIcons=false
+
+;; [Setup]: AlwaysUsePersonalGroup
+;;
+;; Description:
+;; Normally on Windows NT platforms, Inno Setup's {group}  constant  points  to
+;; the All Users start menu if the user has administrative privileges. If  this
+;; directive is set to yes, it always uses current user's profile.
+;;
+;; Valid values: yes or no
+;; Default value: no
+AlwaysUsePersonalGroup=false
+
+;; [Setup]: DefaultGroupName
+;;
+;; Description:
+;; The value of this directive is used for the default Start Menu  folder  name
+;; on the Select Start Menu Folder page of the wizard.  If  this  directive  is
+;; blank or isn't specified, it will use "(Default)" for the name.
+;; Keep in mind that Start Menu folders are stored as  literal  directories  so
+;; any characters not allowed in normal directory names can't be used in  Start
+;; Menu folder names.
+DefaultGroupName=groupname
+
+
+
+;;;; Pages ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: ShowLanguageDialog
+;;
+;; Description:
+;; When set to yes and there are multiple [Languages] section entries, a Select
+;; Language dialog will be  displayed  to  give  the  user  an  opportunity  to
+;; override the language Setup chose by default. See  the  [Languages]  section
+;; documentation for more information.
+;; When set to no, the dialog will never be displayed.
+;; When set to auto, the dialog will only be displayed if Setup does not find a
+;; language identifier match.
+;;
+;; See also:
+;; ShowUndisplayableLanguages
+;;
+;; Valid values: yes or no
+;; Default value: yes
+ShowLanguageDialog=yes
+
+;; [Setup]: LanguageDetectionMethod
+;;
+;; Description:
+;; When set to uilanguage, Setup will determine the default language to use  by
+;; checking the user's "UI language" (by calling GetUserDefaultUILanguage(), or
+;; on Windows versions where that  function  is  unsupported,  by  reading  the
+;; registry). This is the method that Microsoft recommends.  The  "UI language"
+;; is the language used in Windows' own dialogs. Thus, on an English edition of
+;; Windows, English will be the default, while on a Dutch edition  of  Windows,
+;; Dutch will be the default. On the MUI edition of Windows, the  default  will
+;; be the currently selected UI language.
+;; When set to locale, Setup will determine the  default  language  to  use  by
+;; calling  GetUserDefaultLangID().  This  function  returns  the  setting   of
+;; "Your locale" in Control Panel's Regional  Options.  It  should  however  be
+;; noted that since Windows 2000 the "Your locale" option is  not  intended  to
+;; affect languages; it is only  documented  to  affect  "numbers,  currencies,
+;; times, and dates".
+;; When set to none, Setup  will  use  the  first  language  specified  in  the
+;; [Languages] section as the default language.
+;; Valid values: uilanguage, locale, none
+;; Default value: uilanguage
+LanguageDetectionMethod=uilanguage
+
+;; ShowUndisplayableLanguages
+;;
+;; Description:
+;; By default, languages that cannot be displayed on a user's system due  to  a
+;; code page mismatch are  not  listed  in  the  Select  Language  dialog.  For
+;; example, Russian text can only be displayed properly if the active code page
+;; is 1251; if the user isn't running code page 1251 they will not see  Russian
+;;  as an option.
+;; If this directive is set to yes, all languages will be listed in the  Select
+;; Language dialog. To avoid user confusion, it is  not  recommended  that  you
+;; enable this in production installs.
+;;
+;; See also: ShowLanguageDialog
+;;
+;; Valid values: yes or no
+;; Default value: no
+ShowUndisplayableLanguages=true
+
+;; [Setup]: DisableStartupPrompt
+;;
+;; Description:
+;; When this is set to yes, Setup will not show the This will install... Do you
+;; wish to continue? prompt.
+;; This setting has no effect if UseSetupLdr is set to no.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+DisableStartupPrompt=false
+
+;; [Setup]: DisableFinishedPage
+;;
+;; Description:
+;; If this is set to yes, Setup will not show the Setup Completed wizard  page,
+;; and instead will immediately close the Setup program once  the  installation
+;; process finishes. This may be useful if you execute a program in  the  [Run]
+;; section using the nowait flag, and don't want the Setup Completed window  to
+;; remain in the background after the other program has started.
+;; Note that the DisableFinishedPage directive is ignored if a restart  of  the
+;; computer is deemed necessary, or if a file is assigned to the  InfoAfterFile
+;; [Setup] section directive. In those cases, the Setup Completed  wizard  page
+;; will still be displayed.
+;;
+;; Valid values: yes or no
+;; Default value: no
+DisableFinishedPage=false
+
+;; [Setup]: AlwaysShowComponentsList
+;;
+;; Description:
+;; If this directive is set to yes, Setup will always show the components  list
+;; for customizable setups. If this is set to  no  Setup  will  only  show  the
+;; components list if the user selected a custom type from the type list.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+AlwaysShowComponentsList=false
+
+;; [Setup]: ShowComponentSizes
+;;
+;; Description:
+;; When this directive is set to yes, Setup will show the size of  a  component
+;; in the components list. Depending  on  the  largest  component,  Setup  will
+;; display sizes in kilobytes or in megabytes.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+ShowComponentSizes=false
+
+;; [Setup]: FlatComponentsList
+;;
+;; Description:
+;; When this directive is set to yes, Setup will use 'flat' checkboxes for  the
+;; components list. Otherwise Setup will use '3D' checkboxes.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+FlatComponentsList=false
+
+;;
+;;
+;;
+UsePreviousSetupType=false
+
+;; [Setup]: UsePreviousSetupType
+;;
+;; Description:
+;; When this directive is yes, the default, at startup Setup will look  in  the
+;; registry to see if the same application is already installed, and if so,  it
+;; will use the setup type and component settings of the previous  installation
+;; as the default settings presented to the user in the wizard.
+;; Note that Setup cannot re-use settings from a previous installation that had
+;; Uninstallable set to no, since the registry entries it  looks  for  are  not
+;; created when Uninstallable is no.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+UsePreviousTasks=false
+
+;; [Setup]: ShowTasksTreeLines
+;;
+;; Description:
+;; When this directive is set to yes,  Setup  will  show  'tree lines'  between
+;; parent and sub tasks.
+;;
+;; Valid values: yes or no
+;; Default value: no
+ShowTasksTreeLines=true
+
+;; [Setup]: DisableReadyPage
+;;
+;; Description:
+;; If this is set to yes, Setup will not show the Ready to Install wizard page.
+;;
+;; Valid values: yes or no
+;; Default value: no
+DisableReadyPage=false
+
+;; [Setup]: DisableReadyMemo
+;;
+;; Description:
+;; If this is set to yes, Setup will not show a list of settings on  the  Ready
+;; to Install wizard page. Otherwise the list is shown and contains information
+;; like the chosen setup type and the chosen components.
+;;
+;; Valid values: yes or no
+;; Default value: no
+DisableReadyMemo=false
+
+;; [Setup]: AlwaysShowDirOnReadyPage
+;;
+;; Description:
+;; If this directive is set  to  yes,  Setup  will  always  show  the  selected
+;; directory in the list of settings on the Ready to Install  wizard  page.  If
+;; this  is  set  to  no,  Setup  will  not  show  the  selected  directory  if
+;; DisableDirPage is yes.
+;;
+;; Valid values: yes or no
+;; Default value: no
+AlwaysShowDirOnReadyPage=true
+
+;; [Setup]: AlwaysShowGroupOnReadyPage
+;;
+;; Description:
+;; If this directive is set to yes, Setup will always show the  selected  Start
+;; Menu folder name in the list of settings on  the  Ready  to  Install  wizard
+;; page. If this is set to no, Setup will not  show  the  selected  Start  Menu
+;; folder name if DisableProgramGroupPage is yes.
+;; If no Start Menu folder is going to be created by Setup, this  directive  is
+;; effectively ignored.
+;;
+;; Valid values: yes or no
+;; Default value: no
+AlwaysShowGroupOnReadyPage=true
+
+
+
+
+;;;; Appearance ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; wizard Window ;;;;
+
+;; [Setup]: WizardImageFile
+;;
+;; Description:
+;; Specifies the name of the bitmap file to display on the  left  side  of  the
+;; wizard  in  the  Setup  program.  This  file  must  be   located   in   your
+;; installation's source directory when running the Setup  Compiler,  unless  a
+;; fully qualified pathname  is  specified  or  the  pathname  is  prefixed  by
+;; "compiler:", in which case it looks for the file in the Compiler directory.
+;; 256-color bitmaps may not display correctly in 256-color mode, since it does
+;; not handle palettes. The maximum size of the bitmap is 164x314 pixels.  Note
+;; that if Windows is running with Large Fonts, the area on the wizard for  the
+;; bitmap will be larger.
+;;
+;; Default value: compiler:WIZMODERNIMAGE.BMP
+WizardImageFile=compiler:WIZMODERNIMAGE.BMP
+
+;; [Setup]: WizardSmallImageFile
+;;
+;; Description:
+;; Specifies the name of the bitmap file to display in the upper  right  corner
+;; of the wizard window. This file  must  be  located  in  your  installation's
+;; source directory when running the Setup Compiler, unless a  fully  qualified
+;; pathname is specified or the pathname is prefixed by "compiler:",  in  which
+;; case it looks for the file in the Compiler directory.
+;; 256-color bitmaps may not display correctly in 256-color mode, since it does
+;; not handle palettes. The maximum size of the bitmap is 55x58 pixels.
+;;
+;; Default value: compiler:WIZMODERNSMALLIMAGE.BMP
+WizardSmallImageFile=compiler:WIZMODERNSMALLIMAGE.BMP
+
+;; [Setup]: WizardImageBackColor
+;;
+;; Description:
+;; This directive specifies the background color used to fill any unused  space
+;; around the wizard bitmap (which is specified by WizardImageFile). There  can
+;; only be unused space if WizardImageStretch is set to no.
+;;
+;; Valid values:
+;; A value in the form of $bbggrr, where rr, gg, and bb specify  the  two-digit
+;; intensities (in hexadecimal) for red, green, and blue  respectively.  Or  it
+;; may be one of the following predefined  color  names:   clBlack,   clMaroon,
+;; clGreen, clOlive, clNavy, clPurple, clTeal, clGray, clSilver, clRed, clLime,
+;; clYellow, clBlue, clFuchsia, clAqua, clWhite.
+;;
+;; Default value: $400000
+WizardImageBackColor=$400000
+
+;; [Setup]: WizardImageStretch
+;;
+;; Description:
+;; If set to yes, the default, the wizard images will be stretched or shrunk if
+;; the wizard is larger or smaller than normal, e.g. if the user is running  in
+;; Large Fonts.
+;; If set to no, the wizard images will be centered in their  respective  areas
+;; if the wizard is larger than normal, and clipped if the  wizard  is  smaller
+;; than normal. (This corresponds to the default behavior of Inno  Setup  4.1.2
+;; and earlier.)
+;;
+;; Valid values: yes or no
+;; Default value: yes
+WizardImageStretch=true
+
+;; [Setup]: WindowVisible
+;;
+;; Description:
+;; If set to yes, there will be a gradient background window  displayed  behind
+;; the wizard.
+;; Note that this is considered a legacy feature; it  likely  will  be  removed
+;; at some point in the future.
+;;
+;; Valid values: yes or no
+;; Default value: no
+WindowVisible=no
+
+;; [Setup]: WindowShowCaption
+;;
+;; Description:
+;; If set to no, Setup will be truly "full screen" -- it won't have  a  caption
+;; bar or border, and it will be on top of the taskbar.
+;; This directive has no effect if WindowVisible is not set to yes.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+WindowShowCaption=yes
+
+;; [Setup]: WindowStartMaximized
+;;
+;; Description:
+;; If set to yes, the Setup  program's  background  window  will  initially  be
+;; displayed in a maximized state, where it won't cover over the taskbar.
+;; This directive has no effect if WindowVisible is not set to yes.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+WindowStartMaximized=yes
+
+;; [Setup]: WindowResizable
+;;
+;; Description:
+;; If set to no,  the  user  won't  be  able  to  resize  the  Setup  program's
+;; background window when it's not maximized.
+;; This directive has no effect if WindowVisible is not set to yes.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+WindowResizable=false
+
+;; [Setup]: BackColor, BackColor2
+;;
+;; Description:
+;; The BackColor directive specifies the color to use at the top (or  left,  if
+;; BackColorDirection=lefttoright) of the setup window's  gradient  background.
+;; BackColor2 specifies the color to use at the bottom (or right).
+;; The setting of BackColor2 is ignored if BackSolid=yes.
+;;
+;; Valid values:
+;; A value in the form of $bbggrr, where rr, gg, and bb specify  the  two-digit
+;; intensities (in hexadecimal) for red, green, and blue  respectively.  Or  it
+;; may be one of the  following  predefined  color  names:  clBlack,  clMaroon,
+;; clGreen, clOlive, clNavy, clPurple, clTeal, clGray, clSilver, clRed, clLime,
+;; clYellow, clBlue, clFuchsia, clAqua, clWhite.
+;; Default value:
+;; clBlue for BackColor,
+;; clBlack for BackColor2
+BackColor=clBlue
+BackColor2=clBlack
+
+;; [Setup]: BackColorDirection
+;;
+;; Description:
+;; This determines the direction  of  the  gradient  background  on  the  setup
+;; window. If BackColorDirection is  toptobottom,  it  is  drawn  from  top  to
+;; bottom; if it is lefttoright, it is drawn from left to right.
+;;
+;; Valid values: toptobottom or lefttoright
+;; Default value: toptobottom
+BackColorDirection=toptobottom
+
+;; [Setup]: SetupIconFile
+;;
+;; Description:
+;; Specifies a custom program icon to use for Setup/Uninstall. The file must be
+;; located in your installation's  source  directory  when  running  the  Setup
+;; Compiler, unless a fully qualified pathname is specified or the pathname  is
+;; prefixed by "compiler:", in which case it looks for the file in the Compiler
+;; directory.
+;; This directive is not supported if you're compiling under Windows 95/98/Me.
+SetupIconFile=
+
+
+
+
+;;;; Uninstall ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: Uninstallable
+;;
+;; Description:
+;; This determines if Inno Setup's automatic uninstaller is to be  included  in
+;; the installation. If this is yes the uninstaller is included. If this is no,
+;; no uninstallation support is included, requiring the end- user  to  manually
+;; remove the files pertaining to your application.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+Uninstallable=true
+
+;; [Setup]: UninstallLogMode
+;;
+;; Description:
+;; append, the default setting,  instructs  Setup  to  append  to  an  existing
+;; uninstall log when possible.
+;; new, which corresponds to the behavior in pre-1.3 versions  of  Inno  Setup,
+;; instructs Setup to always create a new uninstall log.
+;; overwrite instructs Setup to overwrite any existing uninstall logs from  the
+;; same application instead of appending to them (this is not recommended). The
+;; same rules for appending to existing  logs  apply  to  overwriting  existing
+;; logs.
+;;
+;; Valid values: append, new, or overwrite
+;; Default value: append
+UninstallLogMode=append
+
+;; [Setup]: UninstallFilesDir
+;;
+;; Description:
+;; Specifies the directory where the "unins*.*" files for the  uninstaller  are
+;; stored.
+;; Note: You should not assign a different value here on a new  version  of  an
+;; application, or else Setup won't find the uninstall logs from  the  previous
+;; versions and therefore won't be able to append to them.
+;;
+;; Default value: {app}
+UninstallFilesDir={app}
+
+;; [Setup]: UpdateUninstallLogAppName
+;;
+;; Description:
+;; If yes, when appending to an existing uninstall log, Setup will replace  the
+;; AppName field in the log  with  the  current  installation' s  AppName.  The
+;; AppName field of the uninstall log determines the  title  displayed  in  the
+;; uninstaller. You may want to set this to no if your installation  is  merely
+;; an upgrade or add-on to an existing program, and you don't want the title of
+;; the uninstaller changed.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+UpdateUninstallLogAppName=true
+
+;; [Setup]: UninstallRestartComputer
+;;
+;; Description:
+;; When set to yes, the uninstaller will always prompt the user to restart  the
+;; system at the end of a successful uninstallation, regardless of  whether  it
+;; is  necessary  ( e.g.,  because  of  [Files]  section   entries   with   the
+;; uninsrestartdelete flag).
+;;
+;; Valid values: yes or no
+;; Default value: no
+UninstallRestartComputer=false
+
+;; [Setup]: CreateUninstallRegKey
+;;
+;; Description:
+;; If this is set to no, Setup won't create an entry in the Add/Remove Programs
+;; Control Panel applet. This can be useful if your installation is  merely  an
+;; update to an existing application and you don't want another entry  created,
+;; but  don't  want  to  the  disable  the  uninstall  features  entirely  (via
+;; Uninstallable=no).
+;; When this directive is set to no, UpdateUninstallLogAppName is  usually  set
+;; to no as well.
+CreateUninstallRegKey=true
+
+;; [Setup]: AppId
+;;
+;; Description:
+;; The value of AppId is stored inside uninstall log files (unins???.dat),  and
+;; is checked by subsequent installations to determine whether it may append to
+;; a particular existing uninstall log. Setup will only append to an  uninstall
+;; log if the AppId of the existing uninstall log is the same  as  the  current
+;; installation's  AppId.  For  a  practical  example,   say   you   have   two
+;; installations -- one entitled My Program and the other entitled  My  Program
+;; 1.1 Update. To get My Program 1.1 Update to append to My Program's uninstall
+;; log, you would have to set AppId to the same value in both installations.
+;; AppId also determines the actual name of  the  Uninstall  registry  key,  to
+;; which Inno Setup tacks on  "_is1"  at  the  end.  (Therefore,  if  AppId  is
+;; "MyProgram", the key will be named  "MyProgram_is1".)  Pre-1.3  versions  of
+;; Inno Setup based the key name on the value of AppVerName.
+;; AppId is a not used for display anywhere, so feel free to make it as cryptic
+;; as you desire. The value may include constants.
+;; If you use a {code:..} constant to allow your user to customize  AppId,  you
+;; do not need to return the real value  until  just  before  the  installation
+;; starts: if necessary you may return an empty or  generic  value  at  earlier
+;; times. If not empty, this value will only be  used  to  attempt  to  restore
+;; previous install settings (like  the  settings  stored  by  [Setup]  section
+;; directive UsePreviousAppDir). If empty, it isn't used for anything.
+;; The length of AppId with all constants evaluated  should  never  exceed  127
+;; characters.
+;;
+;; Default value: AppName
+AppID=appID
+
+;; [Setup]: SignedUninstaller
+;;
+;; Description:
+;; Specifies whether the uninstaller program (unins???.exe) should be  deployed
+;; with a digital signature attached. When the uninstaller has a valid  digital
+;; signature, Windows  Vista  users  will  not  see  an  "unidentified program"
+;; warning when launching it from outside of Control Panel.
+;; The first time you compile a script  with  this  directive  set  to  yes,  a
+;; uniquely-named copy of the uninstaller EXE  file  will  be  created  in  the
+;; directory specified by the SignedUninstallerDir directive (which defaults to
+;; the output directory). You  will  then  be  prompted  to  attach  a  digital
+;; signature to  this  file  using  an  external  code-signing  tool  (such  as
+;; Microsoft's signcode.exe). On subsequent compiles, the  signature  from  the
+;; file will be embedded into the compiled installations' uninstallers.
+;; Upgrading to a newer version of Inno  Setup,  or  changing  certain  [Setup]
+;; section directives that affect the contents  of  the  uninstaller  EXE  file
+;; (such as SetupIconFile), will cause  a  new  file  to  be  created  under  a
+;; different name.
+;; If a file generated by this directive  is  deleted,  it  will  be  recreated
+;; automatically if necessary on the next compile.
+;; When the uninstaller has a digital signature, Setup will write the  messages
+;; from the active language into a  separate  file  (unins???.msg).  It  cannot
+;; embed the messages into the EXE file because doing so would  invalidate  the
+;; digital signature.
+;; Details on obtaining signing certificates and using code-signing  tools  are
+;; beyond the scope of this documentation.
+;;
+;; Valid values: yes or no
+;; Default value: no
+SignedUninstaller=true
+
+;; [Setup]: SignedUninstallerDir
+;;
+;; Description:
+;; Specifies the directory in which signed uninstaller files should be  stored.
+;; By default, such files are stored in the output directory.
+;; Separate script files may share the same  SignedUninstallerDir  setting.  By
+;; setting up a common directory to hold signed uninstaller  files,  you  won't
+;; have to re-sign the uninstaller each time you compile a new script file with
+;; a distinct OutputDir setting.
+;; If SignedUninstallerDir is  not  a  fully-qualified  pathname,  it  will  be
+;; treated as being relative to SourceDir. Setting SignedUninstallerDir to .
+;; will result in the files being placed in the source directory.
+;;
+;; Default value: OutputDir
+SignedUninstallerDir=C:\Arquivos de programas
+
+;; [Setup]: AppComments,   AppContact,      AppPublisher,  AppPublisherURL,
+;;          AppReadmeFile, AppSupportPhone, AppSupportURL, AppUpdatesURL,
+;;          AppVersion
+;;
+;; Description:
+;; The values of these directives are displayed on the "Support" dialog of  the
+;; Add/Remove Programs Control Panel applet in  Windows  2000/XP/2003.  Setting
+;; them is optional, and will have no effect on earlier Windows  versions.  The
+;; values may include constants.
+;; The value of the AppPublisher directive is also used as  the  default  value
+;; for the VersionInfoCompany directive if it is not specified.
+AppVersion=version
+AppPublisher=editor
+AppPublisherURL=site
+AppSupportURL=support
+AppUpdatesURL=atualizacao
+AppComments=comments
+AppContact=contact
+AppReadmeFile=readme
+AppSupportPhone=suppPhone
+
+;; [Setup]: UninstallDisplayName
+;;
+;; Description:
+;; This lets you  specify  a  custom  name  for  the  program's  entry  in  the
+;; Add/Remove Programs Control Panel applet. The value may  include  constants.
+;; If this directive is not specified or is blank, Setup will use the value  of
+;; [Setup] section directive AppVerName for the name.
+;; Due to limitations of Windows 95/98/Me's Add/Remove Programs  Control  Panel
+;; applet, the value of UninstallDisplayName will be trimmed if it  exceeds  63
+;; characters.
+UninstallDisplayName=exibirnome
+
+;; [Setup]: UninstallDisplayIcon
+;;
+;; Description:
+;; This lets you specify a particular icon file (either  an  executable  or  an
+;; .ico file) to display for the Uninstall entry  in  the  Add/Remove  Programs
+;; Control Panel applet on Windows 2000 and later. The filename  will  normally
+;; begin with a directory constant.
+;; If the file you specify contains multiple icons, you may append  the  suffix
+;; ",n" to specify an icon index, where n is the zero-based numeric index.
+;; If this directive is not specified or is blank, Windows will select an  icon
+;; itself, which may not be the one you prefer
+UninstallDisplayIcon=icon
+
+;; [Setup]: AppModifyPath
+;;
+;; Description:
+;; When this directive is set, a separate "Modify"  button  in  the  Add/Remove
+;; Programs Control Panel applet on Windows 2000 and later will  be  displayed.
+;; Setting it is optional, and will have no effect on earlier Windows versions.
+;; The value may include constants.
+AppModifyPath=modify
+
+
+
+
+;;;; Compiler ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: UseSetupLdr
+;;
+;; Description:
+;; This tells the Setup Compiler which type of Setup to create. If this is yes,
+;; it compiles all setup data into a single EXE. If this is no, it compiles the
+;; setup  data  into  at  least  three  files:  setup.exe,   setup-0.bin,   and
+;; setup-1.bin. The only reason you would  probably  want  to  use  no  is  for
+;; debugging purposes.
+;; Note: Do not use UseSetupLdr=no on an installation which uses disk  spanning
+;; (DiskSpanning=yes). When UseSetupLdr is yes, the setup program is copied  to
+;; and  run  from  the  user's  TEMP  directory.  This  does  not  happen  when
+;; UseSetupLdr is no, and could result in errors if Windows tries to locate the
+;; setup.exe file on the disk and can't find it because a different disk is  in
+;; the drive.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+UseSetupLdr=false
+
+;; [Setup]: MergeDuplicateFiles
+;;
+;; Description:
+;; Normally two file  entries  referring  to  the  same  source  file  will  be
+;; compressed and stored only once. If you have a bunch of identical  files  in
+;; your installation, make them point to the same source file  in  the  script,
+;; and the size of your installation can drop significantly.  If  you  wish  to
+;; disable this feature for some reason, set this directive to no.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+MergeDuplicateFiles=false
+
+;; [Setup]: Encryption
+;;
+;; Description:
+;; If set to yes, files that are compiled into the  installation  (via  [Files]
+;; section entries) will be encrypted using ARCFOUR encryption, with a  128-bit
+;; key derived from the value of the Password [Setup] section directive.
+;; Because of encryption  import/export  laws  in  some  countries,  encryption
+;; support is not included in  the  main  Inno  Setup  installer  and  must  be
+;; downloaded and installed separately if you wish to  use  it.  See  the  Inno
+;; Setup Downloads page for more information.
+;; If encryption is enabled and you call the ExtractTemporaryFile function from
+;; the [Code] section prior to the user  entering  the  correct  password,  the
+;; function will fail unless the noencryption  flag  is  used  on  the  [Files]
+;; section entry for the file.
+;; The key used for encryption is a 128-bit MD5 hash of 64-bit random salt plus
+;; the value of Password.
+;;
+;; Valid values: yes or no
+;; Default value: no
+Encryption=true
+
+;; [Setup]: SolidCompression
+;;
+;; Description:
+;; If yes, solid compression will be enabled.  This  causes  all  files  to  be
+;; compressed at once instead of separately. This can  result  a  much  greater
+;; overall compression ratio if your  installation  contains  many  files  with
+;; common content, such as text files, especially if such common content  files
+;; are grouped together within the [Files] section.
+;; The disadvantage to using solid compression is that because  all  files  are
+;; compressed into a single compressed stream, Setup  can  no  longer  randomly
+;; access the files. This can decrease performance. If  a  certain  file  isn't
+;; going to be extracted on the user's system, it has to  decompress  the  data
+;; for that file anyway (into memory) before it can decompress the  next  file.
+;; And if, for example, there was an error while extracting a  particular  file
+;; and the user clicks Retry, it can't just  seek  to  the  beginning  of  that
+;; file's compressed data; since all files are stored in  one  stream,  it  has
+;; seek to the very beginning. If disk spanning was  enabled,  the  user  would
+;; have to re-insert disk 1.
+;; Thus, it is not recommended  that  solid  compression  be  enabled  on  huge
+;; installs (say, over 100 MB) or on disk-spanned  installs.  It  is  primarily
+;; designed to save download time on  smaller  installs  distributed  over  the
+;; Internet.
+;;
+;; Valid values: yes or no
+;; Default value: no
+SolidCompression=true
+
+;; [Setup]: Compression
+;;
+;; Description:
+;; This specifies the method of compression to use on the files, and optionally
+;; the level of compression. Higher levels  compress  better  but  take  longer
+;; doing so, and may also require more memory while  compressing/decompressing.
+;; zip is the method of compression employed by .zip files ("deflate").  It  is
+;; fast in  both  compression  and  decompression,  and  has  very  low  memory
+;; requirements (less than 1 MB for both compression and decompression at level
+;; 9), but generally does not compress nearly as well as  the  other  supported
+;; methods. zip has one unique property, though: unlike the other  methods,  it
+;; will  not  expand  uncompressible  data  (e.g.,  files  that   are   already
+;; compressed). If a compression level isn't specified, it defaults to 7.
+;; bzip is the method of compression  employed  by  the  bzip2  compressor.  It
+;; almost always compresses better than zip  but  is  usually  slower  in  both
+;; compression and decompression. Up to  4 MB  of  memory  is  required  during
+;; decompression, and up to 8 MB during compression.  If  a  compression  level
+;; isn't specified, it defaults to 9.
+;; lzma is the method of compression employed by the 7-Zip LZMA compressor.  It
+;; typically compresses significantly better than the  zip  and  bzip  methods.
+;; However, depending on the compression level used, it  can  be  significantly
+;; slower at compressing, and consume a lot more memory.  The  following  table
+;; summarizes the approximate memory requirements for  each  of  the  supported
+;; lzma compression levels. If a compression level isn't specified, it defaults
+;; to max.
+;;                   Decompression(dictionary size)    Compression
+;; fast (worst)                    32 KB                    3 MB
+;; normal                           2 MB                   26 MB
+;; max (default)                    8 MB                   95 MB
+;; ultra                           32 MB                  372 MB
+;; ultra64 (best)                  64 MB                  676 MB
+;;
+;; none specifies that no compression be used.
+;;
+;; Valid values:
+;;              zip
+;;              zip/1 through zip/9
+;;              bzip
+;;              bzip/1 through bzip/9
+;;              lzma
+;;              lzma/fast
+;;              lzma/normal
+;;              lzma/max
+;;              lzma/ultra   (review memory requirements below before using)
+;;              lzma/ultra64   (review memory requirements below before using)
+;;              none
+;; Default value: lzma
+Compression=lzma/fast
+
+;; [Setup]: InternalCompressLevel
+;;
+;; Description:
+;; This specifies the level of LZMA compression  to  use  on  Setup's  internal
+;; structures. Generally, there is  little  reason  to  change  this  from  the
+;; default setting of normal.
+;;
+;; Valid values: none, or one of the LZMA compression levels
+;; Default value: normal
+InternalCompressLevel=max
+
+;; [Setup]: CompressionThreads
+;;
+;; Description:
+;; Controls whether multi-threading mode is enabled  on  the  LZMA  compressor.
+;; Multi-threading can speed up the compression  process  by  50%  or  more  on
+;; systems with multiple processor cores, and  20%  or  more  on  systems  with
+;; single-core Intel processors featuring Hyper-Threading Technology.
+;; A value of auto (the default) enables multi-threading mode when the compiler
+;; is running on a system with multiple processor cores or Hyper-Threading.
+;; A value of 1 always disables multi-threading mode.
+;; A value of 2 always enables multi-threading mode.
+;; Values greater than 2 are also accepted, but have the same effect as 2. This
+;; is because the LZMA compressor currently cannot take advantage of more  than
+;; two processor cores.
+;;
+;; Valid values:
+;;                auto
+;;                1
+;;                2 (or higher)
+;; Default value: auto
+CompressionThreads=auto
+
+;; [Setup]: TerminalServicesAware
+;;
+;; Description:
+;; Specifies whether the compiler should set the "Terminal Services aware" flag
+;; in the headers of the Setup and Uninstall programs. This feature is  new  to
+;; version 5.1.7 and defaults to yes; previous versions never set the flag.
+;; Most importantly, the "Terminal Services aware" flag affects the behavior of
+;; the {win} constant (and GetWinDir support function) on servers with Terminal
+;; Services installed in application mode.
+;; When the flag is set, {win}  will  consistently  return  the  system's  real
+;; Windows directory, typically "C:\WINDOWS", just as on systems  that  do  not
+;; have Terminal Services installed.
+;; When the flag is not set, Windows runs the program  in  compatibility  mode,
+;; where {win} may return either the real Windows directory or a  user-specific
+;; Windows directory, such as "C:\Documents and  Settings\<user name>\WINDOWS".
+;; Which one you get depends on the name of the program's EXE file and  how  it
+;; is launched. If the program is named setup.exe or install.exe, or if  it  is
+;; launched from the Add/Remove Programs Control  Panel  applet,  then  Windows
+;; will put the system in "install mode", which effectively makes  the  program
+;; (and all other programs running in the session) behave as if  the  "Terminal
+;; Services aware" flag were set. Otherwise, the program is treated as a legacy
+;; application and is given a private Windows directory. (This is true even  if
+;; the user running the program has full administrative privileges.)
+;; Because the behavior that results from setting TerminalServicesAware  to  no
+;; is inconsistent and hard to predict, it is  recommended  that  you  use  the
+;; default setting of yes. Only use no as a  temporary  fix  if  you  encounter
+;; troubles on systems with Terminal Services after upgrading from  a  previous
+;; Inno Setup version.
+;; Note: This setting only has an effect on Windows 2000 and later. On  Windows
+;; NT 4.0 Terminal Server Edition, {win} will always return a  private  Windows
+;; directory unless the  program  is  launched  from  the  Add/Remove  Programs
+;; Control Panel applet, which puts the system in "install mode".
+;;
+;; Valid values: yes or no
+;; Default value: yes
+TerminalServicesAware=false
+
+
+;; [Setup]: OutputDir
+;;
+;; Description:
+;; Specifies the "output" directory for the script, which is  where  the  Setup
+;; Compiler will place the resulting SETUP.* files. By default,  it  creates  a
+;; directory named "Output" under the directory containing the script for this.
+;; If OutputDir is not a fully-qualified pathname, it will be treated as  being
+;;  relative to SourceDir. Setting OutputDir to .  will  result  in  the  files
+;; being placed in the source directory.
+;;
+;; Default value: Output
+OutputDir=diretorioDestino
+
+;; [Setup]: SourceDir
+;;
+;; Description:
+;; Specifies a new source directory for the script.
+;; By default, the Setup Compiler expects  to  find  files  referenced  in  the
+;; script's [Files] section Source parameters,  and  files  referenced  in  the
+;; [Setup] section, under the same directory the script file is located if they
+;; do not contain fully qualified pathnames.  To  specify  a  different  source
+;; directory, create a SourceDir directive in the script's [Setup] section.
+SourceDir=diretorioOrigem
+
+;; [Setup]: OutputBaseFilename
+;;
+;; Description:
+;; This directive allows you to assign a different name for the resulting Setup
+;; file(s), so you don't have to manually rename them after running  the  Setup
+;; Compiler.
+;;
+;; Default value: setup
+OutputBaseFilename=arquivoDestino
+
+;; [Setup]: OutputManifestFile
+;;
+;; Description:
+;; When this directive is set,  the  compiler  will  create  a  manifest  file
+;; detailing information about the files compiled into Setup. The file will be
+;; created in the output directory unless a path is included.
+OutputManifestFile=arquivoManifesto
+
+;; [Setup]: SetupLogging
+;;
+;; Description:
+;; If set to yes, Setup will always create a log file.  Equivalent  to  passing
+;; /LOG on the command line.
+;;
+;; Valid values: yes or no
+;; Default value: no
+SetupLogging=true
+
+;; Architetures ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: ArchitecturesInstallIn64BitMode
+;;
+;; Description:
+;; Specifies the 64-bit processor architecture(s) on which Setup should install
+;; in 64-bit mode. If this directive is not specified or is blank,  Setup  will
+;; always install in 32-bit mode.
+;; Normally, you should not change this directive from its default value unless
+;; your application contains native 64-bit binaries.
+;; Be sure you have read  the  64-bit  Installation  Limitations  topic  before
+;; setting this directive.
+;; If your application runs only on 64-bit processor architectures, you  should
+;; set ArchitecturesAllowed to the same value  as  this  directive  to  prevent
+;; Setup from running on 32-bit Windows.
+;; Setup can only run in 64-bit mode on versions of Windows  that  provide  the
+;; API support Inno Setup requires  (e.g.  RegDeleteKeyEx).  All  x64  editions
+;; provide the necessary APIs, however Itanium editions prior to Windows Server
+;; 2003 SP1 do not. If the user is running an older Itanium version of Windows,
+;; Setup will display a message (MissingWOW64APIs) recommending that the user
+;; install a service pack, and exit.
+;;
+;; See also: ArchitecturesAllowed
+;;
+;; Valid values: One or more of the following, separated by spaces:
+;;               x64
+;;               ia64
+;; Default value: (blank)
+ArchitecturesInstallIn64BitMode=
+
+;; [Setup]: ArchitecturesAllowed
+;;
+;; Description:
+;; Specifies which processor architecture(s) Setup is allowed  to  run  on.  If
+;; this directive is not specified or is blank, Setup will be allowed to run on
+;; all processor architectures capable of executing its 32-bit code  (including
+;; ones it doesn't recognize). Otherwise, if a user's processor architecture is
+;; not one of those specified in this directive, Setup will  display  an  error
+;; message and exit.
+;; If your application's binaries are all 32-bit and  run  in  user  mode,  you
+;; should not change this directive from its default value (specifically, don't
+;; set it to x86), because normally such binaries will run without issue on the
+;; x64 and Itanium editions of Windows via the WOW64 emulator.
+;; If you install any 32-bit device drivers, you should set this  directive  to
+;; x86, as 32-bit device drivers cannot function on 64-bit Windows.
+;; If  your  application's  binaries  are  built  for  the   x64   or   Itanium
+;; architectures,  you  should  set  this  directive  to  either  x64  or  ia64
+;; respectively.
+;;
+;; See also: ArchitecturesInstallIn64BitMode
+;;
+;; Valid values: One or more of the following, separated by spaces:
+;;               x86
+;;               x64
+;;               ia64
+;; Default value: (blank)
+ArchitecturesAllowed=
+
+;; Version Information ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [Setup]: VersionInfoVersion
+;;
+;; Description:
+;; Specifies the binary file version value for the Setup version info.
+;; Partial version numbers are allowed. Missing numbers will be appended as
+;; zero's.
+;;
+;; Valid values: A value in the form of up to 4 numbers separated by dots
+;; Default value: 0.0.0.0
+VersionInfoVersion=
+
+;; VersionInfoProductVersion
+;;
+;; Description:
+;; Specifies the product version value for the Setup version info.
+VersionInfoProductVersion=productVersion
+
+;; [Setup]: VersionInfoProductName
+;;
+;; Description:
+;; Specifies the product name value for the Setup version info.
+;;
+;; Default value:
+;; AppName if AppName doesn't include constants, an empty string otherwise
+VersionInfoProductName=productName
+
+;; [Setup]: VersionInfoCompany
+;;
+;; Description:
+;; Specifies the company name value for the Setup version info.
+;;
+;; Default value:
+;; AppPublisher if AppPublisher doesn't  include  constants,  an  empty  string
+;; otherwise
+VersionInfoCompany=companha
+
+;; [Setup]: VersionInfoDescription
+;;
+;; Description:
+;; Specifies the file description value for the Setup version info.
+;;
+;; Default value:
+;; "AppName Setup" if  AppName  doesn't  include  constants,  an  empty  string
+;; otherwise
+VersionInfoDescription=descricao
+
+;; [Setup]: VersionInfoTextVersion
+;;
+;; Description:
+;; Specifies the textual file version value for the Setup version info.
+;; Note that this value is only displayed on Explorer's Version tab on  Windows
+;; 98  and  earlier.  Later  versions  display  the  binary   version   numbers
+;; (VersionInfoVersion) instead.
+;;
+;; Default value: VersionInfoVersion
+VersionInfoTextVersion=versãoTesto
+
+;; [Setup]: VersionInfoCopyright
+;;
+;; Description:
+;; Specifies the copyright value for the Setup version info.
+;;
+;; Default value:
+;; AppCopyright if AppCopyright doesn't  include  constants,  an  empty  string
+;; otherwise
+VersionInfoCopyright=copyright
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Multiplos volumes
+
+
+;; [Setup]: DiskSpanning
+;;
+;; Description:
+;; If set to yes, the disk spanning feature will be enabled. Instead of storing
+;; all the compressed file data inside SETUP.EXE, the compiler  will  split  it
+;; into multiple SETUP-*.BIN files -- known as "slices" -- suitable for copying
+;; onto separate floppy disks,  CD-ROMs,  or  DVD-ROMs.  Each  generated  slice
+;; contains a number in its name which indicates the disk onto which it  should
+;; be copied. (For example, SETUP-2.BIN  should  be  placed  on  disk  2.)  The
+;; generated SETUP.EXE always goes on disk 1 along with the SETUP-1*.BIN file.
+;; The size of each slice and the number of slices to create for each disk  are
+;; determined by the values of  the  DiskSliceSize  and  SlicesPerDisk  [Setup]
+;; section directives, respectively.  Other  disk  spanning-related  directives
+;; that you may want to tweak include DiskClusterSize and ReserveBytes.
+;; Note that it is  required  that  you  set  this  directive  to  yes  if  the
+;; compressed size of your installation exceeds 2,100,000,000  bytes,  even  if
+;; you don't intend  to  place  the  installation  onto  multiple  disks.  (The
+;; installation will still function correctly if all the SETUP-*.BIN files  are
+;; placed on the same disk.)
+;;
+;; Valid values: yes or no
+;; Default value: no
+DiskSpanning=true
+
+;; [Setup]: DiskClusterSize
+;;
+;; Description:
+;; This specifies the cluster size of the disk media. The Setup Compiler  needs
+;; to know this in order to properly fill each disk to capacity.
+;; This directive is  ignored  if  disk  spanning  is  not  enabled  using  the
+;; DiskSpanning [Setup] section directive.
+;;
+;; Default value:
+;; 512 (the standard cluster size for floppy disks)
+
+DiskClusterSize=512
+
+;; [Setup]: ReserveBytes
+;;
+;; Description:
+;; This specifies the minimum number of free bytes  to  reserve  on  the  first
+;; disk. This is useful if you have to copy other files  onto  the  first  disk
+;; that aren't part of the setup program, such as a Readme file.
+;; The Setup Compiler rounds this number up to the nearest cluster.
+;; This directive is  ignored  if  disk  spanning  is  not  enabled  using  the
+;; DiskSpanning [Setup] section directive.
+;;
+;; Default value: 0
+ReserveBytes=0
+
+;; [Setup]: DiskSliceSize
+;;
+;; Description:
+;; This   specifies   the   maximum   number   of   bytes   per   disk    slice
+;; (SETUP-*.BIN file). Normally, this should be set  to  the  total  number  of
+;; bytes available on the disk media divided by the value of the  SlicesPerDisk
+;; [Setup] section directive, which defaults to 1.
+;; This directive is  ignored  if  disk  spanning  is  not  enabled  using  the
+;; DiskSpanning [Setup] section directive.
+;; To optimally fill 4.7 GB recordable DVDs, use:
+;;          SlicesPerDisk=3
+;;          DiskSliceSize=1566000000
+;; To optimally fill 8.5 GB (dual-layer) recordable DVDs, use:
+;;          SlicesPerDisk=5
+;;          DiskSliceSize=1708200000
+
+;; To optimally fill 700 MB (80-minute) recordable CDs, use:
+;;          SlicesPerDisk=1
+;;          DiskSliceSize=736000000
+;;
+;; Valid values: 262144 through 2100000000
+;; Default value:  1457664 (the size of a 1.44MB floppy)
+DiskSliceSize=1457664
+
+;; [Setup]: SlicesPerDisk
+;;
+;; Description:
+;; The number of SETUP-*.BIN files to create for each disk. If this is  1  (the
+;; default setting), the files will be named SETUP-x.BIN, where x is  the  disk
+;; number. If this is greater than 1, the files  will  be  named  SETUP-xy.BIN,
+;; where x is the disk number and y is a unique letter.
+;; One reason why you may need to increase this from the default value of 1  is
+;; if the size of your disk media exceeds  2,100,000,000  bytes  --  the  upper
+;; limit of the DiskSliceSize [Setup] section directive. If, for example,  your
+;; disk media has  a  capacity  of  3,000,000 000  bytes,  you  can  avoid  the
+;; 2,100,000,000-byte disk slice size limit by setting SlicesPerDisk to  2  and
+;; DiskSliceSize to 1500000000 (or perhaps slightly less, due  to  file  system
+;; overhead).
+;;
+;; Valid values: 1 through 26
+;; Default value: 1
+SlicesPerDisk=1
+
+;;;; Application ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;
+;;
+;;
+;AppName=nome
+
+;;
+;;
+;;
+;AppVerName=versao
+
+;; [Setup]: AppCopyright
+;;
+;; Description:
+;; Specifies a copyright message that Setup will display  in  the  bottom-right
+;; corner of Setup's background window when WindowVisible is yes.
+;; The value of this directive is also  used  as  the  default  value  for  the
+;; VersionInfoCopyright directive if it is not specified.
+AppCopyright=copyright
+
+;; [Setup]: Password
+;;
+;; Description:
+;; Specifies a password you want to prompt the user for at the beginning of the
+;; installation.
+;; When using a password, you might consider setting Encryption to yes as well,
+;; otherwise files will be stored as plain text and it would not be exceedingly
+;; difficult for someone to gain access to them through reverse engineering.
+;; The password itself is not stored as clear text; it's stored  as  a  128-bit
+;; MD5 hash, salted with a 64-bit random  number.  (Note:  When  encryption  is
+;; enabled, this stored hash is not used for the encryption  key;  a  different
+;; hash with a different salt is generated for that.)
+Password=senha
+
+;; [Setup]: AppMutex
+;;
+;; Description:
+;; This directive is used to prevent the user from installing new  versions  of
+;; an application while the application is still running, and  to  prevent  the
+;; user from uninstalling a running application. It specifies the names of  one
+;; or more named mutexes (multiple mutexes  are  separated  by  commas),  which
+;; Setup and Uninstall will check for at startup. If any exist, Setup/Uninstall
+;; will display the message: "[Setup or Uninstall] has detected that  [AppName]
+;; is currently running. Please close all instances of it now, then click OK to
+;; continue, or Cancel to exit." The value may include constants.
+;; Use of this directive requires that you add code to your  application  which
+;; creates a mutex with the name you specify in  this  directive.  Examples  of
+;; creating a mutex in Delphi, C, and Visual Basic are shown  below.  The  code
+;; should be executed during your application's startup.
+;;
+;;   Delphi:
+;;      CreateMutex(nil, False, 'MyProgramsMutexName');
+;;   C:
+;;      CreateMutex(NULL, FALSE, "MyProgramsMutexName");
+;;   Visual Basic (submitted by Peter Young):
+;;      'Place in Declarations section:
+;;      Private Declare Function CreateMutex Lib "kernel32" _
+;;              Alias "CreateMutexA" _
+;;             (ByVal lpMutexAttributes As Long, _
+;;              ByVal bInitialOwner As Long, _
+;;              ByVal lpName As String) As Long
+;;
+;;      'Place in startup code (Form_Load or Sub Main):
+;;      CreateMutex 0&, 0&, "MyProgramsMutexName"
+;;
+;; It is not necessary  to  explicitly  destroy  the  mutex  object  upon  your
+;; application's termination; the system will do this automatically. Nor is  it
+;; recommended that you do so, because ideally the mutex  object  should  exist
+;; until the process completely terminates.
+;; Note that mutex name comparison in Windows is case sensitive.
+;; See the topic for CreateMutex in the MS SDK help  for  more  information  on
+;; mutexes.
+AppMutex=mutex
+
+;; [Setup]: PrivilegesRequired
+;;
+;; Description:
+;; The effect of this directive depends on which version of Windows the user
+;; is running:
+;;
+;; On Windows Vista and later:
+;;
+;; This directive affects whether elevated rights are requested (via a User
+;; Account Control dialog) when the installation is started.
+
+;; When set to admin (the default) or poweruser, Setup will always run with
+;; administrative privileges. If Setup was started by an unprivileged user,
+;; Windows will ask for the password to an account that has administrative
+;; privileges, and Setup will then run under that account.
+
+;; When set to none, Setup will only run with administrative privileges if it
+;; was started by a member of the Administrators group. Do not use this setting
+;; unless you are sure your installation will run successfully on unprivileged
+;; accounts.
+;;
+;; On Windows NT/2000/XP/2003:
+;; This directive specifies the minimum user privileges  required  to  run  the
+;; installation.
+;; When set to admin (the default), Setup will only run if the user is a member
+;; of the Administrators  group.  Otherwise,  it  will  display  the  following
+;; message and exit: "You must be logged in as an administrator when installing
+;; this program."
+;; When set to poweruser, Setup will only run if the user is a  member  of  the
+;; Administrators or  Power  Users  groups.  Otherwise,  it  will  display  the
+;; following message and exit: "You must be logged in as an administrator or as
+;; a member of the Power Users group when installing this program."
+;; When set to none, Setup will not check the user's group membership.  Do  not
+;; use this setting unless you are sure your installation will run successfully
+;; on unprivileged accounts.
+;;
+;; On Windows 95/98/Me:
+;; This directive has no effect on these versions of Windows.
+;;
+;; Valid values: none, poweruser, or admin
+;; Default value: admin
+PrivilegesRequired=admin
+
+;; [Setup]: ExtraDiskSpaceRequired
+;;
+;; Description:
+;; Normally, the disk space requirement displayed on the wizard  is  calculated
+;; by adding up the size of all the files in the [Files] section. If  you  want
+;; to  increase   the   disk   space   display   for   whatever   reason,   set
+;; ExtraDiskSpaceRequired to the amount of  bytes  you  wish  to  add  to  this
+;; figure. (1048576 bytes = 1 megabyte)
+;;
+;; Default value: 0
+ExtraDiskSpaceRequired=0
+
+;; [Setup]: TimeStampRounding
+;;
+;; Description:
+;; By default, time stamps on files referenced by [Files] section  entries  are
+;; rounded down to the nearest 2-second boundary. FAT partitions  have  only  a
+;; 2-second time stamp resolution, so this ensures that time stamps are set the
+;; same way on both FAT and NTFS partitions.
+;; The rounding can be altered or disabled  by  setting  the  TimeStampRounding
+;; directive. Setting it to 0 will disable the rounding. Setting it to a number
+;; between 1 and 60 will cause time stamps to be rounded down  to  the  nearest
+;; TimeStampRounding-second boundary.
+;;
+;; Valid values: 0 through 60
+;; Default value: 2
+TimeStampRounding=2
+
+
+;; [Setup]: InfoAfterFile
+;;
+;; Description:
+;; Specifies the name of an optional "readme" file, in .txt or .rtf (rich text)
+;; format, which is displayed after a successful install.  This  file  must  be
+;; located in your installation's  source  directory  when  running  the  Setup
+;; Compiler, unless a fully qualified pathname is specified or the pathname  is
+;; prefixed by "compiler:", in which case it looks for the file in the Compiler
+;; directory.
+;; This differs from isreadme files in that this text is displayed as a page of
+;; the wizard, instead of in a separate Notepad window.
+;; If the user selects a language for which the InfoAfterFile parameter is set,
+;; this  directive  is  effectively  ignored.  See  the   [Languages]   section
+;; documentation for more information.
+InfoAfterFile=
+
+;; [Setup]: InfoBeforeFile
+;;
+;; Description:
+;; Specifies the name of an optional "readme" file, in .txt or .rtf (rich text)
+;; format, which is displayed before the user selects the destination directory
+;; for the program. This file must be located  in  your  installation's  source
+;; directory when running the Setup Compiler, unless a fully qualified pathname
+;; is specified or the pathname is prefixed by "compiler:", in  which  case  it
+;; looks for the file in the Compiler directory.
+;; If the user selects a language for which  the  InfoBeforeFile  parameter  is
+;; set, this directive is effectively ignored. See the [Languages] section
+;; documentation for more information.
+InfoBeforeFile=
+
+;; [Setup]: LicenseFile
+;;
+;; Description:
+;; Specifies the name of an optional license agreement file, in  .txt  or  .rtf
+;; (rich  text)  format,  which  is  displayed  before  the  user  selects  the
+;; destination directory for the program. This file must  be  located  in  your
+;; installation's source directory when running the Setup  Compiler,  unless  a
+;; fully qualified pathname  is  specified  or  the  pathname  is  prefixed  by
+;; "compiler:", in which case it looks for the file in the Compiler directory.
+;; If the user selects a language for which the LicenseFile parameter  is  set,
+;; this  directive  is  effectively  ignored.  See  the   [Languages]   section
+;; documentation for more information.
+LicenseFile=
+
+;; [Setup]: ChangesAssociations
+;;
+;; Description:
+;; When set to yes, Setup will tell Explorer to refresh its  file  associations
+;; information at the end of the installation, and Uninstall will do  the  same
+;; at the end of uninstallation.
+;; If  your  installation  creates  a  file  association   but   doesn't   have
+;; ChangesAssociations set to yes, the correct icon for the  file  type  likely
+;; won't be displayed until the user logs off or restarts the computer.
+;;
+;; Valid values: yes or no
+;; Default value: no
+ChangesAssociations=false
+
+;; [Setup]: AlwaysRestart
+;;
+;; Description:
+;; When set to yes, Setup will always prompt the user to restart the system  at
+;; the end  of  a  successful  installation,  regardless  of  whether  this  is
+;; necessary  (for  example,  because  of  [Files]  section  entries  with  the
+;; restartreplace flag).
+;;
+;; Valid values: yes or no
+;; Default value: no
+AlwaysRestart=false
+
+;; [Setup]: RestartIfNeededByRun
+;;
+;; Description:
+;; When set to yes, and a program executed in the [Run] section queues files to
+;; be replaced on the next  reboot ( by  calling  MoveFileEx  or  by  modifying
+;; wininit.ini), Setup will detect this and prompt  the  user  to  restart  the
+;; computer at the end of installation.
+;;
+;;  Valid values: yes or no
+;; Default value: yes
+RestartIfNeededByRun=true
+
+;; [Setup]: AllowCancelDuringInstall
+;;
+;; Description:
+;; Setting this to no prevents the  user  from  cancelling  during  the  actual
+;; installation process, by disabling the Cancel button and ignoring clicks  on
+;; the close button. This has the same effect as passing /NOCANCEL to Setup  on
+;; the command line.
+;;
+;; Valid values: yes or no
+;; Default value: yes
+AllowCancelDuringInstall=true
+
+;; [Setup]: TimeStampsInUTC
+;;
+;; Description:
+;; By default, time stamps on files referenced by [Files] section  entries  are
+;; saved and restored as local times. This means that if a particular file  has
+;; a time stamp of 01:00 local time at compile time,  Setup  will  extract  the
+;; file with a time stamp of 01:00 local time, regardless of  the  user's  time
+;; zone setting or whether DST is in effect.
+;; If TimeStampsInUTC is set to yes, time stamps will be saved and restored  in
+;; UTC -- the native time format of Win32 and NTFS. In this mode, a file with a
+;; time stamp of 01:00 local time in New York will have a time stamp  of  06:00
+;; local time when installed in London.
+;;
+;; Valid values: yes or no
+;; Default value: no
+TimeStampsInUTC=false
+
+;; [Setup]: ChangesEnvironment
+;;
+;; Description:
+;; When set to yes, at the end of the  installation  Setup  will  notify  other
+;; running applications (notably Windows  Explorer)  that  they  should  reload
+;; their environment variables from the registry.
+;; On Windows  NT  platforms,  if  your  installation  creates  or  changes  an
+;; environment variable but doesn't have ChangesEnvironment  set  to  yes,  the
+;; new/changed environment variable will not be seen by  applications  launched
+;; from Explorer until the user logs off or restarts the computer.
+;;
+;; Valid values: yes or no
+;; Default value: no
+ChangesEnvironment=true
+
+;; [Setup]: TouchDate
+;;
+;; Description:
+;; The date used in the time/date stamp of files referenced by [Files]  section
+;; entries that include the touch flag.
+;; A value of current causes the current system date (at compile  time)  to  be
+;; used. A value of  none  leaves  the  date  as-is.  Otherwise,  TouchDate  is
+;; interpreted as  an  explicit  date  in  YYYY-MM-DD  (ISO  8601)  format.  If
+;; TimeStampsInUTC is set to yes, the date is assumed to be a UTC date.
+;;
+;; Valid values: current, none, or YYYY-MM-DD
+;; Default value: current
+TouchDate=current
+
+;; [Setup]: TouchTime
+;;
+;; Description:
+;; The time used in the time/date stamp of files referenced by [Files]  section
+;; entries that include the touch flag.
+;; A value of current causes the current system time (at compile  time)  to  be
+;; used. A value of  none  leaves  the  time  as-is.  Otherwise,  TouchTime  is
+;; interpreted  as  an  explicit  time  in  HH:MM  or   HH:MM:SS   format.   If
+;; TimeStampsInUTC is set to yes, the time is assumed to be a UTC time.
+;;
+;; Valid values: current, none, HH:MM, or HH:MM:SS
+;; Default value: current
+TouchTime=current
+
+;; [Setup]: MinVersion
+;;
+;; Description:
+;; This directive lets you specify a minimum version of Windows or  Windows  NT
+;; that your software runs on. To prevent your program from running on  Windows
+;; or Windows NT, specify "0" for one the minimum versions. Build numbers  and/
+;; or service pack levels may be included in the version numbers.
+;; If the user's system does not meet the minimum  version  requirement,  Setup
+;; will give an error message and exit.
+;;
+;; Format:
+;;     a.bb,c.dd, where a.bb is the Windows version, and c.dd is the Windows NT
+;;     version.
+;; Default value:
+;;     4.0,4.0
+MinVersion=4.0.950,4.0.1381
+
+;; [Setup]: OnlyBelowVersion
+;;
+;; Description:
+;; This directive lets you specify a minimum version of Windows or  Windows  NT
+;; that your software will not run on. Specifying "0" for one of  the  versions
+;; means there is no upper version limit. Build  numbers  and/or  service  pack
+;; levels may be included in the version numbers.
+;; This directive is essentially the opposite of MinVersion.
+;;
+;; Format:
+;;     a.bb,c.dd, where a.bb is the Windows version, and c.dd is the Windows NT
+;;     version.
+;; Default value:
+;;     0,0
+OnlyBelowVersion=4.0.950,4.0.1381sp1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; informações do usuário
+
+
+;;
+;;
+;;
+UserInfoPage=true
+
+;;
+;;
+;;
+UsePreviousUserInfo=true
+
+;;
+;;
+;;
+DefaultUserInfoName={sysuserinfoname}
+
+;;
+;;
+;;
+DefaultUserInfoOrg={sysuserinfoorg}
+
+;;
+;;
+;;
+DefaultUserInfoSerial=serial
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Types]
+;; This section is optional. It defines all of the setup types Setup will  show
+;; on the Select Components page of the wizard. During compilation a set of
+;; default setup types is created if you define components in a [Components]
+;; section but don't define types. If you are using the default (English)
+;; messages file, these types are the same as the types in the example below.
+[Types]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Components]
+;; This section is optional. It defines all of the components Setup  will  show
+;; on the Select Components page of the wizard for setup type customization.
+;; By itself a component does  nothing:  it  needs  to  be  'linked'  to  other
+;; installation entries.
+
+[Components]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Tasks]
+;; This section is optional. It defines all of the user-customizable tasks Setup will perform during installation. These tasks appear as check boxes and radio buttons on the Select Additional Tasks wizard page.
+;; By itself a task does nothing: it needs to be 'linked' to other installation entries.
+
+[Tasks]
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Dirs]
+;; This optional section defines any additional directories Setup is to create besides the application directory the user chooses, which is created automatically. Creating subdirectories underneath the main application directory is a common use for this section.
+
+;;Note that you aren't required to explicitly create directories before installing files to them using the [Files] section, so this section is primarily useful for creating empty directories.
+
+
+[Dirs]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Files]
+;; This optional section defines any files Setup is to install on the user's system.
+[Files]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Icons]
+;; This optional section defines any shortcuts Setup is to create in the Start Menu and/or other locations, such as the desktop.
+[Icons]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [INI]
+;;  This optional section defines any .INI file entries you would like Setup to set on the user's system.
+[INI]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [InstallDelete]
+;; This optional section is identical in format to the [UninstallDelete] section, except its entries are processed as the first step of installation.
+[InstallDelete]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Languages]
+;;
+[Languages]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Messages]
+;;
+[Messages]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [CustomMessages]
+;;
+[CustomMessages]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [LangOptions]
+;;
+[LangOptions]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Registry]
+;;
+[Registry]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Run] & [UninstallRun]
+;;
+[Run]
+[UninstallRun]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [UninstallDelete]
+;;
+[UninstallDelete]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [Code]
+;;
+[Code]

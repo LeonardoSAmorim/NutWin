@@ -1,0 +1,40 @@
+[Project]
+Help Compiler=HCW.EXE
+Remove Unused=0
+Version=512
+ConvertedFromV1=0
+HasGlossary=0
+Automatic Map Files=0
+NextFile=8
+WH2RH=0
+Extra Language=0
+
+[Document Files]
+formulas.doc=1
+BEMVINDO.doc=2
+Obtendo.doc=3
+Trabdado.doc=4
+introdu.doc=5
+calculos.doc=6
+NEWFILE.doc=7
+
+[File Properties]
+HasProperties=1
+BrowseType=0
+AutoMapFile=0
+StartingWith=0
+IncrementBy=20
+NextTopicNumber=0
+StartingNumber=1
+BrowseString=formulas:0
+DefaultBuildTag=
+
+[VERSION]
+RHFile=4.1
+
+[.rbh]
+CopyTo=0
+PreBatch=
+PostBatch=
+AutoFixRTF=0
+CurrentDir=D:\nutricao\formulas

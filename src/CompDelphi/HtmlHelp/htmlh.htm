@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>TIBManager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><b>THtmlHelp component</b></p>
+<p>THmlHelp component converts the help calling convention of a delphi application 
+  to HtmlHelp.</p>
+<p>In captures the OnHelp event and launch the help using a help context.</p>
+<p>You must build the .chm files, see HtmlHelp files for more info.</p>
+<table width="100%" border="1">
+  <tr> 
+    <td width="13%"><b>Property</b></td>
+    <td width="15%"><b>Datatype</b></td>
+    <td width="62%"><b>Description</b></td>
+    <td width="10%"><b>Type</b></td>
+  </tr>
+  <tr> 
+    <td width="13%">ChmFile</td>
+    <td width="15%">String</td>
+    <td width="62%">You can set the file to be opened when the application help 
+      is called</td>
+    <td width="10%">Published</td>
+  </tr>
+  <tr> 
+    <td width="13%">Windef</td>
+    <td width="15%">String</td>
+    <td width="62%"> 
+      <p>When you build a HTML Help file you can create window definitions, the 
+        window definition name can be set here</p>
+    </td>
+    <td width="10%">Published</td>
+  </tr>
+  <tr> 
+    <td width="13%">DefaultFile</td>
+    <td width="15%">String</td>
+    <td width="62%">If you do not set the ChmFile property the application will 
+      search changing the extension of the exe application to chm.</td>
+    <td width="10%">Published</td>
+  </tr>
+  <tr> 
+    <td width="13%">Password</td>
+    <td width="15%">String</td>
+    <td width="62%">Password used executing all operations</td>
+    <td width="10%">Published</td>
+  </tr>
+  <tr> 
+    <td width="13%" height="55">Destination</td>
+    <td width="15%" height="55">String</td>
+    <td width="62%" height="55">Filename (UNC also accepted) destination for backups 
+      and source for restore operations</td>
+    <td width="10%" height="55">Published</td>
+  </tr>
+  <tr> 
+    <td width="13%">ShowProgress</td>
+    <td width="15%">Boolean</td>
+    <td width="62%">Shows or not a windows with a progres indicator (strings provided 
+      by the administration commands), you can calcel the proces.</td>
+    <td width="10%">Published</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1">
+  <tr> 
+    <td width="55%"><b>Method definition</b></td>
+    <td width="45%"><b>Description</b></td>
+  </tr>
+  <tr> 
+    <td width="55%">function HelpContext(ContextId: DWord): Integer;</td>
+    <td width="45%">Calls the help with a contextid, it's called when the F1 key 
+      is pressed and a the HelpContext property of a form is set.</td>
+  </tr>
+  <tr> 
+    <td width="55%">function HelpTopic(Topic: String): Integer;</td>
+    <td width="45%">Calls the help with a help topic</td>
+  </tr>
+  <tr> 
+    <td width="55%">function ShowIndex:integer;</td>
+    <td width="45%">Shows the index page of help file</td>
+  </tr>
+  <tr> 
+    <td width="55%">function ShowTableofContents:integer;</td>
+    <td width="45%">Shows the table of contents of the help file</td>
+  </tr>
+  <tr> 
+    <td width="55%">function ShowSearch:integer; </td>
+    <td width="45%">Shows the search tab of the help file</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

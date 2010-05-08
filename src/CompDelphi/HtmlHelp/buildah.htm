@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Build a help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><b>Building a HtmlHelp File for use with Delphi</b></p>
+<p>This is a small tutorial to learn how to build a HtmlHelp file for use with 
+  Delphi</p>
+<p><b>Step 1. Write the web pages</b></p>
+<p>You can use any web page editor or a text editor. Don't use propietary extensions.</p>
+<p><b>Step 2. Build a topic file definition</b></p>
+<p>A c header file like constant.h</p>
+<p>#define HC_TOPIC1 101</p>
+<p>#define HC_TOPIC2 102</p>
+<p><b>Step 3. Create the project with HTML Help Workshop</b></p>
+<p>Add your htm files to the project, set the options, and I recommend to create 
+  a Index and a Help contents. You can download the Html Help Workshop for free 
+  from <a href="http://msdn.microsoft.com/library/tools/htmlhelp/chm/HH1Start.htm">here.</a></p>
+<p><b>Step 4. Link the numbers with the topics</b></p>
+<p>You must link the definitions of the constant.h file to the topics.</p>
+<ol>
+  <li>Click API Html Help Information</li>
+  <li>Click Header file button and select the constant.h help file</li>
+  <li>Go to the alias Tab and click Add Button for every topic you must enter 
+    the defina name like HC_TOPIC1 and select the web page to link to.</li>
+</ol>
+<p><b>Step 5. Build the help and test help context it with Html Help Workshop</b></p>
+<p><b>Step 6. Link help with the delphi application</b></p>
+<p>Drop the THmlHelp component on the Mainform of the project, write the filename 
+  and window definition (optional) and set the Help Context of every component. 
+  If you press F1 the correct topic is show.</p>
+<p><b>Optional steps</b></p>
+<ol>
+  <li>Create a window definition, you can select to show locate buttons etc.</li>
+  <li>Create a full text search index (click properties) and include stop search 
+    file with words like &quot;and,yes,no&quot; that will not be included in the 
+    index.</li>
+  <li>Change options of table of contents.</li>
+</ol>
+</body>
+</html>

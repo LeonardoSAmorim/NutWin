@@ -1,0 +1,70 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+package Dic;
+
+{$R *.RES}
+{$R 'ocxdcn\novodic\DicNut.dcr'}
+{$R 'OCXDCN\TreeDic\TreeDic.dcr'}
+{$R 'OCXDCN\ListDic\listdic.dcr'}
+{$R 'OCXDCN\DICDELP\OCXDCNLib_TLB.dcr'}
+{$R 'Ocxdcn\SearchCID\SearchCID.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl40,
+  VCLDB40;
+
+contains
+  DicNut in 'OCXDCN\novodic\DicNut.pas',
+  TreeDic in 'OCXDCN\TreeDic\TreeDic.pas',
+  ListDic in 'OCXDCN\ListDic\listdic.pas',
+  OCXDCNLib_TLB in 'OCXDCN\DICDELP\OCXDCNLib_TLB.pas',
+  SearchCID in 'Ocxdcn\SearchCID\SearchCID.pas',
+  PropDlg in 'OCXDCN\DICDELP\PROPDLG.PAS' {PropPageDlg},
+  Composite in 'OCXDCN\DICDELP\Composite.pas' {ComponentNode: TDataModule},
+  OCXRes in 'OCXDCN\DICDELP\OCXRES.PAS',
+  AboutDlg in 'OCXDCN\DICDELP\ABOUTDLG.PAS' {DlgAbout};
+
+end.

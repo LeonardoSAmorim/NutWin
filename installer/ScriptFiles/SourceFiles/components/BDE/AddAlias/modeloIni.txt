@@ -1,0 +1,48 @@
+[DRIVER]
+DriverName=
+version=
+type=
+dll=
+dll32=
+odbc drivers
+driver flags=
+database name=
+user name=
+odbc dns=
+open mode
+langdriver=
+schema cache size=
+schema cache dir=
+sqlqrymode
+sqlpassthru mode
+trace mode
+enable schema cache
+schema cache time
+batch count
+max rows
+rowset size
+enable bcd
+blobs to cache
+blob size
+
+[alias]
+AliasName=
+DriverType=
+batch count
+blob size
+blobs to cache
+database name
+enable bcd
+enable schema cache
+langdriver
+max rows
+odbc dsn
+open mode
+rowset size
+schema size
+schema dir
+schema cache size
+schema cache time
+sqlpassthru mode
+sqlqrymode
+user name

@@ -1,0 +1,81 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+package Persistencia;
+
+{$R *.RES}
+{$R '..\persistencia\PersistentCollection.dcr'}
+{$R '..\persistencia\ObjectNavigator.dcr'}
+{$R '..\persistencia\PersComp.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$IMPLICITBUILD OFF}
+
+requires
+  VCL40,
+  VCLX40,
+  VCLDB40,
+  VCLSMP40,
+  BASICOS,
+  Conectores,
+  dcldb40,
+  VCLMID40;
+
+contains
+  MapFieldReg in '..\persistencia\MapFieldReg.pas' {Form1},
+  PersistentCollectionReg in '..\persistencia\PersistentCollectionReg.pas',
+  PersistentCollection in '..\persistencia\PersistentCollection.pas',
+  ObjectNavigator in '..\persistencia\ObjectNavigator.pas',
+  MapPersistent in '..\persistencia\MapPersistent.pas',
+  DDLControl in '..\DDLControl\DDLControl.pas',
+  CompFactExcept in '..\persistencia\CompFactExcept.pas',
+  EditUpdQrys in '..\persistencia\EditUpdQrys.pas' {UpObjForm},
+  PersComp in '..\persistencia\PersComp.pas',
+  SQLGeneration in '..\Generations\SQLGeneration\SQLGeneration.pas',
+  MapBinding in '..\PERSISTENCIA\MapBinding.pas',
+  ItemLists in '..\PERSISTENCIA\ItemLists.pas',
+  AssociacaoAgregacao in '..\PERSISTENCIA\AssociacaoAgregacao.pas',
+  Edx02 in '..\PERSISTENCIA\Edx02.pas' {FrmMapDialog02},
+  DefDDL02 in '..\PERSISTENCIA\DefDDL02.pas' {FrmDefDDL02},
+  DefFields02 in '..\PERSISTENCIA\DefFields02.pas' {FrmDefFields02};
+
+end.

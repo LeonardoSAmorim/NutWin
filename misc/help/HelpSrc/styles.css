@@ -1,0 +1,404 @@
+
+ /* $MVD$:color("18","e22b8a","Blue Violet","0") */
+ /* $MVD$:color("19","e8ffff","Observacao","0") */
+ /* $MVD$:color("20","ffff80","Exemplo","1") */
+ /* $MVD$:fontset("Arial","Arial") */
+ CITE.expandspot { font-style : normal;
+                   color : green;
+                   cursor: hand;}
+ .mvd-CITE-expandspot { font-style : normal;
+                        color : green;
+                        cursor: hand;}
+ DFN.collapsed { font-style : italic;
+                 font-weight : normal;
+                 display :                                 'none';
+                 color : red;}
+ .mvd-DFN-collapsed { font-style : italic;
+                      font-weight : normal;
+                      display :                                 'none';
+                      color : red;}
+ DFN.expanded { font-style : italic;
+                font-weight : normal;
+                color : red;}
+ .mvd-DFN-expanded { font-style : italic;
+                     font-weight : normal;
+                     color : red;}
+ EM.dropspot { color : green;
+               cursor: hand;}
+ .mvd-EM-dropspot { color : green;
+                    cursor: hand;}
+ CITE.glossterm { font-style : normal;
+                  color : maroon;
+                  cursor: hand;}
+ .mvd-CITE-glossterm { font-style : normal;
+                       color : maroon;
+                       cursor: hand;}
+ DFN.glosscollapsed { font-style : italic;
+                      font-weight : normal;
+                      display :                                 'none';
+                      color : blue;}
+ .mvd-DFN-glosscollapsed { font-style : italic;
+                           font-weight : normal;
+                           display :                                 'none';
+                           color : blue;}
+ DFN.glossexpanded { font-style : italic;
+                     font-weight : normal;
+                     color : blue;}
+ .mvd-DFN-glossexpanded { font-style : italic;
+                          font-weight : normal;
+                          color : blue;}
+ P { font-family : "Arial";
+     font-style : normal;
+     font-variant : normal;
+     font-weight : normal;
+     font-size : 9.0pt;
+     background-image : none;
+     text-decoration : none;
+     text-transform : none;
+     text-align : justify;
+     text-indent : 0.0pt;
+     list-style-type : square;
+     list-style-position : inside;
+     list-style-image : none;
+     color : black;
+     border : none;
+     vertical-align : baseline;
+     margin-left : auto;
+     margin-right : auto;
+     margin-top : 4.0pt;
+     margin-bottom : 6.0pt;
+     padding : 0.0pt;}
+ .mvd-P { font-family : "Arial";
+          font-style : normal;
+          font-variant : normal;
+          font-weight : normal;
+          font-size : 9.0pt;
+          background-image : none;
+          text-decoration : none;
+          text-transform : none;
+          text-align : justify;
+          text-indent : 0.0pt;
+          list-style-type : square;
+          list-style-position : inside;
+          list-style-image : none;
+          color : black;
+          vertical-align : baseline;
+          margin-left : auto;
+          margin-right : auto;
+          margin-top : 4.0pt;
+          margin-bottom : 6.0pt;
+          padding : 0.0pt;}
+ BODY { font-family : "Arial";
+        font-style : normal;
+        font-variant : normal;
+        font-weight : normal;
+        font-size : 10.0pt;
+        text-decoration : none;
+        text-transform : none;
+        text-align : justify;
+        list-style-image : none;
+        color : black;
+        vertical-align : baseline;
+        word-spacing : normal;
+        letter-spacing : normal;}
+ .mvd-BODY { font-family : "Arial";
+             font-style : normal;
+             font-variant : normal;
+             font-weight : normal;
+             font-size : 10.0pt;
+             text-decoration : none;
+             text-transform : none;
+             text-align : justify;
+             list-style-image : none;
+             color : black;
+             vertical-align : baseline;
+             word-spacing : normal;
+             letter-spacing : normal;}
+ H1 { font-family : "Arial";
+      font-style : italic;
+      font-variant : normal;
+      font-weight : bold;
+      font-size : 12.0pt;
+      text-decoration : none;
+      text-align : left;
+      color : blue;
+      word-spacing : normal;
+      letter-spacing : normal;
+      margin : auto;}
+ .mvd-H1 { font-family : "Arial";
+           font-style : italic;
+           font-variant : normal;
+           font-weight : bold;
+           font-size : 12.0pt;
+           text-decoration : none;
+           text-align : left;
+           color : blue;
+           word-spacing : normal;
+           letter-spacing : normal;
+           margin : auto;}
+ H6 { font-family : "Arial";
+      font-style : italic;
+      font-variant : normal;
+      font-weight : bold;
+      font-size : 12.0pt;
+      text-decoration : none;
+      text-transform : none;
+      text-align : left;
+      color : blue;
+      vertical-align : baseline;
+      line-height : normal;
+      margin : auto;}
+ .mvd-H6 { font-family : "Arial";
+           font-style : italic;
+           font-variant : normal;
+           font-weight : bold;
+           font-size : 12.0pt;
+           text-decoration : none;
+           text-transform : none;
+           text-align : left;
+           color : blue;
+           vertical-align : baseline;
+           line-height : normal;
+           margin : auto;}
+ H5 { font-family : "Arial";
+      font-style : normal;
+      font-variant : normal;
+      font-weight : normal;
+      font-size : 9.0pt;
+      background-color : #FFFFE8;
+      background-image : none;
+      text-decoration : none;
+      text-transform : none;
+      text-align : justify;
+      list-style-type : disc;
+      list-style-position : outside;
+      list-style-image : none;
+      color : navy;
+      border-left : none;
+      border-right : none;
+      border-top : none aqua;
+      border-bottom : none;
+      vertical-align : baseline;
+      padding : 6.0pt;}
+ .mvd-H5 { font-family : "Arial";
+           font-style : normal;
+           font-variant : normal;
+           font-weight : normal;
+           font-size : 9.0pt;
+           background-color : #FFFFE8;
+           background-image : none;
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           list-style-type : disc;
+           list-style-position : outside;
+           list-style-image : none;
+           color : navy;
+           vertical-align : baseline;
+           padding : 6.0pt;}
+ H4 { font-family : "Arial";
+      font-style : normal;
+      font-variant : normal;
+      font-weight : bold;
+      font-size : 10.0pt;
+      text-decoration : none;
+      text-transform : none;
+      text-align : justify;
+      color : navy;
+      word-spacing : normal;
+      letter-spacing : normal;
+      line-height : normal;
+      margin : auto;}
+ .mvd-H4 { font-family : "Arial";
+           font-style : normal;
+           font-variant : normal;
+           font-weight : bold;
+           font-size : 10.0pt;
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           color : navy;
+           word-spacing : normal;
+           letter-spacing : normal;
+           line-height : normal;
+           margin : auto;}
+ H3 { font-family : "Arial";
+      font-style : normal;
+      font-variant : normal;
+      font-weight : normal;
+      font-size : 10.0pt;
+      text-decoration : none;
+      text-transform : none;
+      text-align : justify;
+      color : black;
+      vertical-align : baseline;
+      word-spacing : normal;
+      letter-spacing : normal;
+      line-height : normal;
+      margin-top : auto;
+      margin-bottom : auto;}
+ .mvd-H3 { font-family : "Arial";
+           font-style : normal;
+           font-variant : normal;
+           font-weight : normal;
+           font-size : 10.0pt;
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           color : black;
+           vertical-align : baseline;
+           word-spacing : normal;
+           letter-spacing : normal;
+           line-height : normal;
+           margin-top : auto;
+           margin-bottom : auto;}
+ LISTING { font-family : "Arial";
+           font-style : normal;
+           font-variant : normal;
+           font-weight : normal;
+           font-size : 10.0pt;
+           background-color : transparent;
+           background-image : url("CliW0000.gif");
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           text-indent : -10.0pt;
+           list-style-type : none;
+           list-style-position : inside;
+           color : black;
+           border : none black 0.5pt;
+           word-spacing : normal;
+           letter-spacing : normal;
+           line-height : normal;
+           margin-left : 6.0pt;
+           margin-right : auto;
+           margin-top : auto;
+           margin-bottom : auto;}
+ .mvd-LISTING { font-family : "Arial";
+                font-style : normal;
+                font-variant : normal;
+                font-weight : normal;
+                font-size : 10.0pt;
+                background-color : transparent;
+                background-image : url("CliW0000.gif");
+                text-decoration : none;
+                text-transform : none;
+                text-align : justify;
+                text-indent : -10.0pt;
+                list-style-type : none;
+                list-style-position : inside;
+                color : black;
+                word-spacing : normal;
+                letter-spacing : normal;
+                line-height : normal;
+                margin-left : 6.0pt;
+                margin-right : auto;
+                margin-top : auto;
+                margin-bottom : auto;}
+ H5.Observacao { font-family : "Arial";
+                 font-style : normal;
+                 font-variant : normal;
+                 font-weight : normal;
+                 font-size : 9.0pt;
+                 text-decoration : none;
+                 text-transform : none;
+                 color : navy;
+                 vertical-align : baseline;}
+ .mvd-H5-Observacao { font-family : "Arial";
+                      font-style : normal;
+                      font-variant : normal;
+                      font-weight : normal;
+                      font-size : 9.0pt;
+                      text-decoration : none;
+                      text-transform : none;
+                      color : navy;
+                      vertical-align : baseline;}
+ ADDRESS { font-family : "Arial";
+           font-style : normal;
+           font-variant : normal;
+           font-weight : normal;
+           font-size : 9.0pt;
+           background-color : #FFFFE8;
+           background-image : none;
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           list-style-type : disc;
+           list-style-position : outside;
+           color : navy;
+           word-spacing : Normal;
+           letter-spacing : Normal;
+           line-height : normal;
+           margin : auto;
+           padding : 6.0pt;}
+ .mvd-ADDRESS { font-family : "Arial";
+                font-style : normal;
+                font-variant : normal;
+                font-weight : normal;
+                font-size : 9.0pt;
+                background-color : #FFFFE8;
+                background-image : none;
+                text-decoration : none;
+                text-transform : none;
+                text-align : justify;
+                list-style-type : disc;
+                list-style-position : outside;
+                color : navy;
+                word-spacing : Normal;
+                letter-spacing : Normal;
+                line-height : normal;
+                margin : auto;
+                padding : 6.0pt;}
+ PRE { font-family : "Arial";
+       font-style : normal;
+       font-variant : normal;
+       font-weight : bold;
+       font-size : 10.0pt;
+       text-decoration : none;
+       text-transform : none;
+       text-align : justify;
+       color : navy;
+       word-spacing : normal;
+       letter-spacing : normal;
+       line-height : normal;
+       margin : auto;}
+ .mvd-PRE { font-family : "Arial";
+            font-style : normal;
+            font-variant : normal;
+            font-weight : bold;
+            font-size : 10.0pt;
+            text-decoration : none;
+            text-transform : none;
+            text-align : justify;
+            color : navy;
+            word-spacing : normal;
+            letter-spacing : normal;
+            line-height : normal;
+            margin : auto;}
+ H2 { font-family : "Arial";
+      font-style : italic;
+      font-variant : normal;
+      font-weight : bold;
+      font-size : 12.0pt;
+      text-decoration : none;
+      text-transform : none;
+      text-align : justify;
+      color : blue;
+      word-spacing : normal;
+      letter-spacing : normal;
+      line-height : normal;
+      margin : auto;}
+ .mvd-H2 { font-family : "Arial";
+           font-style : italic;
+           font-variant : normal;
+           font-weight : bold;
+           font-size : 12.0pt;
+           text-decoration : none;
+           text-transform : none;
+           text-align : justify;
+           color : blue;
+           word-spacing : normal;
+           letter-spacing : normal;
+           line-height : normal;
+           margin : auto;}
+ 

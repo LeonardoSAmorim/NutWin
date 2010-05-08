@@ -1,0 +1,130 @@
+[OPTIONS]
+Compiled File=Organiza.chm
+Title=Sistema de Apoio à Nutrição para Windows
+Contents File=toc.hhc
+Index File=index.hhk
+Default topic=NutWin.htm
+Default Window=Organizador
+Error log file=
+Display compile progress=No
+Display compile notes=Yes
+Full-text search=Yes
+Binary Index=No
+Auto Index=No
+Enhanced decompilation=No
+Binary TOC=No
+Flat=No
+
+[WINDOWS]
+Organizador="Ajuda do Organizador","toc.hhc","index.hhk","","http://www.unifesp.br/dis/","http://www.unifesp.br/dis/","DIS","http://www.unifesp.br","UNIFESP",0x21520,0,0xc384e,[11,80,791,552],0x0,0x0,,0,0,0
+
+[FILES]
+Introducao\nutwinConhecendo_seu_funcionamento.htm
+Introducao\nutwinSaiba_antes_de_usar_o_Organizado.htm
+NutWin.htm
+Introducao\nutwinEquipamento_necessrio.htm
+Introducao\nutwinRemover_o_sistema.htm
+Introducao\nutwinInstalar_o_sistema.htm
+Ajuda\nutwinDvidas_comuns_entre_os_usurios.htm
+Ajuda\nutwinTirando_dvidas.htm
+Ajuda\nutwinEntre_em_contato_conosco.htm
+Introducao\nutwinMeios_para_registrar_seu_softwar.htm
+Ajuda\nutwinObtendo_informaes_sobre_o_seu_co.htm
+Ajuda\nutwinAcessando_o_help.htm
+Introducao\nutwinO_que_h_de_novo_.htm
+Ajuda\nutwinObtendo_ajuda_durante_seu_trabal.htm
+Utilitarios\Opcoes\Sistema\nutwinCadastrando_sua_senha.htm
+Arquivo\nutwinComo_exportar_dados_do_sistema.htm
+Introducao\nutwinAcesso_ao_Sistema_pelos_Ícones_r.htm
+Introducao\nutwinAcesso_ao_Sistema_pelo_menu.htm
+Utilitarios\Opcoes\Sistema\nutwinAlterando_a_sala.htm
+Introducao\nutwinAcesso_ao_sistema_pela_sala.htm
+Ajuda\nutwinAtivando_e_desativando_as_dicas.htm
+Arquivo\Abrir\Individuos\nutwinAnamnese_Nutricional_e_modelos_p.htm
+Arquivo\Abrir\Individuos\nutwinDados_Pessoais.htm
+Arquivo\Abrir\Individuos\nutwinEndereo_e_telefones.htm
+Arquivo\Abrir\Alimentos\nutwinPreo.htm
+Utilitarios\Tabelas\Alimentos\nutwinEquivalentes_Proticos.htm
+Utilitarios\Tabelas\Alimentos\nutwinEquivalentes_Energticos00000028.htm
+Arquivo\Abrir\Alimentos\nutwinMedidas_Caseiras00000027.htm
+Arquivo\Abrir\Alimentos\nutwinNutrientes00000026.htm
+Arquivo\Abrir\Alimentos\nutwinDados_do_Alimento.htm
+Arquivo\Abrir\Individuos\nutwinExames_e_modelos_prdefinidos.htm
+Utilitarios\Tabelas\Alimentos\nutwinNutrientes00000046.htm
+nutwinEquivalentes_Proticos00000045.htm
+Utilitarios\Tabelas\Alimentos\nutwinGrupo_Protico.htm
+nutwinEquivalentes_Energticos00000043.htm
+Introducao\nutwinSenha.htm
+Utilitarios\Tabelas\Alimentos\nutwinGrupo_Alimentar.htm
+Utilitarios\Tabelas\Individuos\nutwinDDD.htm
+Utilitarios\Tabelas\Individuos\nutwinEstados.htm
+Utilitarios\Tabelas\Alimentos\nutwinIntroduo.htm
+Utilitarios\Tabelas\Individuos\nutwinCEP.htm
+Utilitarios\Tabelas\Individuos\nutwinCor_da_Pele.htm
+Utilitarios\Tabelas\Individuos\nutwinNacionalidades.htm
+Utilitarios\Tabelas\Individuos\nutwinExames_Bioqumicos.htm
+Arquivo\Abrir\Pastas\nutwinPastas.htm
+Utilitarios\Tabelas\Individuos\nutwinModelos_de_Anamnese.htm
+Utilitarios\Tabelas\Individuos\nutwinCidades.htm
+Utilitarios\Relatorios\nutwinIntroduo00000050.htm
+Arquivo\Abrir\Alimentos\nutwinEquivalentes_Energticos.htm
+Utilitarios\Tabelas\Individuos\nutwinTabelas_de_Indivduos.htm
+Utilitarios\Tabelas\Alimentos\nutwinOrigem.htm
+Utilitarios\Tabelas\Alimentos\nutwinMedidas_Caseiras00000049.htm
+Arquivo\Abrir\Individuos\nutwinFicha_de_Indivduos.htm
+Utilitarios\Relatorios\nutwinListagem_Geral_de_Indivduos.htm
+Utilitarios\Relatorios\nutwinListagem_Geral_de_Indivduos_por_.htm
+Utilitarios\Tabelas\Individuos\nutwinTotais_de_Cadastros_de_Indivduos.htm
+Arquivo\Abrir\Alimentos\nutwinFicha_de_Alimentos.htm
+Utilitarios\Relatorios\nutwinListagem_de_Alimentos_por_Ordem_.htm
+Utilitarios\Relatorios\nutwinListagem_de_Alimentos_por_Grupo_.htm
+Utilitarios\Relatorios\nutwinListagem_de_alimentos_por_Origem.htm
+Utilitarios\Tabelas\Alimentos\nutwinTotais_de_Cadastros_de_Alimentos.htm
+Utilitarios\Tabelas\Alimentos\nutwinGrupos_Energtico.htm
+Utilitarios\Tabelas\Alimentos\nutwinTabelas_Alimentares.htm
+Arquivo\Abrir\Alimentos\nutwinEquivalentes_Proticos00000063.htm
+Utilitarios\Relatorios\nutwinRelatrios_de_Acompanhamento.htm
+Bibliografia\nutwinMais_alguns_.htm
+Arquivo\Abrir\Pastas\nutwinUtilizando_as_Pastas.htm
+Ajuda\nutwinSobre.htm
+Bibliografia\nutwinBibliografia.htm
+Conheça_o_Programa_de_Apoio_a_Nutrição.htm
+Profissão.htm
+Grau_de_Instrução.htm
+Tabelas_Botões.htm
+UtiltIndivCadastro.htm
+Seleção_dos_Nutrientes.htm
+Refeição.htm
+Inquérito.htm
+Plano_alimentar.htm
+Antropometria.htm
+Indivíduos_-_Novo_e_Localizar.htm
+Instalando_o_NUTWIN_em_Windows_2000_ou_NT.htm
+GráficoAntropometrico.htm
+Instalando_o_NUTWIN_em_Windows_9x,_ou_Me.htm
+Conteúdo.htm
+Duplica_Alimento.htm
+Ordem_dos_Nutrientes.htm
+Termo_de_Compromisso.htm
+Alimentos_-_Novo_e_Localizar.htm
+Listagem_Geral_de_Pastas_por_Indivíduos.htm
+Lista_das_Tabelas_de_Alimentos.htm
+Preparação.htm
+Modelos_de_Exames.htm
+Lista_das_Tabelas_de_Indivíduos.htm
+Restore.htm
+Backup.htm
+BSSCDHTM.js
+eHelp.xml
+
+Organiza.brs
+[ALIAS]
+#include Organiza.ali
+
+[MAP]
+#include Organiza.h
+
+[TEXT POPUPS]
+Organiza.h
+
+

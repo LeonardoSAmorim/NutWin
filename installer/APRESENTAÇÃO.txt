@@ -1,0 +1,14 @@
+APRESENTAÇÃO
+
+O Programa de Apoio à Nutrição tem o objetivo de 
+automatizar e facilitar o gerenciamento do fluxo de 
+informações geradas pelo profissional da área de 
+Nutrição e Alimentação. Auxilia também na 
+quantificação de nutrientes e na tomada de decisão na
+elaboração de Planos Alimentares.
+
+O Programa de Apoio à Nutrição, desde a sua concepção
+e em todas as fases do desenvolvimento, contou com a
+participação de profissionais de saúde envolvidos na
+prática clínica e com uma equipe de planejamento e 
+análise especializada na área de informática em saúde.

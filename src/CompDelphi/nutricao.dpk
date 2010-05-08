@@ -1,0 +1,202 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+package nutricao;
+
+{$R *.RES}
+{$R 'alinut\LstAli.dcr'}
+{$R 'alinut\CalcAli.dcr'}
+{$R 'alinut\LstMed.dcr'}
+{$R 'alinut\LstNut.dcr'}
+{$R 'Calculo\VisorCal.dcr'}
+{$R 'Calculo\Memoria.dcr'}
+{$R 'Calculo\MontaLst.dcr'}
+{$R 'Calculo\Calculo.dcr'}
+{$R 'DataIdade\Udidade.dcr'}
+{$R 'InsereForm\InsFrm.dcr'}
+{$R 'Medida\VisorMedida.dcr'}
+{$R 'Medida\PAINELMEDIDA.dcr'}
+{$R 'Medida\Measurement.dcr'}
+{$R 'ObjetoVisual 1.0\ObjVis.dcr'}
+{$R 'Tabela\ROM.dcr'}
+{$R 'Tabela\condicao.dcr'}
+{$R 'wizard\Wizard.dcr'}
+{$R 'Formula\Formula.dcr'}
+{$R 'Calculo\MemoriaViewer.dcr'}
+{$R 'Medida\DescriptorManager.dcr'}
+{$R 'Medida\PainelNasc.dcr'}
+{$R 'Numedit\FnpNumericEdit.dcr'}
+{$R 'MYNAV\Dbmynav.dcr'}
+{$R 'NAVTABLE\Navtable.dcr'}
+{$R 'Calculo\MmLstBox.dcr'}
+{$R 'Calculo\cxLstBox.dcr'}
+{$R 'MoveItens\MoveItens.dcr'}
+{$R 'Calculo\Procedimento.dcr'}
+{$R 'ObjetoVisual 1.0\AlmaHumana.dcr'}
+{$R 'GraficoFaixa\MedidasBlobs.dcr'}
+{$R 'GraficoFaixa\GraficoFaixa.dcr'}
+{$R 'GraficoFaixa\FaixasTabela.dcr'}
+{$R 'Calculo\MacroNut.dcr'}
+{$R 'Calculo\RDA.dcr'}
+{$R 'Calculo\RecNutViewer.dcr'}
+{$R 'Calculo\FnpNEditBlank.dcr'}
+{$R 'Calculo\IOController.dcr'}
+{$R 'Calculo\CalculoViewer.dcr'}
+{$R 'Calculo\Escopo.dcr'}
+{$R 'Calculo\DBIOController.dcr'}
+{$R 'AliNut\CLstAli.dcr'}
+{$R 'AliNut\Nutrientes.dcr'}
+{$R 'AliNut\MedidasCaseiras.dcr'}
+{$R 'AliNut\EquEnergia.dcr'}
+{$R 'AliNut\CAlimento.dcr'}
+{$R 'AliNut\EquProteina.dcr'}
+{$R 'Medida\Idade.dcr'}
+{$R 'DelayedOpIndicator\DelayedOpIndicator.dcr'}
+{$R 'Calculo\ItemAlimentar.dcr'}
+{$R 'Calculo\CalculoTextViewer.dcr'}
+{$R 'HintListBox\HintListBox.dcr'}
+{$R 'skinImage\SkinImage.dcr'}
+{$R 'skinImage\RoundedButton.dcr'}
+{$R 'AliNut\DSList.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$DESCRIPTION 'Package dos Componentes de Nutricao'}
+{$IMPLICITBUILD OFF}
+
+requires
+  FREEWARE,
+  Dic,
+  BASICOS,
+  VCLX40,
+  VCLJPG40,
+  VCLSMP40,
+  QRPT40,
+  RXCTL4,
+  DclBox40,
+  VCL40,
+  tee44;
+
+contains
+  LstAli in 'AliNut\LstAli.pas',
+  CalcAli in 'AliNut\CalcAli.pas' {CalcAli: TDataModule},
+  LstMed in 'AliNut\LstMed.pas',
+  LstNut in 'AliNut\LstNut.pas',
+  VisorCal in 'Calculo\VisorCal.pas',
+  Memoria in 'Calculo\Memoria.pas',
+  MontaLst in 'Calculo\MontaLst.pas',
+  Calculo in 'Calculo\Calculo.pas',
+  UDIdade in 'DataIdade\Udidade.pas',
+  InsFrm in 'InsereForm\InsFrm.pas',
+  VisorMedida in 'Medida\VisorMedida.pas',
+  PAINELMEDIDA in 'Medida\PAINELMEDIDA.pas',
+  Measurement in 'Medida\Measurement.pas',
+  ObjVis in 'ObjetoVisual 1.0\ObjVis.pas',
+  ROM in 'Tabela\ROM.pas',
+  Condicao in 'Tabela\condicao.pas',
+  Wizard in 'wizard\Wizard.pas',
+  Formula in 'Formula\Formula.pas',
+  MemoriaViewer in 'Calculo\MemoriaViewer.pas',
+  GlueAntrop in 'Calculo\GlueAntrop.pas',
+  DMDescMgr in 'Medida\DMDescMgr.pas' {DMDescritor: TDataModule},
+  DescriptorManager in 'Medida\DescriptorManager.pas',
+  DMObjVis in 'ObjetoVisual 1.0\DMObjVis.pas' {DMOV: TDataModule},
+  CalcDM in 'Calculo\CalcDM.pas' {DMCalc: TDataModule},
+  LblCmpnt in 'Medida\LblCmpnt.pas',
+  BwsrHier in 'Medida\BwsrHier.pas' {HierarchyBrowser},
+  DMAli in 'Alinut\DMAli.pas' {DMAlimento: TDataModule},
+  PainelNasc in 'Medida\PainelNasc.pas',
+  FnpNumericEdit in 'Numedit\FnpNumericEdit.pas',
+  DBMyNav in 'MYNAV\Dbmynav.pas',
+  NavTable in 'NAVTABLE\Navtable.pas',
+  MmLstBox in 'Calculo\MmLstBox.pas',
+  cxLstBox in 'Calculo\cxLstBox.pas',
+  MoveItens in 'MoveItens\MoveItens.pas',
+  Procedimento in 'Calculo\Procedimento.pas',
+  AlmaHumana in 'ObjetoVisual 1.0\AlmaHumana.pas',
+  MedidasBlobs in 'GraficoFaixa\MedidasBlobs.pas',
+  GraficoFaixa in 'GraficoFaixa\GraficoFaixa.pas',
+  FaixasTabela in 'GraficoFaixa\FaixasTabela.pas',
+  LofStrings in 'Calculo\LofStrings.pas',
+  MacroNut in 'Calculo\MacroNut.pas',
+  RDA in 'Calculo\RDA.pas' {dmRDA: TDataModule},
+  RecNutViewer in 'Calculo\RecNutViewer.pas',
+  FnpNEditBlank in 'Calculo\FnpNEditBlank.pas',
+  CNActns in 'Calculo\CNActns.pas',
+  IOController in 'Calculo\IOController.pas',
+  CalcNutActns in 'Calculo\CalcNutActns.pas',
+  CalculoViewer in 'Calculo\CalculoViewer.pas',
+  RegEdit in 'regEdit\RegEdit.pas',
+  Escopo in 'Calculo\Escopo.pas',
+  NutCnst in 'Calculo\NutCnst.pas',
+  Deficien in 'Calculo\Deficien.pas' {fmDeficiente},
+  ErrConsis in 'Calculo\ErrConsis.pas' {fmErrConsistencia},
+  fmCompPrna in 'Calculo\fmCompPrna.pas' {fmCompPerna},
+  fmRelViewer in 'Calculo\fmRelViewer.pas' {RelViewer},
+  NovoInd in 'Calculo\NovoInd.pas' {fmNovoIndividuo},
+  CalculoEditor in 'Calculo\CalculoEditor.pas' {CalculoEditor},
+  RegConst2 in 'Calculo\RegConst2.pas',
+  qrepform in 'Calculo\qrepform.pas' {FormReport},
+  DBIOController in 'Calculo\DBIOController.pas',
+  DBCalcNutActns in 'Calculo\DBCalcNutActns.pas',
+  CLstAli in 'AliNut\CLstAli.pas',
+  Nutrientes in 'AliNut\Nutrientes.pas',
+  MedidasCaseiras in 'AliNut\MedidasCaseiras.pas',
+  DMLstAli in 'AliNut\DMLstAli.pas' {DMListaAlimento: TDataModule},
+  DMUmAli in 'AliNut\DMUmAli.pas' {DMUmAlimento: TDataModule},
+  EquEnergia in 'AliNut\EquEnergia.pas',
+  CAlimento in 'AliNut\CAlimento.pas',
+  EquProteina in 'AliNut\EquProteina.pas',
+  Idade in 'Medida\Idade.pas',
+  DelayedOpIndicator in 'DelayedOpIndicator\DelayedOpIndicator.pas',
+  ItemAlimentar in 'Calculo\ItemAlimentar.pas',
+  xmlclasses in 'Calculo\xmlclasses.pas',
+  CalculoTextViewer in 'Calculo\CalculoTextViewer.pas',
+  ChartFaixas in 'GraficoFaixa\ChartFaixas.pas',
+  HintListBox in 'HintListBox\HintListBox.pas',
+  SkinImage in 'skinImage\SkinImage.pas',
+  RoundedButton in 'skinImage\RoundedButton.pas',
+  DSList in 'AliNut\DSList.pas',
+  DSListReg in 'AliNut\DSListReg.pas' {fmDSsEditor},
+  CRC2 in 'Calculo\CRC2.pas',
+  Person in 'Calculo\Person.pas';
+
+end.

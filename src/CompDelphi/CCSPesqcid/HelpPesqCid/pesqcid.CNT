@@ -1,0 +1,28 @@
+:Base pesqcid.HLP
+1 pesqcid
+2 CCSSIS - Consórcio de Componentes de Software para Sistemas de Informação em Saúde=CCSSIS
+2 Créditos=Creditos
+2 Introdução=Introdução
+2 Instalação=Instalação
+2 Tela de Pesquisa=TelaPesquisa
+2 Mensagens de erro=MensagensErro
+2 Propriedades
+3 PesqCID.DiretorioCID=DiretorioCID
+3 PesqCID.ArquivosCID=ArquivosCID
+3 PesqCID.CodigoCID=CodigoCID
+3 PesqCID.DescricaoCID=DescricaoCID
+3 PesqCID.DetalheCID=DetalheCID
+3 PesqCID.PesquisaAutomática=PesquisaAutomatica
+3 PesqCID.PesquisaInicial=PesquisaInicial
+3 PesqCID.FormPosition=FormPosition
+3 PesqCID.FormWindowState=FormWindowState
+3 PesqCID.FormTop=FormTop
+3 PesqCID.FormLeft=FormLeft
+3 PesqCID.FormHeight=FormHeight
+3 PesqCID.FormWidth=FormWidth
+2 Métodos
+3 PesqCID.Execute=Execute
+2 Eventos
+3 PesqCID.OnCanClose=OnCanClose
+3 PesqCID.OnClose=OnClose
+3 PesqCID.OnShow=OnShow

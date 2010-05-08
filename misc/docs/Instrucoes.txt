@@ -1,0 +1,48 @@
+0) Copie (atualize), se necessário, os seguintes arquivos para os seguinte diretórios
+D:\Dis\NutWin\Instal\Calculadora\Calcnut.exe
+D:\Dis\NutWin\Instal\IDados\CVSDADOS.GDB
+D:\Dis\NutWin\Instal\Organizador\PNutWin.exe
+Existem outros diretórios a atualzar, mas muito pouca frequencia
+
+GERAÇÃO DO INSTALADOR CLIENTE DO NUTREDE
+
+1) Compilar e gerar pacote de instalação do NUTREDE CLIENTE em: 
+D:\Dis\Instalação\NUTREDECLIENT - Interbase\Programa de Apoio à Nutrição Client- Interbase.ipr 
+(é só clicar duas vezes sobre este arquivo e no InstalShield entrar nas opções Buid/Compile e Build/Media/Build Default Media.
+Presta atenção nas mensagens no rodapé se são 0 de erro(s) e warning(s)).
+
+2) Copiar o conteúdo (ctrl-A) do diretório:
+D:\Dis\Instalação\NUTREDECLIENT - Interbase\Media\Default\Disk Images\Disk1
+para o diretório:
+D:\Dis\NutWin\Instal\Cliente
+Confirme que deseja sobrescrever Todos os arquivos e diretórios..
+
+3) Copiar o conteúdo (ctrl-A) do diretório:
+D:\Dis\ZModelos\ClientDisk1
+para o diretório:
+D:\Dis\NutWin\Instal\Cliente
+Confirme que deseja sobrescrever Todos os arquivos e diretórios.
+
+4) Exclua o arquivo Config.exe e renomeie o arquivo Setup.exe para Config.exe do diretório: D:\Dis\NutWin\Instal\Cliente.
+
+GERAÇÃO DO INSTALADOR CLIENTE/SERVIDOR DO NUTREDE
+
+1) Compilar e gerar pacote de instalação do NUTREDE SERVER em: 
+D:\Dis\Instalação\NUTREDESERVER - Interbase\Programa de Apoio à Nutrição Server - Interbase.ipr
+(é só clicar duas vezes sobre este arquivo e no InstalShield entrar nas opções Buid/Compile e Build/Media/Build Default Media.
+Presta atenção nas mensagens no rodapé se são 0 de erro(s) e warning(s)).
+
+2) Copiar o conteúdo (ctrl-A) do diretório:
+D:\Dis\ZModelos\ServerDisk1
+para o diretório:
+D:\Dis\Instalação\NUTREDESERVER - Interbase\Media\Default\Disk Images\Disk1
+Confirme que deseja sobrescrever Todos os arquivos e diretórios.
+
+3) Exclua o arquivo Config.exe e renomeie o arquivo Setup.exe para Config.exe do diretório: 
+D:\Dis\Instalação\NUTREDESERVER - Interbase\Media\Default\Disk Images\Disk1
+
+4) Copie o conteúdo (ctrl-A) do diretório: 
+D:\Dis\Instalação\NUTREDESERVER - Interbase\Media\Default\Disk Images\Disk1 
+para o diretório temporário da máquina de gravação de CD. 
+
+5) Grave o CD, sem "fechá-lo, na raíz do mesmo.

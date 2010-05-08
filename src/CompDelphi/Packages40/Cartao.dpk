@@ -1,0 +1,95 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+
+package Cartao;
+
+{$R *.RES}
+{$R 'CNSConnectReg.dcr'}
+{$R 'CompOCX.dcr'}
+{$R 'CNSCriptografia.dcr'}
+{$R 'Navegador.dcr'}
+{$R 'CNSLote.dcr'}
+{$R 'cnsmunicipio.dcr'}
+{$R 'CNSPIS.dcr'}
+{$R 'cnsufederal.dcr'}
+{$R 'ConectorBrowser.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$DESCRIPTION 'Componentes do Consorcio'}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl40,
+  VCLX40,
+  VCLDB40,
+  VCLSMP40,
+  BASICOS,
+  Conectores,
+  FonAbrv;
+
+contains
+  CNSConnectReg in 'CNSConnectReg.pas',
+  CNSSubItem in 'CNSSubItem.pas',
+  CNSSubItemReg in 'CNSSubItemReg.pas' {CNSSubItemEditorDlg},
+  CNSCriptografia in 'CNSCriptografia.pas',
+  Navegador in 'Navegador.pas',
+  CNSSpeedControl in 'CNSSpeedControl.pas',
+  ItemsDefaultReg in 'ItemsdefaultReg.pas' {ItemsDefaultEditorDlg},
+  CNSLote in 'CNSLote.pas',
+  CNSMidia in 'CNSMidia.pas',
+  CNSMunicipio in 'cnsmunicipio.pas',
+  CNSPacote in 'CNSPacote.pas',
+  CNSPessoa in 'CNSPessoa.pas',
+  CNSPIS in 'CNSPIS.pas',
+  cnsufederal in 'cnsufederal.pas',
+  Ednovo in 'Ednovo.pas',
+  ConectorBrowser in 'ConectorBrowser.pas',
+  CNSConfig in 'CNSConfig.pas',
+  LoteDialog01 in 'LoteDialog01.pas' {FrmCapaLote},
+  CNSLib in 'CNSLib.pas',
+  Login01 in 'Login01.pas' {FCSUSConectar},
+  CNSErros in 'CNSErros.pas',
+  CNSDBSUS in 'CNSDBSUS.pas',
+  CNSConnect in 'CNSConnect.pas';
+
+end.

@@ -1,0 +1,64 @@
+
++----------------------------------------------------------+
+|                          myodbc3i                        |
++----------------------------------------------------------+
+
+  Use this program to manage ODBC system information from the
+  command-line. This is particularly useful for installation 
+  processes. It is also useful for testing the abstraction/
+  portability of ODBC system information provided by the  
+  MYODBCUtil library.
+
++----------------------------------------------------------+
+|                         U S A G E                        |
++----------------------------------------------------------+
+
+  $ myodbc3i <action> <object> <option>
+
++----------------------------------------------------------+
+|                        A C T I O N                       |
++----------------------------------------------------------+
+
+  q    Query
+  a    Add
+  e    Edit
+  r    Remove
+
++----------------------------------------------------------+
+|                        O B J E C T                       |
++----------------------------------------------------------+
+
+  d    Driver.
+  n    Driver or data source name. String follows this.
+  s    User & system data source(s).
+  su   User data source(s).
+  ss   System data source(s).
+
++----------------------------------------------------------+
+|                        O P T I O N                       |
++----------------------------------------------------------+
+
+  t    Attribute string. String of semi delim key=value pairs follows this.
+  w    Window handle. Numeric follows this. 0 to disable GUI prompts, 1 to fake a window handle (default).
+
++----------------------------------------------------------+
+|                        S Y N T A X                       |
++----------------------------------------------------------+
+
+  q d|s|su|ss [n] [w]
+  a d|s|su|ss t [w]
+  e s|su|ss t [w]
+  r d|s|su|ss n [w]
+
++----------------------------------------------------------+
+|                       E X A M P L E S                    |
++----------------------------------------------------------+
+
+  List all data source names;
+    $ myodbc3i -q -s
+  List data source attributes for MyODBC;
+    $ myodbc3i -q -s -n"MySQL ODBC 3.51 Driver"
+  Register a driver;
+    $ myodbc3i -a -d -t"MySQL ODBC 3.51 Driver;Driver=/usr/lib/libmyodbc3.so;Setup=/usr/lib/libmyodbc3S.so"
+  Create a user data source name;
+    $ myodbc3i -a -su -t"DSN=MyDSN;Driver=MySQL ODBC 3.51 Driver;Server=localhost;UID=pharvey"

@@ -1,0 +1,25 @@
+[Project Opened]
+Successfully Opened=1
+
+[Project]
+Help Compiler=HCW.EXE
+Remove Unused=0
+Version=512
+ConvertedFromV1=0
+HasGlossary=0
+Automatic Map Files=0
+NextFile=8
+WH2RH=0
+Extra Language=0
+MovedToHPR=1
+
+[.rbh]
+CopyTo=0
+PreBatch=
+PostBatch=
+AutoFixRTF=0
+CurrentDir=D:\nutricao\formulas
+CopyToWasUpdated7=1
+
+[Project Settings]
+Primary Target=4

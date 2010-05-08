@@ -1,0 +1,33 @@
+CAPTIONDESC                                                      MEDIDA                             MEDIDADIAG                         TABELA                                                           
+=============================================================    ===============================    ===============================    =============================================================    
+Adequação da Area Muscular do Braço                              mdAdeqAMB                          mdDiagAMB                          ADEQ                                                             
+Adequação da Circunferência do Braço                             mdAdeqCB                           mdDiagCB                           ADEQ                                                             
+Adequação da Estatura para Idade                                 mdAEI                                                                 ADEQ                                                             
+Adequação do Perímetro Cefálico                                  mdAdeqPC                                                              ADEQ                                                             
+Adequação do Peso Desejável pelo Cálculo Simplificado            mdAdeqPAPDCS                                                          ADEQ                                                             
+Adequação do Peso Desejável pelo IMC                             mdAdeqPAPDIMC                                                         ADEQ                                                             
+Adequação do Peso Desejável por Metropolitan                     mdAdeqPAPRM                                                           ADEQ                                                             
+Adequação do Peso para Estatura                                  mdAdeqAPE                                                             ADEQ                                                             
+Adequação do Peso para Idade                                     mdAPI                                                                 ADEQ                                                             
+Adequação do Índice de Massa Corporal  (Adolescentes)            mdAdeqIMCA                                                            ADEQ                                                             
+Circunferência Muscular do Braço                                 mdCMB                              mdDiagCMB                          T25                                                              
+Circunferência do Braço                                          mdCircBraco                        mdDiagCB                           T23                                                              
+Circunferência do Punho                                          mdCircPumho                                                           <null>                                                           
+Ganho de Peso (Relação Peso/Estatura)                            mdRPEG                                                                T33                                                              
+Ganho de Peso da Gestante                                        mdGanhoPesoGestante                                                   T33                                                              
+Peso Atual                                                       mdPeso                             <null>                             <null>                                                           
+Peso Desejável pelo Cálculo Simplificado                         mdPDCS                                                                <null>                                                           
+Peso Desejável por IMC                                           mdPDIMC                                                               <null>                                                           
+Peso Desejável por Metropolitan                                  mdPDM                                                                 <null>                                                           
+Peso para Idade                                                  mdAPI                              mdDiagAPI                          T4                                                               
+Porcentagem de Gordura Corporal                                  mdPGordura                         mdDiagPGordura                     T2                                                               
+Prega Cutânea Subescapular                                       mdPSubescapular                                                       <null>                                                           
+Prega Cutânea Suprailíaca                                        mdPSuprailiaca                                                        <null>                                                           
+Prega Cutânea do Bíceps                                          mdPBiceps                                                             <null>                                                           
+Prega Cutânea do Tríceps                                         mdPTriceps                         mdDiagPCT                          T27                                                              
+Relação Cintura/Quadril                                          mdRCQ                              mdDiagRCQ                          T11                                                              
+Relação Perímetro Cefálico/Toráxico                              mdPCPT                             mdDiagPCPT                         T24                                                              
+Área Muscular do Braço                                           mdAMB                              mdDiagAMB                          T22                                                              
+Índice de Massa Corporal (IMC)                                   mdIMC                              mdDiagIMC                          T6                                                               
+Índice de Massa Corporal Pré-gestacional                         mdIMCPG                            mdDiagIMCPG                        T33                                                              
+Índice de Massa Corporal para Idade (Adolescentes)               mdIMCA                             mdDiagIMCA                         T28                                                              

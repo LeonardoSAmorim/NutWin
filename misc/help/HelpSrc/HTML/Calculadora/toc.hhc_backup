@@ -1,0 +1,218 @@
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="FrameName" value="right">
+  <param name="SiteType" value="toc">
+  <param name="Window Styles" value="0x400422">
+  <param name="ExWindow Styles" value="0x2100">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Conhecendo a Calculadora">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Programa de Apoio à Nutrição">
+      <param name="Local" value="Introducao.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Introdução">
+      <param name="Local" value="Introducao_calculadora.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Abrindo um arquivo">
+      <param name="Local" value="Abrindo_outra_memoria.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Definindo um escopo para todos os cálculos">
+      <param name="Local" value="Definindo_um_escopo_para_todos_os_cálculos.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Iniciando um novo documento">
+      <param name="Local" value="Iniciando_um_novo_documento.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Abrindo um cálculo já existente">
+      <param name="Local" value="Abrindo_um_cálculo_já_existente.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Salvando um cálculo">
+      <param name="Local" value="Salvando_um_cálculo.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Fechando o cálculo ativo">
+      <param name="Local" value="Fechando_o_cálculo_ativo.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Imprimindo um cálculo">
+      <param name="Local" value="Imprimindo_um_cálculo.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Saindo do Programa">
+      <param name="Local" value="Saindo_do_Programa.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Utilizando os cálculos disponíveis">
+      <param name="Local" value="Utilizando_os_cálculos_disponíveis.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Configurando sua Calculadora">
+      <param name="Local" value="Configurando_sua_Calculadora.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Utilizando o Help">
+      <param name="Local" value="Utilizando_o_Help.htm">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Informações Importantes">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Para usuários do Nutrição DOS 2.5">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="O que há de novo ?">
+        <param name="Local" value="nutwinO_que_h_de_novo_.htm">
+      </object>
+      </ul>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Trabalhando com Cálculos">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Iniciando um cálculo">
+      <param name="Local" value="Iniciando_calculo.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Atividade Física">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Atividade Física">
+        <param name="Local" value="formulasAtividades_Fsicas.htm">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Antropometria">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Antropometria">
+        <param name="Local" value="Antropometria\formulasAntropometria.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Selecionando cálculos">
+        <param name="Local" value="Antropometria\formulasSelecionando_cálculos.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Entrada dos Valores">
+        <param name="Local" value="Antropometria\formulasEntrada_dos_Valores.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Relatório de resultados">
+        <param name="Local" value="Antropometria\formulasRelatrio_de_resultados.htm">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Recomendação de Energia">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Recomendação de Energia">
+        <param name="Local" value="Recomendacoes_Caloricas.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Recomendação de Energia pela FAO/OMS (RCFAO)">
+        <param name="Local" value="formulasRecomendao_Calrica_pela_FAOOMS_R.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Recomendação de Energia para Pacientes (RCP)">
+        <param name="Local" value="formulasRecomendao_Calrica_para_Paciente.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Recomendação de Energia pela RDA (RCRDA)">
+        <param name="Local" value="formulasRecomendao_Calrica_pela_RDA_RCRD.htm">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Cálculos Alimentares">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Ícones e botões do Sistema">
+        <param name="Local" value="Ícones_e_botões_do_Sistema.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Configurações da Lista de Alimentos">
+        <param name="Local" value="Configurações_da_Lista_de_Alimentos.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Diferenças entre Inquérito e Plano Alimentar">
+        <param name="Local" value="Diferenças_entre_Inquérito_e_Plano_Alimentar.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Preparação">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Preparação">
+          <param name="Local" value="Preparação.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Como fazer uma Preparação">
+          <param name="Local" value="Como_fazer_uma_Preparação.htm">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Inquérito">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Inquérito">
+          <param name="Local" value="Inquérito.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="O que é Inquérito?">
+          <param name="Local" value="O_que_é_Inquérito_.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Como fazer um Inquérito Alimentar ?">
+          <param name="Local" value="Como_fazer_um_Inquérito_Alimentar__.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Que resultados podemos obter de um inquérito alimentar ?">
+          <param name="Local" value="Que_resultados_podemos_obter_de_um_inquérito_alimentar__.htm">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Plano Alimentar">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Plano Alimentar (Dieta)">
+          <param name="Local" value="formulasPlano_Alimentar_Dieta.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="O que é Plano Alimentar ?">
+          <param name="Local" value="O_que_é_Plano_Alimentar__.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Para que  fazer um Plano Alimentar ?">
+          <param name="Local" value="Para_que__fazer_um_Plano_Alimentar__.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Como fazer um Plano Alimentar ?">
+          <param name="Local" value="Como_fazer_um_Plano_Alimentar__.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Que resultados podemos obter de um Plano Alimentar ?">
+          <param name="Local" value="Que_resultados_podemos_obter_de_um_Plano_Alimentar__.htm">
+        </object>
+        </ul>
+      </ul>
+    </ul>
+</ul>
+</html>

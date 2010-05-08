@@ -1,0 +1,117 @@
+To use the Instance Configuration Wizard from the command line the 
+following parameters can be used.
+
+These parameters have to be set to run from the command line
+
+-n<product name>
+-p<path of installation> (no \bin)
+-v<version>
+
+
+Actions to perform
+-i  (install instance)
+-r  (remove instance)
+-s  (stop instance)
+-q  (be quiet)
+-lfilename  (write log file)
+
+
+When launched manually, these can also be submitted
+
+-t<.cnf template filename>
+-c<.cnf filename>
+
+
+Use the following option to define the parameters for the config file 
+generation.
+
+ServiceName=$
+AddBinToPath={yes | no}
+ServerType={DEVELOPMENT | SERVER | DEDICATED}
+DatabaseType={MIXED | INNODB | MYISAM}
+ConnectionUsage={DSS | OLTP}
+ConnectionCount=#
+SkipNetworking={yes | no}
+Port=#
+StrictMode={yes | no}
+Charset=$
+RootPassword=$
+RootCurrentPassword=$
+
+
+The return codes of the Wizard in case of an error are.
+
+2 ... Configuration template file cannot be found.
+3 ... The Windows service entry cannot be created.
+4 ... Could not connect to the Service Control Manager.
+5 ... The MySQL service cannot be started.
+6 ... The MySQL service cannot be stopped.
+7 ... The security settings cannot be applied.
+8 ... The configuration file cannot be written.
+9 ... The Windows service entry cannot be removed.
+
+
+Examples:
+
+The following command installs a MySQL Server 5.0 instance from the directory 
+C:\Programme\MySQL\MySQL Server 5.0 using the service name MySQLCust and setting
+the root password to 1234.
+
+MySQLInstanceConfig.exe -i -q "-lC:\mysql_install_log.txt" "-nMySQL Server 5.0" "-pC:\Programme\MySQL\MySQL Server 5.0" -v5.0.13 "-t..\..\res\my-template.ini" "-cC:\mytest.ini" ServerType=DEVELOPMENT DatabaseType=MIXED ConnectionUsage=DSS Port=3311 ServiceName=MySQLCust RootPassword=1234
+
+If the server can not be started, the exit code is 2.
+
+The following command removes the server instance with the name MySQLCust.
+
+MySQLInstanceConfig.exe -r -q "-lC:\mysql_install_log.txt" "-nMySQL Server 5.0" "-pC:\Programme\MySQL\MySQL Server 5.0" -v5.0.13 "-cC:\mytest.ini" ServiceName=MySQLCust
+
+
+Output into the log file:
+
+----------------------------------------
+Welcome to the MySQL Server Instance Configuration Wizard 1.0.6
+Date: 2005-10-19 21:53:16
+
+Installing service ...
+
+Product Name:         MySQL Server 5.0
+Version:              5.0.13
+Installation Path:    C:\Programme\MySQL\MySQL Server 5.0\
+
+Creating configuration file C:\mytest.ini using template ..\..\res\my-template.ini.
+Options:
+DEVELOPMENT
+MIXED
+DSS
+STRICTMODE
+
+Variables:
+port: 3311
+default-character-set: latin1
+basedir: "C:/Programme/MySQL/MySQL Server 5.0/"
+datadir: "C:/Programme/MySQL/MySQL Server 5.0/Data/"
+
+
+Creating Windows service entry.
+Service Name: "MySQLCust"
+Parameters:   "C:\Programme\MySQL\MySQL Server 5.0\bin\mysqld-nt" --defaults-file="C:\mytest.ini" MySQLCust.
+Windows service MySQLCust installed.
+Service started successfully.
+The security settings could not be applied to the database because the connection has failed with the following error.
+
+Error Nr. 1045
+Access denied for user 'root'@'localhost' (using password: NO)
+
+
+----------------------------------------
+Welcome to the MySQL Server Instance Configuration Wizard 1.0.6
+Date: 2005-10-19 21:53:46
+
+Removing Service...
+
+Instance stopped.
+Windows Service removed.
+Service Name: MySQLCust
+Configuration file removed.
+Filename: C:\mytest.ini
+

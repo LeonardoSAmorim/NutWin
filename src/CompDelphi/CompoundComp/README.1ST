@@ -1,0 +1,138 @@
+
+Ver 4.5 (13 Feb 99)
+
+=====================================================================
+              Composite Components Pack  (CCPack)
+                for Delphi 3,4 and C++Builder 3,4
+=====================================================================
+
+              THIS SOFTWARE IS DISTRIBUTED "AS IS".  
+
+NO WARRANTY OF ANY KIND IS EXPRESSED OR IMPLIED.  YOU USE AT YOUR OWN 
+RISK. THE AUTHOR WILL NOT BE LIABLE FOR DATA LOSS, DAMAGES, LOSS OF 
+PROFITS OR ANY OTHER KIND OF LOSS WHILE USING OR MISUSING THIS SOFTWARE. 
+
+=====================================================================
+
+CCPack provides a Composite Component Wizard to facilitate the 
+creation of composite components. You can find it in the Delphi 
+Repository dialog on the "New" page as "Composite Component" item.
+
+CCPack enables you compound components and their relationships 
+into a single native VCL component. Just drop existing components 
+on your component in the visual designer. This process looks like
+creating ActiveForm. 
+
+Now CCPack includes 4 basic component containers:
+  - TBox (a special version of Panel)
+  - TControlGroupBox (a special version of GroupBox)
+  - TControlScrollBox (a special version of TScrollBox)
+  - TToolBarBox (a special version of ToolBar)
+
+Also you can find 2 demo composites for Delphi 4 and C++Builder 4:
+  - TBxDualLis
+  - TBxRichToolBar
+
+You can register your composite components in the Delphi Component 
+palette with the same method as for usual your components.
+
+Before using CCPack you need install two packages into the IDE:
+  - DclBox40.bpl (design-time package)
+  - DsnBox40.bpl  (design-time package with Composite Components wizard)
+
+Also, you can include to run-time package list:
+  - box40.bpl (run-time package)
+
+To access to demo composites use:
+  - DclBx40.bpl as design-time package
+  - Bx40.bpl for run-time
+
+
+You can use the visual inheritance for composite components created 
+with CCPack. For this:
+
+- Add your component to the Delphi Repository: 
+    1. open your composite component unit in editor
+    2. select visual designer form for your composite component
+    3. click right mouse button for local menu
+    4. choose "Add To Repository ..." item and save your component
+
+- Create new descendant for your composite component:
+    5. select "File | New ..." menu item for "New Item" Dialog
+    6. choose your component in Repository
+    7. select "Inherit" radio button
+    8. click "Ok" button for creating new unit with descendant of
+       your composite component.
+
+Please, include to comments for your components that the developers 
+can use the visual inheritance feature with them.
+
+If you clear "Palette Page" value in "New Composite Component" dialog
+Composite Component Wizard creates new unit without Register procedure.
+
+=====================================================================
+
+More information
+----------------
+
+For checking version of current CCPack file check the time of these 
+files (for example - 1:30 for version 1.3).
+
+File fixes.txt includes the comments, cheanges and bug fixes list 
+for all versions of CCPack.
+
+Check the latest news and more information about CCPack at address:
+  http://www.geocities.com/SiliconValley/Way/9006/
+
+=====================================================================
+
+Tips
+----
+
+- don't forget to save you component before compile/install,
+  otherwise Delphi IDE can't add sub-components units to USES;
+
+- you don't need set the Parent property for your composite component
+  in run-time code: an Owner passed to constructor Create would 
+  be setted as a Parent;
+
+- set the sub-component names to "unique names" 
+  ( for example by template Author_Component_Edit1 );
+
+
+Notes
+-----
+
+- unit BoxFixEd.pas includes some bug fixes for some VCL component 
+  and property editors for using them with new Custom Modules for 
+  TWinControl descendants;
+
+=====================================================================
+
+Redistributable files 
+---------------------
+
+You can free use and redeploy CCPack in any your 
+freeware/shareware/commercial software.
+
+Please, refer in your composite components descriptions that
+  "<...> components created with CCPack by Sergey Orlik".
+
+
+=====================================================================
+
+About Author
+------------
+
+  Sergey Orlik
+  product manager 
+  Inprise Moscow Office
+
+  personal home page: 
+    http://www.geocities.com/SiliconValley/Way/9006/index.html
+
+=====================================================================
+Copyright (c) Sergey Orlik, 1997-99
+=====================================================================
+
+  

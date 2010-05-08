@@ -1,0 +1,123 @@
+[OPTIONS]
+Compiled File=Calculo.chm
+Title=Programa de Apoio à Nutrição
+Contents File=toc.hhc
+Index File=index.hhk
+Default topic=Introducao.htm
+Default Window=Calculadora
+Error log file=
+Display compile progress=No
+Display compile notes=No
+Full-text search=Yes
+Binary Index=No
+Auto Index=No
+Enhanced decompilation=No
+Binary TOC=No
+Flat=No
+
+[WINDOWS]
+Calculadora="Ajuda da Calculadora","toc.hhc","index.hhk","Introducao.htm","http://www.unifesp.br/","http://www.unifesp.br/dis/","DIS","http://www.unifesp.br","UNIFESP",0x21520,0,0xc384e,[11,80,791,552],0x0,0x0,,0,0,0
+
+[FILES]
+formulasCompleio_Fsica.htm
+formulasÍndice_de_Massa_Corporal_IMC.htm
+formulasPeso_Desejável_por_Metropolitan_.htm
+formulasPeso_Desejável_por_IMC_PDIMC.htm
+formulasPeso_Desejável_pelo_Cálculo_Simp.htm
+formulasRelao_CinturaQuadril_RCQ.htm
+formulasCircunferncia_Muscular_do_Brao_C.htm
+formulasÁrea_Muscular_do_Brao_AMB.htm
+formulasÁrea_Muscular_do_Brao_Sem_o_Osso.htm
+formulasEstatura_Calculada_pelo_Comprime.htm
+formulasPorcentagem_Peso_Atual_por_Peso_.htm
+formulasRelao_Peso_Estatura_da_Gestante_.htm
+formulasSuperfcie_Corporal_SC.htm
+formulasComposio_Corporal_por_Pregas_Cut.htm
+formulasÍndice_de_Creatinina_por_Estatur.htm
+formulasCálculo_do_Percentil_Px.htm
+formulasAdequao_de_Peso_para_Idade_PI.htm
+formulasAdequao_de_Peso_para_Estatura_e_.htm
+formulasPCR__Protein_Catabolic_R00000030.htm
+formulasRelao_Permetro_Cefálico_por_Perm.htm
+formulasRecomendao_Calrica_pela_FAOOMS_R.htm
+formulasRecomendao_Calrica_para_Paciente.htm
+formulasRecomendao_Calrica_pela_RDA_RCRD.htm
+formulasBalano_Nitrogenado_BN.htm
+formulasNitrognio_Ingerido_NI.htm
+formulasNitrognio_Excretado_Total_NET.htm
+formulasNitrognio_Urinário_Total_NUT.htm
+formulasNitrognio_Urico_Urinário_de_24h_.htm
+formulasClearance_de_Creatinina_CC.htm
+formulasZScore.htm
+formulasPCR__Protein_Catabolic_Rate_para.htm
+formulasPCR__Protein_Catabolic_R00000032.htm
+formulasMassa_Corporal_Magra_atravs_da_C.htm
+formulasO_que_há_de_novo_sobre_o_NUTWIN_.htm
+formulasObtendo_Ajuda.htm
+formulasOrganizador_O_que__e_como_funcio.htm
+formulasCalculadora_Iniciando_um_novo_cá.htm
+Antropometria\formulasAntropometria.htm
+Antropometria\formulasSelecionando_cálculos.htm
+Antropometria\formulasEntrada_dos_Valores.htm
+Antropometria\formulasRelatrio_de_resultados.htm
+formulasAtividades_Fsicas.htm
+formulasFrmulas_Especiais.htm
+formulasComo_dar_os_primeiros_passos_com.htm
+Introducao.htm
+formulasPreparao.htm
+formulasInqurito.htm
+formulasInqurito__Refeies.htm
+formulasInqurito_Consumo.htm
+formulasInqurito_Relatrio_de_resultados.htm
+formulasPlano_Alimentar_Dieta.htm
+formulasInqurito_Consumo_Alimentar.htm
+Introducao_calculadora.htm
+Iniciando_calculo.htm
+Abrindo_outra_memoria.htm
+nutwinO_que_h_de_novo_.htm
+Botões_da_Calculadora.htm
+Vias_de_Acesso_das_Funções_da_Calculadora.htm
+Definindo_um_escopo_para_todos_os_cálculos.htm
+Anamnese_Nutricional.htm
+Imprimindo_um_cálculo.htm
+Conhecendo_calculadora.htm
+Recomendacoes_Caloricas.htm
+Alimentos.htm
+Nutrientes.htm
+Configurando_sua_Calculadora.htm
+Saindo_do_Programa.htm
+Fechando_o_cálculo_ativo.htm
+Salvando_um_cálculo.htm
+Abrindo_um_cálculo_já_existente.htm
+Iniciando_um_novo_documento.htm
+Utilizando_os_cálculos_disponíveis.htm
+O_que_é_Inquérito_.htm
+Ícones_e_botões_do_Sistema.htm
+Que_resultados_podemos_obter_de_um_inquérito_alimentar__.htm
+Como_fazer_um_Inquérito_Alimentar__.htm
+O_que_é_Plano_Alimentar__.htm
+Para_que__fazer_um_Plano_Alimentar__.htm
+Que_resultados_podemos_obter_de_um_Plano_Alimentar__.htm
+Como_fazer_um_Plano_Alimentar__.htm
+Configurações_da_Lista_de_Alimentos.htm
+Diferenças_entre_Inquérito_e_Plano_Alimentar.htm
+Inquérito.htm
+Preparação.htm
+Selecionando_Indivíduos.htm
+Utilizando_o_Help.htm
+Como_fazer_uma_Preparação.htm
+Visualizar.htm
+BSSCDHTM.js
+eHelp.xml
+
+Calculo.brs
+[ALIAS]
+#include Calculo.ali
+
+[MAP]
+#include Calculo.h
+
+[TEXT POPUPS]
+Calculo.h
+
+

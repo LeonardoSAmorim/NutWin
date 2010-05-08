@@ -1,0 +1,50 @@
+VERSÃO 1.6.0.1 - 27/12/2009
+============================
+1) Suporte a MySQL
+2) Novo Instalador
+
+
+VERSÃO 1.5.2.51 - 25/07/2005
+============================
+1) Correção em ProtAVB e Relações, quando o(s) alimento(s) do inquérito ou Plano Alimentar tem proteína total igual a zero, pois dava erro de divisão por zero na porcentagem de proteína;
+2) Correção no cadastro de alimentos, quando se escolhe um alimento, este fica preso e não destravava mais, nem quando se navega pelas setas, nem quando sai do cadastro (só saindo do programa);
+3) O relatório da ficha do indivíduo, anamnese, estava gastando muito papel. Agora pode-se imprimir anamneses individuais usando o menu com o botão da direita sobre a mesma;
+4) Mudamos a mensagem de conversão, mudando a pergunta para: Deseja converter agora? sim/não.
+
+VERSÃO 1.5.2.50 - 01/06/2005
+============================
+1)  Algumas referências do Help (Ajuda) foram corrigidas;
+2)  Correção do cálculo de Z-Score PE;
+3)  Relatórios formam redimensionados para gastar menos folhas;
+4)  Erro ao selecionar o último nutriente em Nutrientes para Acompanhamento foi corrigido;
+5)  Ao entrar com uma idade de 12 meses no escopo, o programa não conseguia classificar o indivíduo na sua faixa etária;
+6)  Relatório de Macro nutrientes tem os 4 nutrientes principais + proteína AVB;
+7)  O Relatório de Distribuição de Energia é o antigo Macro Nutrientes, com a contribuição em % dos nutrientes que compõem o valor da Energia; 
+8)  O Valor do número de dias do inquérito só era levando em conta no relatório se o mesmo fosse visualizado/Impresso após o cálculo do Inquérito; 
+9)  Foram acrescentadas facilidades de configuração de formato dos relatórios alimentares durante a montagem do relatórios, que ficaram mais rápidos ao serem carregados;
+10) O logo que vai nos relatórios passou a ter dimensões máximas ampliadas;
+11) O relatório de Alimentos/Nutrientes apresentava problemas de não imprimir algumas colunas de nutrientes. Com a reestruturação isto não ocorre mais.
+
+VERSÃO 1.5.2.45 - 05/03/2004
+============================
+1) A linha divisória do rodapé não está mais sendo impressa sobre a última linha dos relatórios de cálculos nutricionais.
+2) O número de série foi alterado para suportar números de final 0.
+3) Agora o cálculo da RDA para crianças menores que 6 meses está correto.
+
+VERSÃO 1.5.2.44 - 05/03/2004
+============================
+1) A opção Utilitários/Recupera cópia de segurança (restore),  está funcionando ao contrário da versão anterior
+
+VERSÃO 1.5.2.43 - 09/09/2003
+============================
+1) INSTALADOR/PROGRAMA: Passa a permitir a instalação e uso do programa em rede MS-Windows.
+2) MENU ORGANIZADOR: Inclusão da opção Desconectar para efetuar troca de usuário sem sair do programa.
+3) CADASTRO DE INDIVÍDUOS E ALIMENTOS: Para viabilizar o trabalho em rede, foram retiradas as funcionalidades de navegação entre registros.
+4) OPÇÕES DE SISTEMA: Inclusão da opção Relatórios, onde se pode mudar apenas uma linha de cabeçalho da personalização para cada usuário. Indicado para a colocação de nome e CRN do profissional.
+5) RELATÓRIO DE ALIMENTOS POR NUTRIENTES: Modificado para consumir menos papel durante a impressão e o total do peso em gramas dos alimentos foi retirado pois não se aplica.
+6) RELATÓRIO DE ITENS ALIMENTARES E EQUIVALENTES: Inclusão de Total de Energia por refeição nos relatórios de Itens Alimentares e Equivalentes de Energia.
+7) DIAGNÓSTICO PE/EI: No diagnóstico "Obeso Clássico" e "Sobrepeso Clássico", a palavra "Clássico" foi retirada, pois é desnecessária.
+FIM
+
+
+

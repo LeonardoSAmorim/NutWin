@@ -1,0 +1,3 @@
+odbcad32.exe
+
+http://www.thescarms.com/vbasic/CreateDSN.aspx

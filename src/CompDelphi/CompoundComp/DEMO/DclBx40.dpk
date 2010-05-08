@@ -1,0 +1,41 @@
+package DclBx40;
+
+{$R *.RES}
+{$R 'BxDual.dcr'}
+{$R 'BxRichTB.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$DESCRIPTION 'VCL Composite Controls'}
+{$DESIGNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl40,
+  DclBox40,
+  VCLDB40;
+
+contains
+  BxDual in 'BxDual.pas' {BxDualList: TControlGroupBox},
+  BxReg in 'BxReg.pas',
+  BxRichTB in 'BxRichTB.pas' {BxRichToolBar: TToolBarBox};
+
+end.

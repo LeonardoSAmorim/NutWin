@@ -1,0 +1,219 @@
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="FrameName" value="right">
+  <param name="SiteType" value="index">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Adequação de Peso para Estatura e Estatura para Idade P/E e E/I">
+    <param name="Name" value="Adequação de Peso para Estatura e Estatura para Idade P/E e E/I">
+    <param name="Local" value="formulasAdequao_de_Peso_para_Estatura_e_.htm">
+    <param name="Name" value="Introdução">
+    <param name="Local" value="Introducao_calculadora.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Adequação de Peso para Idade (P/I)">
+    <param name="Name" value="Adequação de Peso para Idade (P/I)">
+    <param name="Local" value="formulasAdequao_de_Peso_para_Idade_PI.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Antropometria">
+    <param name="Name" value="Antropometria">
+    <param name="Local" value="Antropometria\formulasAntropometria.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Atividades Físicas">
+    <param name="Name" value="Atividades Físicas">
+    <param name="Local" value="formulasAtividades_Fsicas.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Calculadora: Iniciando um novo cálculo...">
+    <param name="Name" value="Calculadora: Iniciando um novo cálculo...">
+    <param name="Local" value="formulasCalculadora_Iniciando_um_novo_cá.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Circunferência Muscular do Braço (CMB)">
+    <param name="Name" value="Circunferência Muscular do Braço (CMB)">
+    <param name="Local" value="formulasCircunferncia_Muscular_do_Brao_C.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Como dar os primeiros passos com o NUTWIN 2.0?">
+    <param name="Name" value="Como dar os primeiros passos com o NUTWIN 2.0?">
+    <param name="Local" value="formulasComo_dar_os_primeiros_passos_com.htm">
+    <param name="Name" value="Botões da Calculadora">
+    <param name="Local" value="Botões_da_Calculadora.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Compleição Física">
+    <param name="Name" value="Compleição Física">
+    <param name="Local" value="formulasCompleio_Fsica.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Composição Corporal por Pregas Cutâneas (% de gordura)">
+    <param name="Name" value="Composição Corporal por Pregas Cutâneas (% de gordura)">
+    <param name="Local" value="formulasComposio_Corporal_por_Pregas_Cut.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Cálculo do Percentil (Px)">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Entrada dos Valores:">
+    <param name="Name" value="Entrada dos Valores:">
+    <param name="Local" value="Antropometria\formulasEntrada_dos_Valores.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Estatura Calculada pelo Comprimento da Perna (ECCP)">
+    <param name="Name" value="Estatura Calculada pelo Comprimento da Perna (ECCP)">
+    <param name="Local" value="formulasEstatura_Calculada_pelo_Comprime.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Fórmulas Especiais">
+    <param name="Name" value="Fórmulas Especiais">
+    <param name="Local" value="formulasFrmulas_Especiais.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Inquérito">
+    <param name="Name" value="Inquérito">
+    <param name="Local" value="formulasInqurito.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Inquérito:  Refeições">
+    <param name="Name" value="Inquérito:  Refeições">
+    <param name="Local" value="formulasInqurito__Refeies.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Inquérito: Consumo">
+    <param name="Name" value="Inquérito: Consumo">
+    <param name="Local" value="formulasInqurito_Consumo.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Inquérito: Consumo Alimentar">
+    <param name="Name" value="Inquérito: Consumo Alimentar">
+    <param name="Local" value="formulasInqurito_Consumo_Alimentar.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Inquérito: Relatório de resultados">
+    <param name="Name" value="Inquérito: Relatório de resultados">
+    <param name="Local" value="formulasInqurito_Relatrio_de_resultados.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Massa Corporal Magra através da Cinética da Creatinina (MCMCC)">
+    <param name="Name" value="Massa Corporal Magra através da Cinética da Creatinina (MCMCC)">
+    <param name="Local" value="formulasMassa_Corporal_Magra_atravs_da_C.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="O que há de novo sobre o NUTWIN 2.0?">
+    <param name="Name" value="O que há de novo sobre o NUTWIN 2.0?">
+    <param name="Local" value="formulasO_que_há_de_novo_sobre_o_NUTWIN_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Obtendo Ajuda">
+    <param name="Name" value="Obtendo Ajuda">
+    <param name="Local" value="formulasObtendo_Ajuda.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Organizador: O que é e como funciona">
+    <param name="Name" value="Organizador: O que é e como funciona">
+    <param name="Local" value="formulasOrganizador_O_que__e_como_funcio.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Peso Desejável pelo Cálculo Simplificado (PDCS)">
+    <param name="Name" value="Peso Desejável pelo Cálculo Simplificado (PDCS)">
+    <param name="Local" value="formulasPeso_Desejável_pelo_Cálculo_Simp.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Peso Desejável por IMC (PDIMC)">
+    <param name="Name" value="Peso Desejável por IMC (PDIMC)">
+    <param name="Local" value="formulasPeso_Desejável_por_IMC_PDIMC.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Peso Desejável por Metropolitan (PDM)">
+    <param name="Name" value="Peso Desejável por Metropolitan (PDM)">
+    <param name="Local" value="formulasPeso_Desejável_por_Metropolitan_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Plano Alimentar (Dieta)">
+    <param name="Name" value="Plano Alimentar (Dieta)">
+    <param name="Local" value="formulasPlano_Alimentar_Dieta.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Porcentagem Peso Atual por Peso Desejável (% Peso Atual/Desejável)">
+    <param name="Name" value="Porcentagem Peso Atual por Peso Desejável (% Peso Atual/Desejável)">
+    <param name="Local" value="formulasPorcentagem_Peso_Atual_por_Peso_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Preparação">
+    <param name="Name" value="Preparação">
+    <param name="Local" value="formulasPreparao.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Recomendação Calórica para Pacientes (RCP)">
+    <param name="Name" value="Recomendação Calórica para Pacientes (RCP)">
+    <param name="Local" value="formulasRecomendao_Calrica_para_Paciente.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Recomendação Calórica pela FAO/OMS (RCFAO)">
+    <param name="Name" value="Recomendação Calórica pela FAO/OMS (RCFAO)">
+    <param name="Local" value="formulasRecomendao_Calrica_pela_FAOOMS_R.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Recomendação Calórica pela RDA (RCRDA)">
+    <param name="Name" value="Recomendação Calórica pela RDA (RCRDA)">
+    <param name="Local" value="formulasRecomendao_Calrica_pela_RDA_RCRD.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Recomendações Calóricas">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Relatório de resultados:">
+    <param name="Name" value="Relatório de resultados:">
+    <param name="Local" value="Antropometria\formulasRelatrio_de_resultados.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Relação Cintura/Quadril (RCQ)">
+    <param name="Name" value="Relação Cintura/Quadril (RCQ)">
+    <param name="Local" value="formulasRelao_CinturaQuadril_RCQ.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Relação Perímetro Cefálico por Perímetro Torácico (PC/PT)">
+    <param name="Name" value="Relação Perímetro Cefálico por Perímetro Torácico (PC/PT)">
+    <param name="Local" value="formulasRelao_Permetro_Cefálico_por_Perm.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Relação Peso Estatura da Gestante (% Peso/Altura para Gestante)">
+    <param name="Name" value="Relação Peso Estatura da Gestante (% Peso/Altura para Gestante)">
+    <param name="Local" value="formulasRelao_Peso_Estatura_da_Gestante_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Selecionando cálculos:">
+    <param name="Name" value="Selecionando cálculos:">
+    <param name="Local" value="Antropometria\formulasSelecionando_cálculos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Superfície Corporal (SC)">
+    <param name="Name" value="Superfície Corporal (SC)">
+    <param name="Local" value="formulasSuperfcie_Corporal_SC.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Z-Score">
+    <param name="Name" value="Z-Score">
+    <param name="Local" value="formulasZScore.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Área Muscular do Braço (AMB)">
+    <param name="Name" value="Área Muscular do Braço (AMB)">
+    <param name="Local" value="formulasÁrea_Muscular_do_Brao_AMB.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Área Muscular do Braço Sem o Osso (AMBSO)">
+    <param name="Name" value="Área Muscular do Braço Sem o Osso (AMBSO)">
+    <param name="Local" value="formulasÁrea_Muscular_do_Brao_Sem_o_Osso.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Índice de Massa Corporal (IMC)">
+    <param name="Name" value="Índice de Massa Corporal (IMC)">
+    <param name="Local" value="formulasÍndice_de_Massa_Corporal_IMC.htm">
+  </object>
+</ul>
+</html>

@@ -1,0 +1,217 @@
+Listagem de caminhos de pasta
+O n£mero de s‚rie do volume ‚ 7FFDB000 584F:6BC4
+C:.
+|   Autorun.inf
+|   Config.exe
+|   DATA.TAG
+|   data1.cab
+|   data1.hdr
+|   Guia-Nut.html
+|   lang.dat
+|   layout.bin
+|   NutWin.ico
+|   os.dat
+|   Persona872.cfg
+|   Setup.bmp
+|   SETUP.INI
+|   setup.ins
+|   setup.lid
+|   _inst32i.ex_
+|   _ISDel.exe
+|   _Setup.dll
+|   _sys1.cab
+|   _sys1.hdr
+|   _user1.cab
+|   _user1.hdr
+|   
++---Guia-Nut_arquivos
+|       fig5.gif
+|       image001.gif
+|       image002.gif
+|       image003.gif
+|       image004.gif
+|       image005.gif
+|       image006.gif
+|       image007.gif
+|       image008.jpg
+|       image009.gif
+|       image010.gif
+|       image011.gif
+|       image012.gif
+|       logonutri.gif
+|       
+\---IBServer
+    |   cfgmgr32.dll
+    |   gds32.dll
+    |   ibconfig
+    |   ibinstall.dll
+    |   ibinstall.exe
+    |   ibuninst.exe
+    |   ib_inst.exe
+    |   ib_sec.exe
+    |   ib_uninst.exe
+    |   install.txt
+    |   interbase.msg
+    |   isc4.gbk
+    |   isc4.gdb
+    |   license.htm
+    |   license.txt
+    |   msvcrt.dll
+    |   pshutib.exe
+    |   ReleaseNotes.pdf
+    |   Setup.exe
+    |   SETUPAPI.DLL
+    |   
+    +---bin
+    |       borlndmm.dll
+    |       cp3240mt.dll
+    |       gbak.exe
+    |       gfix.exe
+    |       gpre.exe
+    |       gsec.exe
+    |       gstat.exe
+    |       ib32.cnt
+    |       ib32.hlp
+    |       IBConsole.cnt
+    |       ibconsole.exe
+    |       IBConsole.hlp
+    |       IBConsole.res
+    |       ibgloss.cnt
+    |       ibgloss.hlp
+    |       ibguard.exe
+    |       iblicense.dll
+    |       iblicense.exe
+    |       iblockpr.exe
+    |       ibmgr.cpl
+    |       ibserver.cnt
+    |       ibserver.exe
+    |       ibserver.hlp
+    |       ib_util.dll
+    |       instreg.exe
+    |       instsvc.exe
+    |       isql.exe
+    |       perform.cnt
+    |       perform.hlp
+    |       SqlRef.cnt
+    |       SQLREF.HLP
+    |       
+    +---Doc
+    |       How2GetDocs.txt
+    |       
+    +---examples
+    |   +---api
+    |   |       align.h
+    |   |       api1.c
+    |   |       api10.c
+    |   |       api11.c
+    |   |       api12.c
+    |   |       api13.c
+    |   |       api15.c
+    |   |       api16.c
+    |   |       api16t.c
+    |   |       api2.c
+    |   |       api3.c
+    |   |       api4.c
+    |   |       api5.c
+    |   |       api6.c
+    |   |       api7.c
+    |   |       api8.c
+    |   |       apifull.c
+    |   |       example.h
+    |   |       Makefile.bc
+    |   |       Makefile.msc
+    |   |       
+    |   +---database
+    |   |       employee.gbk
+    |   |       employee.gdb
+    |   |       intlemp.gbk
+    |   |       intlemp.gdb
+    |   |       
+    |   +---filter
+    |   |       api9.c
+    |   |       api9f.c
+    |   |       api9f.def
+    |   |       api9f.sql
+    |   |       Makefile.bc
+    |   |       Makefile.msc
+    |   |       
+    |   +---gpre
+    |   |       api14.e
+    |   |       dyn1.e
+    |   |       dyn2.e
+    |   |       dyn3.e
+    |   |       dyn4.e
+    |   |       dyn5.e
+    |   |       dynfull.e
+    |   |       Makefile.bc
+    |   |       Makefile.msc
+    |   |       stat1.e
+    |   |       stat10.e
+    |   |       stat11.e
+    |   |       stat12.e
+    |   |       stat12t.e
+    |   |       stat2.e
+    |   |       stat3.e
+    |   |       stat4.e
+    |   |       stat5.e
+    |   |       stat6.e
+    |   |       stat7.e
+    |   |       stat8.e
+    |   |       stat9.e
+    |   |       
+    |   +---services
+    |   |       get_log.c
+    |   |       gstat.c
+    |   |       isc_info_svc_all.c
+    |   |       query_database_info.c
+    |   |       start_backup.c
+    |   |       start_backup_1.c
+    |   |       start_backup_split.c
+    |   |       start_license_add.c
+    |   |       start_restore.c
+    |   |       start_restore_join.c
+    |   |       start_user_add.c
+    |   |       start_user_delete.c
+    |   |       start_user_display.c
+    |   |       start_user_modify.c
+    |   |       
+    |   \---udf
+    |           ib_udf.sql
+    |           Makefile.bc
+    |           Makefile.msc
+    |           udf.sql
+    |           udflib.c
+    |           udflib.def
+    |           
+    +---intl
+    |       gdsintl.dll
+    |       
+    +---Microsoft
+    |       401comupd.exe
+    |       
+    +---SDK
+    |   +---include
+    |   |       ibase.h
+    |   |       iberror.h
+    |   |       ibinstall.h
+    |   |       IBInstall.pas
+    |   |       iblicense.h
+    |   |       iblicense.pas
+    |   |       ib_util.h
+    |   |       ib_util.pas
+    |   |       
+    |   +---lib
+    |   |       gds32.lib
+    |   |       ibinstall.lib
+    |   |       iblicense.lib
+    |   |       ib_util.lib
+    |   |       
+    |   \---lib_ms
+    |           gds32_ms.lib
+    |           ibinstall_ms.lib
+    |           iblicense_ms.lib
+    |           ib_util_ms.lib
+    |           
+    \---UDF
+            ib_udf.dll
+            

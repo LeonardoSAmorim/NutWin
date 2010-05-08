@@ -1,0 +1,813 @@
+CNUT
+	Antropometria (ca)
+		Indice de Massa Corporal (pr)
+			flIMC = A/(B/100)^2
+				mdIMC = 0 kg/m2 
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagIMC =  >>> {T6, CAPTION, mpNewRanges}
+				mdDiagIMC =   
+				mdIMC = 0 kg/m2 
+		Relação Cintura/Quadril (pr)
+			flRCQ = A/B
+				mdRCQ = 0  
+				mdCintura =  cm dqCintura
+				mdQuadril =  cm dqQuadril
+			tbDiagRCQ = SEXO = :B >>> {T11, CAPTION, mpNewRanges}
+				mdDiagRCQ =   
+				mdRCQ = 0  
+				mdSexo = Feminino  
+		Peso Desejável por Metropolitan (pr)
+			flCompleicao = A/B
+				mdCompleicao = 0  
+				mdEstatura = 0 cm 
+				mdCircPunho =  cm dqCircPunho
+			tbDiagCompleicao = SEXO = :B >>> {T8, CAPTION, mpNewRanges}
+				mdDiagCompleicao =   
+				mdCompleicao = 0  
+				mdSexo = Feminino  
+			tbPDM = SEXO = :B AND COMPLEICAO = :C >>> {T7a, PESO, mpNewRanges}
+				mdPDM = 0 kg 
+				mdEstatura = 0 cm 
+				mdSexo = Feminino  
+				mdDiagCompleicao =   
+			flPDM = A*B
+				mdPDMDef = 0 kg 
+				mdPDM = 0 kg 
+				mdFatAjusDef = 1  
+			flAdeqPAPDM = A/B*100
+				mdAdeqPAPRM = 0 % 
+				mdPeso = 0 kg 
+				mdPDMDef = 0 kg 
+		Peso Desejável por IMC (pr)
+			flCompleicao = A/B
+				mdCompleicao = 0  
+				mdEstatura = 0 cm 
+				mdCircPunho =  cm dqCircPunho
+			tbDiagCompleicao = SEXO = :B >>> {T8, CAPTION, mpNewRanges}
+				mdDiagCompleicao =   
+				mdCompleicao = 0  
+				mdSexo = Feminino  
+			flPDIMC = 21.7*((A/100)^2)*B
+				mdPDIMC = 0 kg 
+				mdEstatura = 0 cm 
+				mdFatAjusDef = 1  
+			flAdeqPAPDIMC = A/B*100
+				mdAdeqPAPDIMC = 0 % 
+				mdPeso = 0 kg 
+				mdPDIMC = 0 kg 
+		Peso Desejável pelo Cálculo Simplificado (pr)
+			tbPDCSF1 = SEXO = :A >>> {TPDCS, F1, mpFirstRecord}
+				mdPDCSFator1 = 0  
+				mdSexo = Feminino  
+			tbPDCSF2 = SEXO = :A >>> {TPDCS, F2, mpFirstRecord}
+				mdPDCSFator2 = 0  
+				mdSexo = Feminino  
+			flCompleicao = A/B
+				mdCompleicao = 0  
+				mdEstatura = 0 cm 
+				mdCircPunho =  cm dqCircPunho
+			tbDiagCompleicao = SEXO = :B >>> {T8, CAPTION, mpNewRanges}
+				mdDiagCompleicao =   
+				mdCompleicao = 0  
+				mdSexo = Feminino  
+			tbFatAjusCompleicao = COMPLEICAO = :A >>> {T10, FATOR, mpFirstRecord}
+				mdFatAjusCompleicao = 0  
+				mdDiagCompleicao =   
+			flPDCS = (A+(((B-152)/2.5)*C))*D*E
+				mdPDCS = 0 kg 
+				mdPDCSFator1 = 0  
+				mdEstatura = 0 cm 
+				mdPDCSFator2 = 0  
+				mdFatAjusDef = 1  
+				mdFatAjusCompleicao = 0  
+			flAdeqPAPDCS = A/B*100
+				mdAdeqPAPDCS = 0 % 
+				mdPeso = 0 kg 
+				mdPDCS = 0 kg 
+		Circunferência Muscular do Braço (pr)
+			flCMB = A-(3.141592654*B/10)
+				mdCMB = 0 cm 
+				mdCircBraco =  cm dqCircBraco
+				mdPTriceps =  mm dqPTriceps
+			tbDiagCB = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T23, CAPTION, mpNewRanges}
+				mdDiagCB =   
+				mdCircBraco =  cm dqCircBraco
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbDiagCMB = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T25, CAPTION, mpNewRanges}
+				mdDiagCMB =   
+				mdCMB = 0 cm 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbDiagPCT = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T27, CAPTION, mpNewRanges}
+				mdDiagPCT =   
+				mdPTriceps =  mm dqPTriceps
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbP50CB = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T23, ENDPOINT, mpFirstRecord}
+				mdP50CB =  cm 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqCB = A/B*100
+				mdAdeqCB =  % 
+				mdCircBraco =  cm dqCircBraco
+				mdP50CB =  cm 
+			tbP50CMB = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T25, ENDPOINT, mpFirstRecord}
+				mdP50CMB =  cm 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqCMB = A/B*100
+				mdAdeqCMB =  % 
+				mdCMB = 0 cm 
+				mdP50CMB =  cm 
+			tbP50PCT = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T27, ENDPOINT, mpFirstRecord}
+				mdP50PCT =  mm 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqPCT = A/B*100
+				mdAdeqPCT =  % 
+				mdPTriceps =  mm dqPTriceps
+				mdP50PCT =  mm 
+		Área Muscular do Braço (pr)
+			flCMB = A-(3.141592654*B/10)
+				mdCMB = 0 cm 
+				mdCircBraco =  cm dqCircBraco
+				mdPTriceps =  mm dqPTriceps
+			flAMB = (A*A)/(4*3.141592654)
+				mdAMB = 0 cm2 
+				mdCMB = 0 cm 
+			tbDiagAMB = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T22, CAPTION, mpNewRanges}
+				mdDiagAMB =   
+				mdAMB = 0 cm2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbP50AMB = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T22, ENDPOINT, mpFirstRecord}
+				mdP50AMB =  cm2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqAMB = A/B*100
+				mdAdeqAMB =  % 
+				mdAMB = 0 cm2 
+				mdP50AMB =  cm2 
+		Área Muscular do Braço sem o Osso (pr)
+			flCMB = A-(3.141592654*B/10)
+				mdCMB = 0 cm 
+				mdCircBraco =  cm dqCircBraco
+				mdPTriceps =  mm dqPTriceps
+			flAMB = (A*A)/(4*3.141592654)
+				mdAMB = 0 cm2 
+				mdCMB = 0 cm 
+			tbAMBSOF1 = SEXO = :A >>> {TAMBSO, F1, mpFirstRecord}
+				mdAMBSOF1 = 0  
+				mdSexo = Feminino  
+			flAMBSO = A-B
+				mdAMBSO = 0 cm2 
+				mdAMB = 0 cm2 
+				mdAMBSOF1 = 0  
+		Composição Corporal por Pregas Cutâneas (pr)
+			tbCoefC = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T1, C, mpFirstRecord}
+				mdCoefC = 0  
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbCoefM = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T1, M, mpFirstRecord}
+				mdCoefM = 0  
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flDensidade = A-B*LOG10(C+D+E+t)
+				mdDensidade = 0 mm 
+				mdCoefC = 0  
+				mdCoefM = 0  
+				mdPBiceps =  mm dqPBiceps
+				mdPTriceps =  mm dqPTriceps
+				mdPSubescapular =  mm dqPSubescapular
+				mdPSuprailiaca =  mm dqPSuprailiaca
+			flPGordura = ((4.95/A)-4.5)*100
+				mdPGordura = 0 % 
+				mdDensidade = 0 mm 
+			tbDiagPGordura = SEXO = :B >>> {T2, CAPTION, mpNewRanges}
+				mdDiagPGordura =   
+				mdPGordura = 0 % 
+				mdSexo = Feminino  
+			flMGordura = A*B/100
+				mdMGordura = 0 kg 
+				mdPeso = 0 kg 
+				mdPGordura = 0 % 
+			flMMagra = A-B
+				mdMMagra = 0 kg 
+				mdPeso = 0 kg 
+				mdMGordura = 0 kg 
+		Compleição Física (pr)
+			flCompleicao = A/B
+				mdCompleicao = 0  
+				mdEstatura = 0 cm 
+				mdCircPunho =  cm dqCircPunho
+			tbDiagCompleicao = SEXO = :B >>> {T8, CAPTION, mpNewRanges}
+				mdDiagCompleicao =   
+				mdCompleicao = 0  
+				mdSexo = Feminino  
+		Estatura Calculada Pelo Comprimento da Perna (pr)
+			tbECCPF1 = SEXO = :A >>> {TECCP, F1, mpFirstRecord}
+				mdECCPF1 = 0  
+				mdSexo = Feminino  
+			tbECCPF2 = SEXO = :A >>> {TECCP, F2, mpFirstRecord}
+				mdECCPF2 = 0  
+				mdSexo = Feminino  
+			tbECCPF3 = SEXO = :A >>> {TECCP, F3, mpFirstRecord}
+				mdECCPF3 = 0  
+				mdSexo = Feminino  
+			tbECCPF4 = SEXO = :A >>> {TECCP, F4, mpFirstRecord}
+				mdECCPF4 = 0  
+				mdSexo = Feminino  
+			tbECCPF5 = SEXO = :A >>> {TECCP, F5, mpFirstRecord}
+				mdECCPF5 = 0  
+				mdSexo = Feminino  
+			tbECCPF6 = SEXO = :A >>> {TECCP, F6, mpFirstRecord}
+				mdECCPF6 = 0  
+				mdSexo = Feminino  
+			flECCPTemp = A+B*C+D*E
+				mdECCPTemp = 0  
+				mdECCPF1 = 0  
+				mdECCPF2 = 0  
+				mdCompPerna =  cm dqCompPerna
+				mdECCPF3 = 0  
+				mdCorAmarela = 0  
+			flECCP = A+B*C+D*E+t*x
+				mdECCP = 0 cm 
+				mdECCPTemp = 0  
+				mdECCPF4 = 0  
+				mdCorParda = 0  
+				mdECCPF5 = 0  
+				mdCorBranca = 1  
+				mdECCPF6 = 0  
+				mdNivelEscolar = 1  
+		Relação Peso/Estatura da Gestante (pr)
+			flRPEG = (11563*A)/B^1.7307
+				mdRPEG = 0 % 
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagRPEG = IDADEMIN <= :A AND IDADEMAX > :A AND PORCMIN <= :B AND PORCMAX > :B >>> {T29, DIAG, mpFirstRecord}
+				mdDiagRPEG =   
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdRPEG = 0 % 
+		Adequação de Peso para Idade (pr)
+			tbAPI = COMPESTAT = :A AND SEXO = :B AND IDADE = :C >>> {T3_pi, P50, mpFirstRecord}
+				mdPesoEsperado = 0 kg 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+				mdEstatura = 0 cm 
+			flAPI = A/B*100
+				mdAPI = 0 % 
+				mdPeso = 0 kg 
+				mdPesoEsperado = 0 kg 
+			tbDiagAPI = IDADEMIN <= :B AND IDADEMAX >= :B >>> {T4, CAPTION, mpNewRanges}
+				mdDiagAPI =   
+				mdAPI = 0 % 
+				mdIdadeMeses = 0 Meses 
+		Adequação de Peso/Estatura e Estatura/Idade (pr)
+			tbAEI = COMPESTAT = :A AND SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C AND PERCENTIL = "P50" >>> {NT3_ei, BEGINPOINT, mpFirstRecord}
+				mdEstaturaEsperada = 0 cm 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			tbAPE = COMPESTAT = :A AND SEXO = :B AND ESTATURAMIN <= :C AND ESTATURAMAX > :C AND PERCENTIL = "P50" >>> {NT3_pe, BEGINPOINT, mpFirstRecord}
+				mdPesoEsperado = 0 kg 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdEstatura = 0 cm 
+			flAEI = A/B*100
+				mdAEI = 0 % 
+				mdEstatura = 0 cm 
+				mdEstaturaEsperada = 0 cm 
+			flAPE = A/B*100
+				mdAPE = 0 % 
+				mdPeso = 0 kg 
+				mdPesoEsperado = 0 kg 
+			tbDiagAPEEI = EIMIN < :B AND EIMAX >= :B >>> {T5, DIAG, mpNewRanges}
+				mdDiagAPEEI =   
+				mdAPE = 0 % 
+				mdAEI = 0 % 
+		Adequação de Peso/Estatura e Estatura/Idade Adaptado (pr)
+			tbAEIADAP = COMPESTAT = :B AND SEXO = :C AND BEGINPOINT < :A AND ENDPOINT >= :A >>> {PT3_ei, IDADEMIN, mpNewRanges}
+				mdIdadeEsperada = 0 mes(es) 
+				mdEstatura = 0 cm 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+			tbAPIADAP = COMPESTAT = :A AND SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C AND PERCENTIL = "P50" >>> {NT3_pi, BEGINPOINT, mpFirstRecord}
+				mdPesoEsperado = 0 kg 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeEsperada = 0 mes(es) 
+			tbAEI = COMPESTAT = :A AND SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C AND PERCENTIL = "P50" >>> {NT3_ei, BEGINPOINT, mpFirstRecord}
+				mdEstaturaEsperada = 0 cm 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			flAPE = A/B*100
+				mdAPE = 0 % 
+				mdPeso = 0 kg 
+				mdPesoEsperado = 0 kg 
+			flAEI = A/B*100
+				mdAEI = 0 % 
+				mdEstatura = 0 cm 
+				mdEstaturaEsperada = 0 cm 
+			tbDiagAPEEI = EIMIN < :B AND EIMAX >= :B >>> {T5, DIAG, mpNewRanges}
+				mdDiagAPEEI =   
+				mdAPE = 0 % 
+				mdAEI = 0 % 
+		Z-Score para Estatura para Idade (pr)
+			tbAEI = COMPESTAT = :A AND SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C AND PERCENTIL = "P50" >>> {NT3_ei, BEGINPOINT, mpFirstRecord}
+				mdEstaturaEsperada = 0 cm 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			tbZN1DEEI = COMPESTAT = :A AND SEXO = :B AND IDADE >= :C >>> {T3_ei, ZN1DE, mpFirstRecord}
+				mdZN1DEEI = 0  
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			flZScoreEI = (A-B)/(B-C)
+				mdZScoreEI = 0  
+				mdEstatura = 0 cm 
+				mdEstaturaEsperada = 0 cm 
+				mdZN1DEEI = 0  
+		Z-Score para Peso para Idade (pr)
+			tbAPI = COMPESTAT = :A AND SEXO = :B AND IDADE = :C >>> {T3_pi, P50, mpFirstRecord}
+				mdPesoEsperado = 0 kg 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+				mdEstatura = 0 cm 
+			tbZN1DEPI = COMPESTAT = :A AND SEXO = :B AND IDADE >= :C >>> {T3_pi, ZN1DE, mpFirstRecord}
+				mdZN1DEPI = 0  
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			flZScorePI = (A-B)/(B-C)
+				mdZScorePI = 0  
+				mdPeso = 0 kg 
+				mdPesoEsperado = 0 kg 
+				mdZN1DEPI = 0  
+		Z-Score para Peso para Estatura (pr)
+			flEstaturaRounded = MROUND(A,5)
+				mdEstaturaRounded = 0 cm 
+				mdEstatura = 0 cm 
+			tbAPE = COMPESTAT = :A AND SEXO = :B AND ESTATURAMIN <= :C AND ESTATURAMAX > :C AND PERCENTIL = "P50" >>> {NT3_pe, BEGINPOINT, mpFirstRecord}
+				mdPesoEsperado = 0 kg 
+				mdMedicaoEstatura = Estatura  
+				mdSexo = Feminino  
+				mdEstatura = 0 cm 
+			tbZN1DEPE = COMPESTAT = :B AND SEXO = :A AND ESTATURA = :C >>> {T3_pe, ZN1DE, mpFirstRecord}
+				mdZN1DEPE = 0  
+				mdSexo = Feminino  
+				mdMedicaoEstatura = Estatura  
+				mdEstaturaRounded = 0 cm 
+			flZScorePE = (A-B)/(B-C)
+				mdZScorePE = 0  
+				mdPeso = 0 kg 
+				mdPesoEsperado = 0 kg 
+				mdZN1DEPE = 0  
+		Relação Perímetro Cefálico/Perímetro Torácico (pr)
+			flRPCPT = A/B
+				mdRPCPT = 0  
+				mdPerimetroCefalico =  cm dqPerimetroCefalico
+				mdPerimetroToracico =  cm dqPerimetroToracico
+			tbDiagRPCPT = IDADEMIN <= :B AND IDADEMAX >= :B >>> {T24, CAPTION, mpNewRanges}
+				mdDiagRPCPT =   
+				mdRPCPT = 0  
+				mdIdadeMeses = 0 Meses 
+			tbDiagPC = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T26, CAPTION, mpNewRanges}
+				mdDiagPC =   
+				mdPerimetroCefalico =  cm dqPerimetroCefalico
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			tbP50PC = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T26, ENDPOINT, mpFirstRecord}
+				mdP50PC =  mm 
+				mdSexo = Feminino  
+				mdIdadeMeses = 0 Meses 
+			flAdeqPC = A/B*100
+				mdAdeqPC =  % 
+				mdPerimetroCefalico =  cm dqPerimetroCefalico
+				mdP50PC =  mm 
+		Índice de Massa Corporal Pré-Gestacional (pr)
+			flIMCPG = A/(B/100)^2
+				mdIMCPG = 0 kg/m2  
+				mdPesoPG = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagIMCPG =  >>> {T33, CAPTION, mpNewRanges}
+				mdDiagIMCPG =   
+				mdIMCPG = 0 kg/m2  
+			flTipoEstaturaGestante = IF(LT(A,157),B,C)
+				mdTipoEstaturaGestante =   
+				mdEstatura = 0 cm 
+				cntBAIXA = Baixa  
+				cntNORMAL = Normal  
+			flPosMenarcaAte2Anos = IF(LT((A-B),2),C,D)
+				mdPosMenarcaAte2Anos =   
+				mdIdadeAnos =  Anos 
+				mdIdadeMenarca = 0 anos 
+				cntSIM = Sim  
+				cntNAO = Não  
+			tbGanhoPesoGestante = DIAGIMCGEST = :A AND POSMENARCA2A = :B AND TIPOESTATURA = :C >>> {T33a, DIAGGANHOPESO, mpFirstRecord}
+				mdDiagGanhoPesoGestante =   
+				mdDiagIMCPG =   
+				mdPosMenarcaAte2Anos =   
+				mdTipoEstaturaGestante =   
+			flGanhoPesoGestante = A-B
+				mdGanhoPesoGestante = 0 kg 
+				mdPeso = 0 kg 
+				mdPesoPG = 0 kg 
+		Índice de Massa Corporal para Idade (Adolescentes) (pr)
+			flIMC = A/(B/100)^2
+				mdIMC = 0 kg/m2 
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagIMCA = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T28, CAPTION, mpNewRanges}
+				mdDiagIMCA =   
+				mdIMC = 0 kg/m2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbP50IMCA = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T28, ENDPOINT, mpFirstRecord}
+				mdP50IMCA =  kg/m2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqIMCA = A/B*100
+				mdAdeqIMCA =  % 
+				mdIMC = 0 kg/m2 
+				mdP50IMCA =  kg/m2 
+	Inicializa Variáveis (ca)
+		Variáveis de Escopo
+			mdDataCalc =   
+			mdDataNascimento =   
+			mdEstatura = 0 cm 
+			mdIdadeAnos =  Anos 
+			mdIdadeDias = 0 Dias 
+			mdIdadeMeses = 0 Meses 
+			mdNomeIndividuo = Nome não informado  
+			mdPeso = 0 kg 
+			mdSexo = Feminino  
+			mdTempoGestante = 0 Semanas dqTempoGestante
+			mdTempoNutriz = 0 Semanas dqTempoNutriz
+			mdDefFisica = Nenhuma  
+			mdFatAjusDef = 1  
+			mdIdade = 0 meses 
+			mdMedicaoEstatura = Estatura  
+			mdGUIDIndividuo =   
+			mdCorParda = 0  
+			mdCorAmarela = 0  
+			mdCorBranca = 1  
+			mdAscite = 0  
+			mdPartesAmputadas = []  
+			mdDefTemBiceps = -1  
+			mdDefTemTriceps = -1  
+			mdDefTemCircBraco = -1  
+			mdDefTemCircPunho = -1  
+			mdDefTemCompPerna = -1  
+			mdClassificacaoEtaria =   
+			mdPesoPG = 0 kg 
+			mdIdadeMenarca = 0 anos 
+		Constantes do Sistema
+			cntMASCULINO = Masculino  
+			cntFEMININO = Feminino  
+			cntSIM = Sim  
+			cntNAO = Não  
+			cntBAIXA = Baixa  
+			cntNORMAL = Normal  
+		Diretório da memória
+			mdDiretorio =   
+			mdEscopoCriado = 0  
+	Recomendação Calórica (ca)
+		RDA (pr)
+			tbRDA = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T17, KCALKG, mpFirstRecord}
+			flRCRDA = A*B
+		Fatores Típicos de Stress (pr)
+			tbGEBHBF1 = SEXO = :A >>> {TGEBHB, F1, mpFirstRecord}
+				mdGEBHBF1 = 0  
+				mdSexo = Feminino  
+			tbGEBHBF2 = SEXO = :A >>> {TGEBHB, F2, mpFirstRecord}
+				mdGEBHBF2 = 0  
+				mdSexo = Feminino  
+			tbGEBHBF3 = SEXO = :A >>> {TGEBHB, F3, mpFirstRecord}
+				mdGEBHBF3 = 0  
+				mdSexo = Feminino  
+			tbGEBHBF4 = SEXO = :A >>> {TGEBHB, F4, mpFirstRecord}
+				mdGEBHBF4 = 0  
+				mdSexo = Feminino  
+			flGEBHB = A+(B*E)+(C*t)-(D*X)
+				mdGEBHB = 0 kcal/dia 
+				mdGEBHBF1 = 0  
+				mdGEBHBF2 = 0  
+				mdGEBHBF3 = 0  
+				mdGEBHBF4 = 0  
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+				mdIdadeAnos =  Anos 
+			tbFatorAFPac = ATIVINT = :A >>> {T14, FATOR, mpFirstRecord}
+				mdFatorAFPac = 0  
+				mdAFPac = Acamado  
+			tbFatorLesaoPac = LESAO = :A >>> {T15, FATOR, mpFirstRecord}
+				mdFatorLesaoPac = 0  
+				mdLesaoPac = Paciente não complicado  
+			tbFatorTempCorpPac = TEMPCORP = :A >>> {T16, FATOR, mpFirstRecord}
+				mdFatorTempCorpPac = 0  
+				mdTempCorpPac = Normal  
+			flRCPac = A*B*C*D
+				mdRCPac = 0 kcal/dia 
+				mdGEBHB = 0 kcal/dia 
+				mdFatorAFPac = 0  
+				mdFatorLesaoPac = 0  
+				mdFatorTempCorpPac = 0  
+			flREPac = A
+				cxRecNutGB01C0044_AEE3_11D2_B4C0_00609723104CU = 0 kcal/dia 
+				mdRCPac = 0 kcal/dia 
+		Atividade Física (FAO/OMS) (pr)
+			tbFatorAtivFisDia = SEXO = :A AND ATIVFIS = :B >>> {T18, FATOR, mpFirstRecord}
+				mdFatorAFDia = 0  
+				mdSexo = Feminino  
+				mdAFDia = Muito Leve  
+			tbFatorBGER = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T12, B, mpFirstRecord}
+				mdFatorBGER = 0  
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbFatorCGER = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T12, C, mpFirstRecord}
+				mdFatorCGER = 0  
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flGER = (B*A)+C
+				mdGER = 0 kcal/dia 
+				mdPeso = 0 kg 
+				mdFatorBGER = 0  
+				mdFatorCGER = 0  
+			flRCFAODia = A*B
+				mdRCFAODia = 0 kcal/dia 
+				mdFatorAFDia = 0  
+				mdGER = 0 kcal/dia 
+			flREFAODia = A
+				cxRecNutGB01C0044_AEE3_11D2_B4C0_00609723104CU = 0 kcal/dia 
+				mdRCFAODia = 0 kcal/dia 
+	Recomendação Calória para Peso Desejável (ca)
+		Atividade Física (FAO/OMS) para Peso Desejável (pr)
+		RDA para Peso Desejável (pr)
+			tbRDA = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX >= :B >>> {T17, KCALKG, mpFirstRecord}
+				mdkcalkgRDA = 0 kcal/kg 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flRCRDAdesejavel = A*B
+				mdRCRDAdesejavel = 0 kcal/dia 
+				mdkcalkgRDA = 0 kcal/kg 
+				mdPesoDesejavel = 0 kg 
+		Fatores Típicos de Stress para Peso Desejável (pr)
+	Valida Cálculos Antropométricos (ca)
+		Valida Índice de Massa Corporal (pr)
+			flvlprIMC = IF(AND(AND(GTEQ(A,20),EQ(B,1)),EQ(C,0)),-1,0)
+				mdvlprIMC = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Relação Cintura/Quadril (pr)
+			flvlprRCQ = IF(AND(AND(AND(EQ(B,0),EQ(C,0)),GT(A,17)),EQ(D,0)),-1,0)
+				mdvlprRCQ = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdAscite = 0  
+		Valida Procedimento de Peso Desejável por Metropolitan (pr)
+			flvlprPDM = AND(AND(EQ(B,0),EQ(C,0)),AND(GT(A,17),D))
+				mdvlprPDM = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdDefTemCircPunho = -1  
+		Valida Procedimento de Peso Desejável por IMC (pr)
+			flvlprPDIMC = AND(AND(EQ(B,0),EQ(C,0)),AND(GT(A,17),D))
+				mdvlprPDIMC = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdDefTemCircPunho = -1  
+		Valida Procedimento de Peso Desejável pelo Cálculo Simplificado (pr)
+			flvlprPDCS = AND(AND(EQ(B,0),EQ(C,0)),AND(GT(A,17),D))
+				mdvlprPDCS = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdDefTemCircPunho = -1  
+		Valida Procedimento de Circunferência Muscular do Braço (pr)
+			flvlprCMB = AND(AND(AND(AND(A,B),GTEQ(C,1)),EQ(D,0)),EQ(E,0))
+				mdvlprCMB = 0  
+				mdDefTemCircBraco = -1  
+				mdDefTemTriceps = -1  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+		Valida Procedimento da Área Muscular do Braço (pr)
+			flvlprAMB = AND(AND(AND(AND(A,B),GTEQ(C,1)),EQ(D,0)),EQ(E,0))
+				mdvlprAMB = 0  
+				mdDefTemCircBraco = -1  
+				mdDefTemTriceps = -1  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+		Valida Procedimento da Área Muscular do Braço sem Osso (pr)
+			flvlprAMBSO = AND(AND(AND(AND(A,B),GTEQ(C,1)),EQ(D,0)),EQ(E,0))
+				mdvlprAMBSO = 0  
+				mdDefTemCircBraco = -1  
+				mdDefTemTriceps = -1  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+		Valida Procedimento de Composição Corporal por Pregas Cutâneas (pr)
+			flvlprPGordura = AND(AND(EQ(B,0),EQ(C,0)),AND(GT(A,17),AND(D,E)))
+				mdvlprPGordura = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdDefTemBiceps = -1  
+				mdDefTemTriceps = -1  
+		Valida Procedimento de Compleição Física (pr)
+			flvlprCompleicao = AND(AND(EQ(B,0),EQ(C,0)),AND(GT(A,17),D))
+				mdvlprCompleicao = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+				mdDefTemCircPunho = -1  
+		Valida Procedimento de Estatura Calculada Pelo Comprimento da Perna (pr)
+			flvlprECCP = AND(GTEQ(A,60),B)
+				mdvlprECCP = 0  
+				mdIdadeAnos =  Anos 
+				mdDefTemCompPerna = -1  
+		Valida Procedimento da Relação Peso/Estatura da Gestante (pr)
+			flvlprRPEG = IF(GT(A,1),-1,0)
+				mdvlprRPEG = 0  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Procedimento da Adequação de Peso/Idade (pr)
+			flvlprAPI = IF(LT(A,24),-1,0)
+				mdvlprAPI = 0  
+				mdIdadeMeses = 0 Meses 
+		Valida Procedimento da Adequação de Peso/Estatura e Estatura/Idade (pr)
+			flvlprAPEEI = AND(OR(AND(EQ(A,t),LTEQ(B,137)),AND(EQ(A,E),LTEQ(B,145))),AND(AND(GTEQ(C,2),LTEQ(C,18)),EQ(D,0)))
+				mdvlprAPEEI = 0  
+				mdSexo = Feminino  
+				mdEstatura = 0 cm 
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				cntMASCULINO = Masculino  
+				cntFEMININO = Feminino  
+		Valida Procedimento da Adequação de Peso/Estatura e Estatura/Idade Adaptado (pr)
+			flvlprAPEEIAdap = AND(OR(AND(EQ(A,t),GT(B,137)),AND(EQ(A,E),GT(B,145))),AND(AND(GTEQ(C,2),LTEQ(C,18)),EQ(D,0)))
+				mdvlprAPEEIAdap = 0  
+				mdSexo = Feminino  
+				mdEstatura = 0 cm 
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				cntMASCULINO = Masculino  
+				cntFEMININO = Feminino  
+		Valida Procedimento do ZScore Estatura/Idade (pr)
+			flvlprZScoreEI = IF(LTEQ(A,18),-1,0)
+				mdvlprZScoreEI = 0  
+				mdIdadeAnos =  Anos 
+		Valida Procedimento do ZScore de Peso/Idade (pr)
+			flvlprZScorePI = IF(LTEQ(A,18),-1,0)
+				mdvlprZScorePI = 0  
+				mdIdadeAnos =  Anos 
+		Valida Procedimento do ZScore de Peso/Estatura (pr)
+			flvlprZScorePE = IF(LTEQ(A,18),-1,0)
+				mdvlprZScorePE = 0  
+				mdIdadeAnos =  Anos 
+		Valida Procedimento da Relação Perímetro Cefálico/Perímetro Torácico (pr)
+			flvlprRPCPT = IF(LT(A,36),-1,0)
+				mdvlprRPCPT = 0  
+				mdIdadeMeses = 0 Meses 
+		Valida Procedimento de IMC para Gestantes (pr)
+			flvlprIMCG = IF(AND(AND(GTEQ(A,9),EQ(B,1)),GT(C,0)),-1,0)
+				mdvlprIMCG = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Procedimento de IMC para Idade (Adolescentes) (pr)
+			flvlprIMCA = IF(AND(AND(AND(GTEQ(A,9),EQ(B,1)),EQ(C,0)),LTEQ(A,19)),-1,0)
+				mdvlprIMCA = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+	Índices de Massa Corporal (ca)
+		Indice de Massa Corporal (pr)
+			flIMC = A/(B/100)^2
+				mdIMC = 0 kg/m2 
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagIMC =  >>> {T6, CAPTION, mpNewRanges}
+				mdDiagIMC =   
+				mdIMC = 0 kg/m2 
+		Índice de Massa Corporal para Idade (Adolescentes) (pr)
+			flIMC = A/(B/100)^2
+				mdIMC = 0 kg/m2 
+				mdPeso = 0 kg 
+				mdEstatura = 0 cm 
+			tbDiagIMCA = SEXO = :B AND IDADEMIN <= :C AND IDADEMAX > :C >>> {T28, CAPTION, mpNewRanges}
+				mdDiagIMCA =   
+				mdIMC = 0 kg/m2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			tbP50IMCA = SEXO = :A AND IDADEMIN <= :B AND IDADEMAX > :B AND PERCENTIL = "P50" >>> {T28, ENDPOINT, mpFirstRecord}
+				mdP50IMCA =  kg/m2 
+				mdSexo = Feminino  
+				mdIdadeAnos =  Anos 
+			flAdeqIMCA = A/B*100
+				mdAdeqIMCA =  % 
+				mdIMC = 0 kg/m2 
+				mdP50IMCA =  kg/m2 
+	Valida Índices de Massa Corporal (ca)
+		Valida Índice de Massa Corporal (pr)
+			flvlprIMC = IF(AND(AND(GTEQ(A,20),EQ(B,1)),EQ(C,0)),-1,0)
+				mdvlprIMC = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Procedimento de IMC para Gestantes (pr)
+			flvlprIMCG = IF(AND(AND(GTEQ(A,9),EQ(B,1)),GT(C,0)),-1,0)
+				mdvlprIMCG = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Procedimento de IMC para Idade (Adolescentes) (pr)
+			flvlprIMCA = IF(AND(AND(AND(GTEQ(A,9),EQ(B,1)),EQ(C,0)),LTEQ(A,19)),-1,0)
+				mdvlprIMCA = 0  
+				mdIdadeAnos =  Anos 
+				mdFatAjusDef = 1  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+	Valida Medidas (ca)
+		Valida Medida da Circunferência da Cintura (pr)
+			flvlmdCintura = IF(AND(GTEQ(A,40),LTEQ(A,300)),-1,0)
+				mdvlCintura = 0  
+				mdCintura =  cm dqCintura
+		Valida Medida da Circunferência do Braço (pr)
+			flvlmdCircBraco = IF(AND(GTEQ(A,10),LTEQ(A,60)),-1,0)
+				mdvlCircBraco = 0  
+				mdCircBraco =  cm dqCircBraco
+		Valida Medida da Circunferência do Punho (pr)
+			flvlmdCircPunho = IF(AND(GTEQ(A,5),LTEQ(A,26)),-1,0)
+				mdvlCircPunho = 0  
+				mdCircPunho =  cm dqCircPunho
+		Valida Medida da Prega Cutânea do Bíceps (pr)
+			flvlmdPBiceps = IF(AND(GT(A,0),LTEQ(A,99)),-1,0)
+				mdvlPBiceps = 0  
+				mdPBiceps =  mm dqPBiceps
+		Valida Medida Perímetro Cefálico (pr)
+			flvlmdPerimetroCefalico = IF(AND(GTEQ(A,10),LTEQ(A,99)),-1,0)
+				vlmdPerimetroCefalico = 0  
+				mdPerimetroCefalico =  cm dqPerimetroCefalico
+		Valida Medida Perímetro Torácico (pr)
+			flvlmdPerimetroToracico = IF(AND(GTEQ(A,10),LTEQ(A,99)),-1,0)
+				vlmdPerimetroToracico = 0  
+				mdPerimetroToracico =  cm dqPerimetroToracico
+		Valida Medida da Prega Subescapular (pr)
+			flvlmdPSubescapular = IF(AND(GT(A,0),LTEQ(A,99)),-1,0)
+				mdvlPSubescapular = 0  
+				mdPSubescapular =  mm dqPSubescapular
+		Valida Medida da Prega Suprailiaca (pr)
+			flvlmdPSuprailiaca = IF(AND(GT(A,0),LTEQ(A,99)),-1,0)
+				mdvlPSuprailiaca = 0  
+				mdPSuprailiaca =  mm dqPSuprailiaca
+		Valida Medida da Prega do Tríceps (pr)
+			flvlmdPTriceps = IF(AND(GT(A,0),LTEQ(A,99)),-1,0)
+				mdvlPTriceps = 0  
+				mdPTriceps =  mm dqPTriceps
+		Valida Medida da Circunferência do Quadril (pr)
+			flvlmdQuadril = IF(AND(GTEQ(A,40),LTEQ(A,300)),-1,0)
+				mdvlQuadril = 0  
+				mdQuadril =  cm dqQuadril
+		Valida Medida do Comprimento da Perna (pr)
+			flvlmdCompPerna = IF(AND(GTEQ(A,20),LTEQ(A,120)),-1,0)
+				mdvlCompPerna = 0  
+				mdCompPerna =  cm dqCompPerna
+		Valida Medida do Tempo Gestante (pr)
+			flvlmdTempoGestante = IF(AND(GTEQ(A,1),LTEQ(A,42)),-1,0)
+				mdvlTempoGestante = 0  
+				mdTempoGestante = 0 Semanas dqTempoGestante
+		Valida Medida do Tempo Nutriz (pr)
+			flvlmdTempoNutriz = IF(AND(GTEQ(A,1),LTEQ(A,100)),-1,0)
+				mdvlTempoNutriz = 0  
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+	Valida Cálculos de Recomendação Calorica (ca)
+		Valida Procedimento de Recomendação Calorica pela RDA (pr)
+			flvlprRCRDA = -1
+				mdvlprRCRDA = -1  
+		Valida Procedimento de Fatores Típicos de Stress (pr)
+			flvlRCPac = IF(AND(AND(GT(A,18),EQ(B,0)),EQ(C,0)),-1,0)
+				mdvlprRCPac = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+		Valida Procedimento de Atividade Física (FAO/OMS) (pr)
+			flvlRCFAODia = IF(AND(AND(GT(A,18),EQ(B,0)),EQ(C,0)),-1,0)
+				mdvlprRCFAODia = 0  
+				mdIdadeAnos =  Anos 
+				mdTempoGestante = 0 Semanas dqTempoGestante
+				mdTempoNutriz = 0 Semanas dqTempoNutriz
+	Classifica Medidas (ca)
+		Classificação Etária Genérica (pr)
+			tbClassificacaoEtariaGenerica =  >>> {CLASSETARIAGERAL, CAPTION, mpNewRanges}
+				mdClassificacaoEtaria =   
+				mdIdadeAnos =  Anos 

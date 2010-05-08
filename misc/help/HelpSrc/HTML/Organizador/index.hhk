@@ -1,0 +1,331 @@
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="FrameName" value="right">
+  <param name="SiteType" value="index">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="botões">
+    <param name="Name" value="Refeição">
+    <param name="Local" value="Refeição.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Antropométricos">
+    <param name="Name" value="NutWin">
+    <param name="Local" value="NutWin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Acessando o help">
+    <param name="Name" value="Acessando o help">
+    <param name="Local" value="Ajuda\nutwinAcessando_o_help.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Acesso ao Programa sala">
+    <param name="Name" value="Acesso ao sistema pela sala">
+    <param name="Local" value="Introducao\nutwinAcesso_ao_sistema_pela_sala.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Acesso ao Programa pelo menu">
+    <param name="Name" value="Acesso ao Sistema pelo menu">
+    <param name="Local" value="Introducao\nutwinAcesso_ao_Sistema_pelo_menu.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Acesso ao Sistema pelos Ícones rápidos">
+    <param name="Name" value="Acesso ao Sistema pelos Ícones rápidos">
+    <param name="Local" value="Introducao\nutwinAcesso_ao_Sistema_pelos_Ícones_r.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Alterando a sala">
+    <param name="Name" value="Alterando a sala">
+    <param name="Local" value="Utilitarios\Opcoes\Sistema\nutwinAlterando_a_sala.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Anamnese Nutricional e modelos pré-definidos">
+    <param name="Name" value="Anamnese Nutricional e modelos pré-definidos">
+    <param name="Local" value="Arquivo\Abrir\Individuos\nutwinAnamnese_Nutricional_e_modelos_p.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Ativando e desativando as dicas">
+    <param name="Name" value="Ativando e desativando as dicas">
+    <param name="Local" value="Ajuda\nutwinAtivando_e_desativando_as_dicas.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Bibliografia">
+    <param name="Name" value="Bibliografia">
+    <param name="Local" value="Bibliografia\nutwinBibliografia.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Cadastrando sua senha">
+    <param name="Name" value="Cadastrando sua senha">
+    <param name="Local" value="Utilitarios\Opcoes\Sistema\nutwinCadastrando_sua_senha.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="CEP">
+    <param name="Name" value="CEP">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinCEP.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Cidades">
+    <param name="Name" value="Cidades">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinCidades.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Como exportar dados do sistema">
+    <param name="Name" value="Como exportar dados do sistema">
+    <param name="Local" value="Arquivo\nutwinComo_exportar_dados_do_sistema.htm">
+    <param name="Name" value="Refeição">
+    <param name="Local" value="Refeição.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Conhecendo seu funcionamento">
+    <param name="Name" value="Conhecendo seu funcionamento">
+    <param name="Local" value="Introducao\nutwinConhecendo_seu_funcionamento.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Cor da Pele">
+    <param name="Name" value="Cor da Pele">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinCor_da_Pele.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Dados do Alimento">
+    <param name="Name" value="Dados do Alimento">
+    <param name="Local" value="Arquivo\Abrir\Alimentos\nutwinDados_do_Alimento.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Dados Pessoais">
+    <param name="Name" value="Dados Pessoais">
+    <param name="Local" value="Arquivo\Abrir\Individuos\nutwinDados_Pessoais.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="DDD">
+    <param name="Name" value="DDD">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinDDD.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Dúvidas comuns entre os usuários">
+    <param name="Name" value="Dúvidas comuns entre os usuários">
+    <param name="Local" value="Ajuda\nutwinDvidas_comuns_entre_os_usurios.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Endereço e telefones">
+    <param name="Name" value="Endereço e telefones">
+    <param name="Local" value="Arquivo\Abrir\Individuos\nutwinEndereo_e_telefones.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Entre em contato conosco">
+    <param name="Name" value="Entre em contato conosco">
+    <param name="Local" value="Ajuda\nutwinEntre_em_contato_conosco.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Equipamento necessário">
+    <param name="Name" value="Equipamento necessário">
+    <param name="Local" value="Introducao\nutwinEquipamento_necessrio.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Equivalentes Energéticos">
+    <param name="Name" value="Equivalentes Energéticos">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinEquivalentes_Energticos00000028.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Equivalentes Protéicos">
+    <param name="Name" value="Equivalentes Protéicos">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinEquivalentes_Proticos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Estados">
+    <param name="Name" value="Estados">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinEstados.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Exames Bioquímicos">
+    <param name="Name" value="Exames Bioquímicos">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinExames_Bioqumicos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Exames e modelos pré-definidos">
+    <param name="Name" value="Exames e modelos pré-definidos">
+    <param name="Local" value="Arquivo\Abrir\Individuos\nutwinExames_e_modelos_prdefinidos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Ficha de Alimentos">
+    <param name="Name" value="Ficha de Alimentos">
+    <param name="Local" value="Arquivo\Abrir\Alimentos\nutwinFicha_de_Alimentos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Ficha de Indivíduos">
+    <param name="Name" value="Ficha de Indivíduos">
+    <param name="Local" value="Arquivo\Abrir\Individuos\nutwinFicha_de_Indivduos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Grupo Alimentar">
+    <param name="Name" value="Grupo Alimentar">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinGrupo_Alimentar.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Grupo Protéico">
+    <param name="Name" value="Grupo Protéico">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinGrupo_Protico.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Grupos Energético">
+    <param name="Name" value="Grupos Energético">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinGrupos_Energtico.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Instalar o sistema">
+    <param name="Name" value="Instalar o sistema">
+    <param name="Local" value="Introducao\nutwinInstalar_o_sistema.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Introdução">
+    <param name="Name" value="Introdução">
+    <param name="Local" value="NutWin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Listagem de Alimentos por Grupo Alimentar">
+    <param name="Name" value="Listagem de Alimentos por Grupo Alimentar">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinListagem_de_Alimentos_por_Grupo_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Listagem de Alimentos por Ordem Alfabética">
+    <param name="Name" value="Listagem de Alimentos por Ordem Alfabética">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinListagem_de_Alimentos_por_Ordem_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Listagem de alimentos por Origem">
+    <param name="Name" value="Listagem de alimentos por Origem">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinListagem_de_alimentos_por_Origem.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Listagem Geral de Indivíduos">
+    <param name="Name" value="Listagem Geral de Indivíduos">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinListagem_Geral_de_Indivduos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Listagem Geral de Indivíduos por Pasta">
+    <param name="Name" value="Listagem Geral de Indivíduos por Pasta">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinListagem_Geral_de_Indivduos_por_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Mais alguns ...">
+    <param name="Name" value="Mais alguns ...">
+    <param name="Local" value="Bibliografia\nutwinMais_alguns_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Medidas Caseiras">
+    <param name="Name" value="Medidas Caseiras">
+    <param name="Local" value="Arquivo\Abrir\Alimentos\nutwinMedidas_Caseiras00000027.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Meios para registrar seu software">
+    <param name="Name" value="Meios para registrar seu software">
+    <param name="Local" value="Introducao\nutwinMeios_para_registrar_seu_softwar.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Modelos de Anamnese">
+    <param name="Name" value="Modelos de Anamnese">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinModelos_de_Anamnese.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Nacionalidades">
+    <param name="Name" value="Nacionalidades">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinNacionalidades.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Nutrientes">
+    <param name="Name" value="Nutrientes">
+    <param name="Local" value="Arquivo\Abrir\Alimentos\nutwinNutrientes00000026.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="nutwinuntitled">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="O que há de novo ?">
+    <param name="Name" value="O que há de novo ?">
+    <param name="Local" value="Introducao\nutwinO_que_h_de_novo_.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Obtendo ajuda durante seu trabalho">
+    <param name="Name" value="Obtendo ajuda durante seu trabalho">
+    <param name="Local" value="Ajuda\nutwinObtendo_ajuda_durante_seu_trabal.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Obtendo informações sobre o seu computador e seu software">
+    <param name="Name" value="Obtendo informações sobre o seu computador e seu software">
+    <param name="Local" value="Ajuda\nutwinObtendo_informaes_sobre_o_seu_co.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Origem">
+    <param name="Name" value="Origem">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinOrigem.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Pastas">
+    <param name="Name" value="Pastas">
+    <param name="Local" value="Arquivo\Abrir\Pastas\nutwinPastas.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Preço">
+    <param name="Name" value="Preço">
+    <param name="Local" value="Arquivo\Abrir\Alimentos\nutwinPreo.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Relatórios de Acompanhamento">
+    <param name="Name" value="Relatórios de Acompanhamento">
+    <param name="Local" value="Utilitarios\Relatorios\nutwinRelatrios_de_Acompanhamento.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Remover o sistema">
+    <param name="Name" value="Remover o sistema">
+    <param name="Local" value="Introducao\nutwinRemover_o_sistema.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Saiba antes de usar o Organizador">
+    <param name="Name" value="Saiba antes de usar o Organizador">
+    <param name="Local" value="Introducao\nutwinSaiba_antes_de_usar_o_Organizado.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Senha">
+    <param name="Name" value="Senha">
+    <param name="Local" value="Introducao\nutwinSenha.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Sobre">
+    <param name="Name" value="Sobre">
+    <param name="Local" value="Ajuda\nutwinSobre.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Tabelas Alimentares">
+    <param name="Name" value="Tabelas Alimentares">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinTabelas_Alimentares.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Tabelas de Indivíduos">
+    <param name="Name" value="Tabelas de Indivíduos">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinTabelas_de_Indivduos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Tirando dúvidas">
+    <param name="Name" value="Tirando dúvidas">
+    <param name="Local" value="Ajuda\nutwinTirando_dvidas.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Totais de Cadastros de Alimentos">
+    <param name="Name" value="Totais de Cadastros de Alimentos">
+    <param name="Local" value="Utilitarios\Tabelas\Alimentos\nutwinTotais_de_Cadastros_de_Alimentos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Totais de Cadastros de Indivíduos">
+    <param name="Name" value="Totais de Cadastros de Indivíduos">
+    <param name="Local" value="Utilitarios\Tabelas\Individuos\nutwinTotais_de_Cadastros_de_Indivduos.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Utilizando as Pastas">
+    <param name="Name" value="Utilizando as Pastas">
+    <param name="Local" value="Arquivo\Abrir\Pastas\nutwinUtilizando_as_Pastas.htm">
+    <param name="Name" value="Seleção dos Nutrientes">
+    <param name="Local" value="Seleção_dos_Nutrientes.htm">
+  </object>
+</ul>
+</html>

@@ -1,0 +1,64 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+unit UfmRTipAnam;
+
+interface
+
+uses
+  SysUtils, Windows, Messages, Classes, Graphics, Controls,
+  StdCtrls, ExtCtrls, Forms, QuickRpt, QRCtrls, Db, DBTables, qrepform, RxGIF;
+
+type
+  TfmRelTipAnam = class(TFormReport)
+    PageFooterBand1 : TQRBand;
+    QRSysData1 : TQRSysData;
+    ColumnHeaderBand1 : TQRBand;
+    DetailBand1 : TQRBand;
+    QRLabel1 : TQRLabel;
+    QRLabel2 : TQRLabel;
+    QRDBRichText1: TQRDBRichText;
+    QRDBText1: TQRDBText;
+    QRDBText2: TQRDBText;
+    procedure ReportBeforePrint(Sender: TCustomQuickRep;
+      var PrintReport: Boolean);
+  private
+  end;
+
+var
+  fmRelTipAnam: TfmRelTipAnam;
+
+implementation
+
+uses DMRelPess;
+
+{$R *.DFM}
+
+procedure TfmRelTipAnam.ReportBeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+  inherited;
+   DMRelPessoa.TbTipoAnamMod.Refresh;
+end;
+
+end.

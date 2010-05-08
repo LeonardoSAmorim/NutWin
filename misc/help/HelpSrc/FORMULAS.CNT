@@ -1,0 +1,60 @@
+:Base formulas.HLP
+1 Bem-vindo ao Sistema de Apoio à Nutrição para Windows
+2 O que há de novo sobre o NUTWIN 2.0?=O_que_há_de_novo_sobre_o_NUTWIN_2.0
+2 Como dar os primeiros passos com o NUTWIN 2.0?=Como_dar_os_primeiros_passos_com_o_NUTWIN_2.0
+1 Introdução ao NUTWIN 2.0
+2 Organizador: O que é e como funciona=Organizador_O_que_é_e_como_funciona
+2 Calculadora: Iniciando um novo cálculo...=Calculadora_Iniciando_um_novo_cálculo...
+1 Obtendo Ajuda
+2 Obtendo Ajuda=Obtendo_Ajuda
+1 Trabalhando com dados
+2 Alimentos
+3 Alimentos=Trabalhando_com_dados
+2 Indivíduos
+3 Indivíduos=Trabalhando_com_dados
+1 Trabalhando com relatórios
+2 relatórios=Trabalhando_com_dados
+1 Trabalhando com Cálculos
+2 Antropometria=Antropometria
+2 Recomendações Calóricas=Recomendações_Calóricas
+2 Atividades Físicas=Atividades_Físicas
+2 Fórmulas Especiais=Fórmulas_Especiais
+2 Preparação=Preparação
+2 Inquérito=Inquérito
+2 Plano Alimentar (Dieta)=Plano_Alimentar_Dieta
+1 Referência das Fórmulas
+2 Composição Corporal por Pregas Cutâneas (% de gordura)=Composição_Corporal_por_Pregas_Cutâneas_de_gordura
+2 Compleição Física=Compleição_Física
+2 Índice de Massa Corporal (IMC)=Índice_de_Massa_Corporal_IMC
+2 Peso Desejável por Metropolitan (PDM)=Peso_Desejável_por_Metropolitan_PDM
+2 Peso Desejável por IMC (PDIMC)=Peso_Desejável_por_IMC_PDIMC
+2 Peso Desejável pelo Cálculo Simplificado (PDCS)=Peso_Desejável_pelo_Cálculo_Simplificado_PDCS
+2 Relação Cintura/Quadril (RCQ)=Relação_Cintura_Quadril_RCQ
+2 Circunferência Muscular do Braço (CMB)=Circunferência_Muscular_do_Braço_CMB
+2 Área Muscular do Braço (AMB)=Área_Muscular_do_Braço_AMB
+2 Área Muscular do Braço Sem o Osso (AMBSO)=Área_Muscular_do_Braço_Sem_o_Osso_AMBSO
+2 Estatura Calculada pelo Comprimento da Perna (ECCP)=Estatura_Calculada_pelo_Comprimento_da_Perna_ECCP
+2 Porcentagem Peso Atual por Peso Desejável (% Peso Atual/Desejável)=Porcentagem_Peso_Atual_por_Peso_Desejável_Peso_Atual_Desejável
+2 Relação Peso Estatura da Gestante (% Peso/Altura para Gestante)=Relação_Peso_Estatura_da_Gestante_Peso_Altura_para_Gestante
+2 Superfície Corporal (SC)=Superfície_Corporal_SC
+2 Adequação de peso para Idade (P/I)=Adequação_de_Peso_para_Idade_P_I
+2 Adequação de Peso para Estatura e Estatura para Idade P/E e E/I=Adequação_de_Peso_para_Estatura_e_Estatura_para_Idade_P_E_e_E_I
+2 Z-Score=Z_Score
+2 Cálculo do Percentil (Px)=Cálculo_do_Percentil_Px
+2 Relação Perímetro Cefálico por Perímetro Torácico (PC/PT)=Relação_Perímetro_Cefálico_por_Perímetro_Torácico_PC_PT
+2 Recomendação Calórica pela FAO/OMS (RCFAO)=Recomendação_Calórica_pela_FAO_OMS_RCFAO
+2 Recomendação Calórica para Pacientes (RCP)=Recomendação_Calórica_para_Pacientes_RCP
+2 Recomendação Calórica pela RDA (RCRDA)=Recomendação_Calórica_pela_RDA_RCRDA
+2 Balanço Nitrogenado (BN)=Balanço_Nitrogenado_BN
+2 Nitrogênio Ingerido (NI)=Nitrogênio_Ingerido_NI
+2 Nitrogênio Excretado Total (NET)=Nitrogênio_Excretado_Total_NET
+2 Nitrogênio Urinário Total (NUT)=Nitrogênio_Urinário_Total_NUT
+2 Nitrogênio Uréico Urinário de 24h (NUU)=Nitrogênio_Uréico_Urinário_de_24h_NUU
+2 Clearance de Creatinina (CC)=Clearance_de_Creatinina_CC
+2 Índice de Creatinina por Estatura (ICE)=Índice_de_Creatinina_por_Estatura_ICE
+2 PCR - "Protein Catabolic Rate" para Tratamento Conservador (PCR_TC)=PCR_Protein_Catabolic_Rate_para_Tratamento_Conservador_PCR_TC
+2 PCR - "Protein Catabolic Rate" para Hemodiálise (PCR_H)=PCR_Protein_Catabolic_Rate_para_Hemodiálise_PCR_H
+2 PCR - "Protein Catabolic Rate" para Diálise Peritoneal Ambulatorial  Contínua (PCR_CAPD)=PCR_Protein_Catabolic_Rate_para_Diálise_Peritoneal_Ambulatorial_Contínua_PCR_CAPD
+2 Massa Corporal Magra através da Cinética da Creatinina (MCMCC)=Massa_Corporal_Magra_através_da_Cinética_da_Creatinina_MCMCC
+1 Contrato de licença de usuário final
+2 Trabalhando com dados=Trabalhando_com_dados

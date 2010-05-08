@@ -1,0 +1,41 @@
+[Special Files]
+HHP File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Calculo.hhp
+Table Of Content File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\toc.hhc
+Merged Index File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Calculo_merged$.hhk
+See Also Index File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Calculo.hha
+Avenue File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Calculo.brs
+Topic Props File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Calculo.trs
+List Folder File=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Tmp26163.lst
+
+[Project Settings]
+Default Topic=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\Introducao.htm
+Build Tags=
+
+[BAGGAGE]
+Style Sheet File0=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\styles.css
+Image File0=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\topo.jpg
+
+[Print Documentation]
+m_strOrgDstName=C:\PROJETO\NUTWIN\Help\HTML\Calculadora\PrintDoc\Calculo.doc
+m_bOrgViewByTitle=0
+m_cOrgRefCssItem.m_RefType=1
+m_cOrgRefCssItem.m_strCssPathName=
+m_nOrgRefCssMode=0
+m_bOrgTocLevelOrder=1
+m_bOrgTocLevelOneBooks=0
+m_bOrgCreateToc=1
+m_bOrgTocByHeading=1
+m_bOrgIndexEntities=1
+m_bOrgCreateIndex=1
+m_bOrgCreateGlossaryPage=1
+m_bOrgLeaveGlossaryDef=1
+m_nOrgTextColor=1
+m_bOrgEmbeddedGraphics=0
+m_bOrgNoGraphics=0
+m_bOrgNoGraphicsInTitle=1
+m_bOrgCreatePageNumber=1
+m_bOrgPageBreak=1
+m_bOrgPageBreak2=0
+m_cOrgPage.Name=Letter
+m_cOrgPage.Param=1,12240,15840,1800,1440,1800,1440,0,0,0,0
+m_bOrgStyleOverride=1
