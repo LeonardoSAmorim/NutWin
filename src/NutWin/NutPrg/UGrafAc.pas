@@ -29,8 +29,8 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Measurement, ExtCtrls,TeeProcs, TeEngine, Chart, ChartFaixas, StdCtrls,
   FaixasTabela, MedidasBlobs, GraficoFaixa, Series, TeeFunci, Memoria,
-  DBTables, Db, Grids, DBGrids, ROM, Buttons, Mask, ToolEdit, Spin,
-  fmRelGraficos, DMGraf, DBIndex, RxDBComb, RXLookup, ComCtrls;
+  DBTables, Db, Grids, DBGrids, ROM, Buttons, Mask, Spin,
+  fmRelGraficos, DMGraf, DBIndex, RxDBComb, RXLookup, ComCtrls, ToolEdit;
 
 type
   TfmGrafAcomp = class(TForm)
@@ -106,7 +106,7 @@ begin
  with dmGraficos do
  begin
    // Seta variáveis
-   taAntrops.DisableControls;
+   quAntrops.DisableControls;
    GraficoFaixa := gfGraficos;
    NormalChart;
    Fit := False;
@@ -135,7 +135,7 @@ begin
         btFitChart.Enabled := True;
         btImprimir.Enabled := True;
      end;
-     taAntrops.EnableControls;
+     quAntrops.EnableControls;
   end;
    // Preenche tabela de valores
    with lvAntrops do
@@ -162,7 +162,7 @@ begin
  with dmGraficos do
  begin
    // Seta variáveis
-   taAntrops.DisableControls;
+   quAntrops.DisableControls;
    GraficoFaixa := P.gfRelGraficos;
    MinDate := deInicio.Date;
    MaxDate := deFim.Date;
@@ -193,7 +193,7 @@ begin
       FitChart
    else
       NormalChart;
-   taAntrops.EnableControls;
+   quAntrops.EnableControls;
  end;
  P.Report.Preview;
 end;

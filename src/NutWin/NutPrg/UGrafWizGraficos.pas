@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, ChartFaixas, GraficoFaixa, TeeProcs, TeEngine, Chart,
-  ComCtrls, Mask, ToolEdit, RXLookup, fmRelGraficos, FnpNumericEdit;
+  ComCtrls, Mask,  fmRelGraficos, FnpNumericEdit;
 
 type
   TfmGrafWizGraficos = class(TForm)
@@ -117,7 +117,7 @@ begin
   P := TRelGraficos.Create(self);
 
    // Seta variáveis
-     taAntrops.DisableControls;
+     quAntrops.DisableControls;
      GraficoFaixa := P.gfRelGraficos;
      MinDate := dmGraficos.DataInicialUsuario;
      MaxDate := dmGraficos.DataFinalUsuario;
@@ -152,7 +152,7 @@ begin
 //      FitChart
 //   else
 //      NormalChart;
-   taAntrops.EnableControls;
+   quAntrops.EnableControls;
  end;
 
  Screen.Cursor := SalvaCursor;   { Restaura cursor inicial }
@@ -170,7 +170,7 @@ end;
 
 procedure TfmGrafWizGraficos.FormShow(Sender: TObject);
 begin
-   dmGraficos.taAntrops.Active := True;
+   dmGraficos.quAntrops.Active := True;
    ctGraficos.Visible := False;
    lvAntrops.Visible := False;
 //   btVisualizar.Enabled := True;
@@ -191,7 +191,7 @@ begin
  with dmGraficos do
  begin
    // Seta variáveis
-   taAntrops.DisableControls;
+   quAntrops.DisableControls;
    GraficoFaixa := gfGraficos;
    NormalChart;
    Fit := False;
@@ -220,7 +220,7 @@ begin
         btFitChart.Enabled := True;
         btImprimir.Enabled := True;
      end;
-     taAntrops.EnableControls;
+     quAntrops.EnableControls;
   end;
    // Preenche tabela de valores
    with lvAntrops do
@@ -247,7 +247,7 @@ end;
 
 procedure TfmGrafWizGraficos.FormHide(Sender: TObject);
 begin
-   dmGraficos.taAntrops.Active := False;
+   dmGraficos.quAntrops.Active := False;
 end;
 
 procedure TfmGrafWizGraficos.btAplicarClick(Sender: TObject);

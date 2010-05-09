@@ -58,6 +58,7 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Pesquisar(Value : string);
+    Procedure MyLocate(DataField: String; Value: String);
     procedure CarregarVisualizador;
   published
     { Published declarations }
@@ -288,8 +289,9 @@ begin
 //   ShowMessage ('Pesquisar');
    with FDataLink.DataSource.DataSet do
    begin
-//      LocateSuccess :=
-      Locate(DataField, Value,  SearchOptions);
+
+      //Locate(DataField, Value,  SearchOptions);
+      MyLocate(DataField, Value)
    end;
    State := ntNull;
 end;
@@ -307,6 +309,30 @@ end;
 procedure TNavTable.SetOnNavChange(const Value: TNotifyEvent);
 begin
   FOnNavChange := Value;
+end;
+
+procedure TNavTable.MyLocate(DataField, Value: String);
+Var
+   MyBookMark: TBookmark;
+begin
+with FDataLink.DataSource.DataSet do
+     begin
+
+     DisableControls;
+     MyBookMark := GetBookmark;
+     first;
+     while (Trim(UpperCase(FieldByName(DataField).asString)) <> Trim(UpperCase(value))) and not Eof do
+           begin
+           Next;
+           end;
+
+     if Eof then
+        GotoBookmark(MyBookMark);
+
+     FreeBookmark(MyBookMark);
+     EnableControls;
+     end;
+
 end;
 
 end.

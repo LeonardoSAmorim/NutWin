@@ -27,13 +27,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Grids, DBGrids, RXDBCtrl, StdCtrls, ExtCtrls, db, DBMyNav, Buttons,
+  Grids, DBGrids,  StdCtrls, ExtCtrls, db, DBMyNav, Buttons,
   DBCtrls, Mask, NutCnst, RXLookup;
 
 type
   TfmDupAlim = class(TForm)
     paDuplAlim: TPanel;
-    grAlim: TRxDBGrid;
+    grAlim: TDBGrid;
     edAlim: TEdit;
     laPesqAli: TLabel;
     DBMyNav1: TDBMyNav;
@@ -63,6 +63,8 @@ type
     procedure edOrigemExit(Sender: TObject);
     procedure lcOrigemEnter(Sender: TObject);
     procedure lcOrigemCloseUp(Sender: TObject);
+    procedure grAlimDrawDataCell(Sender: TObject; const Rect: TRect;
+      Field: TField; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -284,6 +286,17 @@ begin
 
 // Libera o banco origem para aparecer a USDA
     DMAlimentos.TbOrigem.Filtered := False;
+
+end;
+
+procedure TfmDupAlim.grAlimDrawDataCell(Sender: TObject; const Rect: TRect;
+  Field: TField; State: TGridDrawState);
+begin
+   // se for diferente da USDA, coloca azul
+   if Field.DataSet.FieldByName('IDORIG').asString <> '{B970DAE1-B505-11D1-B683-00001D13DDBD}' then
+      (sender as TDBGrid).Font.Color := clBlue;
+   if Field.DataSet.FieldByName('PREP').asString = 'T' then
+     (sender as TDBGrid).Color := clGray;
 
 end;
 

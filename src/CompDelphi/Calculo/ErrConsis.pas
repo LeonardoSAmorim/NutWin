@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls,VCLUtils;
+  StdCtrls, ExtCtrls;
 
 type
   TfmErrConsistencia = class(TForm)
@@ -52,6 +52,48 @@ type
 implementation
 
 {$R *.DFM}
+procedure FitRectToScreen(var Rect: TRect);
+var
+  X, Y, Delta: Integer;
+begin
+  X := GetSystemMetrics(SM_CXSCREEN);
+  Y := GetSystemMetrics(SM_CYSCREEN);
+  with Rect do begin
+    if Right > X then begin
+      Delta := Right - Left;
+      Right := X;
+      Left := Right - Delta;
+    end;
+    if Left < 0 then begin
+      Delta := Right - Left;
+      Left := 0;
+      Right := Left + Delta;
+    end;
+    if Bottom > Y then begin
+      Delta := Bottom - Top;
+      Bottom := Y;
+      Top := Bottom - Delta;
+    end;
+    if Top < 0 then begin
+      Delta := Bottom - Top;
+      Top := 0;
+      Bottom := Top + Delta;
+    end;
+  end;
+end;
+procedure CenterWindow(Wnd: HWnd);
+var
+  R: TRect;
+begin
+  GetWindowRect(Wnd, R);
+  R := Rect((GetSystemMetrics(SM_CXSCREEN) - R.Right + R.Left) div 2,
+    (GetSystemMetrics(SM_CYSCREEN) - R.Bottom + R.Top) div 2,
+    R.Right - R.Left, R.Bottom - R.Top);
+  FitRectToScreen(R);
+  SetWindowPos(Wnd, 0, R.Left, R.Top, 0, 0, SWP_NOACTIVATE or
+    SWP_NOSIZE or SWP_NOZORDER);
+end;
+
 
 procedure TfmErrConsistencia.btDetailClick(Sender: TObject);
 begin

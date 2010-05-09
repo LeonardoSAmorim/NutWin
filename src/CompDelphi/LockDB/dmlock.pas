@@ -35,6 +35,7 @@ type
   Tdmlockbd = class(TDataModule)
     qryLock: TQuery;
     dbLock: TDatabase;
+    procedure dmlockbdCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,6 +48,8 @@ var
   dmLockBD: TdmLockBD;
 
 implementation
+
+uses uAliasName;
 
 {$R *.dfm}
 
@@ -74,6 +77,12 @@ begin
       dbLock.Rollback;
       Result := False;
     end;
+end;
+
+procedure Tdmlockbd.dmlockbdCreate(Sender: TObject);
+begin
+ dbLock.AliasName := BDE_ALIAS_NAME;
+ dbLock.Open;
 end;
 
 end.

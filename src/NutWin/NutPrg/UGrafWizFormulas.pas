@@ -27,13 +27,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Grids, DBGrids, RXDBCtrl, Wizard, db;
+  StdCtrls, ExtCtrls, Grids, DBGrids, Wizard, db;
 
 type
   TfmGrafWizFormulas = class(TForm)
     paWiz: TPanel;
     Label1: TLabel;
-    grFormulas: TRxDBGrid;
+    grFormulas: TDBGrid;
     paNome: TPanel;
     laNomeIndividuo: TLabel;
     ckComFaixa: TCheckBox;
@@ -96,3 +96,4 @@ begin
 end;
 
 end.
+ 

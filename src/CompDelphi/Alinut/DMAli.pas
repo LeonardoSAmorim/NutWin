@@ -70,7 +70,6 @@ type
     AliAuxIDGRUALI: TStringField;
     AliAuxTIPOALI: TStringField;
     AliAuxPREP: TStringField;
-    AliAuxOBSALI: TMemoField;
     taAliNutIDALI: TStringField;
     taAliNutIDNUT: TStringField;
     taAliNutVALOR: TFloatField;
@@ -99,6 +98,16 @@ type
     taAlimentoTIPOALI: TStringField;
     taAlimentoPREP: TStringField;
     taAlimentoOBSALI: TStringField;
+    DBAlimento: TDatabase;
+    AliAuxOBSALI: TStringField;
+    quAliIDALI: TStringField;
+    quAliNOME: TStringField;
+    quAliNOMESIMP: TStringField;
+    quAliIDORIG: TStringField;
+    quAliIDGRUALI: TStringField;
+    quAliTIPOALI: TStringField;
+    quAliPREP: TStringField;
+    quAliOBSALI: TStringField;
     procedure quMedCalcFields(DataSet: TDataSet);
     procedure DMAlimentoCreate(Sender: TObject);
   private
@@ -115,6 +124,8 @@ implementation
 
 {$R *.DFM}
 
+uses uAliasName;
+
 procedure TDMAlimento.quMedCalcFields(DataSet: TDataSet);
 begin
    if QtdeMedida <> nil then
@@ -127,6 +138,7 @@ procedure TDMAlimento.DMAlimentoCreate(Sender: TObject);
 //var
 //   xDataBaseName : String;
 begin
+DBAlimento.AliasName := BDE_ALIAS_NAME;
 {    xDataBaseName := 'DBCalculadora';
     taAlimento.DatabaseName := xDataBaseName;
     taGruAli.DatabaseName := xDataBaseName;
@@ -142,4 +154,3 @@ begin
 end;
 
 end.
- 

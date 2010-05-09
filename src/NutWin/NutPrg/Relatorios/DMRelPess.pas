@@ -195,6 +195,7 @@ type
     TbPessoaNomeResponsavelCompleto: TStringField;
     procedure TbPessoaCalcFields(DataSet: TDataSet);
     procedure TbPessoabkCalcFields(DataSet: TDataSet);
+    procedure DMRelPessoaCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -205,6 +206,8 @@ var
   DMRelPessoa: TDMRelPessoa;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -225,6 +228,12 @@ procedure TDMRelPessoa.TbPessoabkCalcFields(DataSet: TDataSet);
 begin
     TbPessoabk.Fieldbyname('NomeCompleto').asString := TbPessoabk.Fieldbyname('NomePess').asString + ' ' +
                TbPessoabk.Fieldbyname('SobrPess').asString ;
+end;
+
+procedure TDMRelPessoa.DMRelPessoaCreate(Sender: TObject);
+begin
+DBRelPessoa.AliasName :=  BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

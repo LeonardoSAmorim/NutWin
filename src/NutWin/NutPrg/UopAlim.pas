@@ -175,8 +175,7 @@ uses Pessoa, OpcSalas, NutMenu, DMNutrien, fmNutAcomp, DMSemaf;
 {$R *.DFM}
 
 procedure TfmOpcoesAlimentos.FormCreate(Sender: TObject);
-var
-   Valor : Integer;
+
 begin
    // configura Os nutrientes chamados da Calculadora
    ifNutrienteCalculadora.CriaFormInterno(TfmNutrientesAcomp);

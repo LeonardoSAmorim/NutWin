@@ -32,9 +32,6 @@ uses
 type
   TdmSemaforo = class(TDataModule)
     BDSemaforo: TDatabase;
-    taUsuarios: TTable;
-    dsUsuario: TDataSource;
-    qrySemaforo: TQuery;
     procedure dmSemaforoCreate(Sender: TObject);
     procedure dmSemaforoDestroy(Sender: TObject);
   private
@@ -60,6 +57,8 @@ var
   dmSemaforo: TdmSemaforo;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -172,7 +171,8 @@ begin
           + QuotedStr(trim(Descricao)) + ', '
           + QuotedStr(trim(FUsuarioDono)) + ', '
 //          + QuotedStr('08/19/2003 11:33:44') + ')';
-          + QuotedStr(FormatDateTime( 'mm/dd/yyyy hh:mm:ss', now)) + ')';
+//          + QuotedStr(FormatDateTime( 'mm/dd/yyyy hh:mm:ss', now)) + ')';
+          + QuotedStr(FormatDateTime( 'yyyy-mm-dd hh:mm:ss', now)) + ')';
 //         sql.SaveToFile('c:\resultado.txt');
           Prepare;
           ExecSQL;
@@ -193,6 +193,9 @@ end;
 
 procedure TdmSemaforo.dmSemaforoCreate(Sender: TObject);
 begin
+  BDSemaforo.AliasName := BDE_ALIAS_NAME;
+  openAllTables(self);
+  BDSemaforo.Open;
   FAplicacoesAtivas := LiberaTodosRecursosOrfaos;
   if FAplicacoesAtivas < 0 then
   begin

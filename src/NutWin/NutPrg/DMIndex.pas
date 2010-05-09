@@ -108,6 +108,7 @@ type
     TbAliGProt: TTable;
     TbGAliProt: TTable;
     DBIndex: TDatabase;
+    procedure DMIndexacaoCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -120,6 +121,8 @@ var
   DMIndexacao: TDMIndexacao;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -145,6 +148,11 @@ begin
 end;
 
 
+
+procedure TDMIndexacao.DMIndexacaoCreate(Sender: TObject);
+begin
+DBIndex.AliasName := BDE_ALIAS_NAME; 
+end;
 
 end.
  

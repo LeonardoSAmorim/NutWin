@@ -47,27 +47,29 @@ type
     drOutroDrive: TDriveComboBox;
     diOutroDiretorio: TDirectoryListBox;
     laCaminho: TLabel;
-    BackupFile: TBackupFile;
     laEmAndamento: TLabel;
     gaPorcentagem: TGauge;
     laTitulo: TLabel;
+
     procedure BitBtn1Click(Sender: TObject);
     procedure rbOutroLocalClick(Sender: TObject);
     procedure rbLocalOriginalClick(Sender: TObject);
     procedure buRecuperarClick(Sender: TObject);
-    procedure RestorefileNeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
-    procedure RestoreFileProgress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
+    procedure Restorefile2NeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
+    procedure RestoreFile2Progress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure buFechar_CancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure drOutroDriveChange(Sender: TObject);
-    procedure BackupFileError(Sender: TObject; const Error: Integer;
+    procedure BackupFile2Error(Sender: TObject; const Error: Integer;
       ErrString: String);
   private
     { Private declarations }
     FsDrive: Char;
   public
     { Public declarations }
+    MainPath : String;
+    BackupFile: TBackupFile;
     function Travapasta(sNomeDaPasta: string='Tabelas'): boolean;
     function Liberapasta(sNomeDaPasta: string='Tabelas'): boolean;
   end;
@@ -77,7 +79,7 @@ var
 
 implementation
 
-uses DMSemaf;
+uses DMSemaf, Services;
 
 {$R *.DFM}
 
@@ -118,16 +120,9 @@ begin
 end;
 
 procedure TfmRestore.rbLocalOriginalClick(Sender: TObject);
-var
-   MainPath : String;
 begin
-      if not CarregaChaveString(CFGRoot, CFGPath, 'Path', MainPath ) then
-      begin
-         ShowMessage( 'Erro de leitura da Chave: Path'  );
-         exit;
-      end;
 
-   diOutroDiretorio.Directory := MainPath +'\IBDADOS\BDADOS.GDB';
+   diOutroDiretorio.Directory := MainPath +'\MyNutWin\';
    drOutroDrive.Drive := diOutroDiretorio.Drive;
    drOutroDrive.Enabled := rbOutroLocal.Checked;
    diOutroDiretorio.Enabled := rbOutroLocal.Checked;
@@ -157,20 +152,22 @@ begin
       LsDestino := ''
    else
    begin
-      LsDestino := laCaminho.Caption;
+      LsDestino := diOutroDiretorio.Directory;
    end;
    BackupFile.RestoreFullPath := False;
    buRecuperar.Enabled := False;
    buFechar_Cancelar.Caption := 'Cancelar';
+   StopSvc('MySql', '');
    if BackupFile.Restore(edArquivo.Text, LsDestino) then
       MessageDlg('Recuperação concluída!',mtInformation,[mbOk],0)
    else
       MessageDlg('A recuperação falhou ou foi interrompida!',mtInformation,[mbOk],0);
    buRecuperar.Enabled := True;
    buFechar_Cancelar.Caption := '&Fechar';
+   StartSvc('MySql', '');
 end;
 
-procedure TfmRestore.RestorefileNeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
+procedure TfmRestore.Restorefile2NeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
 begin
       if MessageDlg('Insira o disco '+IntToStr(DiskID)+' no drive '+UpperCase(FsDrive)+' e'+#13#10+
                     'pressione OK para continuar.', mtConfirmation, [mbOK, mbCancel], 0) = mrCancel then
@@ -180,7 +177,7 @@ begin
       end;
 end;
 
-procedure TfmRestore.RestoreFileProgress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
+procedure TfmRestore.RestoreFile2Progress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
 begin
    with gaPorcentagem do
    begin
@@ -209,17 +206,30 @@ begin
 end;
 
 procedure TfmRestore.FormCreate(Sender: TObject);
-var
-   MainPath : String;
 
 begin
-      if not CarregaChaveString(CFGRoot, CFGPath, 'Path', MainPath ) then
+
+
+    BackupFile := TBackupFile.Create(self);
+   BackupFile.Version := '3.00';
+   BackupFile.BackupMode := bmIncremental;
+   BackupFile.CompressionLevel := clFastest;
+   BackupFile.RestoreMode := rmAll;
+   BackupFile.MaxSize := 0;
+   BackupFile.SetArchiveFlag := True;
+   BackupFile.OnProgress := RestoreFile2Progress;
+   BackupFile.OnNeedDisk := Restorefile2NeedDisk;
+   BackupFile.OnError := BackupFile2Error;
+   BackupFile.RestoreFullPath := False;
+   BackupFile.SaveFileID := False;
+      if not CarregaChaveString(CFGRoot, CFGPath, 'ProgramDataPath', MainPath ) then
       begin
          ShowMessage( 'Erro de leitura da Chave: Path'  );
          exit;
       end;
 
-   diOutroDiretorio.Directory := MainPath +'\IBDADOS\BDADOS.GDB';
+//   diOutroDiretorio.Directory := MainPath +'\IBDADOS\BDADOS.GDB';
+      diOutroDiretorio.Directory := MainPath +'\MyNutWin\';
 end;
 
 procedure TfmRestore.drOutroDriveChange(Sender: TObject);
@@ -227,7 +237,7 @@ begin
    diOutroDiretorio.Drive := drOutroDrive.Drive;
 end;
 
-procedure TfmRestore.BackupFileError(Sender: TObject; const Error: Integer;
+procedure TfmRestore.BackupFile2Error(Sender: TObject; const Error: Integer;
   ErrString: String);
 begin
    ShowMessage(errString);
@@ -256,3 +266,4 @@ begin
 end;
 
 end.
+ 

@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, DiskInfo, ExtCtrls, Backup, ComCtrls, Gauges, FileUtil;
+  StdCtrls, Buttons,  ExtCtrls, Backup, ComCtrls, Gauges, FileUtil;
 
 type
   TfmBackup = class(TForm)
@@ -37,33 +37,30 @@ type
     Arquivo: TLabel;
     edArquivo: TEdit;
     BitBtn1: TBitBtn;
-    DiskInfo: TDiskInfo;
-    Label2: TLabel;
     buCopiar: TButton;
     buFechar_Cancelar: TButton;
-    BackupFile: TBackupFile;
     gaPorcentagem: TGauge;
     SaveDialog: TSaveDialog;
     laEmAndamento: TLabel;
     Label1: TLabel;
     edTitulo: TEdit;
-    laTipoDrive: TLabel;
     paAguarde: TPanel;
     procedure BitBtn1Click(Sender: TObject);
     procedure buCopiarClick(Sender: TObject);
-    procedure BackupFileNeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
+    procedure Backupfile2NeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
     procedure buFechar_CancelarClick(Sender: TObject);
-    procedure BackupFileProgress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
+    procedure Backupfile2Progress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure BackupFileError(Sender: TObject; const Error: Integer;
+    procedure Backupfile2Error(Sender: TObject; const Error: Integer;
       ErrString: String);
   private
     { Private declarations }
     FsDrive: Char;
   public
      pListaDeArquivos:TStrings;
+     BackupFile: TBackupFile;
     { Public declarations }
     function Travapasta(sNomeDaPasta: string='Tabelas'): boolean;
     function Liberapasta(sNomeDaPasta: string='Tabelas'): boolean;
@@ -74,7 +71,7 @@ var
 
 implementation
 
-uses DMSemaf;
+uses DMSemaf, Services;
 
 {$R *.DFM}
 
@@ -87,57 +84,23 @@ begin
       begin
          FsDrive := FileName[1];
          edArquivo.Text := FileName;
-         //Pegando informação do disco
-         try
-         DiskInfo.Disk := FileName[1];
-         except
-            MessageDlg('Erro na leitura do drive selecionado!',mtError,[mbOk],0);
-            Exit;
-         end;
+
       end;
-      case DiskInfo.DriveType of
-         dtFloppy: laTipoDrive.Caption := 'Disquete';
-         dtFixed: laTipoDrive.Caption := 'Disco Rígido';
-         dtNetwork: laTipoDrive.Caption := 'Drive de Rede';
-         dtCDROM: laTipoDrive.Caption := 'CD-ROM';
-         dtRAM: laTipoDrive.Caption := 'RAM';
-      end;
+
    end;
 end;
 
 procedure TfmBackup.buCopiarClick(Sender: TObject);
+
+
 begin
+     StopSvc('MySql', '');
    if edArquivo.Text = '' then
    begin
       MessageDlg('Nenhum arquivo selecionado!',mtInformation,[mbOk],0);
       Exit;
    end;
-   DiskInfo.Disk := FsDrive; //Relendo o Drive
-   if DiskInfo.DriveType = dtFloppy then
-   begin
-      if MessageDlg('Atenção! O procedimento de cópia de segurança irá'+#13#10+
-                    'apagar o conteúdo do(s) disco(s). Confirma?', mtConfirmation, [mbYes,mbNo], 0) = mrYes then
-      begin
-         if MessageDlg('Insira o disco 1 no drive '+UpperCase(FsDrive)+' e'+#13#10+
-                       'pressione OK para iniciar.', mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
-         begin
-            paAguarde.Visible := True;
-            fmBackup.Refresh;
-            ClearDir(DiskInfo.Disk+':\', True);
-            paAguarde.Visible := False;
-            fmBackup.Refresh;
-            DiskInfo.Disk := FsDrive;
-         end
-         else
-            Exit;
-      end
-      else
-         Exit;
-  //    SetVolumeLabel(PChar(FsDrive),'BkpNW-1');
-      BackupFile.MaxSize := DiskInfo.DiskFree;
-   end
-   else
-      BackupFile.MaxSize := 0;
+   BackupFile.MaxSize := 0;
    BackupFile.BackupTitle := edTitulo.Text;
    BackupFile.BackupMode := bmAll;
    BackupFile.CompressionLevel := clMax;
@@ -151,27 +114,15 @@ begin
       MessageDlg('O procedimento de cópia falhou ou foi interrompido!',mtInformation,[mbOk],0);
    buCopiar.Enabled := True;
    buFechar_Cancelar.Caption := '&Fechar';
+
+   StartSvc('MySql', '');
+
 end;
 
-procedure TfmBackup.BackupFileNeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
+procedure TfmBackup.Backupfile2NeedDisk(Sender: TObject; DiskID: Word; var Continue: Boolean);
 begin
-      if MessageDlg('Insira o disco '+IntToStr(DiskID)+' no drive '+UpperCase(FsDrive)+' e'+#13#10+
-                    'pressione OK para continuar.', mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
-      begin
-         paAguarde.Visible := True;
-         fmBackup.Refresh;
-         ClearDir(DiskInfo.Disk+':\', True);
-         paAguarde.Visible := False;
-         fmBackup.Refresh;
-         DiskInfo.Disk := FsDrive;
-      end
-      else
-      begin
-         Continue := False;
-         Exit;
-      end;
-      BackupFile.MaxSize := DiskInfo.DiskFree;
-     // SetVolumeLabel(PChar(FsDrive),PChar('BkpNW-'+IntToStr(DiskID)));
+      MessageDlg('Disco Cheio!', mtError, [mbOK],0);
+      Continue := False;
 end;
 
 procedure TfmBackup.buFechar_CancelarClick(Sender: TObject);
@@ -182,7 +133,7 @@ begin
       Close;
 end;
 
-procedure TfmBackup.BackupFileProgress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
+procedure TfmBackup.Backupfile2Progress(Sender: TObject; FileName: String; Percent: TPercentage; var Continue: Boolean);
 begin
    with gaPorcentagem do
    begin
@@ -208,29 +159,29 @@ end;
 
 procedure TfmBackup.FormCreate(Sender: TObject);
 begin
-   fsDrive := 'A';//Default
-   {
-   pListaDeArquivos - Lista dos Arquivos a serem Copiados...
-   Para outras aplicações que não o Clinic Manager, mude este
-   valor logo após o Create deste form, não esqueçam de Limpa-la
-   Exemplo,
-      Application.CreateForm(TfmBackup, fmBackup);
-      fmBackup.pListaDeArquivos.clear;
-      fmBackup.pListaDeArquivos.add('GuideLines.mdb');
-      ...
-      fmBackup.show;
-   }
-
-
+   fsDrive := 'C';//Default
    pListaDeArquivos := TStringList.Create;
+   BackupFile := TBackupFile.Create(self);
+   BackupFile.Version := '3.00';
+   BackupFile.BackupMode := bmIncremental;
+   BackupFile.CompressionLevel := clFastest;
+   BackupFile.RestoreMode := rmAll;
+   BackupFile.MaxSize := 0;
+   BackupFile.SetArchiveFlag := True;
+   BackupFile.OnProgress := Backupfile2Progress;
+   BackupFile.OnNeedDisk := Backupfile2NeedDisk;
+   BackupFile.OnError := Backupfile2Error;
+   BackupFile.RestoreFullPath := False;
+   BackupFile.SaveFileID := False;
 end;
 
 procedure TfmBackup.FormDestroy(Sender: TObject);
 begin
    pListaDeArquivos.Free;
+
 end;
 
-procedure TfmBackup.BackupFileError(Sender: TObject; const Error: Integer; ErrString: String);
+procedure TfmBackup.Backupfile2Error(Sender: TObject; const Error: Integer; ErrString: String);
 begin
    ShowMessage(errString);
 end;
@@ -241,7 +192,8 @@ begin
   Jair - Trava pasta escolhida, assim mais de uma pessoa NÃO pode acessar
          essa pasta esteja ela na mesma máquina ou nao.
   **)
-  Result := dmSemaforo.TravaRecurso('Bkp_' + sNomeDaPasta, 'Backup');
+  Result := true; //dmSemaforo.TravaRecurso('Bkp_' + sNomeDaPasta, 'Backup');
+    // não posso usar semaforo aqui, pois o datamodule dmSemafora não existe mais
   if not Result then
     ShowMessage('Pasta em uso, favor tentar novamente mais tarde!');
 end;
@@ -252,7 +204,9 @@ begin
   Jair - Limpa recurso da tabela
   assim não fica preso para essa aplicação
   **)
-  Result := dmSemaforo.LiberaRecurso('Bkp_' + sNomeDaPasta);
+  Result := true; //dmSemaforo.LiberaRecurso('Res_' + sNomeDaPasta);
+  // não posso usar semaforo aqui, pois o datamodule dmSemafora não existe mais
 end;
 
 end.
+ 

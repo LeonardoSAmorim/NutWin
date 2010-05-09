@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, DBCtrls, StdCtrls, Grids, DBGrids, Db, DBTables, Buttons,
-  ActnList, DBMyNav, RXLookup, Mask, FnpNumericEdit, Wizard, NutCnst;
+  ActnList, DBMyNav, Mask, FnpNumericEdit, Wizard, NutCnst;
 
 type
   TfmInqAtivFis = class(TForm)
@@ -69,7 +69,6 @@ type
     LocAtivFis: TAction;
     btLimpaTabelaAtFis: TButton;
     mnAtivFis: TDBMyNav;
-    dcAtividades: TRxDBLookupCombo;
     deTempo: TDBEdit;
     paAtiv: TPanel;
     grListaAtividades: TDBGrid;
@@ -120,7 +119,7 @@ var
 
 implementation
 
-uses fmTempoAtivF;
+uses fmTempoAtivF, uAliasName;
 
 {$R *.DFM}
 
@@ -231,6 +230,7 @@ end;
 
 procedure TfmInqAtivFis.FormCreate(Sender: TObject);
 begin
+dbAtivFis.AliasName := BDE_ALIAS_NAME;
       dbAtivFis.Connected := True;
       tbT19bk.Open;
       tbT19.Open;
@@ -393,3 +393,4 @@ begin
 end;
 
 end.
+   

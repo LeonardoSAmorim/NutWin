@@ -29,7 +29,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Db, DBTables, DBCtrls, ExtCtrls, DBMyNav, ComCtrls, Mask,
   ExtDlgs, jpeg, RegEdit, RegConst2, Grids, DBGrids, DBCGrids, MmLstBox,
-  MoveItens, Buttons, DBActns, ActnList, RXLookup, InsFrm, Person, NutCnst;
+  MoveItens, Buttons, DBActns, ActnList, InsFrm, Person, NutCnst;
 
 type
   TOpcoes = (opTodos, opCadastro, opMenu, opRelatorios, opNutrientes, opOrdemNutrientes);
@@ -159,8 +159,8 @@ begin
 end;
 
 procedure TfmOpcoesSistema.FormCreate(Sender: TObject);
-var
-   Valor : Integer;
+
+
 begin
     pcOpcoes.ActivePage := teMenu;
 
@@ -684,7 +684,7 @@ begin
       lbPersona.Items.Add( Persona.Strings[0] );
       lbPersona.Items.Add( Persona.Strings[1] );
       lbPersona.Items.Add( Persona.Strings[2] );
-      if drCabecLinha.Value <> '0' then
+      if ( drCabecLinha.Value <> '0' ) AND ( drCabecLinha.Value <> '' ) then
          lbPersona.Items.Strings[ StrToInt(drCabecLinha.Value)-1 ] := deCabecTexto.Text;
       Persona.Free;
    end;

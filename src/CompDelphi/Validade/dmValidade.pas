@@ -43,6 +43,7 @@ type
     taValidadeVALIDADE: TIntegerField;
     taValidadeSERIAL: TStringField;
     taValidadeLICENCAS: TIntegerField;
+    procedure dmValidaCreate(Sender: TObject);
   private
     FDataBaseName: String;
     procedure SetDataBaseName(const Value: String);
@@ -57,6 +58,8 @@ var
 
 implementation
 
+uses uAliasName;
+
 
 {$R *.DFM}
 
@@ -66,10 +69,18 @@ begin
    dbValidade.Connected := False;
    if FDataBaseName = '' then
       taValidade.DatabaseName := dbValidade.DatabaseName
+
    else
       taValidade.DatabaseName := FDataBaseName;
+      
+
    dbValidade.Connected := True;
    taValidade.Open;
+end;
+
+procedure TdmValida.dmValidaCreate(Sender: TObject);
+begin
+dbValidade.AliasName := BDE_ALIAS_NAME;
 end;
 
 end.

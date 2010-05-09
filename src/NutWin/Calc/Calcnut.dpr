@@ -111,7 +111,7 @@ uses
   RlDieObs in 'RlDieObs.pas' {fmRelDieObservacoes},
   RlInqObs in 'RlInqObs.pas' {fmRelInqObservacoes},
   fmBarraProg in 'fmBarraProg.pas' {fmBarraDeProgresso},
-  DMCriaTabTemp in 'DMCriaTabTemp.pas' {dmCriaTabelasTemp: TDataModule},
+//  DMCriaTabTemp in 'DMCriaTabTemp.pas' {dmCriaTabelasTemp: TDataModule},
   fmPrepVerifPF in 'fmPrepVerifPF.pas' {fmVerificaPesoFinal},
   fmHpAntrop in 'fmHpAntrop.pas' {fmHelpAntrop},
   InfoSistema in '..\..\CompDelphi\About\InfoSistema.pas' {fmInfoSistema},
@@ -119,13 +119,14 @@ uses
   NovoPreview in '..\..\CompDelphi\Calculo\NovoPreview.pas' {fmNovoPreview},
   InqAtivFis in 'InqAtivFis.pas' {fmInqAtivFis},
   Validade in '..\..\CompDelphi\Validade\Validade.pas' {fmValidade},
-  fmCadHelp in '..\..\CompDelphi\HlpNut\fmCadHelp.pas' {fmCadHlp},
+//  fmCadHelp in '..\..\CompDelphi\HlpNut\fmCadHelp.pas' {fmCadHlp},
   dmHelp in '..\..\CompDelphi\HlpNut\dmHelp.pas' {dmHlp: TDataModule},
   fmTempoAtivF in 'fmTempoAtivF.pas' {fmTempoAtivFis},
   UItensAliOrdem in 'UItensAliOrdem.pas' {fmItensAliOrdem},
   fmRelBranco in 'fmRelBranco.pas' {fmRelatBranco},
   RlIdentificacaoLandscape in 'RlIdentificacaoLandscape.pas' {fmRelIdentificacaoLandscape},
-  RelConfig in '..\..\CompDelphi\Calculo\RelConfig.pas';
+  RelConfig in '..\..\CompDelphi\Calculo\RelConfig.pas',
+  uAliasName in '..\NutPrg\uAliasName.pas';
 //  DMDBNut in '..\..\CompDelphi\AliNut\DMDBNut.pas' {dmDataBasesNut: TDataModule};
 
 {$R *.RES}
@@ -159,9 +160,9 @@ begin
   end;
 
   // A conversão não foi feita, portanto sair do programa
-  if ConverteuBD( MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe' ) <> 0 then
+{  if ConverteuBD( MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe' ) <> 0 then
      exit;
-
+ }
 
   //Validade do programa
   with TfmValidade.Create(nil) do
@@ -200,7 +201,7 @@ begin
 
      laOperacao.Caption := 'Criando Tabelas Temporárias...';
      laOperacao.Update;
-     Application.CreateForm(TdmCriaTabelasTemp, dmCriaTabelasTemp);
+//     Application.CreateForm(TdmCriaTabelasTemp, dmCriaTabelasTemp);
   pbProgresso.StepBy( 20 );
 
      laOperacao.Caption := 'Criando Componentes...';

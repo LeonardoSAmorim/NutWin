@@ -63,32 +63,24 @@ type
     TbPessoaIDPessoa: TStringField;
     TbPessoaSobrPess: TStringField;
     TbPessoaNomePess: TStringField;
-    TbPessoaDataNasc: TDateField;
     TbPessoaCodSexo: TStringField;
     TbPessoaSobrResp: TStringField;
     TbPessoaNomeResp: TStringField;
-    TbPessoaDataCad: TDateField;
     TbPessoaFotoPess: TGraphicField;
     DSRefeicao: TDataSource;
     TbRefeicao: TTable;
-    TbAlimentoOUID: TStringField;
     TbAlimentoNOME: TStringField;
     TbAlimentoNOMESIMP: TStringField;
-    TbAlimentoIDORG: TStringField;
     TbAlimentoIDGRUALI: TStringField;
-    TbAlimentoIDMEDPAD: TStringField;
     TbAlimentoTIPOALI: TStringField;
-    TbAlimentoOUIDPai: TStringField;
     TbRefeicaoID_REFEICAO: TStringField;
     TbRefeicaoNOME: TStringField;
-    TbRefeicaoHORARIO: TTimeField;
     DSNutrientes: TDataSource;
     TbNutrientes: TTable;
     TbNutrientesIDNUT: TStringField;
     TbNutrientesABREV: TStringField;
     TbNutrientesNOMENUT: TStringField;
     TbNutrientesUNIDADE: TStringField;
-    TbNutrientesORDPADRAO: TIntegerField;
     TbPessoaIdadeAnos: TStringField;
     DSPesqTemp: TDataSource;
     qrPesqTemp: TQuery;
@@ -100,7 +92,6 @@ type
     TbCadPastas: TTable;
     TbCadPastasIdPasta: TStringField;
     TbCadPastasIdPessoa: TStringField;
-    TbCadPastasDataCad: TDateField;
     TbPesqTemp1NomeCompleto: TStringField;
     TbPesqTemp1NOMEPESS: TStringField;
     TbPesqTemp1SOBRPESS: TStringField;
@@ -109,6 +100,21 @@ type
     TbGrupoAlimIDGRUALI: TStringField;
     TbGrupoAlimNOMEGRU: TStringField;
     TbNaturalidadeCidUF: TStringField;
+    dbDmPesquisa: TDatabase;
+    TbPessoaDATANASC: TDateTimeField;
+    TbPessoaFONETIZADO: TStringField;
+    TbPessoaDATACAD: TDateTimeField;
+    TbAlimentoIDALI: TStringField;
+    TbAlimentoIDORIG: TStringField;
+    TbAlimentoPREP: TStringField;
+    TbAlimentoOBSALI: TStringField;
+    TbRefeicaoHORARIO: TDateTimeField;
+    TbRefeicaoEXCLUSIVE: TStringField;
+    TbNutrientesORDPADRAO: TFloatField;
+    TbNutrientesVISIVEL: TStringField;
+    TbNutrientesIDORIG: TStringField;
+    TbNutrientesORDUSDA: TFloatField;
+    TbCadPastasDATACAD: TDateTimeField;
     procedure DMPesquisaCreate(Sender: TObject);
     procedure DMPesquisaDestroy(Sender: TObject);
     procedure TbPessoaCalcFields(DataSet: TDataSet);
@@ -135,6 +141,8 @@ var
   DMPesquisa: TDMPesquisa;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -230,6 +238,8 @@ end;
 
 procedure TDMPesquisa.DMPesquisaCreate(Sender: TObject);
 begin
+dbDmPesquisa.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
     lsPastas := TStringList.Create;
 end;
 

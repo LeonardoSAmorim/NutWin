@@ -68,7 +68,7 @@ var
 
 implementation
 
-uses fmCadHelp;
+uses fmCadHelp, uAliasName;
 
 {$R *.DFM}
 
@@ -280,6 +280,8 @@ end;
 
 procedure TdmHlp.dmHlpCreate(Sender: TObject);
 begin
+dbHlp.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
    FormsBuildedList := TStringList.Create;
 end;
 

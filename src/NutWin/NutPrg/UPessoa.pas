@@ -151,7 +151,7 @@ type
     deNomeMae: TDBEdit;
     laResp: TLabel;
     deDataNasc: TDBEdit;
-    btAlteraDataNasc: TButton;
+    _btAlteraDataNasc: TButton;
     laDtnasc: TLabel;
     deNome: TDBEdit;
     laNomePess: TLabel;
@@ -191,8 +191,6 @@ type
     grTelefones: TDBGrid;
     ntFone: TDBMyNav;
     ahAlmaIndividuo: TAlmaHumana;
-    reAnamNutr: TBxRichToolBar;
-    reExames: TBxRichToolBar;
     AnamCan: TDataSetCancel;
     AnamSal: TDataSetPost;
     bbAnamSal: TBitBtn;
@@ -309,7 +307,7 @@ type
     procedure ExaEdiExecute(Sender: TObject);
     procedure ExaDelExecute(Sender: TObject);
     procedure ChecaGravacaoPessoaExecute(Sender: TObject);
-    procedure btAlteraDataNascClick(Sender: TObject);
+//    procedure btAlteraDataNascClick(Sender: TObject);
     procedure MontaEscopo;
     procedure teAntropShow(Sender: TObject);
     procedure teInqShow(Sender: TObject);
@@ -341,7 +339,7 @@ type
     procedure tbsConsultaExit(Sender: TObject);
     procedure teExamesEnter(Sender: TObject);
     procedure teExamesExit(Sender: TObject);
-    procedure deDataNascEnter(Sender: TObject);
+//    procedure deDataNascEnter(Sender: TObject);
     procedure deEMailKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure AnamCanExecute(Sender: TObject);
@@ -430,7 +428,7 @@ var
 implementation
 
 uses UCadPes, MenPes, NutMenu, CadAnam, CalcNutr, NutWiz, ULocPess,
-  fmModAnam, UTipoExame, UDataNasc, UGrafAc, UCadPastas, DMSemaf,
+  fmModAnam, UTipoExame, {UDataNasc,} UGrafAc, UCadPastas, DMSemaf,
   //##########################
   DMMBoard, DatCalc, UFonetPess, UPess, DMRelPess, DMGraf, UGrafWiz;
 //##########################
@@ -886,7 +884,7 @@ begin
   end;
 end;
 
-procedure TfmPessoa.btAlteraDataNascClick(Sender: TObject);
+{procedure TfmPessoa.btAlteraDataNascClick(Sender: TObject);
 var
   fmDataNasc: TfmDataNasc;
   Ref, Nasc: TMedida;
@@ -918,7 +916,7 @@ begin
   Nasc.Free;
   Idade.free;
 end;
-
+}
 procedure TfmPessoa.MontaEscopo;
 var
   NovoEscopo: TMemoria;
@@ -1484,18 +1482,18 @@ begin
   fm_MenuNut.KeyPreview := True;
 end;
 
-procedure TfmPessoa.deDataNascEnter(Sender: TObject);
+{procedure TfmPessoa.deDataNascEnter(Sender: TObject);
 begin
   if not FlagDNascimento then
   begin
     FlagDNascimento := True;
-    btAlteraDataNascClick(Sender);
+//    btAlteraDataNascClick(Sender);
   end
   else
     FlagDNascimento := false;
 
 end;
-
+}
 procedure TfmPessoa.deEMailKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin

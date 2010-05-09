@@ -45,6 +45,7 @@ type
     TbMedidasIDMEDCAS: TStringField;
     TbMedidasMEDIDA: TStringField;
     TbPrecoAliNomeMedidaPreco: TStringField;
+    procedure DMRelPrecoCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,8 +57,14 @@ var
 
 implementation
 
-uses DMRelMed;
+uses DMRelMed, uAliasName;
 
 {$R *.DFM}
+
+procedure TDMRelPreco.DMRelPrecoCreate(Sender: TObject);
+begin
+DbRelPreco.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
+end;
 
 end.

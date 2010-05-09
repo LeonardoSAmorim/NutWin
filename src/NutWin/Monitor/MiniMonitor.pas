@@ -45,6 +45,7 @@ type
     procedure ckAutoRefreshClick(Sender: TObject);
     procedure seTempoChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,6 +56,8 @@ var
   fmSemaforo: TfmSemaforo;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -79,6 +82,11 @@ procedure TfmSemaforo.FormShow(Sender: TObject);
 begin
    fmSemaforo.Top := 0;
    fmSemaforo.Left := 0;
+end;
+
+procedure TfmSemaforo.FormCreate(Sender: TObject);
+begin
+dbSemaforo.DatabaseName :=
 end;
 
 end.

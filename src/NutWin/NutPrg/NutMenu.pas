@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, Menus, StdCtrls, Buttons, DBCtrls, ComCtrls, DBTables, DB,
-  Grids, Spin, DBGrids, Mask, Tabs, InsFrm, RXDBCtrl, ActnList,
+  Grids, Spin, DBGrids, Mask, Tabs, InsFrm,  ActnList,
   USalas, OpcSalas, qrprntr, HtmlHlp,Sobre,
   RegEdit, RegConst2, KeyNav, NutCnst, jpeg, ULocAlim, Validade, dmValidade;
 
@@ -237,7 +237,7 @@ uses NutOpc, NutRelat, NutPesq, NutLogin, NutRede, AnamAlim, AnamMed,
   UManut, DMNutWin, Tabela, UPesquisa, Pessoa, UPessoa, TabAli, Alimento,
   UCadPastas, UOpcoes, DMIndex, UDupAlim, UPessApr, UPrinc, UAlimApresent,
   CadAnam, UopAlim, UOpSist, NutRelatInd, DMMBoard, DMPesq, ULocPess,
-  DMAliPrep, NutDica, NovoPreview, UBackup, URestore, DMSemaf;
+  DMAliPrep, NutDica, NovoPreview, UBackup, URestore, DMSemaf, uAliasName;
 
 {$R *.DFM}
 
@@ -584,7 +584,7 @@ begin
   // Mostra opção de Registro se for versão de avaliação
   with TdmValida.Create(self) do
   try
-    DataBaseName := dmMotherBoard.DBOrg.DatabaseName;
+ //   DataBaseName := dmMotherBoard.DBOrg.DatabaseName;
     mnRegistro.Visible := (taValidade.FieldByName('Versao_Avaliacao').AsString = 'T')
   finally
     Free;
@@ -940,7 +940,7 @@ end;
 procedure Tfm_MenuNut.CriaBackup(Interno: boolean);
 var
   MainPath: string;
-
+  i:cardinal;
 begin
   if interno then
   begin
@@ -949,7 +949,7 @@ begin
   end
   else
   begin
-    if not CarregaChaveString(CFGRoot, CFGPath, 'Path', MainPath) then
+    if not CarregaChaveString(CFGRoot, CFGPath, 'ProgramDataPath', MainPath) then
     begin
       ShowMessage('Erro de leitura da Chave: Path');
       exit;
@@ -958,13 +958,20 @@ begin
     Application.CreateForm(TfmBackup, fmBackup);
     // Seto alguns valores em backup.
 
-    fmBackup.pListaDeArquivos.Add(MainPath + '\IBDADOS\BDADOS.GDB'); //Default
+//    fmBackup.pListaDeArquivos.Add(MainPath + '\IBDADOS\BDADOS.GDB'); //Default
+    fmBackup.pListaDeArquivos.Add(MainPath + '\MyNutWin\*'); //Default
     fmBackup.edTitulo.text := 'Cópia feita por ' + DMPessoa.UsuarioLogado + ' em ' + DateToStr(Date);
-    fmBackup.edArquivo.text := 'A:\NUTWIN.BNW';
+    fmBackup.edArquivo.text := 'C:\NUTWIN.BNWz';      // arquivo BackupNutWin
     try
        (**
        Jair - Trava/libera a pasta para o usuário.
        **)
+       for I := Application.ComponentCount - 1 downto 0 do
+           begin
+           if (Application.Components[I] is TDataModule) then
+              (Application.Components[I]).Free;
+           end;
+
        if fmBackup.Travapasta then
        begin
           fmBackup.ShowModal;
@@ -1576,7 +1583,9 @@ begin
   //Validade do programa
   with TfmValidade.Create(nil) do
   try
-    DataBaseName := 'BDOrganizador';
+    DataBaseName := BDE_ALIAS_NAME;
+
+
     //     ShowMessage( IntToStr(TipoValidade));
     case TipoValidade of
       REGISTRO_VENCIDO,
@@ -1599,6 +1608,7 @@ begin
 end;
 
 procedure Tfm_MenuNut.mnBackupClick(Sender: TObject);
+
 begin
   // Proibe a entrada nesta opção
   if mnBackup.Tag = MN_ACESSONEGADO then
@@ -1606,9 +1616,20 @@ begin
     ShowMessage(MSG_ACESSONEGADO);
     exit;
   end;
+  if MessageDlg('O processo de backup irá parar o serviço de banco dados para executar sua tarefa.' + #13#10 +
+    'Esta operação irá desconectar todos os usuários que estejam acessando o sistema' + #13#10 +
+    'Deseja continuar ?', mtConfirmation,
+    [mbYes, mbNo], 0) <> mrYes then
+    begin
+    ShowMessage('Operação Cancelada.');
+    EXIT;
+    end;
 
   Screen.Cursor := crHourGlass;
+
   CriaBackup(False);
+  Showmessage('O programa será agora finalizado. Chame-o novamente para que sejam refeitas as configurações.');
+  Application.Terminate;
   Screen.Cursor := crDefault;
 
 end;
@@ -1626,9 +1647,10 @@ begin
   end;
 
   FRestore := False;
+  
   if MessageDlg('O programa disponibiliza duas formas de restaurar seus dados.' + #13#10 +
-    'No primeiro modo, será EXCLUÍDA toda a base de dados e gravada a do disquete.' + #13#10 +
-    'Na outra opção, o arquivo BDADOS.GDB será gravado no local de sua escolha e deverá depois ser copiado em cima do banco original.' + #13#10 +
+    'No primeiro modo, será EXCLUÍDA toda a base de dados e gravada a do backup.' + #13#10 +
+    'Na outra opção, os arquivos das tabelas serão gravados no local de sua escolha e deverá depois ser copiado em cima do banco original.' + #13#10 +
     'Deseja continuar ?', mtConfirmation,
     [mbYes, mbNo], 0) = mrYes then
   begin

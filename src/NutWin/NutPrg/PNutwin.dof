@@ -44,7 +44,7 @@ UnitOutputDir=
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
-Packages=TLIB40;VCL40;VCLIDE40;VCLX40;VCLJPG40;VCLDB40;VCLDBX40;VCLSMP40;QRPT40;ibevnt40;VCLMID40;NMFAST40;INETDB40;INET40;Dic;Persist;RXCTL4;RXDB4;DSS40;TEEUI40;TEEDB40;TEE40;BASICOS;CNSComp;nutricao
+Packages=QRPT40
 Conditionals=
 DebugSourceDirs=
 UsePackages=0
@@ -55,9 +55,9 @@ HostApplication=
 IncludeVerInfo=1
 AutoIncBuild=1
 MajorVer=1
-MinorVer=5
-Release=2
-Build=51
+MinorVer=6
+Release=0
+Build=5
 Debug=0
 PreRelease=0
 Special=0
@@ -68,20 +68,13 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=Departamento de Informática em Saúde© - DIS- Unifesp/EPM
 FileDescription=Programa de Apoio à Nutrição
-FileVersion=1.5.2.51
+FileVersion=1.6.0.5
 InternalName=NUTWIN
 LegalCopyright=Universidade Federal de São Paulo - Unifesp
 LegalTrademarks=Universidade Federal de São Paulo - Unifesp
 OriginalFilename=PNutwin.exe
-ProductName=Programa de Apoio à Nutrição®, 2002
-ProductVersion=1.5 - 2002
+ProductName=Programa de Apoio à Nutrição®, 2009
+ProductVersion=1.6 - 2009
 Comments=O Programa de Apoio à Nutrição está protegido pela lei  nº 7.646/87, que dispõe sobre a proteção da propriedade intelectual de programas de computador e sua comercialização no país. A reprodução não autorizada constituirá crime com pena prevista na lei.
 [Excluded Packages]
 $(DELPHI)\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
-[HistoryLists\hlUnitAliases]
-Count=1
-Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-[HistoryLists\hlSearchPath]
-Count=2
-Item0=$(DELPHI)\Source\Vcl
-Item1=c:\Arquivos de Programas\Borland\Delphi4\Source\Vcl

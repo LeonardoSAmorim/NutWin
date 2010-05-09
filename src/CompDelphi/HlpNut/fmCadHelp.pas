@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ComCtrls, ExtCtrls, DBCtrls, Grids, DBGrids, Buttons, db, Mask,
-  DBCGrids, RXDBCtrl;
+  DBCGrids;
 
 type
   TfmCadHlp = class(TForm)
@@ -46,7 +46,7 @@ type
     bbAtrib: TButton;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
-    RxDBGrid1: TRxDBGrid;
+    RxDBGrid1: TDBGrid;
     edItemEscolhido: TEdit;
     procedure bbAtribClick(Sender: TObject);
     procedure rgEmFocoClick(Sender: TObject);
@@ -108,3 +108,4 @@ begin
 end;
 
 end.
+ 

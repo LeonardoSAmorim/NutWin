@@ -45,9 +45,7 @@ type
     TbAlimentoNOME: TStringField;
     TbAlimentoNOMESIMP: TStringField;
     TbAlimentoIDGRUALI: TStringField;
-    TbAlimentoIDMEDPAD: TStringField;
     TbAlimentoTIPOALI: TStringField;
-    TbAlimentoOUIDPai: TStringField;
     TbAlimentoOrigem: TStringField;
     TbAlimentoGrupoAlimentar: TStringField;
     DSAlimentobk: TDataSource;
@@ -63,7 +61,6 @@ type
     TbMedidasCaseirasNomeMedida: TStringField;
     DSPreparac: TDataSource;
     TbPreparac: TTable;
-    TbPreparacData: TDateField;
     TbPreparacPrep: TMemoField;
     DSMCVisNut: TDataSource;
     TbMCVisNut: TTable;
@@ -85,7 +82,6 @@ type
     TbPrecoAliIDMEDCAS: TStringField;
     TbPrecoAliQTDE: TFloatField;
     TbPrecoAliPRECO: TFloatField;
-    TbPrecoAliDATA: TDateField;
     TbPrecoAliMEDGR: TStringField;
     DSPrecoAli: TDataSource;
     TbMCPrecoNomeValor: TStringField;
@@ -134,9 +130,7 @@ type
     TbAlimentoBkNOME: TStringField;
     TbAlimentoBkNOMESIMP: TStringField;
     TbAlimentoBkIDGRUALI: TStringField;
-    TbAlimentoBkIDMEDPAD: TStringField;
     TbAlimentoBkTIPOALI: TStringField;
-    TbAlimentoBkOUIDPai: TStringField;
     DSAliNutBK: TDataSource;
     TbAliNutBK: TTable;
     TbAliNutBKIDALI: TStringField;
@@ -156,6 +150,8 @@ type
     TbAlimentoOBSALI: TStringField;
     TbAlimentoBkPREP: TStringField;
     TbAlimentoBkOBSALI: TStringField;
+    TbPrecoAliDATA: TDateTimeField;
+    TbPreparacDATA: TDateTimeField;
     procedure TbOrigemNewRecord(DataSet: TDataSet);
     procedure TbGAlimentarNewRecord(DataSet: TDataSet);
     procedure QAlimentoAfterPost(DataSet: TDataSet);
@@ -170,6 +166,7 @@ type
     procedure TbPreparacBeforeDelete(DataSet: TDataSet);
     procedure TbPrecoAliBeforeDelete(DataSet: TDataSet);
     procedure TbMedidasCaseirasBeforeDelete(DataSet: TDataSet);
+    procedure DMAlimentosCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -369,6 +366,12 @@ end;
 procedure TDMAlimentos.TbMedidasCaseirasBeforeDelete(DataSet: TDataSet);
 begin
     ConfirmaDelecao ;
+end;
+
+procedure TDMAlimentos.DMAlimentosCreate(Sender: TObject);
+begin
+DBOrganizador.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

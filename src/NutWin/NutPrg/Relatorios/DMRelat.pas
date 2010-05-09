@@ -73,6 +73,7 @@ type
     TbGAlimentarPROTAVB: TStringField;
     TbAlimGrupoAlimentar: TStringField;
     TbAlimOrigem: TStringField;
+    procedure DMRelatAliCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,9 +85,17 @@ var
 
 implementation
 
-uses DMRelMed;
+uses DMRelMed, uAliasName;
 
 {$R *.DFM}
 
+procedure TDMRelatAli.DMRelatAliCreate(Sender: TObject);
+begin
+  DBRelatAli.AliasName := BDE_ALIAS_NAME;
+  openAllTables(self);
+  qrPreparac.open;
+  quAlimGAlim.open;
+  qrOrigem.OPEN;
+end;
+
 end.
- 

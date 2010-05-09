@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, ComCtrls, jpeg, MPlayer, RXCtrls;
+  StdCtrls, ExtCtrls, ComCtrls, jpeg, MPlayer;
 
 type
   TfmInfoSistema = class(TForm)
@@ -197,8 +197,8 @@ begin
 
        SelAttributes.Style := [];
 
-       lines.Add(' Versão 1.5. São Paulo: Departamento de Informática em Saúde - SPDM -');
-       lines.Add(' Unifesp/EPM, 2002. CD-ROM.');
+       lines.Add(' Versão 1.6. São Paulo: Departamento de Informática em Saúde - SPDM -');
+       lines.Add(' Unifesp/EPM, 2009.');
        lines.Add(' ');
        lines.Add('Coordenação do Projeto: ');
        lines.Add('Prof. Dr. Meide Silva Anção');
@@ -213,6 +213,7 @@ begin
        lines.Add('Ione Santos Lopes ');
        lines.Add('Pablo Jorge Madril ');
        lines.Add('Wagner Gomes Bastos ');
+       lines.Add('Sergio de Azevedo Melo ');
        lines.Add('');
        lines.Add('Arte Gráfica: ');
        lines.Add('Keith Chen de Cristo ');

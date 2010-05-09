@@ -29,7 +29,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DBCtrls, StdCtrls, ExtCtrls, Spin, Grids, DBGrids, ComCtrls, Buttons,
   Mask, dbpersis, Tabs, DBMyNav, db, qrprntr, Menus, OrgTeste, DBActns,
-  ActnList, DBCGrids, NutCnst, MmLstBox, MoveItens, RXDBCtrl;
+  ActnList, DBCGrids, NutCnst, MmLstBox, MoveItens, RXDBCtrl, HintListBox;
 
 type
   TfmAlim = class(TForm)
@@ -236,7 +236,7 @@ type
     btLocAlim: TBitBtn;
     deObsAli: TDBEdit;
     procedure btFecharClick(Sender: TObject);
-    procedure buNutClick(Sender: TObject);
+//    procedure buNutClick(Sender: TObject);
     procedure btApllyUpdateClick(Sender: TObject);
     procedure DBGrid3CellClick(Column: TColumn);
     procedure sdQtdeChange(Sender: TObject);
@@ -345,7 +345,7 @@ var
 
 implementation
 
-uses USelNut,DMAliPrep, DMNutrien, DMSubstCal,
+uses {USelNut,}DMAliPrep, DMNutrien, DMSubstCal,
   DMMedidas, DMPrecoAlim, NutMenu, TabAli, ULocAlim, UListaNut, UCadMed,
   CalcNutr, DumpMem;
 
@@ -589,14 +589,14 @@ with DMAlimentos.DBOrganizador  do
 
     Close;
 end; }
-
+{
 procedure TfmAlim.buNutClick(Sender: TObject);
 begin
     fmSelecNut := TfmSelecNut.Create( self );
     fmSelecNut.ShowModal;
     fmSelecNut.free;
 end;
-
+}
 procedure TfmAlim.btApllyUpdateClick(Sender: TObject);
 begin
    DMAlimentos.GravaDados;

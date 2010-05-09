@@ -27,7 +27,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Grids, DBGrids, StdCtrls, DBCtrls, ExtCtrls, ComCtrls, ToolWin, Buttons, DB;
+  Grids, DBGrids, StdCtrls, DBCtrls, ExtCtrls, ComCtrls, ToolWin, Buttons, DB,
+  DBTables;
 
 type
   TfmAliWizMedida = class(TForm)
@@ -57,7 +58,7 @@ var
 
 implementation
 
-uses DMMBoard;
+uses DMMBoard, DMUmAli;
 
 {$R *.DFM}
 

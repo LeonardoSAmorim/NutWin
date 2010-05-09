@@ -56,6 +56,7 @@ type
     taAreaVistaOVHEIGHT: TFloatField;
     taAreaVistaOVWIDTH: TFloatField;
     taAreaVistaOVCAPTION: TStringField;
+    Database1: TDatabase;
     procedure Button1Click(Sender: TObject);
     procedure DBImage1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -73,6 +74,8 @@ var
   Form1: TForm1;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -100,6 +103,8 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+Database1.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
    Ponto := TLabel.Create( DBImage1 );
    Ponto.Parent := DBImage1;
    Ponto.Caption := 'x';

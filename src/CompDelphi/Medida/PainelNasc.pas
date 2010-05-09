@@ -36,7 +36,7 @@ unit PainelNasc;
 interface
 
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-     Boxes, ExtCtrls, StdCtrls, ComCtrls, Mask, typinfo, ToolEdit, FnpNEditBlank,
+     Boxes, ExtCtrls, StdCtrls, ComCtrls, Mask, typinfo, FnpNEditBlank,
      FnpNumericEdit, Idade, Measurement;
 
 type
@@ -48,25 +48,29 @@ type
    TPainelNascimento = class(TControlGroupBox)
       rbIdadeEstimada : TRadioButton;
       cbUnidadesIdade : TComboBox;
-      deNascimento : TDateEdit;
       rbIdadeExata : TRadioButton;
       fnpIdadeValor : TFnpNEditBlank;
       FmdIdadeMaxima : TIdade;
       FmdIdadeMinima : TIdade;
     bvSeparador: TBevel;
+    dtNascimento: TDateTimePicker;
+
       procedure PNascimentoEnter(Sender : TObject);
       procedure cbUnidadesIdadeEnter(Sender : TObject);
       procedure fnpIdadeValorKeyPress(Sender : TObject; var Key : Char);
       procedure rbIdadeExataClick(Sender : TObject);
       procedure rbIdadeEstimadaClick(Sender : TObject);
-      procedure deNascimentoAcceptDate(Sender : TObject; var ADate : TDateTime; var Action : Boolean);
+
       procedure cbUnidadesIdadeChange(Sender : TObject);
-      procedure deNascimentoChange(Sender : TObject);
+      procedure dtNascimentoChange(Sender : TObject);
       procedure fnpIdadeValorChange(Sender : TObject);
       procedure PNascimentoExit(Sender : TObject);
       procedure fnpIdadeValorEnter(Sender : TObject);
-      procedure deNascimentoEnter(Sender : TObject);
-   private
+      procedure dtNascimentoEnter(Sender : TObject);
+
+
+    procedure dtNascimentoCloseUp(Sender: TObject);
+    procedure PainelNascimentoCreate(Sender: TObject); private
       FPrimeiraVez : boolean;
       FAlterado : boolean;
       FmdIdade : TIdade;
@@ -97,6 +101,7 @@ type
       FDNascVisited : boolean;
       DefinindoNascimento : boolean;
       DefinindoIdade : boolean;
+      SavedDtNasc:TdateTime;
       procedure CMChildKey(var Message : TWMKey); message CM_CHILDKEY;
       procedure ChangeIdade;
       procedure IdadeInvalidEntry;
@@ -229,7 +234,7 @@ begin
             //Se foi alterado, verifica, atualiza os valores e cai fora
             //Senao, se ja pasou pela idade, cai fora
             //Senao pasa pelo campo idade
-            else if deNascimento.Focused then
+            else if dtNascimento.Focused then
                begin
                   if FAlterado then
                      begin
@@ -261,8 +266,8 @@ begin
    FDNascVisited := True;
    UnidadeInFocus := False;
    ValorInFocus := False;
-   if deNascimento.Enabled then
-      deNascimento.SetFocus;
+   if dtNascimento.Enabled then
+      dtNascimento.SetFocus;
 end;
 
 //Deixa o foco na entrada de valor numerico da idade
@@ -359,7 +364,7 @@ begin
    // Deixa só o control de data de nascimento
    if not FModoEnabled then
    begin
-      deNascimento.Enabled := True;
+      dtNascimento.Enabled := True;
       cbUnidadesIdade.Enabled := False;
       fnpIdadeValor.Enabled := False;
    end;
@@ -372,7 +377,7 @@ begin
    // Deixa só os controls de idade
    if not FModoEnabled then
    begin
-      deNascimento.Enabled := False;
+      dtNascimento.Enabled := False;
       cbUnidadesIdade.Enabled := True;
       fnpIdadeValor.Enabled := True;
    end;
@@ -380,25 +385,7 @@ begin
 end;
 
 //Verifica se a data de nascimento nao e maior que a data de hoje
-procedure TPainelNascimento.deNascimentoAcceptDate(Sender: TObject;
-  var ADate: TDateTime; var Action: Boolean);
-begin
-   if ADate > Now then
-   begin
-      ShowMessage('A data de nascimento não pode ser maior que a data de hoje');
-      deNascimento.Undo;
-      if deNascimento.Enabled then
-         deNascimento.SetFocus;
-      Action := False;
-   end
-   else
-   begin
-      if DefineDNasc then
-         Action:=True
-      else
-         Action:=False;
-   end;
-end;
+
 
 //Saida do campo de edicao da data de nascimento
 procedure TPainelNascimento.PNascimentoExit(Sender: TObject);
@@ -423,13 +410,13 @@ begin
    // Esconde nascimento pois foi escolhida a idade
    if not FModoEnabled then
    begin
-      deNascimento.Enabled := False;
+      dtNascimento.Enabled := False;
    end;
    ValorInFocus := True;
    fnpIdadeValor.SelectAll;
 end;
 
-procedure TPainelNascimento.deNascimentoEnter(Sender: TObject);
+procedure TPainelNascimento.dtNascimentoEnter(Sender: TObject);
 begin
    // Esconde a idade pois foi escolhida a data de nascimento
    if not FModoEnabled then
@@ -438,7 +425,7 @@ begin
       fnpIdadeValor.Enabled := False;
    end;
    DataNascInFocus := True;
-   deNascimento.SelectAll;
+//   dtNascimento.SelectAll;
 end;
 
 //Mensagem de idade invalida
@@ -591,15 +578,16 @@ begin
       RefAux.ValorNumerico := FmdReferencia.ValorNumerico
    else
       RefAux.ValorNumerico := DateToStr(Date);
-   if ValidaNascimento(DateToStr(deNascimento.Date),RefAux.ValorNumerico) then
+   if ValidaNascimento(DateToStr(dtNascimento.Date),RefAux.ValorNumerico) then
       begin
+         SavedDtNasc := dtNascimento.DateTime;
          Result := True;
          if Assigned(FmdNascimento) then
          begin
-            FmdNascimento.ValorNumerico := DateToStr(deNascimento.Date);
+            FmdNascimento.ValorNumerico := DateToStr(dtNascimento.Date);
             FmdNascimento.Estimated := False;
          end;
-         NewNasc.ValorNumerico := DateToStr(deNascimento.Date);
+         NewNasc.ValorNumerico := DateToStr(dtNascimento.Date);
          NewNasc.Estimated := False;
          if Assigned(FmdIdade) then
             FmdIdade.SetMedida(NewNasc, RefAux);
@@ -639,12 +627,12 @@ begin
       Today.Name := 'mdToday';
       Today.ValorNumerico := DateToStr(Date);
       if Assigned(FmdReferencia) and not FmdReferencia.Empty then
-         deNascimento.Date := StrToDate(NewIdade.GetEstimatedDate(FmdReferencia))
+         dtNascimento.Date := StrToDate(NewIdade.GetEstimatedDate(FmdReferencia))
       else
-         deNascimento.Date := StrToDate(NewIdade.GetEstimatedDate(Today));
+         dtNascimento.Date := StrToDate(NewIdade.GetEstimatedDate(Today));
       if Assigned(FmdNascimento) then
       begin
-         FmdNascimento.ValorNumerico := DateToStr(deNascimento.Date);
+         FmdNascimento.ValorNumerico := DateToStr(dtNascimento.Date);
          FmdNascimento.Estimated := True;
       end;
       NewIdade.free;
@@ -677,7 +665,7 @@ begin
    end;
 end;
 
-procedure TPainelNascimento.deNascimentoChange(Sender: TObject);
+procedure TPainelNascimento.dtNascimentoChange(Sender: TObject);
 var
    MyIdEx : TMyButtonControl;
 begin
@@ -734,9 +722,9 @@ begin
    if Assigned(mdNascimento) then
    begin
       if (not mdNascimento.Empty) then
-         deNascimento.Date := StrToDate(mdNascimento.ValorNumerico)
+         dtNascimento.Date := StrToDate(mdNascimento.ValorNumerico)
       else
-         deNascimento.Date := Now;
+         dtNascimento.Date := Now;
       if mdNascimento.Estimated then
          DefineIdade
       else
@@ -745,9 +733,9 @@ begin
    else
    begin
       if Assigned(mdIdade) and (not mdIdade.Empty) then
-         deNascimento.Date := StrToDate(mdIdade.GetEstimatedDate(mdReferencia))
+         dtNascimento.Date := StrToDate(mdIdade.GetEstimatedDate(mdReferencia))
       else
-         deNascimento.Date:=Now;
+         dtNascimento.Date:=Now;
 //*      MyIdEst.Checked:=True;
       MyIdEx.Checked:=True;
    end;
@@ -782,6 +770,37 @@ end;
 procedure TPainelNascimento.SetModoEnabled(const Value: Boolean);
 begin
   FModoEnabled := Value;
+end;
+
+procedure TPainelNascimento.dtNascimentoCloseUp(Sender: TObject);
+ var ADate: TDateTime;
+     action:boolean;
+begin
+   ADate := (Sender as TDateTimePicker).DateTime;
+   if ADate > Now then
+   begin
+      ShowMessage('A data de nascimento não pode ser maior que a data de hoje');
+//      dtNascimento.Undo;
+      if dtNascimento.Enabled then
+         dtNascimento.SetFocus;
+      (Sender as TDateTimePicker).Date := SavedDtNasc
+   end
+   else
+   begin
+      if not DefineDNasc then
+
+         (Sender as TDateTimePicker).Date := SavedDtNasc;
+
+
+   end;
+
+end;
+
+procedure TPainelNascimento.PainelNascimentoCreate(Sender: TObject);
+begin
+dtNascimento.DateTime := now;
+SavedDtNasc := dtNascimento.DateTime;
+
 end;
 
 end.

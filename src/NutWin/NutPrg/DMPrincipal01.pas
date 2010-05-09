@@ -32,6 +32,7 @@ uses
 type
   TDMPrincipal = class(TDataModule)
     Database1: TDatabase;
+    procedure DMPrincipalCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +44,13 @@ var
 
 implementation
 
+uses uAliasName;
+
 {$R *.DFM}
+
+procedure TDMPrincipal.DMPrincipalCreate(Sender: TObject);
+begin
+Database1.AliasName := BDE_ALIAS_NAME;
+end;
 
 end.

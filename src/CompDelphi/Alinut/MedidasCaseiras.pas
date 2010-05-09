@@ -233,6 +233,8 @@ begin
          FDelayedOpIndicator.Start;
       try
          quMed.Open;
+
+
       finally
          // finaliza indicação de operação demorada
          if Assigned( FDelayedOpIndicator ) then

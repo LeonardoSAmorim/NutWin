@@ -21,7 +21,16 @@
 
 
 
-
+{ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  :: QuickReport 3.0 for Delphi 3 or newer                   ::
+  ::                                                         ::
+  :: Example MDI with Custom preview project                 ::
+  ::                                                         ::
+  :: Copyright (c) 1998 QuSoft AS                            ::
+  :: All Rights Reserved                                     ::
+  ::                                                         ::
+  :: web: http://www.qusoft.no   fax: +47 22 41 74 91        ::
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: }
 unit NovoPreview;
 
 interface
@@ -419,7 +428,20 @@ procedure TfmNovoPreview.QRPreview1ProgressUpdate(Sender: TObject;
   Progress: Integer);
 begin
   ProgressBar.Position := Progress;
-  if (Progress = 0) or (Progress = 100) then
+
+  if (progress = 100) then
+     begin
+     //ok
+     sStatus := 'Terminado';
+     btnClose.Enabled := True;
+     btnPrint.Enabled := True;
+     UpdateButtons;
+     ProgressBar.Position := 0;
+     end;
+
+
+
+  if (Progress = 0) then
     ProgressBar.Position := 0;
 end;
 

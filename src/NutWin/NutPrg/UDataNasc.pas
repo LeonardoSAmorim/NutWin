@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, FnpNumericEdit, Mask, ToolEdit, PainelNasc, Boxes;
+  StdCtrls, FnpNumericEdit, Mask, PainelNasc, Boxes;
 
 type
   TfmDataNasc = class(TForm)

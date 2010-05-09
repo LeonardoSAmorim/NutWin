@@ -57,6 +57,8 @@ type
     quFmlaDATA: TDateTimeField;
     quFmlaDESCRICAO: TStringField;
     quFmlaACEITAPARAMINVALIDO: TStringField;
+    dbCalc: TDatabase;
+    procedure DMCalcCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,7 +70,14 @@ var
 
 implementation
 
+uses uAliasName;
+
 {$R *.DFM}
 
+procedure TDMCalc.DMCalcCreate(Sender: TObject);
+begin
+dbCalc.AliasName := BDE_ALIAS_NAME;
+end;
+
 end.
- 
+  

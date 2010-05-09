@@ -73,6 +73,8 @@ type
     taSexoIdadeCorp: TTable;
     taMedida: TTable;
     taAreaClickINSTRUCOES: TMemoField;
+    dbOV: TDatabase;
+    procedure DMOVCreate(Sender: TObject);
   private
     FActive: Boolean;
     procedure SetActive(const Value: Boolean);
@@ -84,6 +86,8 @@ var
   DMOV: TDMOV;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -149,6 +153,11 @@ begin
          taMedida.Close;
       end;
    end;
+end;
+
+procedure TDMOV.DMOVCreate(Sender: TObject);
+begin
+dbOV.AliasName := BDE_ALIAS_NAME;
 end;
 
 end.

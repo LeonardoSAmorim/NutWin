@@ -112,7 +112,7 @@ begin
    if ( FIDAlimento <> '') and FDMUmAlimento.taAlimento.Active then
    begin
       if not FDMUmAlimento.taAlimento.Locate( 'IDALI', FIDAlimento, [] ) then
-         ShowMessage( 'Não consegui achar alimento' )
+         ShowMessage( 'Não consegui achar alimento: '+FIDAlimento)
 //+      else
 //+         NotifyLinks(self, lChange);
    end;

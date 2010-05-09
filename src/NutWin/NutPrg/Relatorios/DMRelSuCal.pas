@@ -161,6 +161,7 @@ type
     qrSubsProtNomeProt: TStringField;
     procedure TbGruCalCalcFields(DataSet: TDataSet);
     procedure TbGruProtCalcFields(DataSet: TDataSet);
+    procedure DMRelSCAlCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -172,7 +173,7 @@ var
 
 implementation
 
-uses DMRelMed, DMRelat;
+uses DMRelMed, DMRelat, uAliasName;
 
 {$R *.DFM}
 
@@ -210,6 +211,12 @@ begin
 
     TbGruProt.Fieldbyname('ProtCalc').asString := stProt;
 
+end;
+
+procedure TDMRelSCAl.DMRelSCAlCreate(Sender: TObject);
+begin
+DBRelScal.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

@@ -27,14 +27,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, Grids, DBGrids, ExtCtrls, RXDBCtrl, DBCtrls, db;
+  StdCtrls, Buttons, Grids, DBGrids, ExtCtrls, DBCtrls, db;
 
 type
   TfmEESelecMedidas = class(TForm)
     paSelecMedidas: TPanel;
     beListaMed: TBevel;
     bbEmGramas: TBitBtn;
-    grMedidas: TRxDBGrid;
+    grMedidas: TDBGrid;
     deAlim: TDBText;
     Label1: TLabel;
     DBText1: TDBText;
@@ -160,3 +160,4 @@ begin
 end;
 
 end.
+ 

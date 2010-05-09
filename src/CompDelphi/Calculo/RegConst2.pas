@@ -28,7 +28,7 @@ interface
 uses Windows;
 
 const
-  CFGPath : PChar = '\SOFTWARE\DIS-EPM\NUTWIN';
+  CFGPath : PChar = '\SOFTWARE\DIS-EPM\NUTWIN-1.6';
   CFGRoot : HKEY = HKEY_LOCAL_MACHINE;
 
   CFGVersaoCalc : String = 'VERSAO CALCNUT';

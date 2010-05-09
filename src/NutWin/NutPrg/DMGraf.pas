@@ -34,22 +34,22 @@ type
     dbGraficos: TDatabase;
     CalcNut: TMemoria;
     dsAntrops: TDataSource;
-    taAntrops: TTable;
-    taAntropsIDPESSOA: TStringField;
-    taAntropsDATA: TDateTimeField;
-    taAntropsIMC: TStringField;
-    taAntropsSEXO: TStringField;
-    taAntropsIDADEANOS: TStringField;
-    taAntropsIDADEMESES: TStringField;
-    taAntropsTEMPOGESTANTE: TStringField;
-    taAntropsDESCRICAO: TStringField;
-    taAntropsANTROP: TMemoField;
+    taAntrops_old: TTable;
+    taAntrops_oldIDPESSOA: TStringField;
+    taAntrops_oldDATA: TDateTimeField;
+    taAntrops_oldIMC: TStringField;
+    taAntrops_oldSEXO: TStringField;
+    taAntrops_oldIDADEANOS: TStringField;
+    taAntrops_oldIDADEMESES: TStringField;
+    taAntrops_oldTEMPOGESTANTE: TStringField;
+    taAntrops_oldDESCRICAO: TStringField;
+    taAntrops_oldANTROP: TMemoField;
     dsFaixas: TDataSource;
     dsDescFaixas: TDataSource;
     taDescFaixas: TTable;
     mrFaixas: TMeasurementRanges;
-    taAntropsVALORAP: TStringField;
-    taAntropsDIAGVALOR: TStringField;
+    taAntrops_oldVALORAP: TStringField;
+    taAntrops_oldDIAGVALOR: TStringField;
     WizGraf: TNewWizard;
     taDescFaixasTABELA: TStringField;
     taDescFaixasBEGINPOINTDESC: TStringField;
@@ -62,7 +62,7 @@ type
     taDescFaixasMEDIDADIAG: TStringField;
     taDescFaixasFILTRO: TStringField;
     taDescFaixasATIVO: TStringField;
-    taAntropsValida: TTable;
+    taAntropsValida_old: TTable;
     StringField1: TStringField;
     DateTimeField1: TDateTimeField;
     StringField2: TStringField;
@@ -74,7 +74,8 @@ type
     StringField8: TStringField;
     MemoField1: TMemoField;
     StringField9: TStringField;
-    procedure taAntropsCalcFields(DataSet: TDataSet);
+    procedure taAntrops_oldCalcFields(DataSet: TDataSet);
+    procedure quAntropsCalcFields(DataSet: TDataSet);
     procedure dmGraficosCreate(Sender: TObject);
     procedure dmGraficosDestroy(Sender: TObject);
   private
@@ -95,8 +96,10 @@ type
     procedure SetMedidasUsadasAtivado(const Value: Boolean);
     function ListaMedidasUsadas : String;
     procedure SetComFaixas(const Value: Boolean);
+    procedure buildAntops;
   public
     { Public declarations }
+    quAntrops: TQuery;
     DataInicialUsuario,
     DataFinalUsuario : TDate;
     DataInicial,
@@ -127,7 +130,7 @@ var
 
 implementation
 
-uses DMMBoard;
+uses DMMBoard, uAliasName;
 
 {$R *.DFM}
 
@@ -221,7 +224,7 @@ begin
             else
                Caption := FieldByName( 'CAPTION' ).AsString;
             with Point do begin
-               Descricao := 'MeasurementBegin' + FieldByName( 'INTERVAL' ).AsString;
+               Descricao := 'MeasurementBegin' + FieldByName( 'INTERVALO' ).AsString;
                ValorNumerico := FieldByName( 'BEGINPOINT' ).AsString;
                Point0 := AsFloat;
                Unidade := ''; //FieldByName( 'BEGINUNIT' ).AsString;
@@ -236,7 +239,7 @@ begin
             else
                Caption := FieldByName( 'CAPTION' ).AsString;
             with Point do begin
-               Descricao := 'MeasurementEnd' + FieldByName( 'INTERVAL' ).AsString;
+               Descricao := 'MeasurementEnd' + FieldByName( 'INTERVALO' ).AsString;
                if Opened then
                   ValorNumerico := FloatToStr( Max( (Point0 + AlturaMediaFaixa), MaxPoint ))
                else
@@ -266,7 +269,7 @@ begin
    end;
 end;
 
-procedure TdmGraficos.taAntropsCalcFields(DataSet: TDataSet);
+procedure TdmGraficos.taAntrops_oldCalcFields(DataSet: TDataSet);
 var
    mdValor : TMedida;
    mdDiagValor,
@@ -315,12 +318,48 @@ begin
    CalcNut.Limpar;
 end;
 
+procedure TdmGraficos.quAntropsCalcFields(DataSet: TDataSet);
+var
+   mdValor : TMedida;
+   mdDiagValor,
+   mdSexo : TMedidaOrdinal;
+begin
+   if NomeMedida = '' then
+      exit;
+//   CalcNut.Limpar;
+   if CalcNut = nil then
+      exit;
+
+   CalcNut.SetMem( DataSet.FieldByName( 'ANTROP' ).AsString, False );
+   // Pega todas as medidas necessárias
+   if CalcNut.Acha( NomeMedida, TObject( mdValor ) ) then
+      DataSet.FieldByName( 'VALOR' ).AsString := mdValor.ValorApresentacao //ValorNumerico
+   else
+      DataSet.FieldByName( 'VALOR' ).AsString := '';
+   if CalcNut.Acha( NomeMedida, TObject( mdValor ) ) then
+      DataSet.FieldByName( 'VALORAP' ).AsString := mdValor.ValorApresentacao
+   else
+      DataSet.FieldByName( 'VALORAP' ).AsString := '';
+
+   if CalcNut.Acha( NomeMedidaDiag, TObject( mdDiagValor ) ) then
+      DataSet.FieldByName( 'DIAGVALOR' ).AsString := mdDiagValor.ValorApresentacao
+   else
+      DataSet.FieldByName( 'VALORAP' ).AsString := '';
+
+   if CalcNut.Acha( 'mdSexo', TObject( mdSexo ) ) then
+      DataSet.FieldByName( 'SEXO' ).AsString := mdSexo.ValorNumerico
+   else
+      DataSet.FieldByName( 'SEXO' ).AsString := '';
+   CalcNut.Limpar;
+end;
+
 function TdmGraficos.ShowChart( NomeTabelaFaixas : String; Filtro : String = '' ) : Boolean;
 var
    mdMed : TMedida;
    Ind,
    I : Integer;
    sSQL : String;
+
 begin
    Result := False;
 
@@ -340,69 +379,91 @@ begin
           GraficoFaixa.Chart.SeriesList.Delete(I);
 
    // Abre com filtro
-   with taAntrops do
+
+
+
+   // versão Antrops para TTable
+{   with taAntrops do
    begin
+
+
       Active := False;
-      Filter := 'IDPESSOA=' + '''' + IDPessoa + '''' +
+
+            Filter := 'IDPESSOA=' + '''' + IDPessoa + '''' +
                 ' AND DATA >= ' + '''' + DateToStr(MinDate) + '''' +
                 ' AND DATA <= ' + '''' + DateToStr(MaxDate) + '''';
       Filtered := True;
+
       Active := True;
       if Eof then
          exit;
    end;
+}
+
+   // versão Antrops para TQuery
+   with quAntrops do
+   begin
+      active := false;
+      SQL.Clear;
+      SQL.Add('SELECT IDPESSOA, DATA, ANTROP, DESCRICAO  FROM antrops  ');
+      SQL.Add(' where IDPESSOA=' + '''' + IDPessoa + '''' +
+            ' AND DATA >= STR_TO_DATE(' + '''' + DateToStr(DataInicialUsuario) + ''', ''%d/%m/%Y'')' +
+            ' AND DATA <= STR_TO_DATE(' + '''' + DateToStr(DataFinalUsuario) +  ''', ''%d/%m/%Y'')' );
+
+      SQL.Add(' ORDER BY  IDPESSOA ASC , DATA ASC ');
+
+      Active := True;
+
+      if Eof then
+         exit;
+   end;
+
 
    // Prepara query de faixas
+ if not Assigned( TabelaFaixas ) then
+       begin
+          TabelaFaixas := TQuery.Create(self);
+          TabelaFaixas.DataBaseName := dbGraficos.DatabaseName;
+          dsFaixas.DataSet := TabelaFaixas;
+       end;
  if NomeTabelaFaixas <> '' then
    with taDescFaixas do begin
 //    Open;
 //    if Locate( 'TABELA', UpperCase(NomeTabelaFaixas), [] ) then
       begin
-       if not Assigned( TabelaFaixas ) then
-       begin
-          TabelaFaixas := TQuery.Create(self);
-          TabelaFaixas.DataBaseName := 'bdFaixas';
-          dsFaixas.DataSet := TabelaFaixas;
-       end;
+
        TabelaFaixas.Close;
        TabelaFaixas.SQL.Clear;
        if Filtro = '' then
-          sSQL := 'SELECT * FROM ' + NomeTabelaFaixas + ' ORDER BY INTERVAL'
+          sSQL := 'SELECT * FROM ' + NomeTabelaFaixas + ' ORDER BY INTERVALO'
        else
-          sSQL := 'SELECT * FROM ' + NomeTabelaFaixas + ' WHERE ' + Filtro + ' ORDER BY INTERVAL';
+          sSQL := 'SELECT * FROM ' + NomeTabelaFaixas + ' WHERE ' + Filtro + ' ORDER BY INTERVALO';
        TabelaFaixas.SQL.Add( sSQL );
        for I := 0 to TabelaFaixas.ParamCount - 1 do
          begin
             if UpperCase(TabelaFaixas.Params[I].Name) = 'PSEXO' then
-               TabelaFaixas.Params[I].AsString := taAntrops.FieldByName( 'SEXO' ).AsString; // Sexo;
+               TabelaFaixas.Params[I].AsString := quAntrops.FieldByName( 'SEXO' ).AsString; // Sexo;
             if UpperCase(TabelaFaixas.Params[I].Name) = 'PIDADE' then
                TabelaFaixas.Params[I].AsInteger := Idade;
          end;
-{
-       TabelaFaixas.TableName := FieldByName( 'TABELA' ).AsString;
-       TabelaFaixas.Filter := Filtro;
-       TabelaFaixas.Filtered := (Filtro <> '');
-}
        TabelaFaixas.Open;
       end;
-//      else
-//       exit;
    end;
 
    // Define datas de visitas válidas
    DataInicial := StrToDate( '01/01/1980' );
    DataFinal := Date;
-   taAntrops.First;
-   while not taAntrops.Eof do
+   quAntrops.First;
+   while not quAntrops.Eof do
    begin
-    if taAntrops.FieldByName( 'VALOR' ).AsString <> '' then
+    if quAntrops.FieldByName( 'VALOR' ).AsString <> '' then
     begin
       // Pega estas datas com valor não nulo
       if DataInicial = StrToDate( '01/01/1980' ) then
-         DataInicial := StrToDate( taAntrops.FieldByName( 'DATA' ).AsString );
-      DataFinal := StrToDate( taAntrops.FieldByName( 'DATA' ).AsString );
+         DataInicial := StrToDate( quAntrops.FieldByName( 'DATA' ).AsString );
+      DataFinal := StrToDate( quAntrops.FieldByName( 'DATA' ).AsString );
     end;
-    taAntrops.Next;
+    quAntrops.Next;
    end;
 
    // Caso as datas de limite serem iguais
@@ -417,20 +478,20 @@ begin
    GraficoFaixa.Visitas.Clear;
    GraficoFaixa.Resultados.Clear;
    FDiagnosticos.Clear;
-   taAntrops.First;
-   while not taAntrops.Eof do
+   quAntrops.First;
+   while not quAntrops.Eof do
    begin
-    if taAntrops.FieldByName( 'VALOR' ).AsString <> '' then
+    if quAntrops.FieldByName( 'VALOR' ).AsString <> '' then
     begin
       // Adicionando os pontos
-      GraficoFaixa.Visitas.Insert(0, IntToStr ( Trunc( StrToDate( taAntrops.FieldByName( 'DATA' ).AsString ) - DataInicial ) ));
-      GraficoFaixa.Resultados.Insert(0, taAntrops.FieldByName( 'VALOR' ).AsString );
-      FDiagnosticos.Insert(0, taAntrops.FieldByName( 'DIAGVALOR' ).AsString );
+      GraficoFaixa.Visitas.Insert(0, IntToStr ( Trunc( StrToDate( quAntrops.FieldByName( 'DATA' ).AsString ) - DataInicial ) ));
+      GraficoFaixa.Resultados.Insert(0, quAntrops.FieldByName( 'VALOR' ).AsString );
+      FDiagnosticos.Insert(0, quAntrops.FieldByName( 'DIAGVALOR' ).AsString );
       // Definido os limites de Y
-      MaxPoint := Max( MaxPoint, taAntrops.FieldByName( 'VALOR' ).AsFloat );
-      MinPoint := Min( MinPoint, taAntrops.FieldByName( 'VALOR' ).AsFloat );
+      MaxPoint := Max( MaxPoint, quAntrops.FieldByName( 'VALOR' ).AsFloat );
+      MinPoint := Min( MinPoint, quAntrops.FieldByName( 'VALOR' ).AsFloat );
     end;
-    taAntrops.Next;
+    quAntrops.Next;
    end;
 
    // Não há dados válidos
@@ -492,6 +553,7 @@ begin
    GraficoFaixa.Chart.Visible := True;
    GraficoFaixa.Chart.Refresh;
 
+
 end;
 
 procedure TdmGraficos.SetGraficoFaixa(const Value: TGRaficoFaixa);
@@ -503,8 +565,12 @@ end;
 
 procedure TdmGraficos.dmGraficosCreate(Sender: TObject);
 begin
+dbGraficos.AliasName := BDE_ALIAS_NAME;
    FDiagnosticos := TStringList.Create;
    FMedidasUsadas := TStringList.Create;
+   buildAntops;
+   taDescFaixas.open;
+   openAllTables(self);
 end;
 
 procedure TdmGraficos.dmGraficosDestroy(Sender: TObject);
@@ -524,6 +590,8 @@ var
    I : Integer;
    mdMedTemp : TMedida;
    MedUsadas : String;
+   sql_dml: string;
+   quAntropsValida: TQuery;
 begin
    Result := '';
    if CalcNut = nil then
@@ -531,12 +599,86 @@ begin
    // Abre com filtro
    FMedidasUsadas.Clear;
    FMedidasUsadas.Duplicates := dupIgnore;
+
+
+   quAntropsValida := TQuery.create(nil);
+   quAntropsValida.DatabaseName := dbGraficos.DatabaseName;
+
+
+
+
+
+
+
+  sql_dml := 'select * from Antrops where ';
+  sql_dml := sql_dml + 'IDPESSOA=' + '''' + IDPessoa + '''' +
+             ' AND DATA >= STR_TO_DATE(' + '''' + DateToStr(DataInicialUsuario) + ''', ''%d/%m/%Y'')' +
+            ' AND DATA <= STR_TO_DATE(' + '''' + DateToStr(DataFinalUsuario) +  ''', ''%d/%m/%Y'')' ;
+   sql_dml := sql_dml + ' order by  IDPESSOA ASC , DATA ASC';
+   quAntropsValida.SQL.text :=  sql_dml ;
+
+   with quAntropsValida do
+   begin
+
+      Active := True;
+      taDescFaixas.Active := True;
+      while not Eof do
+      begin
+         CalcNut.SetMem( FieldByName( 'ANTROP' ).AsString, False );
+         MedUsadas := ListaMedidasUsadas;
+         if MedUsadas <> '' then
+         begin
+            Temp := TStringList.Create;
+            try
+               Temp.Text := MedUsadas;
+               For I := 0 to Temp.Count - 1 do
+               begin
+                  if taDescFaixas.Locate( 'MEDIDA', Temp.Strings[I], [] ) then
+                  begin
+                     // Verifica se a medida tem todos os requisitos necessários
+                     if CalcNut.Acha( Temp.Strings[I], TObject(mdMedTemp) ) and
+                        ( mdMedTemp is TMedida ) and mdMedTemp.Valid and
+                        not mdMedTemp.Empty then
+                        FMedidasUsadas.Add( Temp.Strings[I] );
+                  end
+               end;
+            finally
+               Temp.Free;
+            end;
+         end;
+         Next;
+         CalcNut.Limpar;
+      end;
+      Filtered := False;
+      Filter := '';
+      Active := False;
+      taDescFaixas.Active := False;
+      if FMedidasUsadas.Count > 0 then
+      begin
+         Result := 'MEDIDA = ' + '''' + StringReplace( FMedidasUsadas.CommaText, ',', '''' + ' or MEDIDA = ' + '''', [rfReplaceAll]) + '''';
+         taDescFaixas.Filter := Result;
+         taDescFaixas.Filtered := True;
+         taDescFaixas.Active := True;
+      end;
+   end;
+
+   quAntropsValida.Free();
+
+(* // antigo: apagar quando o codigo acima estiver funcionando
    with taAntropsValida do
    begin
-      Filter := 'IDPESSOA=' + '''' + IDPessoa + '''' +
+        Filter := 'IDPESSOA=' + '''' + IDPessoa + ''''
+        { +
+                ' AND DATA >= STR_TO_DATE(''' + DateToStr(DataInicialUsuario) + ''', ''%d/%m/%Y'')'
+                 +
+                ' AND DATA <= STR_TO_DATE(' + '''' + DateToStr(DataFinalUsuario) +  ''', ''%d/%m/%Y'')' };
+
+        {      Filter := 'IDPESSOA=' + '''' + IDPessoa + '''' +
                 ' AND DATA >= ' + '''' + DateToStr(DataInicialUsuario) + '''' +
-                ' AND DATA <= ' + '''' + DateToStr(DataFinalUsuario) + '''';
+                ' AND DATA <= ' + '''' + DateToStr(DataFinalUsuario) + '''';}
+
       Filtered := True;
+
       Active := True;
       taDescFaixas.Filtered := False;
       taDescFaixas.Active := True;
@@ -578,7 +720,8 @@ begin
          taDescFaixas.Filtered := True;
          taDescFaixas.Active := True;
       end;
-  end;
+   end;
+   *)
 end;
 
 function TdmGraficos.ListaMedidasUsadas : String;
@@ -590,7 +733,7 @@ var
    LstMedidasChecked : TStringList;
 begin
   Result := '';
-  // para testar #######################################
+
   LstProcChecked := TStringList.Create;
   LstMedidasChecked := TStringList.Create;
 try
@@ -624,6 +767,124 @@ end;
 procedure TdmGraficos.SetComFaixas(const Value: Boolean);
 begin
   FComFaixas := Value;
+end;
+
+procedure TdmGraficos.buildAntops;
+var
+   field: TField;
+   fieldMemo: TMemofield;
+   fieldData: TDateTimeField;
+
+begin
+  quAntrops := TQuery.Create(self);
+
+
+   with quAntrops do
+   begin
+	DatabaseName :=  dbGraficos.DatabaseName;
+      field := TStringField.Create(quAntrops);
+      field.FieldName :=  'IDPESSOA';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 50;
+      field.DataSet:=quAntrops;
+
+      fieldMemo := TMemoField.Create(quAntrops);
+      fieldMemo.FieldName := 'ANTROP';
+      fieldmemo.name := quAntrops.Name + fieldMemo.FieldName;
+      fieldMemo.BlobType := ftMemo;
+      fieldMemo.Size := 1;
+      fieldMemo.DataSet:=quAntrops;
+
+
+     fieldData :=  TDateTimeField.Create(quAntrops);
+      fieldData.FieldName :=  'DATA' ;
+      fieldData.name := quAntrops.Name + fieldData.FieldName;
+      fieldData.Index := quAntrops.FieldCount;
+      fieldData.DataSet:=quAntrops;
+
+
+  {     fieldData := TStringField.Create(quAntrops);
+      fieldfieldData.FieldName :=  'DATA' ;
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.DataSet:=quAntrops;
+   }
+      field := TStringField.Create(quAntrops);
+      field.FieldName :=  'DESCRICAO' ;
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 60;
+      field.DataSet:=quAntrops;
+
+
+
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'VALORAP';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 10;
+      field.Calculated := true;
+      field.DataSet:= quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'VALOR';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'SEXO';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 10;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'IDADEANOS';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 5;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'IDADEMESES';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 5;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'TEMPOGESTANTE';
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 5;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+
+      field := TStringField.Create(quAntrops);
+      field.FieldKind := fkCalculated;
+      field.FieldName :=  'DIAGVALOR' ;
+      field.name := quAntrops.Name + field.FieldName;
+      field.Index := quAntrops.FieldCount;
+      field.Size := 100;
+      field.Calculated := true;
+      field.DataSet:=quAntrops;
+      OnCalcFields := quAntropsCalcFields;
+
+      sql.text := 'select * from Antrops';
+   end;
 end;
 
 end.

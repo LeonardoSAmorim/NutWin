@@ -42,6 +42,7 @@ type
     DSMedidas: TDataSource;
     TbMedidasIDMEDCAS: TStringField;
     DbRelMedidas: TDatabase;
+    procedure DMRelMedidasCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,9 +54,15 @@ var
 
 implementation
 
-uses DMRelat;
+uses DMRelat, uAliasName;
 
 {$R *.DFM}
+
+procedure TDMRelMedidas.DMRelMedidasCreate(Sender: TObject);
+begin
+DbRelMedidas.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
+end;
 
 end.
  

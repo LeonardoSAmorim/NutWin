@@ -32,11 +32,12 @@ uses
   CCSListaLinks, CCSDBListaLinks, CalcAli, RDA, IOController, Escopo,
   fmRelViewer, CalculoViewer, ImgList, CalcNutActns, ActnList, NutCnst,
   fmCfgCalculos, fmNutAcomp,
-  RlAntr01,RlNCal01, RlAFis01, RlEsp01, RlInq01,
+  RlAntr01,RlNCal01,
+  RlAFis01, RlEsp01, RlInq01,
   RlDiet01, RlPrep01, DBIOController, DBCalcNutActns, CLstAli,
   MedidasCaseiras, Nutrientes, EquEnergia, CAlimento, EquProteina, AliWiz,
-  Conector, KeyNav, Wizard, fmSelRelCalcAli, RxQuery, DelayedOpIndicator,
-  lslAboutBoxDialog, lslVersionInfo, QuickRpt, comctrls, DSList, NutAli;
+  Conector, KeyNav, Wizard, fmSelRelCalcAli, DelayedOpIndicator,
+  lslAboutBoxDialog, QuickRpt, comctrls, DSList, NutAli, VersionInfo;
 
 type
   TStateMem = ( cnStart, cnBrowse, cnEdit, cnCancel, cnPost, cnEmpty );
@@ -112,7 +113,7 @@ type
     meRelModelos: TMemoria;
     cnDBNovaPreparacao: TDBCalcNutNovaPreparacao;
     Ampulheta: TDelayedOpCursor;
-    lslSobre: TlslAboutBoxDialog;
+
     cnCalcNenhum: TCalcNutDefineCalculo;
     Atalhos3: TImageList;
     dslListaAlimento: TDSList;
@@ -233,6 +234,7 @@ type
 
   public
     { Public declarations }
+    lslSobre : TVersionInfo;
     ToolBarItemAli : TToolBar;
     function AddDiretorio(const NomeCalculo: String) : Boolean;
     procedure AlteraItemAlimentar( CalcAli : TCustomCalculoAlimentar );
@@ -272,7 +274,7 @@ var
 
 implementation
 
-uses Sobre;
+uses Sobre, uAliasName;
 
 {$R *.DFM}
 
@@ -300,8 +302,9 @@ end; { end of RestoreMemoria }
 
 procedure TdmMotherBoard.dmMotherBoardCreate(Sender: TObject);
 begin
+//     DBOrg.AliasName := BDE_ALIAS_NAME;
    FMemOld := nil;
-
+   lslSobre:= TVersionInfo.create();
    // Conecta dicionario (ROM)
    if not dmMotherBoard.caProcessador.ConnectCalculo('','') then
       begin
@@ -730,18 +733,18 @@ var
     LtffPreRelease : TFileFlag;
 begin
    LtffPreRelease := vsPreRelease;
-   if lslsobre.VersionInfo.FileFlags = [LtffPreRelease] then
-      Result := lslSobre.VersionInfo.ProductName + ' - versão Beta ' +
-                lslSobre.VersionInfo.FileVersion.AsString
+   if lslsobre.FileFlags = [LtffPreRelease] then
+      Result := lslSobre.ProductName + ' - versão Beta ' +
+                lslSobre.FileVersion.AsString
    else
-      Result := lslSobre.VersionInfo.ProductName + ' - versão ' +
-                lslSobre.VersionInfo.FileVersion.AsString;
+      Result := lslSobre.ProductName + ' - versão ' +
+                lslSobre.FileVersion.AsString;
 end;
 
 function TdmMotherBoard.TituloNomeArquivo: String;
 begin
    Result :=  ExtractFileName(caProcessador.Memoria.NomeArquivo) + ' - ' +
-              lslSobre.VersionInfo.ProductName;
+              lslSobre.ProductName;
 end;
 
 procedure TdmMotherBoard.AntesDeAdicionar(Sender: TObject;
@@ -817,18 +820,18 @@ begin
       mdTemp := TMedidaOrdinal.Create(self);
       // Nome do produto que gerou o cálculo
       mdTemp.Name := 'mdProductName';
-      mdTemp.ValorNumerico := lslSobre.VersionInfo.ProductName;
+      mdTemp.ValorNumerico := lslSobre.ProductName;
       Memoria.Adiciona( 'ProductName', TObject( mdTemp ) );
       // Indica se é PreRelease ou não
       mdTemp.Name := 'mdPreRelease';
-      if lslsobre.VersionInfo.FileFlags = [LtffPreRelease] then
+      if lslsobre.FileFlags = [LtffPreRelease] then
          mdTemp.ValorNumerico := 'True'
       else
          mdTemp.ValorNumerico := 'False';
       Memoria.Adiciona( 'PreRelease', TObject( mdTemp ) );
       // Número da versão do gerador do cálculo
       mdTemp.Name := 'mdFileVersion';
-      mdTemp.ValorNumerico := lslSobre.VersionInfo.FileVersion.AsString;
+      mdTemp.ValorNumerico := lslSobre.FileVersion.AsString;
       Memoria.Adiciona( 'FileVersion', TObject( mdTemp ) );
       mdTemp.Free;
    end;
@@ -854,3 +857,4 @@ begin
 end;
 
 end.
+         

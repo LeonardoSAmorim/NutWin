@@ -339,6 +339,7 @@ type
     procedure TbProfissaoBeforeDelete(DataSet: TDataSet);
     procedure TbPastasAfterPost(DataSet: TDataSet);
     procedure TbCidadeBeforePost(DataSet: TDataSet);
+    procedure DMPessoaCreate(Sender: TObject);
   private
     FUsuarioLogado: string;
     procedure SetUsuarioLogado(const Value: string);
@@ -376,6 +377,8 @@ var
 
 
 implementation
+
+uses uAliasName;
 
 //uses Tabela;
 
@@ -1068,6 +1071,18 @@ end;
 procedure TDMPessoa.TbCidadeBeforePost(DataSet: TDataSet);
 begin
  TbCidade.Fieldbyname('CidUF').AsString := TbCidade.Fieldbyname('DescrCid').asString +' ('+ TbCidadeEst.Fieldbyname('UF').asString + ')';
+
+end;
+
+procedure TDMPessoa.DMPessoaCreate(Sender: TObject);
+var Temp: TComponent;
+    I: integer;
+begin
+DbPessoa.AliasName := BDE_ALIAS_NAME;
+DbPessoa.Open;
+
+openAllTables(self);
+
 
 end;
 

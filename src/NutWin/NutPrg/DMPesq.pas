@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, DBTables, Measurement, dmMBoard, NutCnst, ItemAlimentar, Memoria, Procedimento;
+  Db, DBTables, Measurement, dmMBoard, NutCnst, ItemAlimentar, Memoria, Procedimento, math;
 
 const
   OP_PASTAS = '0';
@@ -167,6 +167,10 @@ type
     TbPesqTemp1NOMEPESS: TStringField;
     procedure DMPesquisaCreate(Sender: TObject);
     procedure DMPesquisaDestroy(Sender: TObject);
+    procedure TbAntropsPesqFilterRecord(DataSet: TDataSet;
+      var Accept: Boolean);
+    procedure TbInqPesqFilterRecord(DataSet: TDataSet;
+      var Accept: Boolean);
 //    procedure TbAntropsPesqCalcFields(DataSet: TDataSet);
 
   private
@@ -217,6 +221,8 @@ var
 
 implementation
 
+uses uAliasName;
+
 
 {$R *.DFM}
 
@@ -251,6 +257,8 @@ end;
 
 procedure TDMPesquisa.DMPesquisaCreate(Sender: TObject);
 begin
+DbPesq.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
     lsPastas  := TStringList.Create;
     FListaAnt1 := TStringList.Create;
     FListaAnt2 := TStringList.Create;
@@ -349,8 +357,10 @@ begin
 
    // Fazer para a Tabela tbInqPesq
    // Filtrar antes pela data.
-   stdata := 'DATA >= '+ ''''+ DateToStr(DMPesquisa.DataAntInicial) + '''' + ' and DATA <= ' + '''' + DateToStr(DMPesquisa.DataAntFinal)+ '''';
-   tbInqPesq.Filter := stData;
+
+      // este string não funciona no MySQL. Veja o Evento OnFilterRecord de TbAntropsPesq
+//   stdata := 'DATA >= '+ ''''+ DateToStr(DMPesquisa.DataAntInicial) + '''' + ' and DATA <= ' + '''' + DateToStr(DMPesquisa.DataAntFinal)+ '''';
+//   tbInqPesq.Filter := stData;
    tbInqPesq.Filtered := True;
 
    Linha_Campos := '';
@@ -520,6 +530,7 @@ var
   CSVFile: TextFile;
   PesqPess : TDataSet;
   OldPesqPessFiltered : Boolean;
+  quAntropsPesq :TQuery;
 begin
     TbPesqTemp1.Refresh;
     TbPessoa.Refresh;
@@ -555,8 +566,12 @@ begin
 
    // Fazer para a Tabela tbAntropsPesq
    // Filtrar antes pela data.
-   stdata := 'DATA >= '+ ''''+ DateToStr(DMPesquisa.DataAntInicial) + '''' + ' and DATA <= ' + '''' + DateToStr(DMPesquisa.DataAntFinal)+ '''';
-   TbAntropsPesq.Filter := stData;
+
+   // este string não funciona no MySQL. Veja o Evento OnFilterRecord de TbAntropsPesq
+   stdata :=  'DATA >= STR_TO_DATE(' + '''' + DateToStr(DMPesquisa.DataAntInicial) + ''', ''%d/%m/%Y'')'
+   + ' AND DATA <= STR_TO_DATE(' + '''' + DateToStr(DMPesquisa.DataAntFinal)+  ''', ''%d/%m/%Y'')' ;
+   //   stdata := 'DATA >= '+ ''''+ DateToStr(DMPesquisa.DataAntInicial) + '''' + ' and DATA <= ' + '''' + DateToStr(DMPesquisa.DataAntFinal)+ '''';
+//   TbAntropsPesq.Filter := stData;
    TbAntropsPesq.Filtered := True;
 
    Linha_Campos := '';
@@ -750,5 +765,30 @@ end;
 
 
 
+
+procedure TDMPesquisa.TbAntropsPesqFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+         //floor e ceil para pegar
+         // no inicio do dia da Data inicial e
+         // no final do dia da data final
+Accept :=  ( DataSet.FieldByName('Data').AsDateTime >= floor(DMPesquisa.DataAntInicial ))
+           and
+           ( DataSet.FieldByName('Data').AsDateTime <= ceil(DMPesquisa.DataAntFinal) );
+
+end;
+
+procedure TDMPesquisa.TbInqPesqFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+
+         //floor e ceil para pegar
+         // no inicio do dia da Data inicial e
+         // no final do dia da data final
+Accept :=  ( DataSet.FieldByName('Data').AsDateTime >= floor(DMPesquisa.DataAntInicial ))
+           and
+           ( DataSet.FieldByName('Data').AsDateTime <= ceil(DMPesquisa.DataAntFinal) );
+
+end;
 
 end.

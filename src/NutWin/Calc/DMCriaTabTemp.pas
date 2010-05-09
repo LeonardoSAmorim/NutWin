@@ -37,6 +37,7 @@ type
     dbCriaTabTemp: TDatabase;
     procedure ssCriaTabelasScriptError(Sender: TObject; E: EDatabaseError;
       LineNo, StatementNo: Integer; var Action: TScriptAction);
+    procedure dmCriaTabelasTempCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,6 +51,8 @@ var
   dmCriaTabelasTemp: TdmCriaTabelasTemp;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -145,6 +148,12 @@ procedure TdmCriaTabelasTemp.ssCriaTabelasScriptError(Sender: TObject;
   var Action: TScriptAction);
 begin
    ShowMessage( E.Message );
+end;
+
+procedure TdmCriaTabelasTemp.dmCriaTabelasTempCreate(Sender: TObject);
+begin
+dbCriaTabTemp.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

@@ -36,7 +36,7 @@ uses
   Tabela in 'Tabela.pas' {fmTabPess},
   UPessoa in 'UPessoa.pas' {fmPessoa},
   Alimento in 'Alimento.pas' {fmAlim},
-  USelNut in 'USelNut.pas' {fmSelecNut},
+//  USelNut in 'USelNut.pas' {fmSelecNut},
   DMSubstCal in 'DMSubstCal.pas' {DMSubsCalorico: TDataModule},
   NutOpc in 'Nutopc.pas' {fm_Opcoes},
   DMAliPrep in 'DMAliPrep.pas' {DMAlimentos: TDataM0odule},
@@ -88,12 +88,11 @@ uses
   RelSCal in 'RelSCal.pas' {fmRelSCal},
   URListNut in 'URListNut.pas' {fmRelListNut},
   URelSProt in 'Relatorios\URelSProt.pas' {fmRelSProt},
-  DMMBoard in 'DMMBoard.pas' {dmMotherBoard: TDataModule},
-  UDataNasc in 'UDataNasc.pas' {fmDataNasc},
-  RegEdit in 'RegEdit.pas',
+  DMMBoard in '..\calc\DMMBoard.pas' {dmMotherBoard: TDataModule},
+//  UDataNasc in 'UDataNasc.pas' {fmDataNasc},
   NutCnst in 'NutCnst.pas',
-  RegConst2 in 'RegConst2.pas',
-  UGrafAc in 'UGrafAc.pas' {fmGrafAcomp},
+  RegConst2 in '..\..\CompDelphi\calculo\RegConst2.pas',
+  RegEdit in '..\..\CompDelphi\RegEdit\RegEdit.pas',
   DMGraf in 'DMGraf.pas' {dmGraficos: TDataModule},
   URGrafAcomp in 'URGrafAcomp.pas' {fmRelGrafAcomp},
   UPessApr in 'UPessApr.pas' {fmPessApresent},
@@ -104,7 +103,7 @@ uses
   USelDados in 'USelDados.pas' {fmPSelDados},
   DMPesq in 'DMPesq.pas' {DMPesquisa: TDataModule},
   UPesquisa in 'UPesquisa.pas' {fmPesquisa},
-  qrepform in 'qrepform.pas' {FormReport},
+  qrepform in '..\..\COMPDELPHI\CALCULO\qrepform.pas' {FormReport},
   NutLogin in 'NUTLOGIN.PAS' {fm_Login},
   USplash in 'USplash.pas' {fmSplash},
   UEESelecaoGrupo in 'UEESelecaoGrupo.pas' {fmEESelecaoGrupo},
@@ -118,17 +117,17 @@ uses
   UEPValorMedidas in 'UEPValorMedidas.pas' {fmEPValorMedidas},
   UEPWizard in 'UEPWizard.pas' {fmEPWizard},
   FonAlim in 'FonAlim.pas' {fmFonetAlim},
-  WebConst in '..\webconst.pas',
+{  WebConst in '..\webconst.pas',
   DbConsts in '..\dbconsts.pas',
   IBConst in '..\ibconst.pas',
   MidConst in '..\midconst.pas',
   mxConsts in '..\mxconsts.pas',
   OleConst in '..\oleconst.pas',
-  Consts in '..\consts.pas',
+  Consts in '..\consts.pas',}
   UFonetPess in 'UFonetPess.pas' {fmFonetPess},
   UAlimApresent in 'UAlimApresent.pas' {fmAlimApresent},
   UMedCasOrdem in 'UMedCasOrdem.pas' {fmMedCasOrdem},
-  DMCriaTabTemp in 'DMCriaTabTemp.pas' {dmCriaTabelasTemp: TDataModule},
+//  DMCriaTabTemp in '..\calc\DMCriaTabTemp.pas' {dmCriaTabelasTemp: TDataModule},
   UOpSist in 'UOpSist.pas' {fmOpcoesSistema},
   UopAlim in 'UopAlim.pas' {fmOpcoesAlimentos},
   UOpcoes in 'UOpcoes.pas' {fmOpcoesPess},
@@ -143,25 +142,37 @@ uses
   UConfDados in 'UConfDados.pas' {fmConfDados},
   URTAGPro in 'Relatorios\URTAGPro.pas' {fmRTAGPro},
   fmRelGraficos in 'Relatorios\fmRelGraficos.pas',
-  NovoPreview in 'NovoPreview.pas' {fmNovoPreview},
+  NovoPreview in '..\..\CompDelphi\Calculo\NovoPreview.pas' {fmNovoPreview},
   NutDica in 'NutDica.pas' {fm_Dica},
   URTASProt in 'URTASProt.pas' {fmRTASProt},
-  Validade in 'Validade.pas' {fmValidade},
-  fmCadHelp in 'fmCadHelp.pas' {fmCadHlp},
-  dmHelp in 'dmHelp.pas' {dmHlp: TDataModule},
+//  fmCadHelp in 'fmCadHelp.pas' {fmCadHlp},
+//  dmHelp in '..\..\CompDelphi\HlpNut\dmHelp.pas' {dmHlp: TDataModule},
   UGrafWiz in 'UGrafWiz.pas' {fmGrafWiz},
   UGrafWizData in 'UGrafWizData.pas' {fmGrafWizData},
   UGrafWizFormulas in 'UGrafWizFormulas.pas' {fmGrafWizFormulas},
   UGrafWizGraficos in 'UGrafWizGraficos.pas' {fmGrafWizGraficos},
-  DMSemaf in 'DMSemaf.pas' {dmSemaforo: TDataModule};
+  DMSemaf in 'DMSemaf.pas' {dmSemaforo: TDataModule},
+  Validade in '..\..\CompDelphi\Validade\Validade.pas' {fmValidade},
+  uAliasName in 'uAliasName.pas',
+  fmFormRelMedResult in '..\Calc\fmFormRelMedResult.pas',
+  fmFormRelIndividuo in '..\Calc\fmFormRelIndividuo.pas' {FormRepIndividuo},
+  AliWizMedida in '..\Calc\AliWizMedida.pas' {fmAliWizMedida},
+  DMUmAli in '..\..\CompDelphi\Alinut\DMUmAli.pas' {DMUmAlimento: TDataModule},
+  Services in '..\..\CompDelphi\Servicos\Services.pas',
+  VersionInfo in '..\..\CompDelphi\About\VersionInfo.pas';
 // FIM
 
 {$R *.RES}
+
+
 
 var
   MainPath, MsgErro : string;
   SalvaCursor: TCursor;
   NumLicencas : integer;
+
+
+
   //&  DMMaster : TdmDataBasesNut;
   //******************************************************************************
   //  RestaurandoDB : Boolean;
@@ -170,7 +181,7 @@ var
 begin
   NumLicencas := -1; // pra garantir que esta informação vai ser pega de algum lugar
   // não deixa dois ou mais organizadores rodarem ao mesmo tempo
-  if True { not AppIsAlreadyRunning(ID_ORGANIZADOR) } then
+  if  true {not AppIsAlreadyRunning(ID_ORGANIZADOR)  }then
   begin
 
     Application.Initialize;
@@ -190,8 +201,10 @@ begin
     ThousandSeparator := '.';
     DateSeparator := '/';
 
+
     // Se existe arquivo do Banco para conversão então faça-a
     // Seta Individuos como opção não liberada
+ //   CFGPath
     if not CarregaChaveString(CFGRoot, CFGPath, 'Path', MainPath) then
     begin
       ShowMessage('Erro de leitura da Chave: Path.' + #13#10 +
@@ -200,8 +213,8 @@ begin
     end;
 
     // A conversão não foi feita, portanto sair do programa
-    if ConverteuBD(MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe') <> 0 then
-      exit;
+//    if ConverteuBD(MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe') <> 0 then
+//      exit;
 
     SalvaCursor := Screen.Cursor; { Salva cursor atual }
     Screen.Cursor := crHourglass; { Mostra ampulheta }
@@ -209,7 +222,8 @@ begin
     //Validade do programa
     with TfmValidade.Create(nil) do
     try
-      DataBaseName := 'BDOrganizador';
+      DataBaseName := uAliasName.BDE_ALIAS_NAME;
+
       case TipoValidade of
         REGISTRO_VENCIDO,
           PERSONA_INEXISTENTE,
@@ -265,7 +279,7 @@ begin
       // Cria e seta tabelas temporárias
       laOperacao.Caption := 'Criando Tabelas Temporárias...';
       laOperacao.Update;
-      Application.CreateForm(TdmCriaTabelasTemp, dmCriaTabelasTemp);
+//      Application.CreateForm(TdmCriaTabelasTemp, dmCriaTabelasTemp);
   pbProgresso.StepBy(5);
 
       laOperacao.Caption := 'Criando Tabelas de Semáforo...';
@@ -334,7 +348,7 @@ begin
       // Cria componentes da calculadora
       laOperacao.Caption := 'Criando Componentes...';
       laOperacao.Update;
-      Application.CreateForm(TdmHlp, dmHlp);
+//      Application.CreateForm(TdmHlp, dmHlp);
       Application.CreateForm(TdmMotherBoard, dmMotherBoard);
       //&     dmMotherBoard.DMDataBases := DMMaster;
       pbProgresso.StepBy(5);
@@ -391,7 +405,7 @@ begin
       dmSemaforo.Free;
       dmSemaforo := nil;
 
-      dmCriaTabelasTemp.free;
+//      dmCriaTabelasTemp.free;
       DMAlimentos.free;
       DMedidas.free;
       DMSubsCalorico.free;

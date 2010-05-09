@@ -53,7 +53,7 @@ var
 
 implementation
 
-uses dmlock;
+uses dmlock, uAliasName;
 
 {$R *.dfm}
 
@@ -88,6 +88,7 @@ end;
 
 procedure TfmLockDemo.FormCreate(Sender: TObject);
 begin
+dbTeste.AliasName := BDE_ALIAS_NAME;
    edApp.Text := DateTimeToStr(now);
 end;
 

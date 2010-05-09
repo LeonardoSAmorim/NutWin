@@ -112,6 +112,7 @@ type
     TbGruProt: TTable;
     TbAliGProt: TTable;
     TbGAliProt: TTable;
+    procedure DMIndexacaoCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -124,6 +125,8 @@ var
   DMIndexacao: TDMIndexacao;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -150,4 +153,10 @@ end;
 
 
 
+procedure TDMIndexacao.DMIndexacaoCreate(Sender: TObject);
+begin
+DBOrganizador.AliasName := BDE_ALIAS_NAME;
+end;
+
 end.
+ 

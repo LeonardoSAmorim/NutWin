@@ -117,6 +117,7 @@ type
     quAliEquProteinaEPMEDIDA: TStringField;
     quAliEquProteinaEPMEDGR: TStringField;
     quGruEquProteinaCALORIAS: TFloatField;
+    DBUmAlimento: TDatabase;
     procedure quAliEquEnergiaCalcFields(DataSet: TDataSet);
     procedure quGruEquProteinaCalcFields(DataSet: TDataSet);
     procedure quAliEquProteinaCalcFields(DataSet: TDataSet);
@@ -124,6 +125,7 @@ type
     procedure quGruEquEnergiaCalcFields(DataSet: TDataSet);
     procedure GruEquEnergiaCalcFields(DataSet: TDataSet);
     procedure GruEquProteinaCalcFields(DataSet: TDataSet);
+    procedure DMUmAlimentoCreate(Sender: TObject);
   private
     FQtdeMedida: String;
     FPesoAli: Double;
@@ -149,6 +151,8 @@ var
   DMUmAlimento: TDMUmAlimento;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -328,6 +332,14 @@ begin
      else
         DataSet.FieldByName( 'EQUIVALENCIA' ).AsString := 'ou ' + FloatToStr( Porcao ) +
                                   ' porção do ' + DataSet.FieldByName( 'NOME' ).AsString;
+end;
+
+procedure TDMUmAlimento.DMUmAlimentoCreate(Sender: TObject);
+begin
+DBUmAlimento.AliasName := BDE_ALIAS_NAME;
+openAllTables(Self);
+
+
 end;
 
 end.

@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, DBCtrls, Mask, Grids, DBGrids, ComCtrls, ExtCtrls,
-  DBMyNav, db, NutCnst, RxDBComb, RXDBCtrl, RXLookup, ToolEdit,
+  DBMyNav, db, NutCnst, RxDBComb, RXDBCtrl, RXLookup,
   DBListView98;
 
 type
@@ -83,7 +83,7 @@ type
     DBGrid3: TDBGrid;
     nvRefeicao: TDBMyNav;
     tsVisualizacao: TTabSheet;
-    grVer: TRxDBGrid;
+    grVer: TDBGrid;
     laVer: TLabel;
     lcVer: TRxDBLookupCombo;
     paGrupoEnergia: TPanel;
@@ -567,3 +567,4 @@ end;
 
 end.
 
+ 

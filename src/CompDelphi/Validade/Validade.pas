@@ -72,7 +72,7 @@ Function TfmValidade.PegaRegistro:Boolean;
 begin
    Application.CreateForm(TfmRegistro, fmRegistro);
    fmRegistro.PsSistema := 'NU';
-   fmRegistro.PsVersao := FormatFloat( '00', fmRegistro.lslSobre.VersionInfo.FileVersion.Major );
+   fmRegistro.PsVersao := FormatFloat( '00', fmRegistro.lslSobre.FileVersion.Major );
    fmRegistro.ShowModal;
    Result := fmRegistro.PfRegistrou;
    PfRegistrou := fmRegistro.PfRegistrou;

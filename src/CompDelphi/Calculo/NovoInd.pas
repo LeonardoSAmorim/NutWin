@@ -28,9 +28,10 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ExtCtrls, VisorCal, Spin, PAINELMEDIDA,
-  measurement, Memoria, Idade, Mask, ToolEdit, FnpNumericEdit,
+  measurement, Memoria, Idade, Mask,  FnpNumericEdit,
   VisorMedida, Procedimento,
-  Calculo, DescriptorManager, NutCnst, Boxes, PainelNasc;
+  Calculo, DescriptorManager, NutCnst, Boxes, PainelNasc,
+  ComCtrls;
 
   const IdadeGravidaMin: Integer = 9;  //anos
   const IdadeGravidaMax: Integer = 60; //anos
@@ -78,7 +79,6 @@ type
     gbEscDataVisita: TGBoxMedida;
     laEscDataVisitaUnidade: TLabel;
     laEscDataVisitaDescricao: TLabel;
-    deDataVisita: TDateEdit;
     edEscGestanteValor: TFnpNumericEdit;
     edEscNutrizValor: TFnpNumericEdit;
     fnpEscPesoValor: TFnpNumericEdit;
@@ -101,6 +101,7 @@ type
     laIdadeMenarcaUnidade: TLabel;
     fnpIdadeMenarcaValor: TFnpNumericEdit;
     fnpPesoPGValor: TFnpNumericEdit;
+    dtDataVisita: TDateTimePicker;
     procedure bbNovoIndOkClick(Sender: TObject);
     procedure bbCancelarClick(Sender: TObject);
     procedure paEscSexoChangeValue(Sender: TObject);
@@ -117,18 +118,18 @@ type
     procedure edEscEstaturaValorInvalidEntry(Sender: TObject);
     procedure edEscGestanteValorInvalidEntry(Sender: TObject);
     procedure edEscNutrizValorInvalidEntry(Sender: TObject);
-    procedure deDataVisitaAcceptDate(Sender: TObject; var ADate: TDateTime;
-      var Action: Boolean);
     procedure gbEscPesoChangeValue(Sender: TObject);
     procedure gbEscEstaturaChangeValue(Sender: TObject);
     procedure pmEscTempoNutrizChangeValue(Sender: TObject);
     procedure pmEscTempoGestanteChangeValue(Sender: TObject);
-    procedure deDataVisitaExit(Sender: TObject);
     procedure pmEscPesoPGChangeValue(Sender: TObject);
     procedure pmEscIdadeMenarcaChangeValue(Sender: TObject);
     procedure fnpIdadeMenarcaValorInvalidEntry(Sender: TObject);
     procedure fnpPesoPGValorInvalidEntry(Sender: TObject);
+    procedure dtDataVisitaExit(Sender: TObject);
+    procedure dtDataVisitaCloseUp(Sender: TObject);
   private
+    SavedDtNasc: TDateTime;
     FMostraInfoOK: Boolean;
     FValidaIndiv: Boolean;
     FModoOrganizador: Boolean;
@@ -499,6 +500,9 @@ begin
    paNascimento.fnpIdadeValor.MaxLength := 4;
    paNascimento.fnpIdadeValor.Decimals := 0;
 //   paNascimento.fnpIdadeValor.OnInvalidEntry :=
+dtDataVisita.DateTime := now;
+SavedDtNasc := dtDataVisita.DateTime;
+
 end;
 
 procedure TfmNovoIndividuo.btDefFisicoClick(Sender: TObject);
@@ -677,22 +681,6 @@ begin
 end;
 end;
 
-procedure TfmNovoIndividuo.deDataVisitaAcceptDate(Sender: TObject;
-  var ADate: TDateTime; var Action: Boolean);
-begin
-if ( ADate > Now ) and ( Self.ActiveControl.name <> bbCancelar.name ) then
-begin
-   ShowMessage( 'A data da visita não pode ser maior que a data de hoje' );
-   Action := False;
-   deDataVisita.Undo;
-   deDataVisita.SetFocus;
-end
-else
-begin
-   Action := True;
-end;
-end;
-
 procedure TfmNovoIndividuo.PodeOk;
 var
    IdadeValorAnos : Double;
@@ -750,16 +738,6 @@ begin
    PodeOk;
 end;
 
-procedure TfmNovoIndividuo.deDataVisitaExit(Sender: TObject);
-begin
-if ( deDataVisita.Date > Now ) and ( Self.ActiveControl.name <> bbCancelar.name ) then
-begin
-   ShowMessage( 'A data da visita não pode ser maior que a data de hoje' );
-   deDataVisita.Date := Now;
-   deDataVisita.SetFocus;
-end;
-
-end;
 
 procedure TfmNovoIndividuo.pmEscPesoPGChangeValue(Sender: TObject);
 begin
@@ -790,6 +768,35 @@ begin
                                                                FloatToStr( fnpPesoPGValor.MaxValue) );
    fnpPesoPGValor.SetFocus;
 end;
+
+end;
+
+procedure TfmNovoIndividuo.dtDataVisitaExit(Sender: TObject);
+begin
+if ( dtDataVisita.Date > Now ) and ( Self.ActiveControl.name <> bbCancelar.name ) then
+begin
+   ShowMessage( 'A data da visita não pode ser maior que a data de hoje' );
+   dtDataVisita.Date := Now;
+   dtDataVisita.SetFocus;
+
+end;
+end;
+
+procedure TfmNovoIndividuo.dtDataVisitaCloseUp(Sender: TObject);
+ var ADate: TDateTime;
+     action:boolean;
+
+begin
+ADate := (Sender as TDateTimePicker).DateTime;
+
+if ( ADate > Now ) and ( Self.ActiveControl.name <> bbCancelar.name ) then
+begin
+   ShowMessage( 'A data da visita não pode ser maior que a data de hoje' );
+   (Sender as TDateTimePicker).Date := SavedDtNasc;
+
+   dtDataVisita.SetFocus;
+end
+
 
 end;
 

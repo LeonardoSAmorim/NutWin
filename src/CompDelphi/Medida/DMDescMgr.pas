@@ -83,12 +83,22 @@ type
     DscQuantitativoVALORDEPENDENTE: TStringField;
     DescritoresDATACRIACAO: TDateTimeField;
     DescritoresULTIMAALTERACAO: TDateTimeField;
+    ValoresINTERVALO: TIntegerField;
+    DBDescritor: TDatabase;
+    procedure DMDescritorCreate(Sender: TObject);
   private
   public
   end;
 
 implementation
 
+uses uAliasName;
+
 {$R *.DFM}
+
+procedure TDMDescritor.DMDescritorCreate(Sender: TObject);
+begin
+DBDescritor.AliasName := BDE_ALIAS_NAME;
+end;
 
 end.

@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Grids, DBGrids, RXDBCtrl, StdCtrls, Buttons, DBCtrls, ExtCtrls, db;
+  Grids, DBGrids, StdCtrls, Buttons, DBCtrls, ExtCtrls, db;
 
 type
   TfmEPSelecMedidas = class(TForm)
@@ -37,7 +37,7 @@ type
     Label1: TLabel;
     DBText1: TDBText;
     bbEmGramas: TBitBtn;
-    grMedidas: TRxDBGrid;
+    grMedidas: TDBGrid;
     lbEquiv: TLabel;
     lbEquivTela2: TLabel;
     lbGr: TLabel;
@@ -167,3 +167,4 @@ begin
 end;
 
 end.
+ 

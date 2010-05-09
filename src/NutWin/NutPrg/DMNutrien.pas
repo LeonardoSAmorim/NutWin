@@ -90,6 +90,7 @@ type
     procedure TbNutrientesPostError(DataSet: TDataSet; E: EDatabaseError;
       var Action: TDataAction);
     procedure TbNutrientesBeforeDelete(DataSet: TDataSet);
+    procedure DMNutrientesCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -111,7 +112,7 @@ var
 
 implementation
 
-uses DMAliPrep, Alimento, NutMenu, UListaNut;
+uses DMAliPrep, Alimento, NutMenu, UListaNut, uAliasName;
 
 {$R *.DFM}
 
@@ -309,5 +310,12 @@ begin
      end ;
 end;
 
+procedure TDMNutrientes.DMNutrientesCreate(Sender: TObject);
+begin
+DBNutrientes.AliasName := BDE_ALIAS_NAME;
+TbAliNutAux.open;
+TbAliNut.open;
+openAllTables(self);
+end;
+
 end.
- 

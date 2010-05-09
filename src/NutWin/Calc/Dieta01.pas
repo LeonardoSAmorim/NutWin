@@ -28,8 +28,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   CalcAli, Grids, DBGrids, ComCtrls, Mask, DBCtrls, StdCtrls, Buttons,
-  ExtCtrls, RefAli, Db, CCSListaLinks, CCSDBListaLinks, Measurement, NutAli,
-  RXDBCtrl, NutCnst, Menus;
+  ExtCtrls, RefAli, Db, CCSListaLinks,  Measurement, NutAli,
+  NutCnst, Menus;
 
 type
   TfmDieta01 = class(TForm)
@@ -39,7 +39,6 @@ type
     paItensAli: TPanel;
     pcCalcAli: TPageControl;
     teMacroNutrientes: TTabSheet;
-    grMacroNutrientes: TDBGrid;
     paMacNutTitulo: TPanel;
     paMacNutTit3: TPanel;
     paMacNutTit2: TPanel;
@@ -125,7 +124,6 @@ type
     grNutPorGrupoAlimentar: TDBGrid;
     paGruAli2: TPanel;
     grNutGruAliAux: TDBGrid;
-    grItensAlimentar: TDBGrid;
     teAliPorNut: TTabSheet;
     Panel10: TPanel;
     grNutPorAlimento0: TDBGrid;
@@ -145,10 +143,12 @@ type
     deRefeicao: TDBText;
     naRefeicoes: TDBNavigator;
     laRefeicao: TLabel;
-    grNutPorAlimento: TRxDBGrid;
+    grNutPorAlimento: TDBGrid;
     DBText30: TDBText;
     DBText31: TDBText;
     DBText26: TDBText;
+    grMacroNutrientes: TDBGrid;
+    grItensAlimentar: TDBGrid;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure deRefeicaoClick(Sender: TObject);
@@ -168,13 +168,13 @@ type
     procedure grItensAlimentarExit(Sender: TObject);
     procedure grNutPorAlimentoTitleBtnClick(Sender: TObject; ACol: Integer;
       Field: TField);
-    procedure grNutPorAlimentoGetBtnParams(Sender: TObject; Field: TField;
-      AFont: TFont; var Background: TColor; var SortMarker: TSortMarker;
-      IsDown: Boolean);
+//    procedure grNutPorAlimentoGetBtnParams(Sender: TObject; Field: TField;
+//      AFont: TFont; var Background: TColor; var SortMarker: TSortMarker;
+//      IsDown: Boolean);
   private
     { Private declarations }
     fmRef : TfmRefeicao;
-    MySortMarker: TSortMarker;
+//    MySortMarker: TSortMarker;
     MyField : TField;
     MyCol : Integer;
     procedure SetCalculoAlimentar( Ativa : Boolean );
@@ -198,7 +198,7 @@ var
    Tmp : TObject;
    i : Integer;
 begin
-  MySortMarker := smNone;
+//  MySortMarker := smNone;
 
   with pcCalcAli do
     for i := 0 to PageCount - 1 do
@@ -454,7 +454,7 @@ procedure TfmDieta01.grNutPorAlimentoTitleBtnClick(Sender: TObject;
 begin
    MyField := Field;
    MyCol := ACol;
-   if MySortMarker = smUp then
+{   if MySortMarker = smUp then
       begin
          dmMotherBoard.CalcDieta.OrdenaAliNutPorNutriente( MyField, toDecrescente );
          MySortMarker := smDown;
@@ -463,20 +463,20 @@ begin
       begin
          dmMotherBoard.CalcDieta.OrdenaAliNutPorNutriente( MyField, toCrescente );
          MySortMarker := smUp;
-      end;
+      end;}
 end;
 
-procedure TfmDieta01.grNutPorAlimentoGetBtnParams(Sender: TObject;
-  Field: TField; AFont: TFont; var Background: TColor;
-  var SortMarker: TSortMarker; IsDown: Boolean);
-begin
-  if Assigned( MyField ) and ( MyField.Name = Field.Name ) then
-     SortMarker := MySortMarker;
-end;
+//procedure TfmDieta01.grNutPorAlimentoGetBtnParams(Sender: TObject;
+//  Field: TField; AFont: TFont; var Background: TColor;
+//  var SortMarker: TSortMarker; IsDown: Boolean);
+//begin
+//  if Assigned( MyField ) and ( MyField.Name = Field.Name ) then
+//     SortMarker := MySortMarker;
+//end;
 
 procedure TfmDieta01.DepoisDeOrdenaAliNutPorNutriente(Sender: TObject);
 begin
-   grNutPorAlimento.LeftCol := MyCol;
+//   grNutPorAlimento.LeftCol := MyCol;
 end;
 
 end.

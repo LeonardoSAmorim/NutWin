@@ -73,6 +73,8 @@ type
     taAliGCalIDMEDCAS: TStringField;
     taAliGCalQTDE: TStringField;
     taAliGCalMEDGR: TStringField;
+    DBLastAli: TDatabase;
+    procedure DMListaAlimentoCreate(Sender: TObject);
   private
   public
   end;
@@ -82,7 +84,14 @@ var
 
 implementation
 
+uses uAliasName;
+
 {$R *.DFM}
 
+procedure TDMListaAlimento.DMListaAlimentoCreate(Sender: TObject);
+begin
+DBLastAli.AliasName := BDE_ALIAS_NAME;
+end;
+
 end.
- 
+  

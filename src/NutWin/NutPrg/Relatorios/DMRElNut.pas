@@ -57,6 +57,7 @@ type
     TbAliNutUnidade: TStringField;
     DbRelNutrientes: TDatabase;
     qrAliNut: TQuery;
+    procedure DMRelNutrientesCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,9 +69,14 @@ var
 
 implementation
 
-uses DMRelat;
+uses DMRelat, uAliasName;
 
 {$R *.DFM}
 
+procedure TDMRelNutrientes.DMRelNutrientesCreate(Sender: TObject);
+begin
+DbRelNutrientes.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
+end;
+
 end.
- 

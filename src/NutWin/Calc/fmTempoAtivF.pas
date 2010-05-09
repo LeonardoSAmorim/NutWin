@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Mask, DBCtrls, RXLookup, ExtCtrls;
+  StdCtrls, Mask, DBCtrls, ExtCtrls;
 
 type
   TfmTempoAtivFis = class(TForm)

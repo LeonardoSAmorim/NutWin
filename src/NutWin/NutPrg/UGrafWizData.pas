@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Mask, ToolEdit, Wizard;
+  StdCtrls, ExtCtrls, Mask,  Wizard,  ComCtrls;
 
 type
   TfmGrafWizData = class(TForm)
@@ -35,10 +35,13 @@ type
     laTit: TLabel;
     laDataInicial: TLabel;
     laDataFinal: TLabel;
-    deInicio: TDateEdit;
-    deFim: TDateEdit;
+//    deInicio: TDateEdit;
+//    deFim: TDateEdit;
+
     paNome: TPanel;
     laNomeIndividuo: TLabel;
+    dtInicio: TDateTimePicker;
+    dtFim: TDateTimePicker;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     function  ControlaData : boolean;
@@ -70,22 +73,31 @@ procedure TfmGrafWizData.FormCreate(Sender: TObject);
 begin
      laNomeIndividuo.Caption := dmgraficos.NomeIndividuo ;
 
-     deInicio.Date := dmGraficos.DataInicialUsuario;
-     deFim.Date    := dmGraficos.DataFinalUsuario;
+//     deInicio.Date := dmGraficos.DataInicialUsuario;
+     dtInicio.Date := dmGraficos.DataInicialUsuario;
+//     deFim.Date    := dmGraficos.DataFinalUsuario;
+     dtFim.Date    := dmGraficos.DataFinalUsuario;
 
 end;
 
 function TfmGrafWizData.ControlaData : boolean;
 begin
-   deInicio.CheckValidDate;
-   deFim.CheckValidDate;
-   if (deInicio.Date > deFim.Date ) and
-      ((deInicio.Text <> '  /  /    ') or (deFim.Text <> '  /  /    ')) then
+//   deInicio.CheckValidDate;
+//   dtInicio.CheckValidDate;
+//   deFim.CheckValidDate;
+//   dtFim.CheckValidDate;
+
+//   if (deInicio.Date > deFim.Date ) and
+//      ((deInicio.Text <> '  /  /    ') or (deFim.Text <> '  /  /    ')) then
+   if (dtInicio.Date > dtFim.Date ) and
+      ((DateToStr(dtInicio.date) <> '  /  /    ') or (DateToStr(dtFim.date) <> '  /  /    ')) then
+
    begin
       ShowMessage('A Data Final é menor que a Data Inicial.');
       Result := False;
    end
-   else if ((deInicio.Text = '  /  /    ') or (deFim.Text = '  /  /    ')) then
+//   else if ((deInicio.Text = '  /  /    ') or (deFim.Text = '  /  /    ')) then
+   else if ((DateToStr(dtInicio.date) = '  /  /    ') or (DateToStr(dtFim.date) = '  /  /    ')) then
     begin
       ShowMessage('Não pode existir data vazia.');
       Result := False;
@@ -93,8 +105,11 @@ begin
    else
     begin
         dmGraficos.IDPessoa := DMPessoa.TbPessoa.FieldByName( 'IDPESSOA' ).AsString;
-        dmGraficos.DataInicialUsuario := deInicio.Date;
-        dmGraficos.DataFinalUsuario   := deFim.Date  ;
+//        dmGraficos.DataInicialUsuario := deInicio.Date;
+//        dmGraficos.DataFinalUsuario   := deFim.Date  ;
+        dmGraficos.DataInicialUsuario := dtInicio.Date;
+        dmGraficos.DataFinalUsuario   := dtFim.Date  ;
+
         if dmGraficos.MontaStrFiltroGraficos = '' then
            begin
               ShowMessage('Não existem valores neste período para criar um gráfico.');
@@ -105,6 +120,7 @@ begin
               Result := True;
            end;
     end;
+
 end;
 
 procedure TfmGrafWizData.BeforeAvancar(Sender: TObject; var Next: Boolean);

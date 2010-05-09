@@ -29,8 +29,8 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DBCtrls, StdCtrls, ExtCtrls, Spin, Grids, DBGrids, ComCtrls, Buttons,
   Mask, Tabs, DBMyNav, db, Menus, DBActns,
-  ActnList, DBCGrids, NutCnst, MmLstBox, MoveItens, RXDBCtrl, CalculoViewer,
-  measurement, RXLookup, ToolEdit, CCSAbreviar, CCSListaLinks, CCSFonetizar,
+  ActnList, DBCGrids, NutCnst, MmLstBox, MoveItens, CalculoViewer,
+  measurement, RXLookup,  CCSAbreviar, CCSListaLinks, CCSFonetizar,
   FnpNumericEdit, FnpNEditBlank, CalculoTextViewer;
 
 type
@@ -186,7 +186,7 @@ type
     teValorNut: TDBEdit;
     teUnidNut: TDBText;
     btMudaOrd: TButton;
-    grNutVisao: TRxDBGrid;
+    grNutVisao: TDBGrid;
     deObsAli: TDBEdit;
     cvVideo: TCalculoTextViewer;
     paVis: TPanel;
@@ -248,7 +248,7 @@ type
     btFechar: TBitBtn;
     Fechar: TAction;
     Label30: TLabel;
-    procedure buNutClick(Sender: TObject);
+//    procedure buNutClick(Sender: TObject);
     procedure btApllyUpdateClick(Sender: TObject);
     procedure DBGrid3CellClick(Column: TColumn);
     procedure sdQtdeChange(Sender: TObject);
@@ -337,6 +337,8 @@ type
     procedure edMedidaExit(Sender: TObject);
     procedure LocALimExecute(Sender: TObject);
     procedure FecharExecute(Sender: TObject);
+    procedure grNutVisaoDrawDataCell(Sender: TObject; const Rect: TRect;
+      Field: TField; State: TGridDrawState);
     //####################
   private
     { Private declarations }
@@ -373,7 +375,7 @@ var
 
 implementation
 
-uses USelNut, DMAliPrep, DMNutrien, DMSubstCal,
+uses {USelNut,} DMAliPrep, DMNutrien, DMSubstCal,
   DMMedidas, DMPrecoAlim, NutMenu, TabAli, ULocAlim, UListaNut, UCadMed,
   DMMBoard, UEEWizard, UEESelecaoGrupo, UEPWizard, FonAlim,
   UMedCasOrdem, UopAlim, dmSemaf;
@@ -517,14 +519,14 @@ begin
 
   end;
 end;
-
+{
 procedure TfmAlim.buNutClick(Sender: TObject);
 begin
   fmSelecNut := TfmSelecNut.Create(self);
   fmSelecNut.ShowModal;
   fmSelecNut.free;
 end;
-
+}
 procedure TfmAlim.btApllyUpdateClick(Sender: TObject);
 begin
   DMAlimentos.GravaDados;
@@ -1576,12 +1578,14 @@ end;
 procedure TfmAlim.btOrdNutClick(Sender: TObject);
 begin
   Screen.Cursor := crHourGlass;
-  grNutVisao.DisableScroll;
+//  grNutVisao.DisableScroll;
+grNutVisao.DataSource.DataSet.DisableControls;
   Application.CreateForm(TfmOpcoesAlimentos, fmOpcoesAlimentos);
   Screen.Cursor := crDefault;
   fmOpcoesAlimentos.ShowModal;
   fmOpcoesAlimentos.Free;
-  grNutVisao.EnableScroll;
+//  grNutVisao.EnableScroll;
+grNutVisao.DataSource.DataSet.EnableControls;
 
 end;
 
@@ -2173,6 +2177,16 @@ begin
     FRecurso := '';
     Close;
   end;
+end;
+
+procedure TfmAlim.grNutVisaoDrawDataCell(Sender: TObject;
+  const Rect: TRect; Field: TField; State: TGridDrawState);
+begin
+  if Field.DataSet.FieldByName('IDORIG').asString <> '{B970DAE1-B505-11D1-B683-00001D13DDBD}' then
+  begin
+    (sender as TDBGrid).Font.Color := clBlue;
+  end;
+
 end;
 
 end.

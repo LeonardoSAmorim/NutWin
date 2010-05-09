@@ -222,6 +222,7 @@ type
     procedure tbModRefeicaoBeforeDelete(DataSet: TDataSet);
     procedure TbGAlimentarBeforeEdit(DataSet: TDataSet);
     procedure TbOrigemBeforeEdit(DataSet: TDataSet);
+    procedure DMAlimentosCreate(Sender: TObject);
   private
     FAlimentoADuplicar: string;
     FCodAlimentoADuplicar: string;
@@ -243,7 +244,7 @@ var
 
 implementation
 
-uses DMMedidas, DMSubstCal, Alimento;
+uses DMMedidas, DMSubstCal, Alimento, uAliasName;
 
 {$R *.DFM}
 
@@ -559,5 +560,10 @@ begin
       end;
 end;
 
+procedure TDMAlimentos.DMAlimentosCreate(Sender: TObject);
+begin
+DBOrganizador.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
+end;
+
 end.
-  

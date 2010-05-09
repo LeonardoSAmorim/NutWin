@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Registry, lslAboutBoxDialog, lslVersionInfo, NutCnst;
+  StdCtrls, ExtCtrls, Registry, NutCnst, VersionInfo, lslAboutBoxDialog;
 
 type
   TfmSobre = class(TForm)
@@ -49,7 +49,7 @@ type
     laTitutlo_ID_Produto: TLabel;
     laID_Produto: TLabel;
     beLinha: TBevel;
-    lslSobre: TlslAboutBoxDialog;
+
     laTipo_Versao: TLabel;
     procedure buInfoClick(Sender: TObject);
     procedure buSuporteClick(Sender: TObject);
@@ -62,6 +62,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    lslSobre: TVersionInfo;
     property NomeUsuario : String read FNomeUsuario write SetNomeUsuario;
   end;
 
@@ -94,9 +95,11 @@ var GtrReg : TRegistry;
     LsVersao, TipoVersao : String;
     LtffPreRelease : TFileFlag;
 begin
-   laNome_Produto.Caption := lslSobre.VersionInfo.ProductName;
-   laCopyright.Caption := lslSobre.VersionInfo.CompanyName+#13#10+lslSobre.VersionInfo.LegalCopyright;
-   laVersao.Caption := 'Versão '+lslSobre.VersionInfo.ProductVersion.AsString;
+   lslSobre := TVersionInfo.create();
+
+   laNome_Produto.Caption := lslSobre.ProductName;
+   laCopyright.Caption := lslSobre.CompanyName+#13#10+lslSobre.LegalCopyright;
+   laVersao.Caption := 'Versão '+lslSobre.ProductVersion;
 //*   dmConexao.taValidade.Active := True;
 {*   if dmConexao.taValidade.FieldByName('Desenvolvimento').AsBoolean = True then
       LsVersao := ' - Versão de Desenvolvimento'
@@ -106,10 +109,10 @@ begin
       LsVersao := '';
 //*   dmConexao.taValidade.Active := False;
    LtffPreRelease := vsPreRelease;
-   if lslsobre.VersionInfo.FileFlags = [LtffPreRelease] then
-      laDescricao.Caption := 'Beta '+lslSobre.VersionInfo.FileVersion.AsString+LsVersao+#13#10+lslSobre.VersionInfo.FileDescription
+   if lslsobre.FileFlags = [LtffPreRelease] then
+      laDescricao.Caption := 'Beta '+lslSobre.FileVersion.AsString+LsVersao+#13#10+lslSobre.FileDescription
    else
-      laDescricao.Caption := lslSobre.VersionInfo.FileVersion.AsString+LsVersao+#13#10+lslSobre.VersionInfo.FileDescription;
+      laDescricao.Caption := lslSobre.FileVersion.AsString+LsVersao+#13#10+lslSobre.FileDescription;
    GtrReg := TRegistry.Create;
    GtrReg.RootKey := HKey_Local_Machine;
    GtrReg.OpenKey('\Software\DIS-EPM\NUTWIN',False);
@@ -161,3 +164,5 @@ begin
 end;
 
 end.
+
+ 

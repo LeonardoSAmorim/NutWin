@@ -41,8 +41,10 @@ type
     Button1: TButton;
     DBRichEdit1: TDBRichEdit;
     Button2: TButton;
+    dbTipoAnam: TDatabase;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,7 +56,7 @@ var
 
 implementation
 
-uses UCadAman;
+uses UCadAman, uAliasName;
 
 {$R *.DFM}
 
@@ -66,6 +68,12 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 begin
     Form2.ShowModal;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+dbTipoAnam..AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

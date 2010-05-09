@@ -47,7 +47,9 @@ type
     TbPrecoAliIDALI: TStringField;
     TbPrecoAliMedidas: TStringField;
     TbPrecoAliMEDGR: TStringField;
+    dbPreco: TDatabase;
     procedure TbListaPrecoNewRecord(DataSet: TDataSet);
+    procedure DMPrecoCreate(Sender: TObject);
    private
     { Private declarations }
   public
@@ -60,7 +62,7 @@ var
 
 implementation
 
-uses DMSubstCal, DMAliPrep, DMMedidas;
+uses DMSubstCal, DMAliPrep, DMMedidas, uAliasName;
 
 
 {$R *.DFM}
@@ -70,5 +72,10 @@ begin
    TbListaPrecoIDLISTAPRECO.AsString:=CreateNewGUID;
 end;
 
+
+procedure TDMPreco.DMPrecoCreate(Sender: TObject);
+begin
+dbPreco.AliasName := BDE_ALIAS_NAME;
+end;
 
 end.

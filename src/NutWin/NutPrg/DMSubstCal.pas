@@ -141,6 +141,7 @@ type
     procedure TbGAliCalBkBeforeEdit(DataSet: TDataSet);
     procedure TbGruProtBeforeEdit(DataSet: TDataSet);
     procedure TbGAliProtBkBeforeEdit(DataSet: TDataSet);
+    procedure DMSubsCaloricoCreate(Sender: TObject);
   private
     { Private declarations }
 
@@ -187,7 +188,7 @@ var
 
 implementation
 
-uses DMAliPrep, DMMedidas, DMNutrien, Alimento;
+uses DMAliPrep, DMMedidas, DMNutrien, Alimento, uAliasName;
 
 {$R *.DFM}
 
@@ -568,6 +569,12 @@ begin
        ShowMessage('Este grupo não pode ser editado.');
        Abort;
       end;
+end;
+
+procedure TDMSubsCalorico.DMSubsCaloricoCreate(Sender: TObject);
+begin
+DbSubsCalorica.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
 end;
 
 end.

@@ -27,11 +27,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, registry, dbtables, lslAboutBoxDialog, lslVersionInfo,
-  RegEdit, RegConst2, Person, PersonaDialog;
+  StdCtrls, ExtCtrls, registry, dbtables, lslAboutBoxDialog,
+  RegEdit, RegConst2, Person, PersonaDialog, VersionInfo;
 type
   TfmRegistro = class(TForm)
-    lslSobre: TlslAboutBoxDialog;
+
     laNome_Produto: TLabel;
     laCopyright: TLabel;
     laUsuario: TLabel;
@@ -63,8 +63,7 @@ type
     FtrReg:TRegistry;
     Function Testa_NS2(LsSerial,LsSistema: String): Integer;
   public
-    { Public declarations }
-    {Parametros de Entrada}
+    lslSobre : TVersionInfo;
     PsSistema:String;
     PsVersao:String;
     PsSession:String;
@@ -120,7 +119,7 @@ Function TfmRegistro.Testa_NS2(LsSerial,LsSistema: String): Integer;
 var
    LsVersao : String;
 begin
-    LsVersao := FormatFloat( '00', fmRegistro.lslSobre.VersionInfo.FileVersion.Major );
+    LsVersao := FormatFloat( '00', fmRegistro.lslSobre.FileVersion.Major );
     Result := Testa_NS(LsSerial,LsSistema,LsVersao);
 end;
 
@@ -299,20 +298,27 @@ procedure TfmRegistro.FormCreate(Sender: TObject);
 var LsVersao : String;
     LtffPreRelease : TFileFlag;
 begin
+   lslSobre:= TVersionInfo.create();
+   lslSobre.LegalCopyright  :=      'O programa de Apoio à Nutrição é  protegido  pela  lei'+
+      'nº 7.646/87,  que dispõe sobre a proteção da proprie-'+
+      'dade  intelectual de programas  de computador e  sua '+
+      'comercialização no país.  A reprodução não  autoriza-'+
+      'da  constituirá crime com pena prevista na lei.';
+
    PfRegistrou:=false;
    FtrReg := TRegistry.Create;
    FtrReg.RootKey := HKey_Local_Machine;
    FtrReg.OpenKey('\Software\DIS-EPM\NUTWIN',False);
    EdNome.text := FtrReg.ReadString('Name');
    EdEmpresa.text := FtrReg.ReadString('Company');
-   laNome_Produto.Caption := lslSobre.VersionInfo.ProductName;
-   laCopyright.Caption := lslSobre.VersionInfo.CompanyName+#13#10+lslSobre.VersionInfo.LegalCopyright;
-   laVersao.Caption := 'Versão '+lslSobre.VersionInfo.ProductVersion.AsString;
+   laNome_Produto.Caption := lslSobre.ProductName;
+   laCopyright.Caption := lslSobre.CompanyName+#13#10+lslSobre.LegalCopyright;
+   laVersao.Caption := 'Versão '+lslSobre.ProductVersion;
    LtffPreRelease := vsPreRelease;
-   if lslsobre.VersionInfo.FileFlags = [LtffPreRelease] then
-      laDescricao.Caption := 'Beta '+lslSobre.VersionInfo.FileVersion.AsString+LsVersao+#13#10+lslSobre.VersionInfo.FileDescription
+   if lslsobre.FileFlags = [LtffPreRelease] then
+      laDescricao.Caption := 'Beta '+lslSobre.FileVersion.AsString+LsVersao+#13#10+lslSobre.FileDescription
    else
-      laDescricao.Caption := lslSobre.VersionInfo.FileVersion.AsString+LsVersao+#13#10+lslSobre.VersionInfo.FileDescription;
+      laDescricao.Caption := lslSobre.FileVersion.AsString+LsVersao+#13#10+lslSobre.FileDescription;
 end;
 
 procedure TfmRegistro.FormDestroy(Sender: TObject);
@@ -343,3 +349,4 @@ begin
 end;
 
 end.
+     

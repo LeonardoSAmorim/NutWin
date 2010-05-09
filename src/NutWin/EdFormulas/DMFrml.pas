@@ -70,8 +70,10 @@ type
     TabTabBkNOMETABELA: TStringField;
     TabTabBkCAMPORESULT: TStringField;
     TabTabBkMODOPESQUISA: TStringField;
+    dbFormulas: TDatabase;
     procedure TabFrmlTipoChange(Sender: TField);
     procedure TabFrmlTipoValidate(Sender: TField);
+    procedure DMFormulasCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,6 +84,8 @@ var
   DMFormulas: TDMFormulas;
 
 implementation
+
+uses uAliasName;
 
 {$R *.DFM}
 
@@ -113,4 +117,11 @@ begin
 
 end;
 
+procedure TDMFormulas.DMFormulasCreate(Sender: TObject);
+begin
+dbFormulas.AliasName := BDE_ALIAS_NAME;
+openAllTables(self);
+end;
+
 end.
+  

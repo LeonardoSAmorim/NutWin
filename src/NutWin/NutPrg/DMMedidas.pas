@@ -73,6 +73,7 @@ type
     procedure TbMedidasCaseirasBeforeDelete(DataSet: TDataSet);
     procedure TbMedidasBeforeEdit(DataSet: TDataSet);
     procedure TbMedidasCaseirasBeforeEdit(DataSet: TDataSet);
+    procedure DMedidasCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,7 +94,7 @@ var
 
 implementation
 
-uses DMAliPrep, DMNutrien;
+uses DMAliPrep, DMNutrien, uAliasName;
 
 
 
@@ -201,6 +202,13 @@ begin
        ShowMessage('Esta informação não pode ser editada.');
        Abort;
       end;
+end;
+
+procedure TDMedidas.DMedidasCreate(Sender: TObject);
+begin
+DBMedidas.AliasName := BDE_ALIAS_NAME;
+TbMedidasCaseiras.open;
+openAllTables(self);
 end;
 
 end.

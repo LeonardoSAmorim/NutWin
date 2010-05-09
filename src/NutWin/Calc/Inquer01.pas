@@ -29,7 +29,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, ExtCtrls, ComCtrls, Grids, CalcAli, PAINELMEDIDA, DBCtrls,
   DBGrids, Mask, RefAli, Db, CCSListaLinks, CCSDBListaLinks, Measurement,
-  RXDBCtrl, NutCnst;
+   NutCnst;
 
 type
   TfmInquer01 = class(TForm)
@@ -131,7 +131,7 @@ type
     Panel11: TPanel;
     grNutPorAliAux: TDBGrid;
     Panel12: TPanel;
-    grNutPorAlimento: TRxDBGrid;
+    grNutPorAlimento: TDBGrid;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure deInqRefeicaoClick(Sender: TObject);
@@ -148,15 +148,15 @@ type
     procedure FormHide(Sender: TObject);
     procedure grInqItensAlimentarEnter(Sender: TObject);
     procedure grInqItensAlimentarExit(Sender: TObject);
-    procedure grNutPorAlimentoGetBtnParams(Sender: TObject; Field: TField;
-      AFont: TFont; var Background: TColor; var SortMarker: TSortMarker;
-      IsDown: Boolean);
+//    procedure grNutPorAlimentoGetBtnParams(Sender: TObject; Field: TField;
+//      AFont: TFont; var Background: TColor; var SortMarker: TSortMarker;
+//      IsDown: Boolean);
     procedure grNutPorAlimentoTitleBtnClick(Sender: TObject; ACol: Integer;
       Field: TField);
   private
     { Private declarations }
     fmRef : TfmRefeicao;
-    MySortMarker: TSortMarker;
+//    MySortMarker: TSortMarker;
     MyField : TField;
     MyCol : Integer;
     procedure SetCalculoAlimentar(Ativa: Boolean);
@@ -408,20 +408,20 @@ begin
       dmMotherBoard.ToolBarItemAli.Visible := False;
 end;
 
-procedure TfmInquer01.grNutPorAlimentoGetBtnParams(Sender: TObject;
+{procedure TfmInquer01.grNutPorAlimentoGetBtnParams(Sender: TObject;
   Field: TField; AFont: TFont; var Background: TColor;
   var SortMarker: TSortMarker; IsDown: Boolean);
 begin
   if Assigned( MyField ) and ( MyField.Name = Field.Name ) then
      SortMarker := MySortMarker;
-end;
+end;}
 
 procedure TfmInquer01.grNutPorAlimentoTitleBtnClick(Sender: TObject;
   ACol: Integer; Field: TField);
 begin
    MyField := Field;
    MyCol := ACol;
-   if MySortMarker = smUp then
+{   if MySortMarker = smUp then
       begin
          dmMotherBoard.CalcInquerito.OrdenaAliNutPorNutriente( MyField, toDecrescente );
          MySortMarker := smDown;
@@ -430,12 +430,13 @@ begin
       begin
          dmMotherBoard.CalcInquerito.OrdenaAliNutPorNutriente( MyField, toCrescente );
          MySortMarker := smUp;
-      end;
+      end;}
 end;
 
 procedure TfmInquer01.DepoisDeOrdenaAliNutPorNutriente(Sender: TObject);
 begin
-   grNutPorAlimento.LeftCol := MyCol;
+//   grNutPorAlimento.LeftCol := MyCol;
 end;
 
 end.
+ 
