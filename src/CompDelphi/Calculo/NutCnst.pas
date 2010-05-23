@@ -57,20 +57,17 @@ const
   eForeignKey = 9733;
   eDetailsExist = 9734;
 
-   TEXTO_ENDERECO =    'Universidade Federal de São Paulo'+chr(13)+chr(10)+
-                       'Departamento de Informática em Saúde'+chr(13)+chr(10)+
-                       'Rua Botucatu, 862 - Ed. José Leal Prado - Térreo'+chr(13)+chr(10)+
-                       'Vila Clementino'+chr(13)+chr(10)+
-                       'São Paulo - SP'+chr(13)+chr(10)+
-                       '04023-062'+chr(13)+chr(10)+chr(13)+chr(10)+
-                       'Tel.: (0xx11) 5574-5234 / 5576-4521'+chr(13)+chr(10)+
-                       'FAX: (0xx11) 5572-6601'+chr(13)+chr(10)+chr(13)+chr(10)+
-                       'Contato: Suporte'+chr(13)+chr(10)+
-                       'Web: http://www.unifesp.br/dis/produtos'+chr(13)+chr(10)+
-                       'E-mail: nutricao@dis.epm.br';
+   TEXTO_ENDERECO =    'NutWin - Programa de Apoio a Nutrição(R)'+chr(13)+chr(10)+
+                       'Copyright (C) 2002-2010 Departamento de Informática em Saúde'+chr(13)+chr(10)+
+                       'Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>'+chr(13)+chr(10)+
+                       chr(13)+chr(10)+chr(13)+chr(10)+
+                       'http://sourceforge.net/projects/nutwin'+chr(13)+chr(10)+
+                       chr(13)+chr(10)+chr(13)+chr(10)+chr(13)+chr(10)+
+                       'NutWin is free software.  See the GNU General Public '+
+                       'License for more details. http://www.gnu.org/licenses/';
 
-   TEXTO_CONTATO =     'Entre em contato para adquirir'+chr(13)+chr(10)+
-                       'seu registro do NUTWIN.'+chr(13)+chr(10)+chr(13)+chr(10)+
+   TEXTO_CONTATO =     'Para entrar em contato, acesse o site '+
+                       'do projeto NutWin no SourceForge.net.'+chr(13)+chr(10)+chr(13)+chr(10)+
                        TEXTO_ENDERECO;
 
 type

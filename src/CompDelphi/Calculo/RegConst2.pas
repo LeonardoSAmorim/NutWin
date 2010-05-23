@@ -35,7 +35,7 @@ const
   CFGVersaoCalcDefault : String = 'BETA X.XX (DEMO)'; // Versão da Calculadora
   CFGPersonaFileName : String = 'PERSONA FILE NAME';
   CFGLogoFileName : String = 'LOGO FILE NAME';
-  CFGSerial : String = 'Serial';
+//  CFGSerial : String = 'Serial';
 
   OPCDica : String = 'MOSTRA DICA';
   OPCDicaDefault : Boolean = True; // Mostrar Dica na Abertura

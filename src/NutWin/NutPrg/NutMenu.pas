@@ -525,7 +525,7 @@ var
    fmSobre : TfmSobre;
 begin
    fmSobre := TfmSobre.Create(self);
-   fmSobre.NomeUsuario := DMPessoa.UsuarioLogado;
+
    fmSobre.ShowModal;
    fmSobre.Free;
 end; { end of Sobre }

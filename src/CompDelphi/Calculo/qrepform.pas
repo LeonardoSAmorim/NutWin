@@ -83,7 +83,7 @@ implementation
 
 procedure TFormReport.FormCreate(Sender: TObject);
 var
-   Valor, Valor2 : String;
+   Valor: String;
    Persona : TStringList;
    Personalizou : Boolean;
    i : Integer;
@@ -105,16 +105,12 @@ begin
  Personalizou := False;
  try
    // Forma de pegar uma chave que não seja do registro do windows
-   if not CarregaChaveString( CFGROOT, CFGPath, CFGSerial, Valor2) then
-      Valor2 := '';
-   if Chave <> '' then
-      Valor2 := Chave;
 
    if CarregaChaveString( CFGROOT, CFGPath, CFGPersonaFileName, Valor ) and
-      ( Valor2 <> '' ) and
-      FileExists(Valor+'\'+PersonaFileName(Valor2)+'.cfg') then
+
+      FileExists(Valor+'\'+PersonaFileName()+'.cfg') then
      begin
-      i := LoadPersona(Valor+'\'+PersonaFileName(Valor2)+'.cfg', Persona, Valor2, False);
+      i := LoadPersona(Valor+'\'+PersonaFileName()+'.cfg', Persona, '', False);
       case i of
          1 : ShowMessage( HD_INVALIDO );
          2 : ShowMessage( SERIAL_INVALIDO );
@@ -140,10 +136,10 @@ begin
    else
       begin
          if CarregaChaveString( CFGROOT, CFGPath, CFGLogoFileName, Valor ) and
-            FileExists(Valor+'\'+PersonaFileName(Valor2)+'.bmp') then
+            FileExists(Valor+'\'+PersonaFileName()+'.bmp') then
             begin
-               qiLogo.Picture.LoadFromFile( Valor+'\'+PersonaFileName(Valor2)+'.bmp' );
-               if ( LowerCase(PersonaFileName(Valor2)) <> 'persona')  then
+               qiLogo.Picture.LoadFromFile( Valor+'\'+PersonaFileName()+'.bmp' );
+               if ( LowerCase(PersonaFileName()) <> 'persona')  then
                   SetCabecalho;
             end
          else

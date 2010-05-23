@@ -43,7 +43,8 @@ type
    function SerialNumber(FDrive:String) :String;
    function LoadPersona(FileName: String; P : TStringList; Serial : String; Desenv : Boolean=False): Integer;
    function Ancorar(FileName: String; Serial : String): Boolean;
-   function PersonaFileName( Serial : String ) : String;
+   function PersonaFileName( Serial : String ) : String;   overload;
+      function PersonaFileName(  ) : String;   overload;
 var
    MyRandSeed : longInt;
 
@@ -158,41 +159,29 @@ end;
 function LoadPersona(FileName: String; P : TStringList; Serial : String; Desenv : Boolean=False): Integer;
 var
    Drive, Texto : String;
+   Persona : TStringList;
    i : Integer;
 begin
-      Result := 0;
-      P.Clear;
-      P.LoadFromFile( FileName );
-      Drive := ExtractFileDrive(FileName);
-      Texto := '';
-      for i := 0 to P.Count - 2 do
-          Texto := Texto + P.Strings[i];
-      if ( P.Count = 11 ) and (P.Strings[10] = IntToHex(GetCRC32ForStr(Texto),8)) then
-      begin
-         if ( Serial = Encrypt(P.Strings[7], SeedSerial(Serial), cyDecimal )) then
-         begin
-            if (SerialNumber(Drive[1]) = Encrypt(P.Strings[8], SeedSerial(Serial), cyDecimal)) or
-               ('NENHUMA' = Encrypt(P.Strings[8], SeedSerial(Serial), cyDecimal)) or Desenv then
-            begin
-               P.Strings[0] := Encrypt(P.Strings[0], SeedSerial(Serial), cyDecimal);
-               P.Strings[1] := Encrypt(P.Strings[1], SeedSerial(Serial), cyDecimal);
-               P.Strings[2] := Encrypt(P.Strings[2], SeedSerial(Serial), cyDecimal);
-               P.Strings[3] := Encrypt(P.Strings[3], SeedSerial(Serial), cyDecimal);
-               P.Strings[4] := Encrypt(P.Strings[4], SeedSerial(Serial), cyDecimal);
-               P.Strings[5] := Encrypt(P.Strings[5], SeedSerial(Serial), cyDecimal);
-               P.Strings[6] := Encrypt(P.Strings[6], SeedSerial(Serial), cyDecimal);
-               P.Strings[7] := Encrypt(P.Strings[7], SeedSerial(Serial), cyDecimal);
-               P.Strings[8] := Encrypt(P.Strings[8], SeedSerial(Serial), cyDecimal);
-               P.Strings[9] := Encrypt(P.Strings[9], SeedSerial(Serial), cyDecimal);
-            end
-            else
-               Result := 1;
-         end
-         else
-            Result := 2;
-      end
-      else
-         Result := 3;
+     Persona := TStringList.Create;
+     Persona.Add('Universidade Federal de São Paulo'); // cabec_1
+     Persona.Add('Campus São José dos Campos');        // cabec_2
+     Persona.Add('Prof. Dr. Meide Silva Anção');       // cabec_3
+     Persona.Add('');                                  // rodap_1
+     Persona.Add('');                                  // rodap_2
+     Persona.Add('');                                  // fExpira
+     Persona.Add('');                                  // validade
+     Persona.Add('');                                  // serial
+     Persona.Add('');                                  // ancora
+     Persona.Add('');                                  // nr licenca
+     Persona.Add('');                                  // crc
+
+
+     P.Clear;
+     P.LoadFromFile( FileName );
+     for i := P.Count to 10 do
+         p.Add(Persona.Strings[i]);
+
+     result := 0;
 end;
 
 function Ancorar(FileName: String; Serial : String): Boolean;
@@ -218,7 +207,7 @@ begin
    end;
 end;
 
-function PersonaFileName( Serial : String ) : String;
+function PersonaFileName( Serial : String ) : String; overload;
 var
    NumVer : Integer;
 begin
@@ -231,5 +220,13 @@ begin
          Result := Result + Trim(IntToStr( NumVer ));
    end
 end;
+
+function PersonaFileName( ) : String; overload;
+var
+   NumVer : Integer;
+begin
+      Result := 'Persona';
+end;
+
 
 end.

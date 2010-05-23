@@ -647,7 +647,7 @@ const   ALERTA =  'VERSÃO NÃO PERSONALIZADA!';
 
 procedure TfmOpcoesSistema.GetPersona;
 var
-   Valor, Valor2 : String;
+   Valor: String;
    Personalizou : Boolean;
    i : Integer;
    Persona : TStringList;
@@ -657,13 +657,10 @@ begin
    Persona := TStringList.Create;
    try
       // Forma de pegar uma chave que não seja do registro do windows
-      if not CarregaChaveString( CFGROOT, CFGPath, CFGSerial, Valor2) then
-         Valor2 := '';
       if CarregaChaveString( CFGROOT, CFGPath, CFGPersonaFileName, Valor ) and
-         ( Valor2 <> '' ) and
-         FileExists(Valor+'\'+PersonaFileName(Valor2)+'.cfg') then
+         FileExists(Valor+'\'+PersonaFileName()+'.cfg') then
          begin
-            i := LoadPersona(Valor+'\'+PersonaFileName(Valor2)+'.cfg', Persona, Valor2, False);
+            i := LoadPersona(Valor+'\'+PersonaFileName()+'.cfg', Persona, '', False);
             case i of
                1 : ShowMessage( HD_INVALIDO );
                2 : ShowMessage( SERIAL_INVALIDO );

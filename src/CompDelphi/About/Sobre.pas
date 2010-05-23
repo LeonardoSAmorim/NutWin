@@ -36,18 +36,10 @@ type
     buSuporte: TButton;
     imCliWin: TImage;
     laVersao: TLabel;
-    laTitulo_Usuario: TLabel;
-    laNome_Usuario: TLabel;
     laDescricao: TLabel;
     laCopyright: TLabel;
     laNome_Produto: TLabel;
-    laUsuario: TLabel;
-    paUsuario: TPanel;
     meDireitos_Legais: TMemo;
-    laNome_Usuario2: TLabel;
-    laNome_Empresa: TLabel;
-    laTitutlo_ID_Produto: TLabel;
-    laID_Produto: TLabel;
     beLinha: TBevel;
 
     laTipo_Versao: TLabel;
@@ -58,12 +50,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FNomeUsuario: String;
-    procedure SetNomeUsuario(const Value: String);
+
     { Private declarations }
   public
     { Public declarations }
     lslSobre: TVersionInfo;
-    property NomeUsuario : String read FNomeUsuario write SetNomeUsuario;
+
   end;
 
 var
@@ -123,21 +115,8 @@ begin
    except on E:Exception do
       laTipo_Versao.Caption := '*** Tipo não disponível ***'
    end;
-   try
-      laNome_Usuario2.Caption := GtrReg.ReadString('Name');
-   except on E:Exception do
-      laNome_Usuario2.Caption := '*** Nome não disponível ***'
-   end;
-   try
-      laNome_Empresa.Caption := GtrReg.ReadString('Company');
-   except on E:Exception do
-      laNome_Empresa.Caption := '*** Empresa não disponível ***'
-   end;
-   try
-      laID_Produto.Caption := GtrReg.ReadString('Serial');
-   except on E:Exception do
-      laID_Produto.Caption := '*** não disponível ***'
-   end;
+
+
    GtrReg.Free;
 //*   Centraliza_Form(Self);
 end;
@@ -152,16 +131,6 @@ begin
    Action := caFree;
 end;
 
-procedure TfmSobre.SetNomeUsuario(const Value: String);
-begin
-   FNomeUsuario := Value;
-   if FNomeUsuario <> '' then
-   begin
-      laNome_Usuario.Caption := FNomeUsuario;
-      laNome_Usuario.Visible := True;
-      laTitulo_Usuario.Visible := True;
-   end;
-end;
 
 end.
 
