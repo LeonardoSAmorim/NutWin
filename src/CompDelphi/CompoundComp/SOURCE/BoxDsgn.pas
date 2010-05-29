@@ -33,7 +33,8 @@ type
 {$IFDEF VER_VCL4}
     procedure ValidateComponent(Component:IComponent); override;
 {$ELSE}
-    procedure ValidateComponent(Component:TComponent); override;
+    procedure ValidateComponent(Component:IComponent); override;
+    //procedure ValidateComponent(Component:TComponent); override;
 {$ENDIF}
   end;
 
@@ -63,13 +64,15 @@ implementation
 {$IFDEF VER_VCL4}
 procedure TBoxCustomModule.ValidateComponent(Component:IComponent);
 {$ELSE}
-procedure TBoxCustomModule.ValidateComponent(Component:TComponent);
+procedure TBoxCustomModule.ValidateComponent(Component:IComponent);
+//procedure TBoxCustomModule.ValidateComponent(Component:TComponent);
 {$ENDIF}
 begin
 {$IFDEF VER_VCL4}
   if ExtractComponent(Component) is TMainMenu then
 {$ELSE}
-  if Component is TMainMenu then
+if ExtractComponent(Component) is TMainMenu then
+//  if Component is TMainMenu then
 {$ENDIF}
     raise Exception.Create(sErrorCreateComponent)
 end;
@@ -82,17 +85,23 @@ var
   Button: TToolButton;
   LastButton: TToolButton;
   {$IFNDEF VER_VCL4}
-  Designer: TFormDesigner;
+//  Designer: TFormDesigner;
+Designer: IFormDesigner;
   {$ELSE}
+
   Designer: IFormDesigner;
   {$ENDIF}
   i: integer;
 begin
   {$IFNDEF VER_VCL4}
-  if Root is TToolButton then
-    ToolBar := TToolBar(TToolButton(Root).Parent) else
-    ToolBar := TToolBar(Root);
+//  if Root is TToolButton then
+//    ToolBar := TToolBar(TToolButton(Root).Parent) else
+//    ToolBar := TToolBar(Root);
+ if ExtractComponent(Root) is TToolButton then
+    ToolBar := TToolBar(TToolButton(ExtractComponent(Root)).Parent) else
+    ToolBar := TToolBar(ExtractComponent(Root));
   {$ELSE}
+
   if ExtractComponent(Root) is TToolButton then
     ToolBar := TToolBar(TToolButton(ExtractComponent(Root)).Parent) else
     ToolBar := TToolBar(ExtractComponent(Root));
@@ -100,7 +109,8 @@ begin
   if ToolBar <> nil then
   begin
     {$IFNDEF VER_VCL4}
-    Designer := TFormDesigner(TCustomForm(ToolBar.Parent).Designer);
+//    Designer := TFormDesigner(TCustomForm(ToolBar.Parent).Designer);
+Designer := IFormDesigner(TCustomForm(ToolBar.Parent).Designer);
     {$ELSE}
     Designer := IFormDesigner(TCustomForm(ToolBar.Parent).Designer);
    {$ENDIF}

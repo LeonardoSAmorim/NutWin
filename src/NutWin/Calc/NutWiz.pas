@@ -30,8 +30,8 @@ uses
   Wizard, StdCtrls, Buttons, ExtCtrls, OleCtrls, OCXDCNLib_TLB, DicNut, measurement,
   Antrop02, Antrop01, RecCal01, RecCal02, RecCal03, RecCal04, RecCal05, RecCal06,SelRecCal,
   NutCalcAli, SelRefCalcAli, RecNut, RecCal07,CalculoEditor,
-  fmPrepPF, fmInquND, fmDietaNome, fmInqNome, fmDistrEnergia, fmNutAcomp, fmReceita,
-  fmDieObs, fmInqObs, fmPrepVerifPF, InqAtivFis;
+  fmPrepPF, fmInquND, fmDietaNome, fmInqNome, fmDistrEnergia, fmNutAcomp,
+  fmPrepVerifPF, InqAtivFis;
 
 type
   TfmNutWiz = class(TCalculoEditor)
@@ -286,9 +286,9 @@ initialization
     RegisterClass(TfmPlanoAlimentarNome);
     RegisterClass(TfmDistribuicaoEnergia);
     RegisterClass(TfmNutrientesAcomp);
-    RegisterClass(TfmPrepReceita);
-    RegisterClass(TfmDieObservacoes);
-    RegisterClass(TfmInqObservacoes);
+
+
+
     RegisterClass(TfmVerificaPesoFinal);
     RegisterClass(TfmInqAtivFis);
 end.

@@ -98,24 +98,26 @@ package nutricao;
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST ON}
 {$MINENUMSIZE 1}
-{$IMAGEBASE $00400000}
+{$IMAGEBASE $400000}
 {$DESCRIPTION 'Package dos Componentes de Nutricao'}
-{$IMPLICITBUILD OFF}
+{$IMPLICITBUILD ON}
 
 requires
   FREEWARE,
   Dic,
   BASICOS,
-  VCLX40,
-  VCLJPG40,
-  VCLSMP40,
-  QRPT40,
-  RXCTL4,
-  DclBox40,
-  VCL40,
-  tee44;
+  VCLX50,
+  VCLJPG50,
+  VCLSMP50,
+  QRPT50,
+  RXCTL5,
+  ccpack50,
+  VCL50,
+  tee75;
 
 contains
+  uAliasName in 'AliNut\uAliasName.pas',
+  RelConfig in 'Calculo\RelConfig.pas',
   LstAli in 'AliNut\LstAli.pas',
   CalcAli in 'AliNut\CalcAli.pas' {CalcAli: TDataModule},
   LstMed in 'AliNut\LstMed.pas',

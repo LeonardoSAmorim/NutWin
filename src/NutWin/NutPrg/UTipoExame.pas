@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, DBMyNav, ComCtrls, DBCtrls, Grids, DBGrids, ExtCtrls, ToolWin,
-  Boxes, BxRichTB;
+  Boxes;
 
 type
   TfmTipoExame = class(TForm)

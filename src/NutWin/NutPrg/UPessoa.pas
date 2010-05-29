@@ -31,7 +31,7 @@ uses
   ExtCtrls, ExtDlgs, OleCtnrs, Menus, DBMyNav, NavTable, db, dbTables,
   UDIdade, jpeg, Pessoa, clipbrd,
   DBActns, ActnList, RlAntr01, Measurement, Idade, Memoria, NutCnst,
-  AlmaHumana, ToolWin, CalculoViewer, Boxes, BxRichTB, CCSFonetizar,
+  AlmaHumana, ToolWin, CalculoViewer, Boxes, CCSFonetizar,
   CCSListaLinks, CCSAbreviar, RXLookup, DBListView98, CalculoTextViewer;
 
 type

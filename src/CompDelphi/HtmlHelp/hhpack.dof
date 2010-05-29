@@ -28,7 +28,6 @@ Z=1
 ShowHints=1
 ShowWarnings=1
 UnitAliases=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-
 [Linker]
 MapFile=0
 OutputObjs=0
@@ -39,7 +38,6 @@ MinStackSize=16384
 MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=HTML Help components
-
 [Directories]
 OutputDir=
 UnitOutputDir=
@@ -50,11 +48,13 @@ Packages=VCL50;VCLX50;VCLSMP50;VCLDB50;VCLADO50;ibevnt50;VCLBDE50;VCLDBX50;VCLIB
 Conditionals=
 DebugSourceDirs=
 UsePackages=0
-
 [Parameters]
 RunParams=
 HostApplication=
-
+[Language]
+ActiveLang=
+ProjectLang=$00000416
+RootDir=
 [Version Info]
 IncludeVerInfo=1
 AutoIncBuild=0
@@ -69,7 +69,6 @@ Private=0
 DLL=0
 Locale=3082
 CodePage=1252
-
 [Version Info Keys]
 CompanyName=
 FileDescription=
@@ -81,7 +80,6 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
-
 [Excluded Packages]
 $(DELPHI)\Bin\dclqrt50.bpl=QuickReport Components
 $(DELPHI)\Projects\Bpl\dcldss50.bpl=Borland Decision Cube Components

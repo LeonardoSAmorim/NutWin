@@ -37,7 +37,7 @@ uses
   RlDiet01, RlPrep01, DBIOController, DBCalcNutActns, CLstAli,
   MedidasCaseiras, Nutrientes, EquEnergia, CAlimento, EquProteina, AliWiz,
   Conector, KeyNav, Wizard, fmSelRelCalcAli, DelayedOpIndicator,
-  lslAboutBoxDialog, QuickRpt, comctrls, DSList, NutAli, VersionInfo;
+  QuickRpt, comctrls, DSList, NutAli, VersionInfo;
 
 type
   TStateMem = ( cnStart, cnBrowse, cnEdit, cnCancel, cnPost, cnEmpty );

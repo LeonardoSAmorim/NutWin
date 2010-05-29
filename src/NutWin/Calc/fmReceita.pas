@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ToolWin, ComCtrls, Boxes, BxRichTB, StdCtrls, ExtCtrls, Measurement,
+  ToolWin, ComCtrls, Boxes, StdCtrls, ExtCtrls, Measurement,
   DBCtrls, db;
 
 type
@@ -37,7 +37,7 @@ type
   TfmPrepReceita = class(TForm)
     paReceita: TPanel;
     paEditor: TPanel;
-    BxRichToolBar1: TBxRichToolBar;
+
     laPrepNome: TLabel;
     reReceita: TDBRichEdit;
     procedure FormHide(Sender: TObject);

@@ -85,7 +85,8 @@ var
   {$IFDEF VER_VCL4}
   Designer: IFormDesigner;
   {$ELSE}
-  Designer: TFormDesigner;
+  Designer: IFormDesigner;
+//  Designer: TFormDesigner;
   {$ENDIF}
 begin
   if Component is TTabSheet then
@@ -148,7 +149,8 @@ var
   {$IFDEF VER_VCL4}
   Designer: IFormDesigner;
   {$ELSE}
-  Designer: TFormDesigner;
+  Designer: IFormDesigner;
+//  Designer: TFormDesigner;
   {$ENDIF}
   i : integer;
 begin

@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, Buttons, DBCtrls, ComCtrls, Mask, ExtCtrls, Grids, DBGrids,
-  DBMyNav, Menus, db, ToolWin, Boxes, BxRichTB, NutCnst;
+  DBMyNav, Menus, db, ToolWin, Boxes, NutCnst;
 
 type
   TfmTabPess = class(TForm)
@@ -74,11 +74,11 @@ type
     laNomeExa: TLabel;
     deModExa: TDBEdit;
     drExames: TDBRichEdit;
-    drExamesTab: TBxRichToolBar;
+
     paAnam: TPanel;
     laNomeMod: TLabel;
     deNomeMod: TDBEdit;
-    drAnam: TBxRichToolBar;
+
     drMod: TDBRichEdit;
     tsProfissao: TTabSheet;
     grProf: TDBGrid;

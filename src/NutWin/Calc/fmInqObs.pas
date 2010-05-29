@@ -33,7 +33,7 @@ type
   TfmInqObservacoes = class(TForm)
     paInqObs: TPanel;
     paEditor: TPanel;
-    BxRichToolBar1: TBxRichToolBar;
+
     reInqObs: TDBRichEdit;
     laInqObsTitulo2: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

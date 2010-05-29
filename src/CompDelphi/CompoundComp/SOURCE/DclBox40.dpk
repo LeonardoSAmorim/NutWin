@@ -21,14 +21,14 @@ package dclbox40;
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST ON}
 {$MINENUMSIZE 1}
-{$IMAGEBASE $00400000}
+{$IMAGEBASE $400000}
 {$DESCRIPTION 'VCL Composite Components'}
 {$DESIGNONLY}
 {$IMPLICITBUILD OFF}
 
 requires
-  vcl40,
-  dclstd40;
+  vcl50,
+  dclstd50;
 
 contains
   Boxes in 'Boxes.pas',

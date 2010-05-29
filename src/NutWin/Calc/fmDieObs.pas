@@ -27,14 +27,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ComCtrls, DBCtrls, ToolWin, Boxes, BxRichTB, ExtCtrls, db;
+  StdCtrls, ComCtrls, DBCtrls, ToolWin, Boxes, ExtCtrls, db;
 
 type
   TfmDieObservacoes = class(TForm)
     paDieObs: TPanel;
     laDieObsTitulo2: TLabel;
     paEditor: TPanel;
-    BxRichToolBar1: TBxRichToolBar;
+
     reDieObs: TDBRichEdit;
     procedure FormShow(Sender: TObject);
     procedure FormHide(Sender: TObject);

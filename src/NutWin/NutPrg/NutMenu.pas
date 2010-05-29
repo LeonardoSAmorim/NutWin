@@ -234,10 +234,11 @@ var
 implementation
 
 uses NutOpc, NutRelat, NutPesq, NutLogin, NutRede, AnamAlim, AnamMed,
-  UManut, DMNutWin, Tabela, UPesquisa, Pessoa, UPessoa, TabAli, Alimento,
+  UManut, DMNutWin, UPesquisa, Pessoa, UPessoa, TabAli, Alimento,
   UCadPastas, UOpcoes, DMIndex, UDupAlim, UPessApr, UPrinc, UAlimApresent,
   CadAnam, UopAlim, UOpSist, NutRelatInd, DMMBoard, DMPesq, ULocPess,
-  DMAliPrep, NutDica, NovoPreview, UBackup, URestore, DMSemaf, uAliasName;
+  DMAliPrep, NutDica, NovoPreview, UBackup, URestore, DMSemaf, uAliasName,
+  Tabela;
 
 {$R *.DFM}
 

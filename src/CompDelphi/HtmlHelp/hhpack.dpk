@@ -27,7 +27,7 @@ package hhpack;
 {$IMPLICITBUILD OFF}
 
 requires
-  vcl40;
+  vcl50;
 
 contains
   HtmlHlp in 'HtmlHlp.pas',

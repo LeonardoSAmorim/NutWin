@@ -375,7 +375,7 @@ begin
 
    // Limpando linha anterior
    for I := GraficoFaixa.Chart.SeriesList.Count - 1 downto 0 do
-       if ( GraficoFaixa.Chart.SeriesList.Series[I] is TLineSeries ) then
+       if ( GraficoFaixa.Chart.Series[I] is TLineSeries ) then
           GraficoFaixa.Chart.SeriesList.Delete(I);
 
    // Abre com filtro

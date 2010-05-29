@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Registry, NutCnst, VersionInfo, lslAboutBoxDialog;
+  StdCtrls, ExtCtrls, Registry, NutCnst, VersionInfo;
 
 type
   TfmSobre = class(TForm)
