@@ -1,0 +1,2 @@
+INSERT INTO TGEBHB (SEXO, F1, F2, F3, F4) VALUES ('Feminino', 655, 9.5, 1.7, 4.7);
+INSERT INTO TGEBHB (SEXO, F1, F2, F3, F4) VALUES ('Masculino', 66, 13.7, 5, 6.8);

@@ -36,7 +36,6 @@ uses
   Tabela in 'Tabela.pas' {fmTabPess},
   UPessoa in 'UPessoa.pas' {fmPessoa},
   Alimento in 'Alimento.pas' {fmAlim},
-//  USelNut in 'USelNut.pas' {fmSelecNut},
   DMSubstCal in 'DMSubstCal.pas' {DMSubsCalorico: TDataModule},
   NutOpc in 'Nutopc.pas' {fm_Opcoes},
   DMAliPrep in 'DMAliPrep.pas' {DMAlimentos: TDataM0odule},
@@ -89,7 +88,6 @@ uses
   URListNut in 'URListNut.pas' {fmRelListNut},
   URelSProt in 'Relatorios\URelSProt.pas' {fmRelSProt},
   DMMBoard in '..\calc\DMMBoard.pas' {dmMotherBoard: TDataModule},
-//  UDataNasc in 'UDataNasc.pas' {fmDataNasc},
   NutCnst in 'NutCnst.pas',
   RegConst2 in '..\..\CompDelphi\calculo\RegConst2.pas',
   RegEdit in '..\..\CompDelphi\RegEdit\RegEdit.pas',
@@ -117,17 +115,9 @@ uses
   UEPValorMedidas in 'UEPValorMedidas.pas' {fmEPValorMedidas},
   UEPWizard in 'UEPWizard.pas' {fmEPWizard},
   FonAlim in 'FonAlim.pas' {fmFonetAlim},
-{  WebConst in '..\webconst.pas',
-  DbConsts in '..\dbconsts.pas',
-  IBConst in '..\ibconst.pas',
-  MidConst in '..\midconst.pas',
-  mxConsts in '..\mxconsts.pas',
-  OleConst in '..\oleconst.pas',
-  Consts in '..\consts.pas',}
   UFonetPess in 'UFonetPess.pas' {fmFonetPess},
   UAlimApresent in 'UAlimApresent.pas' {fmAlimApresent},
   UMedCasOrdem in 'UMedCasOrdem.pas' {fmMedCasOrdem},
-//  DMCriaTabTemp in '..\calc\DMCriaTabTemp.pas' {dmCriaTabelasTemp: TDataModule},
   UOpSist in 'UOpSist.pas' {fmOpcoesSistema},
   UopAlim in 'UopAlim.pas' {fmOpcoesAlimentos},
   UOpcoes in 'UOpcoes.pas' {fmOpcoesPess},
@@ -145,8 +135,6 @@ uses
   NovoPreview in '..\..\CompDelphi\Calculo\NovoPreview.pas' {fmNovoPreview},
   NutDica in 'NutDica.pas' {fm_Dica},
   URTASProt in 'URTASProt.pas' {fmRTASProt},
-//  fmCadHelp in 'fmCadHelp.pas' {fmCadHlp},
-//  dmHelp in '..\..\CompDelphi\HlpNut\dmHelp.pas' {dmHlp: TDataModule},
   UGrafWiz in 'UGrafWiz.pas' {fmGrafWiz},
   UGrafWizData in 'UGrafWizData.pas' {fmGrafWizData},
   UGrafWizFormulas in 'UGrafWizFormulas.pas' {fmGrafWizFormulas},
@@ -159,7 +147,9 @@ uses
   AliWizMedida in '..\Calc\AliWizMedida.pas' {fmAliWizMedida},
   DMUmAli in '..\..\CompDelphi\Alinut\DMUmAli.pas' {DMUmAlimento: TDataModule},
   Services in '..\..\CompDelphi\Servicos\Services.pas',
-  VersionInfo in '..\..\CompDelphi\About\VersionInfo.pas';
+  VersionInfo in '..\..\CompDelphi\About\VersionInfo.pas',
+  ErrorReport in '..\..\CompDelphi\ErrorReport\ErrorReport.pas' {FormErrorReport};
+
 // FIM
 
 {$R *.RES}
@@ -285,7 +275,8 @@ begin
       laOperacao.Caption := 'Criando Tabelas de Semáforo...';
       laOperacao.Update;
       Application.CreateForm(TdmSemaforo, dmSemaforo);
-      if ( NumLicencas <> 0 ) and ( dmSemaforo.GetAplicacoesAtivas( false ) >= NumLicencas ) then // tem que contar esta tb
+  Application.CreateForm(TFormErrorReport, FormErrorReport);
+  if ( NumLicencas <> 0 ) and ( dmSemaforo.GetAplicacoesAtivas( false ) >= NumLicencas ) then // tem que contar esta tb
       begin
           ShowMessage('O número de licenças adquiridas (' + IntToStr(NumLicencas) + ') para uso simultâneo já foi atingindo.'+#13#10 +
                       'Aguarde a saída de algum usuário e tente novamente' + #13#10 +

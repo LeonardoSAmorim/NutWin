@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ZConnection, StdCtrls, ZSqlMonitor, Db, ZAbstractRODataset, ZSqlMetadata,
-  ZDataset, ZAbstractDataset, ZAbstractTable, ExtCtrls, GIFImage;
+  ZDataset, ZAbstractDataset, ZAbstractTable, ExtCtrls, GIFImage,
+  ZSqlProcessor;
 
 type
   TForm1 = class(TForm)
@@ -35,6 +36,7 @@ type
     Image2: TImage;
     Shape1: TShape;
     Image3: TImage;
+    ZSQLProcessor1: TZSQLProcessor;
 
     procedure PropertiesChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -312,6 +314,9 @@ var registry: TRegistry;
     Password: String;
     stmt:String;
     index: integer;
+
+    SQLProcessor: TZSQLProcessor;
+    SearchRec :TSearchRec;
 begin
 if not TestSuccessful then
         btnTestClick(nil);
@@ -342,10 +347,21 @@ Connection.Connect;
 
 
 try
-stmt := format(CREATE_USER_STMT, [UserName, Password]);
+
+stmt := 'select count(1) from mysql.user where user = "'+UserName+'"';
 Query.SQL.Clear;
 Query.SQL.Add(stmt);
-Query.ExecSQL;
+Query.Open;
+index := Query.RowsAffected;
+Query.Close;
+
+if index < 1 then
+        begin
+        stmt := format(CREATE_USER_STMT, [UserName, Password]);
+        Query.SQL.Clear;
+        Query.SQL.Add(stmt);
+        Query.ExecSQL;
+        end;
 except
 on E:Exception do ;
 end;
@@ -376,6 +392,30 @@ except
 on E:Exception do ;
 end;
 
+
+SQLProcessor:= TZSQLProcessor.Create(self);
+SQLProcessor.Connection := Connection;
+
+
+
+
+
+// NÃO GUARDAR A SENHA
+// ACERTAR O TAB ORDER
+// ACERTAR AS CHAVES DO REGISTRO
+
+//function DirectoryExists(Name: string): Boolean;
+if FindFirst('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql', faAnyFile, SearchRec) = 0 then
+        while FindNext(SearchRec) = 0 do
+                begin
+                SQLProcessor.LoadFromFile('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
+                SQLProcessor.Execute;
+                end;
+FindClose(SearchRec);
+
+
+Query.free;
+SQLProcessor.free;
 Connection.Disconnect;
 
 end;

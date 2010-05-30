@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 192
-  Top = 109
+  Left = 409
+  Top = 119
   BorderStyle = bsSingle
   Caption = 'Assistente de Conexão'
   ClientHeight = 473
@@ -1594,5 +1594,11 @@ object Form1: TForm1
       TabOrder = 0
       OnClick = btnCreateDatabaseClick
     end
+  end
+  object ZSQLProcessor1: TZSQLProcessor
+    Params = <>
+    Delimiter = ';'
+    Left = 304
+    Top = 344
   end
 end

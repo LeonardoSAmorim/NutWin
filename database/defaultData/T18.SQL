@@ -1,0 +1,10 @@
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Feminino', 'Excepcional', 2.2);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Feminino', 'Leve', 1.5);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Feminino', 'Moderada', 1.6);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Feminino', 'Muito Leve', 1.3);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Feminino', 'Pesada', 1.9);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Masculino', 'Excepcional', 2.4);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Masculino', 'Leve', 1.6);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Masculino', 'Moderada', 1.7);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Masculino', 'Muito Leve', 1.3);
+INSERT INTO T18 (SEXO, ATIVFIS, FATOR) VALUES ('Masculino', 'Pesada', 2.1);

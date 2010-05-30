@@ -1,0 +1,5 @@
+INSERT INTO T13 (ATIVFIS, FATOR, DESCRICAO) VALUES ('Leve', 2.5, 'caminhar em superfcie plana a 2,5 a 3 milhas/hora, trabalho de mecnico, eletricista, carpintaria, trabalho em restaurante, limpeza domstica, cuidar de crianas, jogar golf, navegar, jogar tnis de');
+INSERT INTO T13 (ATIVFIS, FATOR, DESCRICAO) VALUES ('Moderada', 5, 'caminhar a 3,5 a 4 milhas/hora, carregar peso, andar de bicicleta, jogar tnis, danar.');
+INSERT INTO T13 (ATIVFIS, FATOR, DESCRICAO) VALUES ('Muito Leve', 1.5, 'atividades sentado ou em p (pintura, dirigir, trabalho em laboratrio, datilografia, costura, passar roupa, cozinhar, jogar cartas, tocar instrumento musical)');
+INSERT INTO T13 (ATIVFIS, FATOR, DESCRICAO) VALUES ('Pesada', 7, 'caminhar carregando peso em subida, cortar rvores, trabalho na agricultura intenso, jogar basquete, escalar, futebol e futebol americano.');
+INSERT INTO T13 (ATIVFIS, FATOR, DESCRICAO) VALUES ('Repouso', 1, 'deitado, dormindo');

@@ -1,0 +1,1 @@
+INSERT INTO DSCRFNT (FONTE, DESCRICAO) VALUES ('NCHS', 'National Center of Health Statistics');

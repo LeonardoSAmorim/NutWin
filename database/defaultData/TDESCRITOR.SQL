@@ -1,0 +1,13 @@
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqCintura', 'Circunferncia da Cintura', 'prvlmdCintura', 'mdvlCintura', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqCircBraco', 'Circunferncia do Brao', 'prvlmdCircBraco', 'mdvlCircBraco', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqCircPunho', 'Circunferncia do Punho', 'prvlmdCircPunho', 'mdvlCircPunho', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqCompPerna', 'Comprimento da Perna', 'prvlmdCompPerna', 'mdvlCompPerna', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPBiceps', 'Prega Cutnea do Bceps', 'prvlmdPBiceps', 'mdvlPBiceps', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPSubescapular', 'Prega Subescapular', 'prvlmdPSubescapular', 'mdvlPSubescapular', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPSuprailiaca', 'Prega Suprailaca', 'prvlmdPSuprailiaca', 'mdvlPSuprailiaca', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPTriceps', 'Prega Cutnea do Trceps', 'prvlmdPTriceps', 'mdvlPTriceps', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPerimetroCefalico', 'Permetro Ceflico', 'prvlmdPerimetroCefalico', 'mdvlPerimetroCefalico', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqPerimetroToracico', 'Permetro Torcico', 'prvlmdPerimetroToracico', 'mdvlPerimetroToracico', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqQuadril', 'Circunferncia do Quadril', 'prvlmdQuadril', 'mdvlQuadril', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqTempoGestante', 'Tempo Gestante', 'prvlmdTempoGestante', 'mdvlTempoGestante', NULL);
+INSERT INTO TDESCRITOR (NAME, DESCRICAO, NOMEPROCEDIMENTO, MEDIDAVALNAME, GRANDEZANAME) VALUES ('dqTempoNutriz', 'Tempo Nutriz', 'prvlmdTempoNutriz', 'mdvlTempoNutriz', NULL);

@@ -28,7 +28,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DBTables, ExtCtrls, StdCtrls, DB, Registry, DBCtrls, Grids, DBGrids, RegEdit,
-  RegConst2, Person, dmValidade, NutCnst;
+  RegConst2, Person, dmValidade, NutCnst, GIFImage;
 
 const
    REGISTRO_VENCIDO    = 0;
@@ -42,6 +42,9 @@ type
     TfmValidade = class(TForm)
     buOk: TButton;
     Label1: TLabel;
+    Shape1: TShape;
+    Image3: TImage;
+    Image1: TImage;
 
 
     procedure buOkClick(Sender: TObject);
