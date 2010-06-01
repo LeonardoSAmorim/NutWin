@@ -5,8 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ZConnection, StdCtrls, ZSqlMonitor, Db, ZAbstractRODataset, ZSqlMetadata,
-  ZDataset, ZAbstractDataset, ZAbstractTable, ExtCtrls, GIFImage,
-  ZSqlProcessor;
+  ZDataset, ZAbstractDataset, ZAbstractTable, ExtCtrls, GIFImage, ZScriptParser,
+  ZSqlProcessor, ZSqlStrings, ComCtrls;
 
 type
   TForm1 = class(TForm)
@@ -37,6 +37,7 @@ type
     Shape1: TShape;
     Image3: TImage;
     ZSQLProcessor1: TZSQLProcessor;
+    ProgressBar1: TProgressBar;
 
     procedure PropertiesChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -317,6 +318,8 @@ var registry: TRegistry;
 
     SQLProcessor: TZSQLProcessor;
     SearchRec :TSearchRec;
+
+    FileNameList :TStringList;
 begin
 if not TestSuccessful then
         btnTestClick(nil);
@@ -352,7 +355,7 @@ stmt := 'select count(1) from mysql.user where user = "'+UserName+'"';
 Query.SQL.Clear;
 Query.SQL.Add(stmt);
 Query.Open;
-index := Query.RowsAffected;
+index := Query.Fields[0].asInteger;
 Query.Close;
 
 if index < 1 then
@@ -392,31 +395,76 @@ except
 on E:Exception do ;
 end;
 
-
-SQLProcessor:= TZSQLProcessor.Create(self);
-SQLProcessor.Connection := Connection;
+Connection.Disconnect;
 
 
 
+FileNameList := TStringList.create;
 
-
-// NÃO GUARDAR A SENHA
-// ACERTAR O TAB ORDER
-// ACERTAR AS CHAVES DO REGISTRO
-
-//function DirectoryExists(Name: string): Boolean;
 if FindFirst('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql', faAnyFile, SearchRec) = 0 then
         while FindNext(SearchRec) = 0 do
                 begin
-                SQLProcessor.LoadFromFile('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
-                SQLProcessor.Execute;
+                FileNameList.Add('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
                 end;
 FindClose(SearchRec);
 
 
+SQLProcessor:= TZSQLProcessor.Create(self);
+SQLProcessor.Connection := Connection;
+ProgressBar1.max := FileNameList.Count-1;
+ProgressBar1.Visible := true;
+
+for index := 0 to FileNameList.Count-1 do
+        begin
+        Connection.Connect;
+        ProgressBar1.Position := index;
+        SQLProcessor:= TZSQLProcessor.Create(self);
+        SQLProcessor.Connection := Connection;
+        (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
+        (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
+        SQLProcessor.LoadFromFile(FileNameList[index]);
+
+        SQLProcessor.Execute;
+        SQLProcessor.free;
+        Connection.Disconnect;
+
+        end;
+
+ProgressBar1.Visible := false;
+
+
+
+
+{
+if FindFirst('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql', faAnyFile, SearchRec) = 0 then
+        while FindNext(SearchRec) = 0 do
+                begin
+
+
+                ProgressBar1.Max := StringList.Count;
+
+                (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
+                (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
+
+                (*for index := 0 to StringList.Count-1 do
+                        begin
+                        SQLProcessor.Script.Add(StringList[index]);
+                        ProgressBar1.Position := index;
+                        (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
+                        (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
+                        end;*)
+
+                //SQLProcessor.Script := StringList;
+                SQLProcessor.LoadFromFile('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
+                SQLProcessor.Execute;
+                end;
+FindClose(SearchRec);}
+
+
 Query.free;
-SQLProcessor.free;
-Connection.Disconnect;
+//SQLProcessor.free;
+
+//Connection.Disconnect;
 
 end;
 

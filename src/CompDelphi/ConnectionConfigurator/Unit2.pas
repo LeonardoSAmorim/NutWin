@@ -1616,19 +1616,6 @@ CREATE_usuarios_STMT =
 '  UNIQUE KEY `USUARIOS0` (`USERNAME`)'+
 ') ENGINE=MYISAM DEFAULT CHARSET=latin1;';
  
-CREATE_validade_STMT =
-'CREATE TABLE `validade` ('+
-'  `DESENVOLVIMENTO` varchar(1) DEFAULT NULL,'+
-'  `VERSAO_AVALIACAO` varchar(1) DEFAULT NULL,'+
-'  `DATA_INSTALACAO` DATETIME DEFAULT NULL,'+
-'  `DATA_ULTIMO_ACESSO` DATETIME DEFAULT NULL,'+
-'  `RETROCESSO` varchar(1) DEFAULT NULL,'+
-'  `CONTADOR` int(11) DEFAULT NULL,'+
-'  `VALIDADE` int(11) DEFAULT NULL,'+
-'  `SERIAL` varchar(16) DEFAULT NULL,'+
-'  `LICENCAS` int(11) DEFAULT NULL'+
-') ENGINE=MYISAM DEFAULT CHARSET=latin1;';
-
 CREATE_viewer_STMT =
 'CREATE TABLE `viewer` ('+
 '  `CALCULO` varchar(10) DEFAULT NULL,'+
@@ -1754,6 +1741,7 @@ CREATE_t29_STMT,
 CREATE_t31_STMT,
 CREATE_t32_STMT,
 CREATE_t33_STMT,
+CREATE_t33a_STMT,
 CREATE_t3_ei_STMT,
 CREATE_t3_pe_STMT,
 CREATE_t3_pi_STMT,
@@ -1779,7 +1767,6 @@ CREATE_ttabela_STMT,
 CREATE_usda_food_des_STMT,
 CREATE_usda_nutr_def_STMT,
 CREATE_usuarios_STMT,
-CREATE_validade_STMT,
 CREATE_viewer_STMT,
 CREATE_vista_STMT);
 
@@ -1892,6 +1879,7 @@ CREATE_STMT_MAP : ARRAY[0..134, 0..1] of String= (
 ('t31',CREATE_t31_STMT),
 ('t32',CREATE_t32_STMT),
 ('t33',CREATE_t33_STMT),
+('t33a',CREATE_t33a_STMT),
 ('t3_ei',CREATE_t3_ei_STMT),
 ('t3_pe',CREATE_t3_pe_STMT),
 ('t3_pi',CREATE_t3_pi_STMT),
@@ -1917,9 +1905,8 @@ CREATE_STMT_MAP : ARRAY[0..134, 0..1] of String= (
 ('usda_food_des',CREATE_usda_food_des_STMT),
 ('usda_nutr_def',CREATE_usda_nutr_def_STMT),
 ('usuarios',CREATE_usuarios_STMT),
-('validade',CREATE_validade_STMT),
 ('viewer',CREATE_viewer_STMT),
-('vista_STMT)',CREATE_vista_STMT));
+('vista',CREATE_vista_STMT));
 
 implementation
 end.

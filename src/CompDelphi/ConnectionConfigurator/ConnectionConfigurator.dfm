@@ -1595,10 +1595,21 @@ object Form1: TForm1
       OnClick = btnCreateDatabaseClick
     end
   end
+  object ProgressBar1: TProgressBar
+    Left = 136
+    Top = 400
+    Width = 409
+    Height = 16
+    Min = 0
+    Max = 100
+    Step = 1
+    TabOrder = 4
+    Visible = False
+  end
   object ZSQLProcessor1: TZSQLProcessor
     Params = <>
     Delimiter = ';'
-    Left = 304
-    Top = 344
+    Left = 360
+    Top = 312
   end
 end
