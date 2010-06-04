@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, MmLstBox, ExtCtrls, MoveItens;
+  StdCtrls, MmLstBox, ExtCtrls, MoveItens, HintListBox;
 
 type
   TfmMedCasOrdem = class(TForm)

@@ -92,14 +92,8 @@ begin
    laNome_Produto.Caption := lslSobre.ProductName;
    laCopyright.Caption := lslSobre.CompanyName+#13#10+lslSobre.LegalCopyright;
    laVersao.Caption := 'Versão '+lslSobre.ProductVersion;
-//*   dmConexao.taValidade.Active := True;
-{*   if dmConexao.taValidade.FieldByName('Desenvolvimento').AsBoolean = True then
-      LsVersao := ' - Versão de Desenvolvimento'
-   else if dmConexao.taValidade.FieldByName('Versao_Avaliacao').AsBoolean = True then
-      LsVersao := ' - Versão de Avaliação'
-   else }
       LsVersao := '';
-//*   dmConexao.taValidade.Active := False;
+
    LtffPreRelease := vsPreRelease;
    if lslsobre.FileFlags = [LtffPreRelease] then
       laDescricao.Caption := 'Beta '+lslSobre.FileVersion.AsString+LsVersao+#13#10+lslSobre.FileDescription

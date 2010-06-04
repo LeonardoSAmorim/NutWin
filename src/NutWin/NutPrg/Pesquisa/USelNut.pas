@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, MmLstBox, ExtCtrls, MontaLst;
+  StdCtrls, Buttons, MmLstBox, ExtCtrls, MontaLst, HintListBox;
 
 type
   TfmPSelNut = class(TForm)

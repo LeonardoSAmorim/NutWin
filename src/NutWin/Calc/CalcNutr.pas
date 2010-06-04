@@ -29,7 +29,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, Buttons, StdCtrls, ComCtrls, Menus, ToolWin, DMMBoard, CalculoViewer,
   ActnList, NutCnst, CalculoTextViewer, qrprntr, jpeg, NovoPreview, HtmlHlp,
-  RegConst2, RegEdit, Validade, dmValidade ;
+  RegConst2, RegEdit;
 
 type
   // To have a custom preview be used as the default preview,
@@ -114,8 +114,6 @@ type
     laDisplay: TLabel;
     stMensagem: TStatusBar;
     paMargem: TPanel;
-    Registro1: TMenuItem;
-    mnRegistro: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -134,7 +132,6 @@ type
     procedure Pele11Click(Sender: TObject);
     procedure Pele21Click(Sender: TObject);
     procedure reVisorCalculoCompChange(Sender: TObject);
-    procedure mnRegistroExecute(Sender: TObject);
 
   private
     { Private declarations }
@@ -220,14 +217,6 @@ begin
     dmMotherBoard.IOController.OnDepoisDeFechar := DepoisDeFechar;
     dmMotherBoard.IOController.OnDepoisDeGravar := DepoisDeGravar;
 
-    // Mostra opção de Registro se for versão de avaliação
-    with TdmValida.Create(self) do
-    try
-       DataBaseName := dmMotherBoard.DBOrg.DatabaseName;
-       mnRegistro.Visible := (taValidade.FieldByName('Versao_Avaliacao').AsString = 'T' )
-    finally
-       Free;
-    end;
 
 end;
 
@@ -497,32 +486,6 @@ begin
    laDisplay.Caption := reVisorCalculoComp.Lines.Strings[0] + #13 +
                         reVisorCalculoComp.Lines.Strings[1] + #13 +
                         reVisorCalculoComp.Lines.Strings[2];
-end;
-
-procedure TfmCalcNutr.mnRegistroExecute(Sender: TObject);
-begin
-  //Validade do programa
-  with TfmValidade.Create(nil) do
-  try
-     DataBaseName := 'BDOrganizador';
-//     ShowMessage( IntToStr(TipoValidade));
-     case TipoValidade of
-        REGISTRO_VENCIDO,
-        PERSONA_INEXISTENTE,
-        PERSONA_DANIFICADA : begin
-                                ShowModal;
-                                if TipoValidade <> REGISTRO_OK then
-                                   exit;
-                             end;
-        REGISTRO_DESENV    : ShowModal;
-        REGISTRO_AVALIACAO : ShowModal;
-        REGISTRO_OK        :; // não faz nada
-     end;
-     // se registrou esconde opção do menu
-     mnRegistro.Visible := not( PfRegistrou );
-  finally
-     Free;
-  end;
 end;
 
 end.

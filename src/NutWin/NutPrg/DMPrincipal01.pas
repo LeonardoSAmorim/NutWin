@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DBTables;
+  DBTables, Db;
 
 type
   TDMPrincipal = class(TDataModule)

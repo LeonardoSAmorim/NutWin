@@ -30,7 +30,7 @@ uses
   ExtCtrls, Menus, StdCtrls, Buttons, DBCtrls, ComCtrls, DBTables, DB,
   Grids, Spin, DBGrids, Mask, Tabs, InsFrm,  ActnList,
   USalas, OpcSalas, qrprntr, HtmlHlp,Sobre,
-  RegEdit, RegConst2, KeyNav, NutCnst, jpeg, ULocAlim, Validade, dmValidade;
+  RegEdit, RegConst2, KeyNav, NutCnst, jpeg, ULocAlim;
 
 type
   // To have a custom preview be used as the default preview,
@@ -107,7 +107,6 @@ type
     sbAnterior: TSpeedButton;
     sbProximo: TSpeedButton;
     sbFechar: TSpeedButton;
-    mnRegistro: TMenuItem;
     N2: TMenuItem;
     mnBackup: TMenuItem;
     mnRestore: TMenuItem;
@@ -178,7 +177,6 @@ type
     procedure mn_NovoIndivClick(Sender: TObject);
     procedure sbPessInclClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure mnRegistroClick(Sender: TObject);
     procedure mnBackupClick(Sender: TObject);
     procedure mnRestoreClick(Sender: TObject);
     procedure mnDesconectarClick(Sender: TObject);
@@ -582,14 +580,6 @@ begin
   FGavetaAberta := 0;
   FHelpAtivado := False;
 
-  // Mostra opção de Registro se for versão de avaliação
-  with TdmValida.Create(self) do
-  try
- //   DataBaseName := dmMotherBoard.DBOrg.DatabaseName;
-    mnRegistro.Visible := (taValidade.FieldByName('Versao_Avaliacao').AsString = 'T')
-  finally
-    Free;
-  end;
 
   // Seta Individuos como opção não liberada
 {  if not CarregaChaveString(CFGRoot, CFGPath, OPCmnOrgAcessoNegado, Texto ) then
@@ -1577,35 +1567,6 @@ begin
   else
     fm_MenuNut.Caption := 'Programa de Apoio à Nutrição    ' + 'Usuário: ' + DMPessoa.UsuarioLogado;
 
-end;
-
-procedure Tfm_MenuNut.mnRegistroClick(Sender: TObject);
-begin
-  //Validade do programa
-  with TfmValidade.Create(nil) do
-  try
-    DataBaseName := BDE_ALIAS_NAME;
-
-
-    //     ShowMessage( IntToStr(TipoValidade));
-    case TipoValidade of
-      REGISTRO_VENCIDO,
-        PERSONA_INEXISTENTE,
-        PERSONA_DANIFICADA:
-        begin
-          ShowModal;
-          if TipoValidade <> REGISTRO_OK then
-            exit;
-        end;
-      REGISTRO_DESENV: ShowModal;
-      REGISTRO_AVALIACAO: ShowModal;
-      REGISTRO_OK: ; // não faz nada
-    end;
-    // se registrou esconde opção do menu
-    mnRegistro.Visible := not (PfRegistrou);
-  finally
-    Free;
-  end;
 end;
 
 procedure Tfm_MenuNut.mnBackupClick(Sender: TObject);

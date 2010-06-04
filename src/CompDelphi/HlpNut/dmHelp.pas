@@ -44,15 +44,6 @@ type
     taHlpFilesFILENAME: TStringField;
     taHlpHLPFILE: TStringField;
     taHlpTOPICNAME: TStringField;
-    taValidade: TTable;
-    taValidadeDESENVOLVIMENTO: TStringField;
-    taValidadeVERSAO_AVALIACAO: TStringField;
-    taValidadeDATA_INSTALACAO: TDateTimeField;
-    taValidadeDATA_ULTIMO_ACESSO: TDateTimeField;
-    taValidadeRETROCESSO: TStringField;
-    taValidadeCONTADOR: TIntegerField;
-    taValidadeVALIDADE: TIntegerField;
-    taValidadeSERIAL: TStringField;
     procedure HtmlHelpHtmlHelpContext(Sender: TObject; var Data: Integer);
     procedure dmHlpCreate(Sender: TObject);
     procedure dmHlpDestroy(Sender: TObject);
@@ -156,7 +147,7 @@ begin
    end;
 
 //========== só em caso de DESENVOLVIMENTO ========================
- with dmHlp.taHlp do
+{ with dmHlp.taHlp do
  if taValidade.FieldByName( 'DESENVOLVIMENTO' ).AsString = 'T' then
    begin
     // para atualizar o ponteiro pro form abaixo
@@ -224,7 +215,7 @@ begin
    finally
      F.Free;
    end;
- end;
+ end;}
 //==============================================================================
 
    with dmHlp.taHlp do

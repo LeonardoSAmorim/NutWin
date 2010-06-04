@@ -140,7 +140,7 @@ uses
   UGrafWizFormulas in 'UGrafWizFormulas.pas' {fmGrafWizFormulas},
   UGrafWizGraficos in 'UGrafWizGraficos.pas' {fmGrafWizGraficos},
   DMSemaf in 'DMSemaf.pas' {dmSemaforo: TDataModule},
-  Validade in '..\..\CompDelphi\Validade\Validade.pas' {fmValidade},
+
   uAliasName in 'uAliasName.pas',
   fmFormRelMedResult in '..\Calc\fmFormRelMedResult.pas',
   fmFormRelIndividuo in '..\Calc\fmFormRelIndividuo.pas' {FormRepIndividuo},
@@ -209,43 +209,6 @@ begin
     SalvaCursor := Screen.Cursor; { Salva cursor atual }
     Screen.Cursor := crHourglass; { Mostra ampulheta }
 
-    //Validade do programa
-    with TfmValidade.Create(nil) do
-    try
-      DataBaseName := uAliasName.BDE_ALIAS_NAME;
-
-      case TipoValidade of
-        REGISTRO_VENCIDO,
-          PERSONA_INEXISTENTE,
-          PERSONA_DANIFICADA:
-          begin
-            ShowModal;
-            if TipoValidade <> REGISTRO_OK then
-              exit;
-          end;
-        REGISTRO_DESENV: ShowModal;
-        REGISTRO_AVALIACAO: begin
-                               ShowModal;
-                               NumLicencas := LicencasPermitidas( MsgErro );
-                               if NumLicencas < 0 then
-                               begin
-                                  ShowMessage(MsgErro);
-                                  exit;
-                               end
-                            end; // Pegando número de licenças
-        REGISTRO_OK: begin
-                        NumLicencas := LicencasPermitidas( MsgErro );
-                        if NumLicencas < 0 then
-                        begin
-                           ShowMessage(MsgErro);
-                           exit;
-                        end
-                     end; // Pegando número de licenças
-      end;
-    finally
-      Free;
-    end;
-
     //******************************************************************************
     //repeat
     //RestaurandoDB := True;
@@ -275,16 +238,7 @@ begin
       laOperacao.Caption := 'Criando Tabelas de Semáforo...';
       laOperacao.Update;
       Application.CreateForm(TdmSemaforo, dmSemaforo);
-  Application.CreateForm(TFormErrorReport, FormErrorReport);
-  if ( NumLicencas <> 0 ) and ( dmSemaforo.GetAplicacoesAtivas( false ) >= NumLicencas ) then // tem que contar esta tb
-      begin
-          ShowMessage('O número de licenças adquiridas (' + IntToStr(NumLicencas) + ') para uso simultâneo já foi atingindo.'+#13#10 +
-                      'Aguarde a saída de algum usuário e tente novamente' + #13#10 +
-                      'ou entre em contato para adquirir mais licenças.'+chr(13)+chr(10)+chr(13)+chr(10)+ TEXTO_ENDERECO);
-          dmSemaforo.Free;
-          dmSemaforo := nil;
-          exit;
-      end;
+
       pbProgresso.StepBy(5);
 
       // Cria e seta Tabelas de Alimentos

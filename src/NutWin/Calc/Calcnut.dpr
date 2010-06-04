@@ -118,7 +118,7 @@ uses
   Sobre in '..\..\CompDelphi\About\Sobre.pas' {fmSobre},
   NovoPreview in '..\..\CompDelphi\Calculo\NovoPreview.pas' {fmNovoPreview},
   InqAtivFis in 'InqAtivFis.pas' {fmInqAtivFis},
-  Validade in '..\..\CompDelphi\Validade\Validade.pas' {fmValidade},
+  
 //  fmCadHelp in '..\..\CompDelphi\HlpNut\fmCadHelp.pas' {fmCadHlp},
   dmHelp in '..\..\CompDelphi\HlpNut\dmHelp.pas' {dmHlp: TDataModule},
   fmTempoAtivF in 'fmTempoAtivF.pas' {fmTempoAtivFis},
@@ -159,31 +159,7 @@ begin
      exit;
   end;
 
-  // A conversão não foi feita, portanto sair do programa
-{  if ConverteuBD( MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe' ) <> 0 then
-     exit;
- }
-
-  //Validade do programa
-  with TfmValidade.Create(nil) do
-  try
-     DataBaseName := 'BDOrganizador';
-//     ShowMessage( IntToStr(TipoValidade));
-     case TipoValidade of
-        REGISTRO_VENCIDO,
-        PERSONA_INEXISTENTE,
-        PERSONA_DANIFICADA : begin
-                                ShowModal;
-                                if TipoValidade <> REGISTRO_OK then
-                                   exit;
-                             end;
-        REGISTRO_DESENV    : ShowModal;
-        REGISTRO_AVALIACAO : ShowModal;
-        REGISTRO_OK        :; // não faz nada
-     end;
-  finally
-     Free;
-  end;
+  
 
   with TfmBarraDeProgresso.Create(nil) do
   try

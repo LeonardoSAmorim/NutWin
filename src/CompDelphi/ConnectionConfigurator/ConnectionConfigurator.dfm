@@ -1,10 +1,10 @@
-object Form1: TForm1
-  Left = 409
-  Top = 119
+object FormConnectionConfigurator: TFormConnectionConfigurator
+  Left = 391
+  Top = 127
   BorderStyle = bsSingle
   Caption = 'Assistente de Conexão'
-  ClientHeight = 473
-  ClientWidth = 579
+  ClientHeight = 484
+  ClientWidth = 585
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -1399,217 +1399,229 @@ object Form1: TForm1
       E774FDC77111A082B76771B7776EE0576EE7A67D21387E03A8834ED81211C000
       99870215C00056F8845898855AB8855CA8042100003B}
   end
-  object GroupBox1: TGroupBox
-    Left = 120
-    Top = 88
-    Width = 449
-    Height = 233
-    Caption = 'Parâmetros de conexão'
-    TabOrder = 0
-    object lblPassword: TLabel
-      Left = 32
-      Top = 192
-      Width = 49
-      Height = 13
-      Caption = 'Password:'
-    end
-    object lblUserName: TLabel
-      Left = 32
-      Top = 160
-      Width = 56
-      Height = 13
-      Caption = 'User Name:'
-    end
-    object lblDatabase: TLabel
-      Left = 32
-      Top = 128
-      Width = 49
-      Height = 13
-      Caption = 'Database:'
-    end
-    object lblHostName: TLabel
-      Left = 32
-      Top = 64
-      Width = 56
-      Height = 13
-      Caption = 'Host Name:'
-    end
-    object lblProtocol: TLabel
-      Left = 32
-      Top = 32
-      Width = 42
-      Height = 13
-      Caption = 'Protocol:'
-    end
-    object lblPort: TLabel
-      Left = 32
-      Top = 96
-      Width = 19
-      Height = 13
-      Caption = 'Port'
-    end
-    object edtPassword: TEdit
-      Left = 104
-      Top = 192
-      Width = 193
-      Height = 21
-      PasswordChar = '*'
-      TabOrder = 0
-      OnChange = PropertiesChange
-    end
-    object edtUserName: TEdit
-      Left = 104
-      Top = 160
-      Width = 193
-      Height = 21
-      TabOrder = 1
-      OnChange = PropertiesChange
-    end
-    object edtDatabase: TEdit
-      Left = 104
-      Top = 128
-      Width = 193
-      Height = 21
-      Enabled = False
-      TabOrder = 2
-      OnChange = PropertiesChange
-    end
-    object edtHostName: TEdit
-      Left = 104
-      Top = 64
-      Width = 193
-      Height = 21
-      TabOrder = 3
-      OnChange = PropertiesChange
-    end
-    object cbxProtocol: TComboBox
-      Left = 104
-      Top = 32
-      Width = 193
-      Height = 21
-      Enabled = False
-      ItemHeight = 13
-      TabOrder = 4
-      Text = 'mysql'
-      OnChange = PropertiesChange
-      Items.Strings = (
-        'mysql'
-        'postgresql'
-        'postgresql-7.2'
-        'interbase-5'
-        'interbase-6'
-        'firebird-1.0'
-        'firebird-1.5'
-        'mssql'
-        'sybase'
-        'oracle'
-        'db2')
-    end
-    object edtPort: TEdit
-      Left = 104
-      Top = 96
-      Width = 193
-      Height = 21
-      TabOrder = 5
-      Text = '0'
-      OnChange = PropertiesChange
-    end
-    object btnDefault: TButton
-      Left = 336
-      Top = 32
-      Width = 89
-      Height = 25
-      Caption = 'Padrão'
-      TabOrder = 6
-      OnClick = btnDefaultClick
-    end
-    object btnTest: TButton
-      Left = 336
-      Top = 184
-      Width = 89
-      Height = 25
-      Caption = 'Testar'
-      TabOrder = 7
-      OnClick = btnTestClick
-    end
-    object btnRestaurar: TButton
-      Left = 336
-      Top = 64
-      Width = 89
-      Height = 25
-      Caption = 'Restaurar'
-      TabOrder = 8
-      OnClick = btnRestaurarClick
-    end
-    object btnSave: TButton
-      Left = 336
-      Top = 96
-      Width = 89
-      Height = 25
-      Caption = 'Salvar'
-      TabOrder = 9
-      OnClick = btnSaveClick
-    end
-  end
   object Button7: TButton
     Left = 352
-    Top = 440
+    Top = 448
     Width = 91
     Height = 25
     Caption = 'Ok'
     TabOrder = 1
   end
   object btnCancel: TButton
-    Left = 456
-    Top = 440
+    Left = 464
+    Top = 448
     Width = 91
     Height = 25
     Caption = 'Cancela'
     TabOrder = 2
     OnClick = btnCancelClick
   end
-  object GroupBox2: TGroupBox
+  object PageControl1: TPageControl
     Left = 120
-    Top = 336
-    Width = 449
-    Height = 89
-    Caption = 'Base de Dados'
-    TabOrder = 3
-    object lblDataBaseAdv: TLabel
-      Left = 16
-      Top = 24
-      Width = 297
-      Height = 57
-      AutoSize = False
-      Caption = 'Cria base de dados inicial do sistema.'
-      WordWrap = True
+    Top = 104
+    Width = 441
+    Height = 329
+    ActivePage = TabSheet1
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Parâmetros de Conexão'
+      object lblDatabase: TLabel
+        Left = 32
+        Top = 128
+        Width = 49
+        Height = 13
+        Caption = 'Database:'
+      end
+      object lblHostName: TLabel
+        Left = 32
+        Top = 64
+        Width = 56
+        Height = 13
+        Caption = 'Host Name:'
+      end
+      object lblProtocol: TLabel
+        Left = 32
+        Top = 32
+        Width = 42
+        Height = 13
+        Caption = 'Protocol:'
+      end
+      object lblPort: TLabel
+        Left = 32
+        Top = 96
+        Width = 19
+        Height = 13
+        Caption = 'Port'
+      end
+      object edtDatabase: TEdit
+        Left = 104
+        Top = 128
+        Width = 193
+        Height = 21
+        Enabled = False
+        TabOrder = 3
+        OnChange = PropertiesChange
+      end
+      object edtHostName: TEdit
+        Left = 104
+        Top = 64
+        Width = 193
+        Height = 21
+        TabOrder = 1
+        OnChange = PropertiesChange
+      end
+      object cbxProtocol: TComboBox
+        Left = 104
+        Top = 32
+        Width = 193
+        Height = 21
+        Enabled = False
+        ItemHeight = 13
+        TabOrder = 0
+        OnChange = PropertiesChange
+        Items.Strings = (
+          'mysql'
+          'postgresql'
+          'postgresql-7.2'
+          'interbase-5'
+          'interbase-6'
+          'firebird-1.0'
+          'firebird-1.5'
+          'mssql'
+          'sybase'
+          'oracle'
+          'db2')
+      end
+      object edtPort: TEdit
+        Left = 104
+        Top = 96
+        Width = 193
+        Height = 21
+        TabOrder = 2
+        Text = '0'
+        OnChange = PropertiesChange
+      end
+      object btnDefault: TButton
+        Left = 336
+        Top = 32
+        Width = 89
+        Height = 25
+        Caption = 'Padrão'
+        TabOrder = 4
+        OnClick = btnDefaultClick
+      end
+      object btnRestaurar: TButton
+        Left = 336
+        Top = 64
+        Width = 89
+        Height = 25
+        Hint = 'Restaura valor original'
+        Caption = 'Desfazer'
+        Enabled = False
+        TabOrder = 5
+        OnClick = btnRestaurarClick
+      end
+      object btnSave: TButton
+        Left = 336
+        Top = 96
+        Width = 89
+        Height = 25
+        Caption = 'Salvar'
+        TabOrder = 6
+        OnClick = btnSaveClick
+      end
+      object btnTestUser: TButton
+        Left = 296
+        Top = 264
+        Width = 123
+        Height = 25
+        Caption = 'Test'
+        TabOrder = 7
+        OnClick = btnTestUserClick
+      end
     end
-    object btnCreateDatabase: TButton
-      Left = 336
-      Top = 32
-      Width = 91
-      Height = 25
-      Caption = 'Criar'
-      Enabled = False
-      TabOrder = 0
-      OnClick = btnCreateDatabaseClick
+    object TabSheet2: TTabSheet
+      Caption = 'Bade de Dados'
+      ImageIndex = 1
+      object lblPassword: TLabel
+        Left = 16
+        Top = 56
+        Width = 49
+        Height = 13
+        Caption = 'Password:'
+      end
+      object lblUserName: TLabel
+        Left = 16
+        Top = 24
+        Width = 56
+        Height = 13
+        Caption = 'User Name:'
+      end
+      object edtPassword: TEdit
+        Left = 88
+        Top = 56
+        Width = 193
+        Height = 21
+        PasswordChar = '*'
+        TabOrder = 1
+        OnChange = edtPasswordChange
+      end
+      object edtUserName: TEdit
+        Left = 88
+        Top = 24
+        Width = 193
+        Height = 21
+        TabOrder = 0
+        Text = 'root'
+      end
+      object btnTestRoot: TButton
+        Left = 320
+        Top = 48
+        Width = 89
+        Height = 25
+        Caption = 'Testar'
+        Enabled = False
+        TabOrder = 2
+        OnClick = btnTestRootClick
+      end
+      object GroupBox2: TGroupBox
+        Left = 16
+        Top = 116
+        Width = 409
+        Height = 165
+        Caption = 'Configuração Inicial'
+        TabOrder = 3
+        object lblDataBaseAdv: TLabel
+          Left = 16
+          Top = 24
+          Width = 297
+          Height = 57
+          AutoSize = False
+          Caption = 'Cria base de dados inicial do sistema.'
+          WordWrap = True
+        end
+        object btnCreateDatabase: TButton
+          Left = 296
+          Top = 56
+          Width = 91
+          Height = 25
+          Caption = 'Criar'
+          Enabled = False
+          TabOrder = 0
+          OnClick = btnCreateDatabaseClick
+        end
+        object ProgressBar1: TProgressBar
+          Left = 16
+          Top = 137
+          Width = 273
+          Height = 16
+          Min = 0
+          Max = 100
+          Step = 1
+          TabOrder = 1
+          Visible = False
+        end
+      end
     end
-  end
-  object ProgressBar1: TProgressBar
-    Left = 136
-    Top = 400
-    Width = 409
-    Height = 16
-    Min = 0
-    Max = 100
-    Step = 1
-    TabOrder = 4
-    Visible = False
-  end
-  object ZSQLProcessor1: TZSQLProcessor
-    Params = <>
-    Delimiter = ';'
-    Left = 360
-    Top = 312
   end
 end

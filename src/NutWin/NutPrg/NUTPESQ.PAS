@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls;
+  ComCtrls, ImgList;
 
 type
   Tfm_Pesquisa = class(TForm)

@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  GraficoFaixa;
+  GraficoFaixa, ChartFaixas;
 
 type
   TdmGraficos = class(TDataModule)

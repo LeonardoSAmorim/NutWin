@@ -1,476 +1,564 @@
+// NutWin - Programa de Apoio a Nutrição(R)
+// Copyright (C) 2002-2010 Departamento de Informática em Saúde
+// Universidade Federal de São Paulo - UNIFESP <www.unifesp.br>
+//
+// This file is part of NutWin.
+//
+// NutWin is free software:  you  can  redistribute  it  and/or
+// modify it under the terms of the GNU General Public  License
+// as published by the Free Software Foundation, either version
+// 3 of the License, or (at your option) any later version.
+//
+// Nutwin is distributed in the hope that it  will  be  useful,
+// but WITHOUT ANY WARRANTY; without even the implied  warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+// the GNU General Public License for more details.
+//
+// You should have received a copy of the  GNU  General  Public
+// License along with Foobar.
+// If not, see <http://www.gnu.org/licenses/>.
+
 unit ConnectionConfigurator;
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ZConnection, StdCtrls, ZSqlMonitor, Db, ZAbstractRODataset, ZSqlMetadata,
-  ZDataset, ZAbstractDataset, ZAbstractTable, ExtCtrls, GIFImage, ZScriptParser,
-  ZSqlProcessor, ZSqlStrings, ComCtrls;
+    Windows,
+    Messages,
+    SysUtils,
+    Classes,
+    Graphics,
+    Controls,
+    Forms,
+    Dialogs,
+    ZConnection,
+    StdCtrls,
+    ZSqlMonitor,
+    Db,
+    ZAbstractRODataset,
+    ZSqlMetadata,
+    ZDataset,
+    ZAbstractDataset,
+    ZAbstractTable,
+    ExtCtrls,
+    GIFImage,
+    ZScriptParser,
+    ZSqlProcessor,
+    ZSqlStrings,
+    ComCtrls,
+    ConnectionParameters;
 
 type
-  TForm1 = class(TForm)
-    GroupBox1: TGroupBox;
-    lblPassword: TLabel;
-    lblUserName: TLabel;
-    lblDatabase: TLabel;
-    lblHostName: TLabel;
-    lblProtocol: TLabel;
-    lblPort: TLabel;
-    edtPassword: TEdit;
-    edtUserName: TEdit;
-    edtDatabase: TEdit;
-    edtHostName: TEdit;
-    cbxProtocol: TComboBox;
-    edtPort: TEdit;
-    btnDefault: TButton;
-    btnTest: TButton;
-    btnRestaurar: TButton;
-    btnSave: TButton;
-    Button7: TButton;
-    btnCancel: TButton;
-    GroupBox2: TGroupBox;
-    btnCreateDatabase: TButton;
-    lblDataBaseAdv: TLabel;
-    Image1: TImage;
-    Image2: TImage;
-    Shape1: TShape;
-    Image3: TImage;
-    ZSQLProcessor1: TZSQLProcessor;
-    ProgressBar1: TProgressBar;
+    TFormConnectionConfigurator = class( TForm )
+        Button7: TButton;
+        btnCancel: TButton;
+        Image1: TImage;
+        Image2: TImage;
+        Shape1: TShape;
+        Image3: TImage;
+        PageControl1: TPageControl;
+        TabSheet1: TTabSheet;
+        TabSheet2: TTabSheet;
+        lblDatabase: TLabel;
+        lblHostName: TLabel;
+        lblProtocol: TLabel;
+        lblPort: TLabel;
+        edtDatabase: TEdit;
+        edtHostName: TEdit;
+        cbxProtocol: TComboBox;
+        edtPort: TEdit;
+        btnDefault: TButton;
+        btnRestaurar: TButton;
+        btnSave: TButton;
+        lblPassword: TLabel;
+        lblUserName: TLabel;
+        edtPassword: TEdit;
+        edtUserName: TEdit;
+        btnTestRoot: TButton;
+        GroupBox2: TGroupBox;
+        lblDataBaseAdv: TLabel;
+        btnCreateDatabase: TButton;
+        ProgressBar1: TProgressBar;
+        btnTestUser: TButton;
 
-    procedure PropertiesChange(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure btnDefaultClick(Sender: TObject);
+        procedure PropertiesChange( Sender: TObject );
+        procedure FormCreate( Sender: TObject );
+        procedure btnDefaultClick( Sender: TObject );
 
+        procedure btnRestaurarClick( Sender: TObject );
+        procedure btnTestRootClick( Sender: TObject );
+        procedure btnSaveClick( Sender: TObject );
+        procedure btnCreateDatabaseClick( Sender: TObject );
+        procedure btnCancelClick( Sender: TObject );
+        procedure edtPasswordChange( Sender: TObject );
+        procedure btnTestUserClick( Sender: TObject );
+    private
+        procedure SetConnectionParameters( const Value: TConnectionParameters );
+        procedure refresh;
+        procedure refreshFields;
+        procedure refreshButtons;
+        procedure reset;
+        procedure initComponents;
+        function pingTest: boolean;
 
-    procedure btnRestaurarClick(Sender: TObject);
-    procedure btnTestClick(Sender: TObject);
-    procedure btnSaveClick(Sender: TObject);
-    procedure btnCreateDatabaseClick(Sender: TObject);
-    procedure btnCancelClick(Sender: TObject);
-  private
-    { Private declarations }
-    FConnection: TZConnection;
-    FInitialProtocol: String;
-    FInitialHostname: String;
-    FInitialPort: String;
-    FInitialDatabase: String;
-    FInitialUserName: String;
-    FInitialPassword: String;
-    FHasInitialConfiguration:boolean;
-    FTestSuccessful: boolean;
+    private
+        { Private declarations }
+        FConnectionParameters: TConnectionParameters;
+        FConnection: TZConnection;
+        FUserTestSuccessful: boolean;
 
+        property ConnectionParameters: TConnectionParameters read FConnectionParameters write SetConnectionParameters;
+        property Connection: TZConnection read FConnection write FConnection;
+        property UserTestSuccessful: boolean read FUserTestSuccessful write FUserTestSuccessful;
 
-    property Connection: TZConnection read FConnection write FConnection;
-    property InitialProtocol: String read FInitialProtocol write FInitialProtocol;
-    property InitialHostname: String read FInitialHostname write FInitialHostname;
-    property InitialPort: String read FInitialPort write FInitialPort;
-    property InitialDatabase: String read FInitialDatabase write FInitialDatabase;
-    property InitialUserName: String read FInitialUserName write FInitialUserName;
-    property InitialPassword: String read FInitialPassword write FInitialPassword;
-    property HasInitialConfiguration: boolean read FHasInitialConfiguration write FHasInitialConfiguration;
-    property TestSuccessful: boolean read FTestSuccessful write FTestSuccessful;
+    public
+        { Public declarations }
 
-    procedure initialParameters;
-  public
-    { Public declarations }
+    end;
 
-  end;
+    TDataGateway = class( TObject )
+    private
+        FConnectionParameters: TConnectionParameters;
+        FZConnection: TZConnection;
+        property ConnectionParameters: TConnectionParameters read FConnectionParameters write FConnectionParameters;
+
+        function getConnection: TZConnection;
+
+    public
+        constructor Create( ConnParam: TConnectionParameters ); virtual;
+        destructor Destroy; override;
+        function executeQuery( stmt: string ): TDataset;
+        function executeSQL( stmt: string ): integer;
+        procedure executeScript( fileName: string );
+        procedure executeScriptList( fileList: TStrings );
+
+        procedure createDatabaseUser;
+        procedure createDatabaseTables;
+        procedure createDatabaseSchema;
+        procedure createDatabaseRecords;
+
+        function pingConnection: boolean;
+
+    end;
 
 var
-  Form1: TForm1;
+    FormConnectionConfigurator: TFormConnectionConfigurator;
 
 implementation
 
-uses Unit2, registry, RegConst2;
-
+uses Unit2,
+    registry,
+    RegConst2;
 
 {$R *.DFM}
 
-procedure TForm1.initialParameters;
-var registry: TRegistry;
-    KeyValue: String;
+function listFilePattern( filePattern: string ): TStrings;
+var
+    FileNameList: TStrings;
+    SearchRec: TSearchRec;
+    path: string;
 begin
-registry:= TRegistry.Create;
-registry.RootKey := CFGRoot;
+    FileNameList := TStringList.create;
+    path := ExtractFilePath( filePattern );
+    if FindFirst( filePattern, faAnyFile, SearchRec ) = 0 then
+        while FindNext( SearchRec ) = 0 do
+            begin
+                FileNameList.Add( path + SearchRec.Name );
+            end;
+    FindClose( SearchRec );
+    result := FileNameList;
 
-if ( not registry.OpenKey( CFGPath, False) ) then
+end;
+
+{ TDataGateway }
+
+constructor TDataGateway.Create( ConnParam: TConnectionParameters );
+begin
+    ConnParam := ConnectionParameters;
+end;
+
+destructor TDataGateway.Destroy;
+begin
+
+end;
+
+function TDataGateway.executeQuery( stmt: string ): TDataset;
+var
+    Query: TZReadOnlyQuery;
+
+begin
+    Query := TZReadOnlyQuery.create( nil );
+    Query.Connection := getConnection;
+    Query.SQL.Add( stmt );
+    Query.Open;
+    result := Query;
+end;
+
+procedure TDataGateway.executeScript( fileName: string );
+var
+    SQLProcessor: TZSQLProcessor;
+begin
+    try
+        SQLProcessor := TZSQLProcessor.Create( nil );
+        SQLProcessor.Connection := getConnection;
+        ( SQLProcessor.Script as TZSQLStrings ).MultiStatements := false;
+        ( SQLProcessor.Script as TZSQLStrings ).ParamCheck := false;
+        SQLProcessor.LoadFromFile( fileName );
+        SQLProcessor.Execute;
+    finally;
+        SQLProcessor.free;
+    end;
+
+end;
+
+procedure TDataGateway.executeScriptList( fileList: TStrings );
+var
+    index: integer;
+begin
+    for index := 0 to fileList.Count - 1 do
+        executeScript( fileList[index] )
+
+end;
+
+function TDataGateway.executeSQL( stmt: string ): integer;
+var
+    Query: TZReadOnlyQuery;
+
+begin
+    try
+        Query := TZReadOnlyQuery.create( nil );
+        Query.Connection := getConnection;
+        Query.SQL.Add( stmt );
+        Query.ExecSQL;
+        result := 0;
+    finally
+        Query.free;
+    end;
+end;
+
+function TDataGateway.pingConnection: boolean;
+var
+    Connection: TZConnection;
+begin
+    Connection := getConnection;
+    if Connection.Connected then
+        Result := Connection.Ping
+    else
         begin
-        MessageDlg('Ocorreu um durante a execução do programa: Configuração Inválida.', mtError, [mbOk], 0);
-        close;
+            Connection.Connect;
+            Result := Connection.Ping;
+            Connection.Disconnect;
+        end;
+end;
+
+procedure TDataGateway.createDatabaseUser;
+var
+    stmt: string;
+    index: integer;
+    DataSet: TDataSet;
+    UserName: string;
+    Password: string;
+
+begin
+
+    UserName := 'NUTRICAO';
+    Password := '*C4FA1D6B9185FD0DCD13B990F5489735252CC210';
+    stmt := 'select count(1) from mysql.user where user = "' + UserName + '"';
+    try
+        DataSet := executeQuery( stmt );
+        index := Dataset.Fields[0].asInteger;
+    finally
+        DataSet.free;
+    end;
+
+    if index < 1 then
+        begin
+            stmt := format( CREATE_USER_STMT, [UserName, Password] );
+            executeSQL( stmt );
+        end;
+    stmt := format( CREATE_GRANT_STMT, [ConnectionParameters.Database, UserName] );
+    executeSQL( stmt );
+end;
+
+procedure TDataGateway.createDatabaseSchema;
+var
+    stmt: string;
+
+begin
+    stmt := format( CREATE_DATABASE_STMT, [ConnectionParameters.Database] );
+    executeSQL( stmt );
+
+end;
+
+procedure TDataGateway.createDatabaseTables;
+var
+    index: integer;
+    stmt: string;
+
+begin
+    for index := 0 to length( CREATE_STMT_MAP ) - 1 do
+        begin
+            stmt := format( DROP_TABLE_STMT, [CREATE_STMT_MAP[index][0]] );
+            executeSQL( stmt );
+            stmt := CREATE_STMT_MAP[index][1];
+            executeSQL( stmt );
+
         end;
 
+end;
 
-if registry.ValueExists('Connection') then
-        HasInitialConfiguration := true
-else
-        HasInitialConfiguration := false;
+{ TForm1 }
 
+procedure TFormConnectionConfigurator.FormCreate( Sender: TObject );
+begin
+    initComponents;
+    reset;
 
-if HasInitialConfiguration then
+end;
+
+procedure TFormConnectionConfigurator.PropertiesChange( Sender: TObject );
+begin
+    ConnectionParameters.Database := edtDatabase.text;
+    ConnectionParameters.HostName := edtHostName.text;
+    ConnectionParameters.Protocol := cbxProtocol.text;
+    if length( edtPort.text ) = 0 then
+        ConnectionParameters.Port := 0
+    else
+        ConnectionParameters.Port := StrToInt( edtPort.text );
+    refreshButtons;
+end;
+
+procedure TFormConnectionConfigurator.btnDefaultClick( Sender: TObject );
+begin
+    ConnectionParameters.setDefault;
+    refresh;
+    btnDefault.enabled := false;
+end;
+
+procedure TFormConnectionConfigurator.btnRestaurarClick( Sender: TObject );
+begin
+
+    reset;
+    btnRestaurar.Enabled := false;
+end;
+
+procedure TFormConnectionConfigurator.btnTestRootClick( Sender: TObject );
+var
+    success: boolean;
+begin
+    Connection.User := edtUserName.Text;
+    Connection.Password := edtPassword.Text;
+    Connection.Protocol := ConnectionParameters.Protocol;
+    Connection.HostName := ConnectionParameters.HostName;
+    Connection.Port := ConnectionParameters.Port;
+    Connection.Database := ConnectionParameters.Database;
+    success := pingTest;
+
+    if success then
         begin
-        KeyValue := registry.ReadString('Connection');
-        if registry.OpenKey(KeyValue, false) then
-                begin
-
-                InitialProtocol := registry.ReadString('Protocol');
-                InitialHostname := registry.ReadString('Hostname');
-                InitialPort     := registry.ReadString('Port');
-                InitialDatabase := registry.ReadString('Database');
-                InitialUserName := registry.ReadString('UserName');
-                InitialPassword := registry.ReadString('password');
-                btnRestaurarClick(nil);
-                btnSave.Enabled := false;
-
-
-                end
-        else
-                begin
-                HasInitialConfiguration := false;
-                end;
-        end;
-
-if not HasInitialConfiguration then
-        begin
-        btnDefaultClick(nil);
-        //btnSaveClick(nil);
-        btnRestaurar.Enabled := false;
-
-        lblDataBaseAdv.Caption :=
-                lblDataBaseAdv.Caption+#13#10#13#10'    Nenhuma conexão foi configurada ainda';
+            MessageDlg( 'Conexão realizada com Sucesso', mtInformation, [mbOk], 0 );
         end
-else
+    else
         begin
-        lblDataBaseAdv.Caption :=
-                lblDataBaseAdv.Caption+#13#10'ATENÇÃO:'#13#10'    Esta operação removerá TODOS os dados existentes!';
+            MessageDlg( 'Não foi possivel se conectar ao servidor', mtError, [mbOk], 0 );
         end;
+end;
 
-TestSuccessful := false;
-registry.Destroy;
+procedure TFormConnectionConfigurator.btnSaveClick( Sender: TObject );
+var
+    registry: TRegistry;
+    KeyValue: string;
+begin
 
+    ConnectionParameters.write;
+
+    refreshButtons;
+end;
+
+procedure TFormConnectionConfigurator.btnCreateDatabaseClick( Sender: TObject );
+var
+    FileNameList: TStrings;
+
+    DataGateway: TDataGateway;
+begin
+
+    DataGateway := TDataGateway.create( ConnectionParameters );
+    try
+        if not DataGateway.pingConnection then
+            begin
+                showmessage( 'Falha na criação do banco de dados. Não foi possivel se conectar ao servidor' );
+                exit;
+            end;
+
+        DataGateway.createDatabaseSchema;
+        DataGateway.createDatabaseUser;
+        DataGateway.createDatabaseSchema;
+        DataGateway.createDatabaseRecords;
+    finally
+        DataGateway.Free;
+    end;
 
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFormConnectionConfigurator.btnCancelClick( Sender: TObject );
 begin
-Connection := TZConnection.Create(Self);
-initialParameters;
+    exit;
+end;
 
+procedure TFormConnectionConfigurator.edtPasswordChange( Sender: TObject );
+begin
+    btnTestRoot.Enabled :=
+        ( length( edtPassword.Text ) > 0 ) and ( length( edtUserName.Text ) > 0 );
+    btnCreateDatabase.Enabled := btnTestRoot.Enabled;
 
 end;
 
-
-
-procedure TForm1.PropertiesChange(Sender: TObject);
+procedure TFormConnectionConfigurator.btnTestUserClick( Sender: TObject );
+var
+    success: boolean;
 begin
 
-  Connection.Protocol := Trim(cbxProtocol.Text);
-  Connection.HostName := Trim(edtHostName.Text);
-//  Connection.Database := Trim(edtDatabase.Text);
-  Connection.User := Trim(edtUserName.Text);
-  Connection.Password := Trim(edtPassword.Text);
-  Connection.Port := StrToInt(Trim(edtPort.Text));
+    Connection.User := 'NUTRICAO';
+    Connection.Password := 'NUTRICAO';
+    Connection.Protocol := ConnectionParameters.Protocol;
+    Connection.HostName := ConnectionParameters.HostName;
+    Connection.Port := ConnectionParameters.Port;
+    Connection.Database := ConnectionParameters.Database;
+    success := pingTest;
 
-  btnSave.Enabled := true;
-  btnDefault.Enabled := true;
-  TestSuccessful := false;
-  btnCreateDatabase.Enabled := false;
-  if HasInitialConfiguration then
-        btnRestaurar.Enabled := true;
-
-
+    if success then
+        begin
+            MessageDlg( 'Conexão realizada com Sucesso', mtInformation, [mbOk], 0 );
+        end
+    else
+        begin
+            MessageDlg( 'Não foi possivel se conectar ao servidor', mtError, [mbOk], 0 );
+        end;
 end;
 
-procedure TForm1.btnDefaultClick(Sender: TObject);
+function TFormConnectionConfigurator.pingTest: boolean;
+var
+    success: boolean;
 begin
-  cbxProtocol.Text := 'mysql';
-  edtHostName.Text := 'localhost';
-  edtDatabase.Text := 'mynutwin';
-  edtUserName.Text := 'root';
-  edtPassword.Text := 'masterkey';
-  edtPort.Text := '3306';
-
-  PropertiesChange(nil);
-  btnDefault.Enabled := false;
-
-
-end;
-
-procedure TForm1.btnRestaurarClick(Sender: TObject);
-begin
-  cbxProtocol.Text := InitialProtocol;
-  edtHostName.Text := InitialHostname;
-  edtDatabase.Text := InitialDatabase;
-  edtUserName.Text := InitialUserName;
-  edtPassword.Text := InitialPassword;
-  edtPort.Text     := InitialPort;
-  btnRestaurar.Enabled := false;
-end;
-
-procedure TForm1.btnTestClick(Sender: TObject);
-var success: boolean;
-begin
-success := false;
-try
-        Connection.Connect;
+    success := false;
+    try
+        if Connection.Connected then
+            success := Connection.Ping
+        else
+            Connection.Connect;
         success := Connection.Ping;
         Connection.Disconnect;
 
-except
-        on E: Exception do ;
+    except
+        on E: Exception do {doNothing}
+            ;
+    end;
+    result := success;
 end;
 
-if success then
-        begin
-        MessageDlg( 'Conexão realizada com Sucesso', mtInformation, [mbOk], 0);
-        TestSuccessful := true;
-        end
-else
-        begin
-        MessageDlg( 'Não foi possivel se conectar ao servidor', mtError, [mbOk], 0);
-        TestSuccessful := false;
-        end;
-
+procedure TFormConnectionConfigurator.SetConnectionParameters(
+    const Value: TConnectionParameters );
+begin
+    FConnectionParameters := Value;
 end;
 
-procedure TForm1.btnSaveClick(Sender: TObject);
-var registry: TRegistry;
-    KeyValue: String;
+procedure TFormConnectionConfigurator.initComponents;
 begin
 
-
-if ( TestSuccessful ) or
-        (MessageDlg( 'A Conexão não foi testada ou não obteve sucesso.'#13#10'Salvar assim mesmo?',mtConfirmation, mbOKCancel, 0) = mrOk) then
-        begin
-        btnSave.Enabled := false;
-        btnCreateDatabase.Enabled := true;
-        end
-else
-        exit;
-
-
-registry:= TRegistry.Create;
-registry.RootKey := CFGRoot;
-
-if ( not registry.OpenKey( CFGPath, False) ) then
-        begin
-        MessageDlg('Ocorreu um durante a execução do programa: Configuração Inválida.', mtError, [mbOk], 0);
-        close;
-        end;
-
-if HasInitialConfiguration then
-        begin
-        KeyValue := registry.ReadString('Connection');
-
-        if not registry.OpenKey(KeyValue, false) then
-                begin
-                MessageDlg('Ocorreu um durante a execução do programa: Não foi possível gravar conexão.', mtError, [mbOk], 0);
-                close;
-                end;
-        end
-else
-        begin
-        KeyValue := 'MyNutWin1006000';
-        registry.WriteString('Connection',KeyValue);
-        if not registry.OpenKey(KeyValue, true) then
-                begin
-                MessageDlg('Ocorreu um durante a execução do programa: Não foi possível gravar conexão.', mtError, [mbOk], 0);
-                close;
-                end;
-
-        end;
-
-registry.WriteString('Protocol', Connection.Protocol);
-registry.WriteString('Hostname', Connection.HostName);
-registry.WriteString('Port', IntToStr(Connection.Port) );
-registry.WriteString('Database', trim(edtDatabase.Text));
-registry.WriteString('UserName', Connection.User);
-registry.WriteString('password', Connection.Password);
-
-registry.CloseKey;
-
-if not registry.OpenKey('\SOFTWARE\ODBC\ODBC.INI\My_NutWin-1.6', false ) then
-        begin
-        MessageDlg('Ocorreu um durante a execução do programa: Erro na configuração do ODBC.', mtError, [mbOk], 0);
-        close;
-        end;
-
-registry.WriteString('DATABASE', trim(edtDatabase.Text));
-// registry.WriteString('DESCRIPTION', 'NutWin ODBC Data Source');
-// registry.WriteString('Driver', 'C:\Arquivos de programas\MySQL\Connector ODBC 5.1\myodbc5.dll');
-registry.WriteString('PORT', IntToStr(Connection.Port));
-registry.WriteString('PWD', Connection.Password);
-registry.WriteString('SERVER', Connection.HostName);
-registry.WriteString('UID', Connection.User);
+    Connection := TZConnection.Create( Self );
+    ConnectionParameters := TConnectionParameters.create;
 
 end;
 
-procedure TForm1.btnCreateDatabaseClick(Sender: TObject);
-var registry: TRegistry;
-    KeyValue: String;
-    Query: TZReadOnlyQuery;
-    UserName: String;
-    DatabaseName: String;
-    Password: String;
-    stmt:String;
+procedure TFormConnectionConfigurator.refresh;
+begin
+
+    refreshFields;
+    refreshButtons;
+
+end;
+
+procedure TFormConnectionConfigurator.reset;
+begin
+
+    ConnectionParameters.read;
+    if ConnectionParameters.isNew then
+        btnSaveClick( nil );
+    refresh;
+
+end;
+
+procedure TFormConnectionConfigurator.refreshButtons;
+begin
+    if ConnectionParameters.isNew then
+        begin
+            btnSave.Enabled := true;
+            btnRestaurar.Enabled := false;
+            btnDefault.Enabled := false;
+        end
+    else if ConnectionParameters.isDirty then
+        begin
+            btnSave.Enabled := true;
+            btnRestaurar.Enabled := true;
+            btnDefault.Enabled := true;
+        end
+    else
+        begin
+            btnSave.Enabled := false;
+            btnRestaurar.Enabled := false;
+            btnDefault.Enabled := true;
+        end
+
+end;
+
+procedure TFormConnectionConfigurator.refreshFields;
+begin
+    cbxProtocol.OnChange := nil;
+    edtHostName.OnChange := nil;
+    edtPort.OnChange := nil;
+    edtDatabase.OnChange := nil;
+
+    cbxProtocol.Text := ConnectionParameters.Protocol;
+    edtHostName.Text := ConnectionParameters.HostName;
+    edtPort.Text := IntToStr( ConnectionParameters.Port );
+    edtDatabase.text := ConnectionParameters.Database;
+
+    cbxProtocol.OnChange := PropertiesChange;
+    edtHostName.OnChange := PropertiesChange;
+    edtPort.OnChange := PropertiesChange;
+    edtDatabase.OnChange := PropertiesChange;
+
+end;
+
+procedure TDataGateway.createDatabaseRecords;
+var
+    FileNameList: TStrings;
     index: integer;
-
-    SQLProcessor: TZSQLProcessor;
-    SearchRec :TSearchRec;
-
-    FileNameList :TStringList;
 begin
-if not TestSuccessful then
-        btnTestClick(nil);
+    FileNameList := listFilePattern( 'C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql' );
 
-if not TestSuccessful then
+    for index := 0 to FileNameList.Count - 1 do
         begin
-        exit;
+            executeScript( FileNameList[index] );
+            
         end;
-
-Connection.Connect;
-Query:= TZReadOnlyQuery.Create(self);
-Query.Connection := Connection;
-
-    UserName:= 'NUTRICAO';
-    DatabaseName:= Trim(edtDatabase.Text);
-    Password := '*C4FA1D6B9185FD0DCD13B990F5489735252CC210';
-
-
-stmt := format(CREATE_DATABASE_STMT, [DatabaseName]);
-Query.SQL.Clear;
-Query.SQL.Add(stmt);
-Query.ExecSQL;
-
-Connection.Disconnect;
-Connection.Database := DatabaseName;
-Connection.Connect;
-
-
-
-try
-
-stmt := 'select count(1) from mysql.user where user = "'+UserName+'"';
-Query.SQL.Clear;
-Query.SQL.Add(stmt);
-Query.Open;
-index := Query.Fields[0].asInteger;
-Query.Close;
-
-if index < 1 then
-        begin
-        stmt := format(CREATE_USER_STMT, [UserName, Password]);
-        Query.SQL.Clear;
-        Query.SQL.Add(stmt);
-        Query.ExecSQL;
-        end;
-except
-on E:Exception do ;
-end;
-
-try
-stmt := format(CREATE_GRANT_STMT, [DatabaseName, UserName]);
-Query.SQL.Clear;
-Query.SQL.Add(stmt);
-Query.ExecSQL;
-except
-on E:Exception do ;
-end;
-
-try
-for index := 0 to length(CREATE_STMT_MAP)-1 do
-        begin
-        stmt := format(DROP_TABLE_STMT, [CREATE_STMT_MAP[index][0]]);
-        Query.SQL.Clear;
-        Query.SQL.Add(stmt);
-        Query.ExecSQL;
-        stmt := CREATE_STMT_MAP[index][1];
-        Query.SQL.Clear;
-        Query.SQL.Add(stmt);
-        Query.ExecSQL;
-
-        end;
-except
-on E:Exception do ;
-end;
-
-Connection.Disconnect;
-
-
-
-FileNameList := TStringList.create;
-
-if FindFirst('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql', faAnyFile, SearchRec) = 0 then
-        while FindNext(SearchRec) = 0 do
-                begin
-                FileNameList.Add('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
-                end;
-FindClose(SearchRec);
-
-
-SQLProcessor:= TZSQLProcessor.Create(self);
-SQLProcessor.Connection := Connection;
-ProgressBar1.max := FileNameList.Count-1;
-ProgressBar1.Visible := true;
-
-for index := 0 to FileNameList.Count-1 do
-        begin
-        Connection.Connect;
-        ProgressBar1.Position := index;
-        SQLProcessor:= TZSQLProcessor.Create(self);
-        SQLProcessor.Connection := Connection;
-        (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
-        (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
-        SQLProcessor.LoadFromFile(FileNameList[index]);
-
-        SQLProcessor.Execute;
-        SQLProcessor.free;
-        Connection.Disconnect;
-
-        end;
-
-ProgressBar1.Visible := false;
-
-
-
-
-{
-if FindFirst('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\*.sql', faAnyFile, SearchRec) = 0 then
-        while FindNext(SearchRec) = 0 do
-                begin
-
-
-                ProgressBar1.Max := StringList.Count;
-
-                (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
-                (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
-
-                (*for index := 0 to StringList.Count-1 do
-                        begin
-                        SQLProcessor.Script.Add(StringList[index]);
-                        ProgressBar1.Position := index;
-                        (SQLProcessor.Script as TZSQLStrings).MultiStatements := false;
-                        (SQLProcessor.Script as TZSQLStrings).ParamCheck := false;
-                        end;*)
-
-                //SQLProcessor.Script := StringList;
-                SQLProcessor.LoadFromFile('C:\Arquivos de programas\DIS-EPM\NutWin-1.6\DefaultData\'+SearchRec.Name);
-                SQLProcessor.Execute;
-                end;
-FindClose(SearchRec);}
-
-
-Query.free;
-//SQLProcessor.free;
-
-//Connection.Disconnect;
 
 end;
 
-procedure TForm1.btnCancelClick(Sender: TObject);
+function TDataGateway.getConnection: TZConnection;
 begin
-exit;
+    if not assigned( Connection ) then
+        begin
+            result := TZConnection.create( nil );
+            result.User := ConnectionParameters.UserName;
+            result.Password := ConnectionParameters.Password;
+            result.Protocol := ConnectionParameters.Protocol;
+            result.HostName := ConnectionParameters.HostName;
+            result.Port := ConnectionParameters.Port;
+            result.Database := ConnectionParameters.Database;
+            ZConnection := result;
+        end;
 end;
 
 end.
+

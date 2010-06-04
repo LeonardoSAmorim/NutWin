@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DBTables,CCSListaLinks,CCSDBListaLinks;
+  DBTables,CCSListaLinks,CCSDBListaLinks, Db;
 
 type
   TdmDataBasesNut = class(TDataModule)

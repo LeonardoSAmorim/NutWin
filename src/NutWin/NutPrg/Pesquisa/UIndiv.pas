@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, MmLstBox, ExtCtrls, MontaLst, DBCtrls;
+  StdCtrls, Buttons, MmLstBox, ExtCtrls, MontaLst, DBCtrls, HintListBox;
 
 type
   TfmPPastas = class(TForm)
