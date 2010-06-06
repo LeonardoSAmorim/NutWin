@@ -24,7 +24,7 @@ var
   FormErrorReport: TFormErrorReport;
 
 implementation
-
+uses shellapi;
 {$R *.DFM}
 
 procedure TFormErrorReport.Label1Click(Sender: TObject);

@@ -28,14 +28,23 @@ interface
 uses Windows;
 
 const
-  CFGPath : PChar = '\SOFTWARE\DIS-EPM\NUTWIN-1.6';
+  CFGPath : PChar = '\SOFTWARE\DIS-EPM\NUTWIN-1.6.0.7';
   CFGRoot : HKEY = HKEY_LOCAL_MACHINE;
 
   CFGVersaoCalc : String = 'VERSAO CALCNUT';
-  CFGVersaoCalcDefault : String = 'BETA X.XX (DEMO)'; // Versão da Calculadora
+  CFGVersaoCalcDefault : String = 'BETA 1.6.0.7'; // Versão da Calculadora
   CFGPersonaFileName : String = 'PERSONA FILE NAME';
   CFGLogoFileName : String = 'LOGO FILE NAME';
-//  CFGSerial : String = 'Serial';
+  CFGDefaultDataPath : String = 'DefaultDataPath';
+
+  CFGConnection : String = 'Connection';
+  CFGConnectionKeyValue : String = 'MyNutWin1006000';
+  CFGProtocol : String = 'Protocol';
+  CFGHostname : String = 'HostName';
+  CFGPort : String = 'Port';
+  CFGDatabase : String = 'Database';
+  CFGPathODBC: String = '\SOFTWARE\ODBC\ODBC.INI\My_NutWin-1.6.0.7';
+
 
   OPCDica : String = 'MOSTRA DICA';
   OPCDicaDefault : Boolean = True; // Mostrar Dica na Abertura
@@ -49,4 +58,3 @@ const
 implementation
 
 end.
- 

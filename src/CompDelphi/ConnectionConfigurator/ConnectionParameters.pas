@@ -18,9 +18,6 @@
 // License along with Foobar.
 // If not, see <http://www.gnu.org/licenses/>.
 
-
-
-
 unit ConnectionParameters;
 
 interface
@@ -30,19 +27,19 @@ type
 
         //    private state : (stUnknow, stNew, stClean, stDirty, stDeleted);
     private
-        state: ( stNew, stClean, stDirty );
+        state: (stNew, stClean, stDirty) ;
         FDatabase: string;
         FUserName: string;
         FPassword: string;
         FHostName: string;
         FProtocol: string;
         FPort: integer;
-        procedure SetProtocol( const Value: string );
-        procedure SetHostName( const Value: string );
-        procedure SetPort( const Value: integer );
-        procedure SetDatabase( const Value: string );
-        procedure SetUserName( const Value: string );
-        procedure SetPassword( const Value: string );
+        procedure SetProtocol (const Value: string) ;
+        procedure SetHostName (const Value: string) ;
+        procedure SetPort (const Value: integer) ;
+        procedure SetDatabase (const Value: string) ;
+        procedure SetUserName (const Value: string) ;
+        procedure SetPassword (const Value: string) ;
         procedure changed;
 
     public
@@ -76,7 +73,7 @@ uses Sysutils,
 
 procedure TConnectionParameters.changed;
 begin
-    if ( state = stClean ) then
+    if (state = stClean) then
         state := stDirty;
 end;
 
@@ -117,40 +114,41 @@ begin
 
     if isClean then
         exit;
+    registry := TRegistry.Create;
     try
-        registry := TRegistry.Create;
-        registry.RootKey := CFGRoot;
-        if ( not registry.OpenKey( CFGPath, False ) ) then
-            raise ERegistryException.CreateFmt( 'Falha ao abrir a chave %s', [CFGPath] );
 
-        if not registry.ValueExists( 'Connection' ) then
+        registry.RootKey := CFGRoot;
+        if (not registry.OpenKey (CFGPath, False) ) then
+            raise ERegistryException.CreateFmt ('Falha ao abrir a chave %s', [CFGPath]) ;
+
+        if not registry.ValueExists (CFGConnection) then
             begin
-                ConnectionKeyValue := 'MyNutWin1006000';
-                registry.WriteString( 'Connection', ConnectionKeyValue );
+                ConnectionKeyValue := CFGConnectionKeyValue;
+                registry.WriteString (CFGConnection, ConnectionKeyValue) ;
             end
         else
-            ConnectionKeyValue := registry.ReadString( 'Connection' );
+            ConnectionKeyValue := registry.ReadString (CFGConnection) ;
 
-        if registry.OpenKey( ConnectionKeyValue, true ) then
+        if registry.OpenKey (ConnectionKeyValue, true) then
             begin
-                registry.WriteString( 'Protocol', Protocol );
-                registry.WriteString( 'Hostname', HostName );
-                registry.WriteString( 'Port', IntToStr( Port ) );
-                registry.WriteString( 'Database', Database );
+                registry.WriteString (CFGProtocol, Protocol) ;
+                registry.WriteString (CFGHostname, HostName) ;
+                registry.WriteString (CFGPort, IntToStr (Port) ) ;
+                registry.WriteString (CFGDatabase, Database) ;
             end;
 
-                registry.CloseKey;
+        registry.CloseKey;
 
-                if not registry.OpenKey( '\SOFTWARE\ODBC\ODBC.INI\My_NutWin-1.6', false ) then
-                    raise ERegistryException.CreateFmt( 'Falha ao abrir a chave %s', ['\SOFTWARE\ODBC\ODBC.INI\My_NutWin-1.6'] );
+        if not registry.OpenKey (CFGPathODBC, false) then
+            raise ERegistryException.CreateFmt ('Falha ao abrir a chave %s', ['\SOFTWARE\ODBC\ODBC.INI\My_NutWin-1.6']) ;
 
-                registry.WriteString( 'DATABASE', Database );
+        registry.WriteString ('DATABASE', Database) ;
                 // registry.WriteString('DESCRIPTION', 'NutWin ODBC Data Source');
                 // registry.WriteString('Driver', 'C:\Arquivos de programas\MySQL\Connector ODBC 5.1\myodbc5.dll');
-                registry.WriteString( 'PORT', IntToStr( Port ) );
+        registry.WriteString ('PORT', IntToStr (Port) ) ;
         //        registry.WriteString( 'PWD', Password );
         //        registry.WriteString( 'UID', User );
-                registry.WriteString( 'SERVER', HostName );
+        registry.WriteString ('SERVER', HostName) ;
         state := stClean;
 
     finally
@@ -169,10 +167,10 @@ begin
     try
         registry.RootKey := CFGRoot;
 
-        if ( not registry.OpenKey( CFGPath, False ) ) then
-            raise ERegistryException.CreateFmt( 'Falha ao abrir a chave %s', [CFGPath] );
+        if (not registry.OpenKey (CFGPath, False) ) then
+            raise ERegistryException.CreateFmt ('Falha ao abrir a chave %s', [CFGPath]) ;
 
-        if not registry.ValueExists( 'Connection' ) then
+        if not registry.ValueExists (CFGConnection) then
             begin
                 setDefault;
                 State := stNew;
@@ -180,14 +178,14 @@ begin
         else
             begin
 
-                ConnectionKeyValue := registry.ReadString( 'Connection' );
+                ConnectionKeyValue := registry.ReadString (CFGConnection) ;
 
-                if registry.OpenKey( ConnectionKeyValue, false ) then
+                if registry.OpenKey (ConnectionKeyValue, false) then
                     begin
-                        Protocol := registry.ReadString( 'Protocol' );
-                        Hostname := registry.ReadString( 'Hostname' );
-                        Port := StrToInt( registry.ReadString( 'Port' ) );
-                        Database := registry.ReadString( 'Database' );
+                        Protocol := registry.ReadString (CFGProtocol) ;
+                        Hostname := registry.ReadString (CFGHostname) ;
+                        Port := StrToInt (registry.ReadString (CFGPort) ) ;
+                        Database := registry.ReadString (CFGDatabase) ;
                         State := stClean
                     end
                 else
@@ -203,10 +201,10 @@ begin
 
 end;
 
-procedure TConnectionParameters.SetDatabase( const Value: string );
+procedure TConnectionParameters.SetDatabase (const Value: string) ;
 begin
     changed;
-    FDatabase := Trim( Value );
+    FDatabase := Trim (Value) ;
 end;
 
 procedure TConnectionParameters.setDefault;
@@ -218,38 +216,38 @@ begin
     Port := 3306;
 end;
 
-procedure TConnectionParameters.SetHostName( const Value: string );
+procedure TConnectionParameters.SetHostName (const Value: string) ;
 begin
 
-    FHostName := Trim( Value );
+    FHostName := Trim (Value) ;
     changed;
 end;
 
-procedure TConnectionParameters.SetPassword( const Value: string );
+procedure TConnectionParameters.SetPassword (const Value: string) ;
 begin
     // password is not persistent
-    FPassword := Trim( Value );
+    FPassword := Trim (Value) ;
 
 end;
 
-procedure TConnectionParameters.SetPort( const Value: integer );
+procedure TConnectionParameters.SetPort (const Value: integer) ;
 begin
 
     FPort := Value;
     changed;
 end;
 
-procedure TConnectionParameters.SetProtocol( const Value: string );
+procedure TConnectionParameters.SetProtocol (const Value: string) ;
 begin
 
-    FProtocol := Trim( Value );
+    FProtocol := Trim (Value) ;
     changed;
 end;
 
-procedure TConnectionParameters.SetUserName( const Value: string );
+procedure TConnectionParameters.SetUserName (const Value: string) ;
 begin
    //user name is not persistent
-    FUserName := Trim( Value );
+    FUserName := Trim (Value) ;
 
 end;
 

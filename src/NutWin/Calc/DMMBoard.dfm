@@ -68,7 +68,7 @@ object dmMotherBoard: TdmMotherBoard
     Top = 142
   end
   object DBOrg: TDatabase
-    AliasName = 'My_NutWin-1.6'
+    AliasName = 'My_NutWin-1.6.0.7'
     Connected = True
     DatabaseName = 'ONut'
     LoginPrompt = False
@@ -14410,22 +14410,22 @@ object dmMotherBoard: TdmMotherBoard
     Top = 302
   end
   object dsInqFItemAlim: TDSNut
-    DataSet = GAF985424_6A79_466D_97C6_B989F341E020U.taItensAli
+    DataSet = GC2157912_3728_4DA6_9BE8_5B15FB28F778U.taItensAli
     Left = 374
     Top = 200
   end
   object dsInqFRefEscolhida: TDSNut
-    DataSet = GAF985424_6A79_466D_97C6_B989F341E020U.taRefCalcAli
+    DataSet = GC2157912_3728_4DA6_9BE8_5B15FB28F778U.taRefCalcAli
     Left = 374
     Top = 200
   end
   object dsInqFMacroNut: TDSNut
-    DataSet = GAF985424_6A79_466D_97C6_B989F341E020U.taMacroNut
+    DataSet = GC2157912_3728_4DA6_9BE8_5B15FB28F778U.taMacroNut
     Left = 374
     Top = 200
   end
   object dsInqFTotalNut: TDSNut
-    DataSet = GAF985424_6A79_466D_97C6_B989F341E020U.taTotalNut
+    DataSet = GC2157912_3728_4DA6_9BE8_5B15FB28F778U.taTotalNut
     Left = 374
     Top = 200
   end
@@ -14450,27 +14450,27 @@ object dmMotherBoard: TdmMotherBoard
     Top = 308
   end
   object dsPrepItemsAlim: TDSNut
-    DataSet = G6F6A2327_0744_45FD_A287_496A204ACEE0U.taItensAli
+    DataSet = G9C820F4C_DA7E_42F9_9B92_CC0ADDFE3CAFU.taItensAli
     Left = 374
     Top = 200
   end
   object dsPrepMacroNut: TDSNut
-    DataSet = G6F6A2327_0744_45FD_A287_496A204ACEE0U.taMacroNut
+    DataSet = G9C820F4C_DA7E_42F9_9B92_CC0ADDFE3CAFU.taMacroNut
     Left = 374
     Top = 200
   end
   object dsPrepTotalNut: TDSNut
-    DataSet = G6F6A2327_0744_45FD_A287_496A204ACEE0U.taTotalNut
+    DataSet = G9C820F4C_DA7E_42F9_9B92_CC0ADDFE3CAFU.taTotalNut
     Left = 374
     Top = 200
   end
   object dsPrepPorcNutValidos: TDSNut
-    DataSet = G6F6A2327_0744_45FD_A287_496A204ACEE0U.taPorcentagemNutValidos
+    DataSet = G9C820F4C_DA7E_42F9_9B92_CC0ADDFE3CAFU.taPorcentagemNutValidos
     Left = 374
     Top = 200
   end
   object dsPrepReceita: TDSNut
-    DataSet = G6F6A2327_0744_45FD_A287_496A204ACEE0U.taCalcAli
+    DataSet = G9C820F4C_DA7E_42F9_9B92_CC0ADDFE3CAFU.taCalcAli
     Left = 374
     Top = 200
   end
@@ -14540,97 +14540,97 @@ object dmMotherBoard: TdmMotherBoard
     Top = 312
   end
   object dsInqItemsAlim: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taItensAli
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taItensAli
     Left = 374
     Top = 200
   end
   object dsInqTotalNut: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taTotalNut
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taTotalNut
     Left = 374
     Top = 200
   end
   object dsInqRefEscolhidas: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taRefCalcAli
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taRefCalcAli
     Left = 374
     Top = 200
   end
   object dsInqRelCalNRef: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoCalNRef
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoCalNRef
     Left = 374
     Top = 200
   end
   object dsInqSaldoNut: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taSaldoNut
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taSaldoNut
     Left = 374
     Top = 200
   end
   object dsInqObservacoes: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taCalcAli
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taCalcAli
     Left = 374
     Top = 200
   end
   object dsInqModRefeicoes: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taModRefeicao
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taModRefeicao
     Left = 374
     Top = 200
   end
   object dsInqPorcNutValidos: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taPorcentagemNutValidos
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taPorcentagemNutValidos
     Left = 374
     Top = 200
   end
   object dsInqRelCalNCalc: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoCalNCalc
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoCalNCalc
     Left = 374
     Top = 200
   end
   object dsInqMacroNut: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taMacroNut
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taMacroNut
     Left = 374
     Top = 200
   end
   object dsInqRelCalPCalc: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoCaPCalc
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoCaPCalc
     Left = 374
     Top = 200
   end
   object dsInqPorcEnergiaCalc: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quPorcentagemEnergia
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quPorcentagemEnergia
     Left = 374
     Top = 200
   end
   object dsInqProtAVBCalc: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quProtAVBCalc
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quProtAVBCalc
     Left = 374
     Top = 200
   end
   object dsInqProtAVBRef: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quProtAVBRef
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quProtAVBRef
     Left = 374
     Top = 200
   end
   object dsInqNutPesoDia: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taTotalNutPesoDia
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taTotalNutPesoDia
     Left = 374
     Top = 200
   end
   object dsInqRelAGRef: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoAgSatPolMonRef
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoAgSatPolMonRef
     Left = 374
     Top = 200
   end
   object dsInqRelCalPRef: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoCaPRef
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoCaPRef
     Left = 374
     Top = 200
   end
   object dsInqGruAliPorNut: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taTotGru_Gru
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taTotGru_Gru
     Left = 374
     Top = 200
   end
   object dsInqRelAGCalc: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.quRelacaoAgSatPolMonCalc
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.quRelacaoAgSatPolMonCalc
     Left = 374
     Top = 200
   end
@@ -14700,102 +14700,102 @@ object dmMotherBoard: TdmMotherBoard
     Top = 292
   end
   object dsDieItemsAlim: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taItensAli
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taItensAli
     Left = 374
     Top = 200
   end
   object dsDieTotalNut: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taTotalNut
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taTotalNut
     Left = 374
     Top = 200
   end
   object dsDieMacroNut: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taMacroNut
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taMacroNut
     Left = 374
     Top = 200
   end
   object dsDieSaldoNut: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taSaldoNut
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taSaldoNut
     Left = 374
     Top = 200
   end
   object dsDieModRefeicoes: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taModRefeicao
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taModRefeicao
     Left = 374
     Top = 200
   end
   object dsDieRefEscolhidas: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taRefCalcAli
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taRefCalcAli
     Left = 374
     Top = 200
   end
   object dsDieObservacoes: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taCalcAli
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taCalcAli
     Left = 374
     Top = 200
   end
   object dsDieAliPorNut: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taTotAli_Ali
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taTotAli_Ali
     Left = 374
     Top = 200
   end
   object dsDieRelCaPRef: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoCaPRef
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoCaPRef
     Left = 374
     Top = 200
   end
   object dsDieGruAliPorNut: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taTotGru_Gru
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taTotGru_Gru
     Left = 374
     Top = 200
   end
   object dsDieProtAVBRef: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quProtAVBRef
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quProtAVBRef
     Left = 374
     Top = 200
   end
   object dsDieProtAVBCalc: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quProtAVBCalc
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quProtAVBCalc
     Left = 374
     Top = 200
   end
   object dsDieRelCalNCalc: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoCalNCalc
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoCalNCalc
     Left = 374
     Top = 200
   end
   object dsDieRelAGCalc: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoAgSatPolMonCalc
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoAgSatPolMonCalc
     Left = 374
     Top = 200
   end
   object dsDieNutPesoDia: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taTotalNutPesoDia
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taTotalNutPesoDia
     Left = 374
     Top = 200
   end
   object dsDiePorcNutValidos: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.taPorcentagemNutValidos
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.taPorcentagemNutValidos
     Left = 374
     Top = 200
   end
   object dsDieRelCalPCalc: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoCaPCalc
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoCaPCalc
     Left = 374
     Top = 200
   end
   object dsDiePorcEnergiaCalc: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quPorcentagemEnergia
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quPorcentagemEnergia
     Left = 374
     Top = 200
   end
   object dsDieRelAGRef: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoAgSatPolMonRef
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoAgSatPolMonRef
     Left = 374
     Top = 200
   end
   object dsDieRelCalNRef: TDSNut
-    DataSet = GBDB9FCC0_8D60_4A82_B569_CBE019B554D9U.quRelacaoCalNRef
+    DataSet = GA216BB6A_84B7_4549_A60A_3084808CBD3BU.quRelacaoCalNRef
     Left = 374
     Top = 200
   end
@@ -14805,7 +14805,7 @@ object dmMotherBoard: TdmMotherBoard
     Top = 212
   end
   object dsInqAliPorNut: TDSNut
-    DataSet = GD5B42320_9C36_4AE3_884B_8A966FF44B06U.taTotAli_Ali
+    DataSet = GC7E37E5F_9980_4E85_8310_81CA6B947BECU.taTotAli_Ali
     Left = 374
     Top = 206
   end

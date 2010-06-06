@@ -43,8 +43,8 @@ type
    function SerialNumber(FDrive:String) :String;
    function LoadPersona(FileName: String; P : TStringList; Serial : String; Desenv : Boolean=False): Integer;
    function Ancorar(FileName: String; Serial : String): Boolean;
-   function PersonaFileName( Serial : String ) : String;   overload;
-      function PersonaFileName(  ) : String;   overload;
+
+      function PersonaFileName(  ) : String;
 var
    MyRandSeed : longInt;
 
@@ -163,10 +163,10 @@ var
    i : Integer;
 begin
      Persona := TStringList.Create;
-     Persona.Add('Universidade Federal de São Paulo'); // cabec_1
-     Persona.Add('Campus São José dos Campos');        // cabec_2
-     Persona.Add('Prof. Dr. Meide Silva Anção');       // cabec_3
-     Persona.Add('');                                  // rodap_1
+     Persona.Add('NutWin'); // cabec_1
+     Persona.Add('Programa de apoio a Nutrição');        // cabec_2
+     Persona.Add('');       // cabec_3
+     Persona.Add('http://sourceforge.net/projects/nutwin/');                                  // rodap_1
      Persona.Add('');                                  // rodap_2
      Persona.Add('');                                  // fExpira
      Persona.Add('');                                  // validade
@@ -207,21 +207,8 @@ begin
    end;
 end;
 
-function PersonaFileName( Serial : String ) : String; overload;
-var
-   NumVer : Integer;
-begin
-   Result := '';
-   if Length( Serial ) = 16 then
-   begin
-      Result := 'Persona';
-      NumVer := StrToInt( Serial[10] + Serial[12] + Serial[14] + Serial[16] );
-      if NumVer > 0 then
-         Result := Result + Trim(IntToStr( NumVer ));
-   end
-end;
 
-function PersonaFileName( ) : String; overload;
+function PersonaFileName( ) : String; 
 var
    NumVer : Integer;
 begin

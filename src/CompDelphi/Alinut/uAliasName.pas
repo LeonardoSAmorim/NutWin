@@ -7,7 +7,7 @@ procedure openAllTables(component: TComponent);
 
 Const
 // BDE_ALIAS_NAME :string = 'BDOrganizador';
-BDE_ALIAS_NAME :string = 'My_NutWin-1.6';
+BDE_ALIAS_NAME :string = 'My_NutWin-1.6.0.7';
 
 implementation
 

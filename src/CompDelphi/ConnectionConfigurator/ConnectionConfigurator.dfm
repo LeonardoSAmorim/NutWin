@@ -1,8 +1,9 @@
 object FormConnectionConfigurator: TFormConnectionConfigurator
-  Left = 391
-  Top = 127
+  Left = 377
+  Top = 146
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Assistente de Conexão'
+  Caption = 'Configuração do Banco de Dados'
   ClientHeight = 484
   ClientWidth = 585
   Color = clBtnFace
@@ -1260,6 +1261,9 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
     Top = 12
     Width = 68
     Height = 67
+    Cursor = crHandPoint
+    Hint = 'http://sourceforge.net/projects/nutwin/'
+    ParentShowHint = False
     Picture.Data = {
       0954474946496D61676547494638396163006C00B30000D0100B3F3F3FF4A4A1
       FCEDECE5635EFDD4D3858585B9B9B9D5D5D5D8312CFABDBBD21A13DD4843ED85
@@ -1301,13 +1305,18 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
       B7DC5EDF9C75CCC74FADB2DC882F6FF4D8C4AFCE7DDDC05FED7BD7D98E1BC0D2
       BEFBDCFEB973ABFEFCE2310CD074074D43BAEBFEFCF7EFFFFF000CA0000748C0
       021AF080084CA00217C8C0063AB0531100003B}
+    ShowHint = True
     Stretch = True
+    OnClick = LinkTo
   end
   object Image3: TImage
     Left = 88
     Top = 16
     Width = 473
     Height = 57
+    Cursor = crHandPoint
+    Hint = 'http://sourceforge.net/projects/nutwin/'
+    ParentShowHint = False
     Picture.Data = {
       0954474946496D616765474946383961DE013800C40000EA9691DD5950F3C2BF
       FCF1F0D42A1FF9E2E1E3766FDA473DE6857EF6D4D2EDA5A0D7392EF1F1F1E067
@@ -1398,23 +1407,36 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
       7A88E77AE03601BD177113086ECF577D9977704EB78022187425988372708226
       E774FDC77111A082B76771B7776EE0576EE7A67D21387E03A8834ED81211C000
       99870215C00056F8845898855AB8855CA8042100003B}
+    ShowHint = True
+    OnClick = LinkTo
+  end
+  object Label6: TLabel
+    Left = 16
+    Top = 448
+    Width = 50
+    Height = 16
+    Cursor = crHandPoint
+    Hint = 'http://sourceforge.net/projects/nutwin/'
+    Caption = 'NutWin'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -14
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold, fsUnderline]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    OnClick = LinkTo
   end
   object Button7: TButton
-    Left = 352
+    Left = 448
     Top = 448
     Width = 91
     Height = 25
     Caption = 'Ok'
+    ModalResult = 1
     TabOrder = 1
-  end
-  object btnCancel: TButton
-    Left = 464
-    Top = 448
-    Width = 91
-    Height = 25
-    Caption = 'Cancela'
-    TabOrder = 2
-    OnClick = btnCancelClick
+    OnClick = Button7Click
   end
   object PageControl1: TPageControl
     Left = 120
@@ -1506,7 +1528,10 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
         Top = 32
         Width = 89
         Height = 25
+        Hint = 'Preenche os campos com a configuração padrão.'
         Caption = 'Padrão'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 4
         OnClick = btnDefaultClick
       end
@@ -1515,9 +1540,11 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
         Top = 64
         Width = 89
         Height = 25
-        Hint = 'Restaura valor original'
+        Hint = 'Restaura a última configuração salva.'
         Caption = 'Desfazer'
         Enabled = False
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 5
         OnClick = btnRestaurarClick
       end
@@ -1526,40 +1553,122 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
         Top = 96
         Width = 89
         Height = 25
+        Hint = 'Salva a configuraçãos para o uso do programa'
         Caption = 'Salvar'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 6
         OnClick = btnSaveClick
       end
       object btnTestUser: TButton
-        Left = 296
-        Top = 264
+        Left = 304
+        Top = 128
         Width = 123
         Height = 25
-        Caption = 'Test'
+        Hint = 'Testa a configuração para o programa'
+        Caption = 'Testar'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 7
         OnClick = btnTestUserClick
       end
+      object GroupBox1: TGroupBox
+        Left = 16
+        Top = 168
+        Width = 409
+        Height = 113
+        Caption = 'Serviço (local)'
+        TabOrder = 8
+        object Label1: TLabel
+          Left = 24
+          Top = 80
+          Width = 84
+          Height = 13
+          Caption = 'Status do Serviço'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblStatusSvc: TLabel
+          Left = 120
+          Top = 80
+          Width = 69
+          Height = 13
+          Caption = 'Desconhecido'
+        end
+        object Label3: TLabel
+          Left = 24
+          Top = 64
+          Width = 83
+          Height = 13
+          Caption = 'Nome do serviço:'
+        end
+        object lblNameSvc: TLabel
+          Left = 120
+          Top = 64
+          Width = 38
+          Height = 13
+          Caption = ' MySQL'
+        end
+        object Label2: TLabel
+          Left = 24
+          Top = 24
+          Width = 316
+          Height = 26
+          Caption = 
+            'Verifica se o serviço está executando local. '#13#10'Use esta opção ap' +
+            'enas se o o servidor foi instalado nesta máquina'
+        end
+        object btnChkSvcStatus: TButton
+          Left = 304
+          Top = 80
+          Width = 91
+          Height = 25
+          Hint = 'O Status é independente da configuração.'
+          Caption = 'Verificar'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          OnClick = btnChkSvcStatusClick
+        end
+      end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Bade de Dados'
+      Caption = 'Base de Dados'
       ImageIndex = 1
       object lblPassword: TLabel
-        Left = 16
-        Top = 56
+        Left = 32
+        Top = 128
         Width = 49
         Height = 13
         Caption = 'Password:'
       end
       object lblUserName: TLabel
-        Left = 16
-        Top = 24
+        Left = 32
+        Top = 96
         Width = 56
         Height = 13
         Caption = 'User Name:'
       end
+      object Label5: TLabel
+        Left = 24
+        Top = 16
+        Width = 373
+        Height = 65
+        AutoSize = False
+        Caption = 
+          'Para criar a base de dados inicial, informe, nos campos abaixo, ' +
+          'o  nome e senha do usuário administrador do banco de dados ou de' +
+          ' um usuário com permissões equivalentes.'#13#10'Para testar a conexão,' +
+          ' informe o nome e senha de um usuário válido no servidor.'
+        WordWrap = True
+      end
       object edtPassword: TEdit
-        Left = 88
-        Top = 56
+        Left = 104
+        Top = 128
         Width = 193
         Height = 21
         PasswordChar = '*'
@@ -1567,42 +1676,56 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
         OnChange = edtPasswordChange
       end
       object edtUserName: TEdit
-        Left = 88
-        Top = 24
+        Left = 104
+        Top = 96
         Width = 193
         Height = 21
         TabOrder = 0
         Text = 'root'
       end
       object btnTestRoot: TButton
-        Left = 320
-        Top = 48
-        Width = 89
+        Left = 304
+        Top = 128
+        Width = 121
         Height = 25
+        Hint = 
+          'Testa ultima configuração salva'#13#10'para o usuário e senha informad' +
+          'os'
         Caption = 'Testar'
         Enabled = False
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 2
         OnClick = btnTestRootClick
       end
       object GroupBox2: TGroupBox
         Left = 16
-        Top = 116
+        Top = 168
         Width = 409
-        Height = 165
+        Height = 113
         Caption = 'Configuração Inicial'
         TabOrder = 3
         object lblDataBaseAdv: TLabel
           Left = 16
-          Top = 24
-          Width = 297
-          Height = 57
+          Top = 48
+          Width = 321
+          Height = 33
           AutoSize = False
-          Caption = 'Cria base de dados inicial do sistema.'
+          Caption = 
+            'ATENÇÃO:'#13#10'Essa operação removerá TODOS os dados existentes no si' +
+            'stema.'
           WordWrap = True
         end
+        object Label4: TLabel
+          Left = 16
+          Top = 24
+          Width = 176
+          Height = 13
+          Caption = 'Cria base de dados inicial do sistema.'
+        end
         object btnCreateDatabase: TButton
-          Left = 296
-          Top = 56
+          Left = 304
+          Top = 80
           Width = 91
           Height = 25
           Caption = 'Criar'
@@ -1612,7 +1735,7 @@ object FormConnectionConfigurator: TFormConnectionConfigurator
         end
         object ProgressBar1: TProgressBar
           Left = 16
-          Top = 137
+          Top = 89
           Width = 273
           Height = 16
           Min = 0

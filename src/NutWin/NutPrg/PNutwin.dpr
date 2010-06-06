@@ -18,9 +18,6 @@
 // License along with Foobar.
 // If not, see <http://www.gnu.org/licenses/>.
 
-
-
-
 program PNutwin;
 
 uses
@@ -140,7 +137,6 @@ uses
   UGrafWizFormulas in 'UGrafWizFormulas.pas' {fmGrafWizFormulas},
   UGrafWizGraficos in 'UGrafWizGraficos.pas' {fmGrafWizGraficos},
   DMSemaf in 'DMSemaf.pas' {dmSemaforo: TDataModule},
-
   uAliasName in 'uAliasName.pas',
   fmFormRelMedResult in '..\Calc\fmFormRelMedResult.pas',
   fmFormRelIndividuo in '..\Calc\fmFormRelIndividuo.pas' {FormRepIndividuo},
@@ -148,20 +144,18 @@ uses
   DMUmAli in '..\..\CompDelphi\Alinut\DMUmAli.pas' {DMUmAlimento: TDataModule},
   Services in '..\..\CompDelphi\Servicos\Services.pas',
   VersionInfo in '..\..\CompDelphi\About\VersionInfo.pas',
-  ErrorReport in '..\..\CompDelphi\ErrorReport\ErrorReport.pas' {FormErrorReport};
+  ErrorReport in '..\..\CompDelphi\ErrorReport\ErrorReport.pas' {FormErrorReport},
+  ConnectionConfigurator in '..\..\CompDelphi\ConnectionConfigurator\ConnectionConfigurator.pas' {FormConnectionConfigurator},
+  DataGateway in '..\..\CompDelphi\ConnectionConfigurator\DataGateway.pas';
 
 // FIM
 
 {$R *.RES}
 
-
-
 var
-  MainPath, MsgErro : string;
-  SalvaCursor: TCursor;
-  NumLicencas : integer;
-
-
+    MainPath, MsgErro: string;
+    SalvaCursor: TCursor;
+    NumLicencas: integer;
 
   //&  DMMaster : TdmDataBasesNut;
   //******************************************************************************
@@ -169,45 +163,59 @@ var
   //******************************************************************************
 
 begin
-  NumLicencas := -1; // pra garantir que esta informação vai ser pega de algum lugar
+    NumLicencas := -1; // pra garantir que esta informação vai ser pega de algum lugar
   // não deixa dois ou mais organizadores rodarem ao mesmo tempo
-  if  true {not AppIsAlreadyRunning(ID_ORGANIZADOR)  }then
-  begin
+    if true {not AppIsAlreadyRunning(ID_ORGANIZADOR)  } then
+        begin
 
-    Application.Initialize;
+            Application.Initialize;
 
     // Algumas configurações gerais
-    Application.Title := 'Organizador do Nutrição';
+            Application.Title := 'Organizador do Nutrição';
     //  Application.ShowHint := False;
     //  Application.OnHint:=DisplayHint;
     //  Application.ShowHint := True;
-    Application.HintColor := clWhite;
-    Application.HintPause := 0;
-    ShortDateFormat := 'dd/mm/yyyy';
-    LongTimeFormat := 'hh:mm:ss';
-    ShortTimeFormat := 'hh:mm';
-    TimeSeparator := ':';
-    DecimalSeparator := ',';
-    ThousandSeparator := '.';
-    DateSeparator := '/';
-
+            Application.HintColor := clWhite;
+            Application.HintPause := 0;
+            ShortDateFormat := 'dd/mm/yyyy';
+            LongTimeFormat := 'hh:mm:ss';
+            ShortTimeFormat := 'hh:mm';
+            TimeSeparator := ':';
+            DecimalSeparator := ',';
+            ThousandSeparator := '.';
+            DateSeparator := '/';
 
     // Se existe arquivo do Banco para conversão então faça-a
     // Seta Individuos como opção não liberada
  //   CFGPath
-    if not CarregaChaveString(CFGRoot, CFGPath, 'Path', MainPath) then
-    begin
-      ShowMessage('Erro de leitura da Chave: Path.' + #13#10 +
-        'O programa não pode ser iniciado.');
-      exit;
-    end;
+            if not CarregaChaveString (CFGRoot, CFGPath, 'Path', MainPath) then
+                begin
+                    ShowMessage ('Erro de leitura da Chave: Path.' + #13#10 +
+                        'O programa não pode ser iniciado.') ;
+                    exit;
+                end;
+
+            while not TDataGateway.testConfiguration do
+                begin
+                if MessageDlg('Se estiver executando  o programa pela primeira vez,'+
+                        #13#10' é preciso criar a base de dados inicial do sistema'#13#10#13#10+
+                        'Deseja abrir a janela de Configuração do Banco de Dados?',
+
+                        mtConfirmation, [mbYes, mbNo], 0) = mryes then
+                        TFormConnectionConfigurator.Execute
+                else
+                        begin
+                        MessageDlg('Não foi possível se conectar ao banco de dados',mtError, [mbOk], 0);
+                        exit;
+                        end;
+                end;
 
     // A conversão não foi feita, portanto sair do programa
 //    if ConverteuBD(MainPath + '\IBDados\CVSBDADOS.GDB', MainPath + '\IBDados\BDADOS.GDB', MainPath + '\IBDados\ib_cvsdb.exe') <> 0 then
 //      exit;
 
-    SalvaCursor := Screen.Cursor; { Salva cursor atual }
-    Screen.Cursor := crHourglass; { Mostra ampulheta }
+            SalvaCursor := Screen.Cursor; { Salva cursor atual }
+            Screen.Cursor := crHourglass; { Mostra ampulheta }
 
     //******************************************************************************
     //repeat
@@ -215,163 +223,163 @@ begin
     //******************************************************************************
 
       // Mostra tela de Splash
-    with TfmSplash.Create(nil) do
-    try
-      pbProgresso.Max := 100;
-      Show;
-      Update;
+            with TfmSplash.Create (nil) do
+                try
+                    pbProgresso.Max := 100;
+                    Show;
+                    Update;
 
      // Contém um database para todo o sistema
-      laOperacao.Caption := 'Conectando ao Banco de Dados...';
-      laOperacao.Update;
+                    laOperacao.Caption := 'Conectando ao Banco de Dados...';
+                    laOperacao.Update;
       //&     Application.CreateForm(TdmDataBasesNut, DMMaster);
       //&     DMMaster.dbOrg1.Connected := True;
       //&     DMMaster.RestauraActive := True; // vai manter aberto o que já está aberto
-      pbProgresso.StepBy(10);
+                    pbProgresso.StepBy (10) ;
 
       // Cria e seta tabelas temporárias
-      laOperacao.Caption := 'Criando Tabelas Temporárias...';
-      laOperacao.Update;
+                    laOperacao.Caption := 'Criando Tabelas Temporárias...';
+                    laOperacao.Update;
 //      Application.CreateForm(TdmCriaTabelasTemp, dmCriaTabelasTemp);
-  pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
-      laOperacao.Caption := 'Criando Tabelas de Semáforo...';
-      laOperacao.Update;
-      Application.CreateForm(TdmSemaforo, dmSemaforo);
+                    laOperacao.Caption := 'Criando Tabelas de Semáforo...';
+                    laOperacao.Update;
+                    Application.CreateForm(TdmSemaforo, dmSemaforo);
 
-      pbProgresso.StepBy(5);
+  pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Alimentos
-      laOperacao.Caption := 'Abrindo Banco de Dados... Alimentos';
-      laOperacao.Update;
-      Application.CreateForm(TDMAlimentos, DMAlimentos);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Alimentos';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMAlimentos, DMAlimentos) ;
       //&     DMMaster.DefineDM(DMAlimentos);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Medidas
-      laOperacao.Caption := 'Abrindo Banco de Dados... Medidas';
-      laOperacao.Update;
-      Application.CreateForm(TDMedidas, DMedidas);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Medidas';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMedidas, DMedidas) ;
       //&     DMMaster.DefineDM(DMedidas);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Substitutos
-      laOperacao.Caption := 'Abrindo Banco de Dados... Substitutos';
-      laOperacao.Update;
-      Application.CreateForm(TDMSubsCalorico, DMSubsCalorico);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Substitutos';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMSubsCalorico, DMSubsCalorico) ;
       //&     DMMaster.DefineDM(DMSubsCalorico);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Pessoas
-      laOperacao.Caption := 'Abrindo Banco de Dados... Pessoa';
-      laOperacao.Update;
-      Application.CreateForm(TDMPessoa, DMPessoa);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Pessoa';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMPessoa, DMPessoa) ;
       //&     DMMaster.DefineDM(DMPessoa);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Nutrientes
-      laOperacao.Caption := 'Abrindo Banco de Dados... Nutrientes';
-      laOperacao.Update;
-      Application.CreateForm(TDMNutrientes, DMNutrientes);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Nutrientes';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMNutrientes, DMNutrientes) ;
       //&     DMMaster.DefineDM(DMNutrientes);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Indexação
-      laOperacao.Caption := 'Abrindo Banco de Dados... Indexação';
-      laOperacao.Update;
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Indexação';
+                    laOperacao.Update;
       //*     Application.CreateForm(TDMIndexacao, DMIndexacao);
       //&     DMMaster.DefineDM(DMIndexacao);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria componentes de gráficos
-      laOperacao.Caption := 'Abrindo Banco de Dados... Gráficos';
-      laOperacao.Update;
-      Application.CreateForm(TdmGraficos, dmGraficos);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Gráficos';
+                    laOperacao.Update;
+                    Application.CreateForm (TdmGraficos, dmGraficos) ;
       //&     DMMaster.DefineDM(dmGraficos);
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria componentes da calculadora
-      laOperacao.Caption := 'Criando Componentes...';
-      laOperacao.Update;
+                    laOperacao.Caption := 'Criando Componentes...';
+                    laOperacao.Update;
 //      Application.CreateForm(TdmHlp, dmHlp);
-      Application.CreateForm(TdmMotherBoard, dmMotherBoard);
+                    Application.CreateForm (TdmMotherBoard, dmMotherBoard) ;
       //&     dmMotherBoard.DMDataBases := DMMaster;
-      pbProgresso.StepBy(5);
+                    pbProgresso.StepBy (5) ;
 
       // Cria e seta Tabelas de Pesquisa
-      laOperacao.Caption := 'Abrindo Banco de Dados... Pesquisa';
-      laOperacao.Update;
-      Application.CreateForm(TDMPesquisa, DMPesquisa);
+                    laOperacao.Caption := 'Abrindo Banco de Dados... Pesquisa';
+                    laOperacao.Update;
+                    Application.CreateForm (TDMPesquisa, DMPesquisa) ;
       //&     DMMaster.DefineDM(DMPesquisa);
-      pbProgresso.StepBy(20);
+                    pbProgresso.StepBy (20) ;
 
       // Cria tela principal do sistema
-      laOperacao.Caption := 'Criando Console...';
-      laOperacao.Update;
-      Application.CreateForm(Tfm_MenuNut, fm_MenuNut);
-      pbProgresso.StepBy(10);
+                    laOperacao.Caption := 'Criando Console...';
+                    laOperacao.Update;
+                    Application.CreateForm (Tfm_MenuNut, fm_MenuNut) ;
+                    pbProgresso.StepBy (10) ;
 
       // Cria form que gerencia os tipos de salas
-      laOperacao.Caption := 'Criando Salas...';
-      laOperacao.Update;
-      Application.CreateForm(TfmOpcSalas, fmOpcSalas);
-      pbProgresso.StepBy(10);
+                    laOperacao.Caption := 'Criando Salas...';
+                    laOperacao.Update;
+                    Application.CreateForm (TfmOpcSalas, fmOpcSalas) ;
+                    pbProgresso.StepBy (10) ;
 
-      paProgresso.Visible := False;
+                    paProgresso.Visible := False;
 
-    finally
-      Screen.Cursor := SalvaCursor; { Sempre retorna ao normal }
-      Free;
-    end;
+                finally
+                    Screen.Cursor := SalvaCursor; { Sempre retorna ao normal }
+                    Free;
+                end;
 
     // Abre janela de logim/senha
-    Application.CreateForm(Tfm_Login, fm_Login);
-    if fm_Login.ShowModal = mrOk then
-    begin
+            Application.CreateForm (Tfm_Login, fm_Login) ;
+            if fm_Login.ShowModal = mrOk then
+                begin
       //**     fm_Login.Free;
            // Roda a aplicação
-      Application.Run;
+                    Application.Run;
       // Preciso verificar pois se a saida for pela
       // opção de restaurar backup, o dmSemafora não existe mais
-      if dmSemaforo <> nil then
-      begin
-         dmSemaforo.Free;
-         dmSemaforo := nil;
-      end;
-    end
+                    if dmSemaforo <> nil then
+                        begin
+                            dmSemaforo.Free;
+                            dmSemaforo := nil;
+                        end;
+                end
 
-    else
-    begin
+            else
+                begin
       // Elimina todos os datamodules e forms
       (**
       Jair - Estou matando o datamodule de cotnrole de acesso aqui para evitar
              um AV na saída do aplicativo sem login.
       **)
-      dmSemaforo.Free;
-      dmSemaforo := nil;
+                    dmSemaforo.Free;
+                    dmSemaforo := nil;
 
 //      dmCriaTabelasTemp.free;
-      DMAlimentos.free;
-      DMedidas.free;
-      DMSubsCalorico.free;
-      DMPessoa.free;
-      DMNutrientes.free;
+                    DMAlimentos.free;
+                    DMedidas.free;
+                    DMSubsCalorico.free;
+                    DMPessoa.free;
+                    DMNutrientes.free;
       //*        DMIndexacao.free;
-      dmGraficos.free;
-      dmMotherBoard.free;
-      DMPesquisa.free;
-      fm_MenuNut.free;
-      fmOpcSalas.free;
-      fm_Login.free;
+                    dmGraficos.free;
+                    dmMotherBoard.free;
+                    DMPesquisa.free;
+                    fm_MenuNut.free;
+                    fmOpcSalas.free;
+                    fm_Login.free;
       //&        DMMaster.free;
-    end;
+                end;
 
     //*****************************************************************************
     //until not RestaurandoDB;
     //*****************************************************************************
 
-  end
-  else
-    ShowMessage('Já tem um Organizador aberto!');
+        end
+    else
+        ShowMessage ('Já tem um Organizador aberto!') ;
 end.
 

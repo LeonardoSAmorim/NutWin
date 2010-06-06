@@ -61,7 +61,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=6
 Release=0
-Build=5
+Build=7
 Debug=0
 PreRelease=0
 Special=0
@@ -72,7 +72,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=Departamento de Informática em Saúde© - DIS- Unifesp/EPM
 FileDescription=Programa de Apoio à Nutrição
-FileVersion=1.6.0.5
+FileVersion=1.6.0.7
 InternalName=NUTWIN
 LegalCopyright=Universidade Federal de São Paulo - Unifesp
 LegalTrademarks=Universidade Federal de São Paulo - Unifesp
@@ -81,4 +81,4 @@ ProductName=Programa de Apoio à Nutrição®, 2009
 ProductVersion=1.6 - 2009
 Comments=O Programa de Apoio à Nutrição está protegido pela lei  nº 7.646/87, que dispõe sobre a proteção da propriedade intelectual de programas de computador e sua comercialização no país. A reprodução não autorizada constituirá crime com pena prevista na lei.
 [Excluded Packages]
-$(DELPHI)\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
+$(DELPHI)\Projects\BPL\QR5DesignD5.bpl=QuickReport 5 Components (Delphi 5)

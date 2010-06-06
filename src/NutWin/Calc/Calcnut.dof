@@ -61,7 +61,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=6
 Release=0
-Build=4
+Build=7
 Debug=0
 PreRelease=0
 Special=0
@@ -72,14 +72,16 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=Departamento de Informática em Saúde© - DIS-EPM
 FileDescription=Programa de Cálculo Nutricional
-FileVersion=1.6.0.4
+FileVersion=1.6.0.7
 InternalName=CalcNut
 LegalCopyright=Universidade Federal de São Paulo - Unifesp
 LegalTrademarks=Universidade Federal de São Paulo - Unifesp
 OriginalFilename=CalcNut.exe
-ProductName=Calculadora Nutricional®, 2009
-ProductVersion=1.6 - 2009
+ProductName=Calculadora Nutricional®, 2010
+ProductVersion=1.6.0.7 - 2010
 Comments=O programa Calculadora Nutricional está protegido pela lei  nº 7.646/87, que dispõe sobre a proteção da propriedade intelectual de programas de computador e sua comercialização no país. A reprodução não autorizada constituirá crime com pena prevista na lei.
+[Excluded Packages]
+$(DELPHI)\Projects\BPL\QR5DesignD5.bpl=QuickReport 5 Components (Delphi 5)
 [HistoryLists\hlDebugSourcePath]
 Count=3
 Item0=$(DELPHI)\Source\Vcl;C:\Documents and Settings\wagner\Meus documentos\Tee44
