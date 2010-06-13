@@ -72,20 +72,20 @@ Name: brazilianportuguese; MessagesFile: compiler:Languages\BrazilianPortuguese.
 
 [Types]
 Name: full; Description: Completa - Instala todos os recursos
-Name: client; Description: Cliente - Instala Organizador e Calculadora
-Name: server; Description: Servidor - Instala Sevidor e Base de Dados
+;; Name: client; Description: Cliente - Instala Organizador e Calculadora
+;; Name: server; Description: Servidor - Instala Sevidor e Base de Dados
 Name: custom; Description: Personalizada - permite escolher os componentes; Flags: iscustom
 
 [Components]
 ;; instalação para uso isolado
-Name: Client; Description: Organizador e Calculadora; Types: full client custom; Flags: fixed
+Name: Client; Description: Organizador e Calculadora; Types: full custom
 ;Name: Client\BDE; Description: Borland Database Engine; types: full client
 ;name: Client\ODBC; Description: MyODBC Connector; types: full client
 ;Name: Client\Help; Description: Arquivos de Ajuda; Types: full client
 ;; Instalação para uso na rede local
-Name: Server; Description: MySQL Server; Types: full server
+Name: Server; Description: MySQL Server; Types: full custom
 ;; Database, datafiles, application data,
-Name: Server\Database; Description: Base de Dados Padrão; Types: full server
+Name: Server\Database; Description: Base de Dados Padrão; Types: full custom
 
 
 
@@ -101,7 +101,33 @@ Source: SourceFiles\components\libmySQL.dll; DestDir: {sys}; Components: Client
 
 ;;;; BDE Files
 Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\windir\system32\bdeadmin.cpl; Components: Client; DestDir: {sys}
-Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\*; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+;;Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\*; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\bantam.dll; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\BDEADMIN.CNT; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\BDEADMIN.EXE; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\BDEADMIN.HLP; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\BDEADMIN.TOC; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\BLW32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\CEEUROPE.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\CHARSET.CVB; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\EUROPE.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\FAREAST.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDAPI32.CFG; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDAPI32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDASCI32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDBAT32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDDA3532.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDDAO32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDDBAS32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDDR32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDODBC32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDPDX32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDQBE32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDR20009.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\IDSQL32.DLL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\JAPAN.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\OTHER.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: C:\nutwin\installer\ScriptFiles\BDEInstall\BdeCore\CommonProgramFiles\Borland Shared\BDE\USA.BTL; DestDir: {cf}\Borland Shared\BDE\; Components: Client; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ;;;; MySQL Connector ODBC Files
 Source: C:\nutwin\installer\ScriptFiles\MyODBCConnector\mysql-connector-odbc-noinstall-5.1.6-win32\lib\myodbc5S.dll; DestDir: {sys}; Components: Client
@@ -113,17 +139,32 @@ Source: C:\nutwin\installer\ScriptFiles\MyODBCConnector\mysql-connector-odbc-noi
 
 
 ;;;; NutFiles
-Source: SourceFiles\MirrorDest\*; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
-Source: SourceFiles\components\SQLScript\dumpNutWin.sql; DestDir: {tmp}; Flags: deleteafterinstall; Components: Client
-Source: SourceFiles\components\MySQL\*; DestDir: {tmp}; Flags: deleteafterinstall; Components: Client
+;;Source: SourceFiles\MirrorDest\*; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\Leia-me.txt; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\MedAntrop.sto; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\NutWin.txt; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\OrgNut; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\Persona.BMP; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\persona.cfg; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\ResAntrop.sto; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\Calc\fundocalcnut1.bmp; DestDir: {app}\Calc; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\Calc\fundocalcnut2.bmp; DestDir: {app}\Calc; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\DefaultData\*.sql; DestDir: {app}\DefaultData; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\help\*.html; DestDir: {app}\help; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\help\*.chm; DestDir: {app}\help; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+Source: SourceFiles\MirrorDest\help\Guia-Nut_arquivos\*.gif; DestDir: {app}\help\Guia-Nut_arquivos; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
 Source: C:\nutwin\src\NutWin\Calc\Calcnut.exe; DestDir: {app}\Calc; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
 Source: C:\nutwin\src\NutWin\NutPrg\PNutwin.exe; DestDir: {app}\OrgNut; Flags: ignoreversion recursesubdirs createallsubdirs; Components: Client
+
+;; MySQL Server & Data
+Source: SourceFiles\components\SQLScript\dumpNutWin.sql; DestDir: {tmp}; Flags: deleteafterinstall; Components: Server\Database
+Source: SourceFiles\components\MySQL\*.msi; DestDir: {tmp}; Flags: deleteafterinstall; Components: Server
 
 
 [Icons]
 
-Name: {commondesktop}\Organizador; Filename: {app}\OrgNut\PNutwin.exe; Components: Client; Tasks: desktopicon
-Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\Organizador; Filename: {app}\OrgNut\PNutwin.exe; Components: Client; Tasks: quicklaunchicon
+Name: {commondesktop}\Organizador 1.6.0.7; Filename: {app}\OrgNut\PNutwin.exe; Components: Client; Tasks: desktopicon
+Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\Organizador 1.6.0.7; Filename: {app}\OrgNut\PNutwin.exe; Components: Client; Tasks: quicklaunchicon
 Name: {group}\Ajuda da Calculadora; Filename: {app}\Help\Calculo.chm; Components: Client
 Name: {group}\Ajuda do Organizador; Filename: {app}\Help\Organiza.chm; Components: Client
 Name: {group}\Calculadora; Filename: {app}\Calc\CalcNut.exe; Components: Client
@@ -267,3 +308,13 @@ Root: HKLM; SubKey: SOFTWARE\Borland\Database Engine\Settings\SYSTEM\INIT; Value
 [UninstallRun]
 Filename: "myodbc-installer "; Parameters: "-d -r -n ""MySQL ODBC 5.1 Driver"""; WorkingDir: {app} Flags: waituntilterminated shellexec runhidden
 ;;;;;
+
+[Code]
+
+function InitializeSetup(): Boolean;
+var isAdmin:boolean;
+begin
+result := IsAdminLoggedOn;
+If not result  then
+	MsgBox('Algumas tarefas de instalação requerem privilegios Administrativos'#13#13 'O instalador não pode prosseguir', mbInformation, MB_OK);
+end;
