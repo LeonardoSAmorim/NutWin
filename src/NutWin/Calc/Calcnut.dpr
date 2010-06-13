@@ -75,7 +75,7 @@ uses
     fmPrepPF in 'fmPrepPF.pas' {fmPrepPesoFinal},
     fmInquND in 'fmInquND.pas' {fmInqNumDias},
     fmInqNome in 'fmInqNome.pas' {fmInqueritoNome},
-    fmDistrEnergia in 'fmDistrEnergia.pas' {fmDistribuicaoEnergia},
+//    fmDistrEnergia in 'fmDistrEnergia.pas' {fmDistribuicaoEnergia},
     fmNutAcomp in 'fmNutAcomp.pas' {fmNutrientesAcomp},
     fmSelRelCalcAli in 'fmSelRelCalcAli.pas' {fmRelCalcAli},
     qrepform in '..\..\COMPDELPHI\CALCULO\QREPFORM.pas' {FormReport},

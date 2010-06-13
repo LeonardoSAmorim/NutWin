@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, MmLstBox, ExtCtrls, MoveItens, CalcAli;
+  StdCtrls, MmLstBox, ExtCtrls, MoveItens, CalcAli, HintListBox;
 
 type
   TfmItensAliOrdem = class(TForm)

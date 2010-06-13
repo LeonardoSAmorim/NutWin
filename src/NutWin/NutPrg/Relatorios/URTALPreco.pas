@@ -27,7 +27,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, quickrpt, Qrctrls, qrepform, RxGIF;
+  ExtCtrls, quickrpt, Qrctrls, qrepform, RxGIF, GIFImage;
 
 type
   TfmRTANut = class(TFormReport)

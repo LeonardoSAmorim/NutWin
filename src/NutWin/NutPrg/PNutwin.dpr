@@ -155,7 +155,7 @@ uses
 var
     MainPath, MsgErro: string;
     SalvaCursor: TCursor;
-    NumLicencas: integer;
+
 
   //&  DMMaster : TdmDataBasesNut;
   //******************************************************************************
@@ -163,7 +163,7 @@ var
   //******************************************************************************
 
 begin
-    NumLicencas := -1; // pra garantir que esta informação vai ser pega de algum lugar
+
   // não deixa dois ou mais organizadores rodarem ao mesmo tempo
     if true {not AppIsAlreadyRunning(ID_ORGANIZADOR)  } then
         begin

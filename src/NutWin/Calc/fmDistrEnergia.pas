@@ -33,8 +33,6 @@ uses
 type
   TfmDistribuicaoEnergia = class(TForm)
     paDistribuicaoCalorica: TPanel;
-    tcDistEnergia: TDBChart;
-    Series1: TPieSeries;
     DBGrid1: TDBGrid;
     procedure FormCreate(Sender: TObject);
   private

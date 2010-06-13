@@ -30,7 +30,7 @@ uses
   Wizard, StdCtrls, Buttons, ExtCtrls, OleCtrls, OCXDCNLib_TLB, DicNut, measurement,
   Antrop02, Antrop01, RecCal01, RecCal02, RecCal03, RecCal04, RecCal05, RecCal06,SelRecCal,
   NutCalcAli, SelRefCalcAli, RecNut, RecCal07,CalculoEditor,
-  fmPrepPF, fmInquND, fmDietaNome, fmInqNome, fmDistrEnergia, fmNutAcomp,
+  fmPrepPF, fmInquND, fmDietaNome, fmInqNome,  fmNutAcomp,
   fmPrepVerifPF, InqAtivFis;
 
 type
@@ -284,7 +284,7 @@ initialization
     RegisterClass(TfmInqueritoNome);
     RegisterClass(TfmInqNumDias);
     RegisterClass(TfmPlanoAlimentarNome);
-    RegisterClass(TfmDistribuicaoEnergia);
+//    RegisterClass(TfmDistribuicaoEnergia);
     RegisterClass(TfmNutrientesAcomp);
 
 

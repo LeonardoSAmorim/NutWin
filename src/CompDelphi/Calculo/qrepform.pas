@@ -48,7 +48,6 @@ type
     qyPagina: TQRSysData;
     qlTituloSistema: TQRLabel;
     qcSubTitulo: TQRBand;
-    qlDemo1: TQRLabel;
     qrsTitulo: TQRSysData;
     procedure FormCreate(Sender: TObject);
     procedure ReportEndPage(Sender: TCustomQuickRep);
@@ -85,7 +84,7 @@ procedure TFormReport.FormCreate(Sender: TObject);
 var
    Valor: String;
    Persona : TStringList;
-   Personalizou : Boolean;
+
    i : Integer;
    Linha : Integer;
    Texto : String;
@@ -93,16 +92,9 @@ begin
 
    i := 0;
 
-   if not CarregaChaveString( CFGROOT, CFGPath, CFGVersaoCalc, Valor ) then
-     begin
-      Valor := CFGVersaoCalcDefault;
-      qlDemo1.Enabled := False;
-     end;
-   Valor := 'VERSÃO ' + Valor;
-   qlDemo1.Caption := Valor;
 
  Persona := TStringList.Create;
- Personalizou := False;
+
  try
    // Forma de pegar uma chave que não seja do registro do windows
 
@@ -110,31 +102,10 @@ begin
 
       FileExists(Valor+'\'+PersonaFileName()+'.cfg') then
      begin
-      i := LoadPersona(Valor+'\'+PersonaFileName()+'.cfg', Persona, '', False);
-      case i of
-         1 : ShowMessage( HD_INVALIDO );
-         2 : ShowMessage( SERIAL_INVALIDO );
-         3 : ShowMessage( ARQUIVO_DANIFICADO );
-         else
-             Personalizou := True;
-      end;
+       LoadPersona(Valor+'\'+PersonaFileName()+'.cfg', Persona, '', False);
      end;
  finally
-   if not Personalizou or (i > 0) then
-      begin
-         Persona.Clear;
-         Persona.Add(ALERTA + ' - ' + ALERTA);
-         Persona.Add(ALERTA + ' - ' + ALERTA);
-         Persona.Add(ALERTA + ' - ' + ALERTA);
-         Persona.Add(ALERTA + ' - ' + ALERTA + ' - ' + ALERTA);
-         Persona.Add(ALERTA + ' - ' + ALERTA + ' - ' + ALERTA);
-         qiLogo.Enabled := True;
-         qlDemo1.Enabled := True;
-         qlDemo1.Caption := ALERTA;
-         qlDemo1.Font.Color := clBlack;
-      end
-   else
-      begin
+
          if CarregaChaveString( CFGROOT, CFGPath, CFGLogoFileName, Valor ) and
             FileExists(Valor+'\'+PersonaFileName()+'.bmp') then
             begin
@@ -144,7 +115,7 @@ begin
             end
          else
             qiLogo.Enabled := False;
-      end;
+
 
    // Pega o mesmo da personalização
    if CarregaChaveString( CFGROOT, CFGPath, CFGPersonaFileName, Valor ) then

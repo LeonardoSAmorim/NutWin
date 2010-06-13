@@ -77,8 +77,6 @@ InternalName=NUTWIN
 LegalCopyright=Universidade Federal de São Paulo - Unifesp
 LegalTrademarks=Universidade Federal de São Paulo - Unifesp
 OriginalFilename=PNutwin.exe
-ProductName=Programa de Apoio à Nutrição®, 2009
-ProductVersion=1.6 - 2009
-Comments=O Programa de Apoio à Nutrição está protegido pela lei  nº 7.646/87, que dispõe sobre a proteção da propriedade intelectual de programas de computador e sua comercialização no país. A reprodução não autorizada constituirá crime com pena prevista na lei.
-[Excluded Packages]
-$(DELPHI)\Projects\BPL\QR5DesignD5.bpl=QuickReport 5 Components (Delphi 5)
+ProductName=Programa de Apoio à Nutrição®, 2010
+ProductVersion=1.6 - 2010
+Comments=NutWin is free software. See GNU  General  Public <http://www.gnu.org/licenses/>.
