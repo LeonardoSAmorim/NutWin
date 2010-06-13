@@ -205,11 +205,13 @@ begin
 
     ConnectionParameters.UserName := edtUserName.Text;
     ConnectionParameters.Password := edtPassword.Text;
-Screen.Cursor := crHourGlass;
+    PageControl1.Enabled := false;
+    Button7.Enabled := false;
+        Screen.Cursor := crHourGlass;
         Application.ProcessMessages;
     DataGateway := TDataGateway.create (ConnectionParameters) ;
     try
-        lblDatabase.Font.Color := clWindowText;
+
         DataGateway.createDatabaseSchema;
 
         lblDataBaseAdv.Caption := 'Criando Usuário';
@@ -226,13 +228,20 @@ Screen.Cursor := crHourGlass;
         DataGateway.onExecute := CreateNotifyEvent;
         ProgressBar1.Visible := true;
         DataGateway.createDatabaseRecords;
-        lblDatabase.Font.Color := clAqua;
-        lblDataBaseAdv.Caption := 'Terminado';
+
+
+
+        lblDataBaseAdv.Caption := 'Concluido';
+        btnCreateDatabase.Enabled := false;
+
+
 
     finally
         ConnectionParameters.read;
         DataGateway.Free;
-Screen.Cursor := crDefault;
+        PageControl1.Enabled := true;
+         Button7.Enabled := true;
+        Screen.Cursor := crDefault;
     end;
 
 end;

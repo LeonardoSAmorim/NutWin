@@ -77,10 +77,13 @@ begin
     FileNameList := TStringList.create;
     path := ExtractFilePath (filePattern) ;
     if FindFirst (filePattern, faAnyFile, SearchRec) = 0 then
+        begin
+        FileNameList.Add (path + SearchRec.Name);
         while FindNext (SearchRec) = 0 do
             begin
                 FileNameList.Add (path + SearchRec.Name) ;
             end;
+        end;
     FindClose (SearchRec) ;
     result := FileNameList;
 
@@ -260,7 +263,7 @@ DefaultDataPath := registry.ReadString (CFGDefaultDataPath);
     for index := 0 to FileNameList.Count - 1 do
         begin
             if Assigned (onExecute) then
-                onExecute (ExtractFileName (FileNameList[index]) , index * 100 div FileNameList.Count) ;
+                onExecute (ExtractFileName (FileNameList[index]) , (index +1)* 100 div FileNameList.Count) ;
             executeScript (FileNameList[index]) ;
 
         end;
