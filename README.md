@@ -5,7 +5,9 @@ Este repositório é um *fork* de preservação e continuação do **NutWin**, u
 
 O objetivo do NutWin é auxiliar o nutricionista na realização de cálculos para Avaliação Nutricional, quantificação de ingestão de nutrientes e elaboração de planos alimentares. O software original foi escrito em **Delphi** e mantido historicamente no [SourceForge](https://sourceforge.net/projects/nutwin/).
 
-Com o abandono do projeto original, a missão deste repositório é garantir que o software, sua documentação e seus bancos de dados não se percam no tempo, mantendo-os funcionais e acessíveis para a comunidade.
+**Contexto Histórico:** O software foi comercializado com grande sucesso pela universidade até o início dos anos 2000. Em 2014, sem recursos para manter a equipe de suporte e desenvolvimento, o projeto foi abandonado. O mantenedor original, Paulo Bandiera Paiva, declarou o software como de domínio público com o apelo de que desenvolvedores da comunidade assumissem a missão de modernizar o banco de dados e dar suporte ao sistema. 
+
+A missão deste repositório retoma exatamente esse propósito original, garantindo que o código, sua documentação e seus bancos de dados não se percam no tempo, mantendo-os funcionais e acessíveis.
 
 ## Interface Original
 
@@ -40,4 +42,6 @@ Este projeto é aberto ao público e mantido pela comunidade. O escopo de desenv
 * **Lançamentos Originais (Releases):** Os instaladores finais, manuais de ajuda originais compilados (`Organiza.chm`, `Calculo.chm`) e pacotes distribuídos na época (como a v1.6 e v1.5.2.51) estão preservados e isolados na aba **[Releases](../../releases)** para fins históricos e de consulta.
 
 ## Créditos e Licença
-A arquitetura, o design e as diretrizes de cálculo nutricional pertencem aos desenvolvedores e pesquisadores originais da Unifesp. Este repositório dá continuidade ao código-fonte público original e respeita seus termos de uso. Para mais detalhes, consulte o arquivo `COPYING.txt` presente neste repositório.
+A arquitetura, o design e as diretrizes de cálculo nutricional pertencem aos desenvolvedores e pesquisadores originais da Unifesp. 
+
+**Licença:** Conforme declarado oficialmente pelo mantenedor do projeto em 2014, o NutWin foi colocado em **Domínio Público**. Este repositório dá continuidade ao código-fonte público original e mantém esse espírito de acesso livre e colaborativo.
